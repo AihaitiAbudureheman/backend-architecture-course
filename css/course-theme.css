@@ -1,0 +1,33 @@
+:root {
+  --r-background-color: #231c3e;   /* page background */
+  --r-main-color: #ffffff;         /* body text */
+  --r-heading-color: #ffffff;      /* titles */
+  --r-link-color: #ed64a6;         /* purple accent */
+    --r-heading-font: 'Inter', sans-serif;
+  --r-main-font: 'Inter', sans-serif;
+    --r-heading1-size: 1.6em;
+}
+
+.reveal h1 { 
+  font-size: var(--r-heading1-size);
+  line-height: 1.2;
+  max-width: 90%;
+  margin: 0 auto 0.4em;
+  text-transform: none;
+}
+
+.reveal .subtitle {
+  color: var(--r-link-color);
+  font-size: 0.9em;
+  margin-top: 0;
+}
+
+.reveal img {
+  border-radius: 0;
+   box-shadow: none
+}
+
+.reveal .r-stack img {
+  max-height: 800px;
+  width: auto;
+}

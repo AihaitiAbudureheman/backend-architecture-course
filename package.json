@@ -1,0 +1,29 @@
+{
+  "name": "backend-architecture-course",
+  "version": "1.0.0",
+  "description": "Backend Architecture Course Slides",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+      "dev": "vite",
+  "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AihaitiAbudureheman/backend-architecture-course.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AihaitiAbudureheman/backend-architecture-course/issues"
+  },
+  "homepage": "https://github.com/AihaitiAbudureheman/backend-architecture-course#readme",
+  "dependencies": {
+    "reveal.js": "^6.0.2"
+  },
+  "devDependencies": {
+    "vite": "^8.3.8"
+  }
+}
