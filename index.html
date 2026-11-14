@@ -343,6 +343,392 @@
 </section>
 
 
+<section class="S18">
+  <h1>What Is Security by Design?</h1>
+  <p class="subtitle">Lock every door, not just the front</p>
+  <div class="r-stack">
+    <img src="images/what/s18-bank-layers.png" alt="A cutaway bank showing security in layers: a shield gate, a key card door, a vault, and safe deposit boxes each with its own lock">
+    <img class="fragment fade-in-then-out" src="images/what/s18-service-keys.png" alt="Services inside a network, each with its own key, checking identity before connecting, with one door staying closed to a service without the right key">
+    <img class="fragment" src="images/what/s18-exposed-service.png" alt="A private service behind a wall with one gate open by mistake, beams from the internet reaching it, and an alarm ringing">
+  </div>
+  <aside class="notes">
+    <h2>What Is Security by Design?</h2>
+    <h3>A bank doesn't stop at the guard by the entrance. Every inner door needs a key card. The vault has its own lock, and so does every safe deposit box inside it. Get past one layer, and the next one is still there. That's how you keep the wrong people out: not with one strong door, but with many.</h3>
+    <p>Security by design means building those layers into your architecture from day one, not adding them a week before launch. Quick question: how many of your internal services actually check who's calling them?</p>
+    <p>A lot of teams say, 'They're on the internal network, so they can trust each other.' But what if someone gets inside? Suddenly, every service is wide open. That's why many teams follow zero trust: no service is trusted automatically, just because it's internal.</p>
+    <p>So decide early how your services prove who they are. Even simple steps help: give each service its own key, rotate those keys regularly, and give each one only the access it needs. Just like every safe deposit box has its own lock.</p>
+    <p>And watch for a risk people underestimate: a private service becoming public by accident. One deployment goes slightly wrong, one firewall rule is off, and suddenly it's reachable from the internet.</p>
+    <p>Why does this matter so much? IBM puts the average data breach at nearly five million dollars. Designing the layers in early costs far less, and your design passes the security review instead of failing it right before launch.</p>
+    <h4>Before your next review, ask one question: what if someone's already inside? And security isn't the only late surprise. Legal rules can be one too.</h4>
+  </aside>
+</section>
+
+
+<section class="S19">
+  <h1>What Is Compliance?</h1>
+  <p class="subtitle">When laws shape your architecture</p>
+  <div class="r-stack">
+    <img src="images/what/s19-building-rules.png" alt="A house blueprint with an approval stamp above it, surrounded by symbols for height limits, distance from the road, and safety">
+    <img class="fragment fade-in-then-out" src="images/what/s19-delete-button.png" alt="One delete button on an app screen, with lines spreading behind it into services, databases, backups, and an outside cloud">
+    <img class="fragment" src="images/what/s19-data-borders.png" alt="A made-up map region with databases inside a glowing border, and a data packet stopped at a gate on the edge">
+  </div>
+  <aside class="notes">
+    <h2>What Is Compliance?</h2>
+    <h3>Why do you check the local building rules before you even sketch a house? Because those rules decide what you're allowed to build: how tall, how far from the road, how safe. Ignore them, and there's no permit. Or worse, you build it, and then you're told to tear part of it down. Software has building rules too.</h3>
+    <p>Compliance means your system follows the laws that apply to it, especially around personal data: how you store it, share it, and protect it. In Europe, that's GDPR, and other regions and industries have their own rules.</p>
+    <p>Here's why it shapes the architecture. Under GDPR, people can ask a company to delete their personal data. On screen, that's one simple button: 'Delete my account.' But behind it, your system has to find and remove that person's data everywhere it lives: every service, every database, every copy.</p>
+    <p>Planned early, that's a feature. Discovered late, it's a project that touches every part of your system.</p>
+    <p>And some rules go even deeper. Laws can decide where your data is allowed to be stored, or whether it can leave a region at all. That's not one feature anymore. It shapes where you host, how you copy data, and which outside services you can use.</p>
+    <p>And the stakes are real: GDPR fines can reach four percent of a company's global yearly revenue. So let compliance shape your design from day one, and you pass legal reviews, launch in new markets with confidence, and earn your users' trust.</p>
+    <h4>Check the building rules before you sketch, not after you build. And there's one more set of requirements nobody writes down until it's too late: how fast, and how reliable?</h4>
+  </aside>
+</section>
+
+<section class="S20">
+  <h1>What Are Performance and Uptime Requirements?</h1>
+  <p class="subtitle">Speed, availability, and promises</p>
+  <div class="r-stack">
+    <img src="images/what/s20-pizza-promise.png" alt="A pizza shop at night with a door sign promising on-time delivery or it's free, and open late, with ovens glowing and a delivery scooter waiting">
+    <img class="fragment fade-in-then-out" src="images/what/s20-requirements.png" alt="A system block connected to a speedometer, a day-and-night clock with an always-on light, and a sealed contract with a coin attached">
+    <img class="fragment" src="images/what/s20-nines-stairs.png" alt="A staircase where each step is taller than the last, with server racks and coin piles growing bigger at every step">
+  </div>
+  <aside class="notes">
+    <h2>What Are Performance and Uptime Requirements?</h2>
+    <h3>A pizza place puts a promise on its door: delivered in thirty minutes, or it's free. Open every day until midnight. That promise decides everything behind the counter: how many ovens, how many drivers, who works the late shift. Promise ten minutes, and the whole kitchen changes. Promise nothing, and nobody knows what the kitchen needs.</h3>
+    <p>Your system needs the same promises. Performance requirements say how fast it must respond under real load. Fast enough for what you actually need, not 'can it handle a billion requests?' Too slow, and users leave. Built for a billion, and you pay for complexity nobody needed.</p>
+    <p>Uptime requirements say how often the system must be available. Can it go down for an hour of maintenance on a Sunday night? Or must it stay up around the clock?</p>
+    <p>And sometimes, your company has already promised it. That's an SLA, a service level agreement: the uptime or speed promised to customers, often with penalties when it's missed. Just like the free pizza.</p>
+    <p>Uptime is usually counted in nines. Three nines, 99.9 percent, allows almost nine hours of downtime a year. Four nines, 99.99 percent, allows about fifty-two minutes. And every extra nine makes your system much harder, and much more expensive, to build.</p>
+    <p>That's why these numbers belong at the very start. They decide how many servers you run, where you run them, and how you recover from failure. Know them early, and you spend only where it counts, and keep every promise your company makes.</p>
+    <h4>Promise only what you can deliver, and build exactly for that. Because every extra nine, every extra server, adds something else too: complexity. So when is it too much?</h4>
+  </aside>
+</section>
+
+
+<section class="S21">
+  <h1>What Is Complexity?</h1>
+  <p class="subtitle">When it's too much, and what to do</p>
+  <div class="r-stack">
+    <img src="images/what/s21-cable-mess.png" alt="A messy bundle of cables behind a desk running into one overloaded power strip, with a question mark over a half-pulled plug">
+    <img class="fragment fade-in-then-out" src="images/what/s21-spaghetti-design.png" alt="An architecture diagram with arrows crossing everywhere like spaghetti, an hourglass almost empty, and a confused audience">
+    <img class="fragment" src="images/what/s21-managed-database.png" alt="A database handed to a cloud provider along with backups, patches, and night-time failures, leaving one neat cable behind">
+  </div>
+  <aside class="notes">
+    <h2>What Is Complexity?</h2>
+    <h3>Ever looked behind a desk where cables were added one at a time, for years? Each one had a good reason: a new monitor, a charger, a speaker. But now it's a mess, and nobody dares to unplug anything, because who knows what goes dark. That's complexity: every piece made sense on its own, but not together.</h3>
+    <p>In software, it grows the same way. You add boxes and arrows to your design, each one logical in the moment. Then you step back, look at the whole thing, and think: 'Oh no. This is spaghetti.'</p>
+    <p>And the more you spread your system across services, the faster complexity grows. Every new service is one more cable: more connections, more to deploy, more that can break. The more complexity you add, the more you own.</p>
+    <p>So when is it too much? Here's a simple test. Present your design for twenty minutes. If nobody in the room really understands it, that's a warning sign. Either the design is too complex, or the way you're explaining it is.</p>
+    <p>That's why you watch complexity while you design, not just at the end. Deal with the dependencies early, before they pile up.</p>
+    <p>And sometimes, the smartest way to manage a complex part is to stop managing it yourself. Running your own database means backups, patches, and fixing failures in the middle of the night. A managed database is the same database, but the cloud provider handles all of that. One less cable for you.</p>
+    <h4>Look at your own system: which part are you running that someone else could run better? Just remember, handing it off isn't free. So what does a system really cost?</h4>
+  </aside>
+</section>
+
+
+<section class="S22">
+  <h1>What Does a System Really Cost?</h1>
+  <p class="subtitle">More than the cloud bill</p>
+  <div class="r-stack">
+    <img src="images/what/s22-puppy.png" alt="A happy puppy with a bow on a welcome mat, surrounded by icons for food, vet visits, insurance, toys, and daily walks in rain or snow">
+    <img class="fragment fade-in-then-out" src="images/what/s22-iceberg.png" alt="An iceberg with a small cloud bill on the tip and a huge hidden part full of clocks, wrenches, and coins">
+    <img class="fragment" src="images/what/s22-scale.png" alt="A balance scale weighing a free gift box piled with clocks and wrenches against a priced box with a chain link">
+  </div>
+  <aside class="notes">
+    <h2>What Does a System Really Cost?</h2>
+    <h3>Bringing home a puppy is one of life's best decisions. And it might even cost nothing. But every dog lover knows what comes next: food, vet visits, insurance, new toys, and a walk every single day, rain or snow, for years. Worth every minute. But the price tag was never the real cost. Software works the same way, just without the cuddles.</h3>
+    <p>In software, the price tag is usually the cloud bill, and that's the number teams watch. But the real cost of a system also includes engineering hours: building it, maintaining it, fixing it, and even the time spent planning and coordinating.</p>
+    <p>Those hours are often a black box. Nobody tracks them, because 'we already have the engineers, so it's basically free.' It isn't. Every hour spent keeping a system alive is an hour not spent on new features.</p>
+    <p>Remember the self-run database? Say it takes ten hours a week to keep it running. That's a quarter of one engineer's time, every week, for years. That can cost more than the managed service itself.</p>
+    <p>Same with open source. It's free to download, but someone has to set it up, update it, and fix it when it breaks. There's a name for counting all of it: total cost of ownership. Everything a technology costs over its whole life, not just the price tag.</p>
+    <p>And sometimes, a paid vendor is actually cheaper, because they do the daily walks for you. Just remember, lock-in has a cost too: prices can rise, and leaving later is hard.</p>
+    <h4>So count the walks, not just the price tag. And once you know the real cost, the next question is: which technology is actually worth it?</h4>
+  </aside>
+</section>
+
+
+<section class="S23">
+  <h1>What Makes a Technology the Right Choice?</h1>
+  <p class="subtitle">Pick what your team can support</p>
+  <div class="r-stack">
+    <img src="images/what/s23-bug-zapper.png" alt="Cute bugs circling a glowing bug zapper in a garden, ignoring a flower and a plant nearby">
+    <img class="fragment fade-in-then-out" src="images/what/s23-night-failure.png" alt="A shiny new database flashing a warning at night while a puzzled team stands around it with question marks">
+    <img class="fragment" src="images/what/s23-side-project.png" alt="A new tool tested under a glass dome on a workbench, with a path through a checked gate to a steady production system">
+  </div>
+  <aside class="notes">
+    <h2>What Makes a Technology the Right Choice?</h2>
+    <h3>Ever watched bugs around a bug zapper on a summer evening? They get pulled toward the bright glow, circling closer and closer. Not toward the safest spot, not toward food. Just the shiniest thing in the garden. And that's exactly what gets them. Choosing technology can work the same way: the newest, brightest tool pulls you right in.</h3>
+    <p>Choosing technology is one of the hardest calls in any design. And the right choice isn't the newest one. It's the one your team understands, and can build, run, troubleshoot, and support.</p>
+    <p>Picture this. Your team picks a brand-new database because everyone's talking about it. It works fine, until one night it starts failing in production. And nobody on the team knows how to fix it, or even where to start looking. Hours of guessing, while users wait.</p>
+    <p>So think about the whole team, not just yourself. If only one person understands a tool, or nobody does, it probably doesn't belong in your design.</p>
+    <p>That doesn't mean ignoring new technology. Stay aware of trends, like serverless or event-driven systems. Knowing what's possible gives you more options. But knowing when not to use them matters just as much.</p>
+    <p>So try new tools on side projects first. Learn how they behave, and how they break. Then, when one really solves a problem at work, you can bring it in with confidence, and your team can support it.</p>
+    <h4>Before you bring in anything new, ask: can my team fix this at 2 a.m.? And once you've chosen, write down why. Because six months from now, someone's going to ask.</h4>
+  </aside>
+</section>
+
+<section class="S24">
+  <h1>What Is Architecture Documentation?</h1>
+  <p class="subtitle">Write down the why, and keep it current</p>
+  <div class="r-stack">
+    <img src="images/what/s24-old-map.png" alt="An old paper map showing a road that, in the real landscape behind it, ends at a fence in an open field">
+    <img class="fragment fade-in-then-out" src="images/what/s24-decision-record.png" alt="A document card with three sections for context, decision, and consequences, with faded rejected options behind it">
+    <img class="fragment" src="images/what/s24-docs-next-to-code.png" alt="A code window and a document page linked by sync arrows, with an outdated page dropping into a recycling bin">
+  </div>
+  <aside class="notes">
+    <h2>What Is Architecture Documentation?</h2>
+    <h3>An old map is worse than no map. Follow it once, and the road ends in a field, because that road changed years ago. After that, you stop trusting the whole map, even the parts that are still right. So you put it away and ask someone for directions. Your documentation works the same way.</h3>
+    <p>Architecture documentation is your system's map: the diagrams, how the parts connect, and the decisions behind them. And the decisions matter most. Not just what you chose, but what you rejected, and why.</p>
+    <p>Many teams use a simple format for this, called an Architecture Decision Record. One short document per decision: the context, what you decided, and the consequences. Six months later, when someone asks, 'Why did we do it this way?', the answer is already written down.</p>
+    <p>But here's the problem. Many teams say, 'We don't have time for docs. Let's just build.' So the docs fall behind the system. And just like the old map, once people find one wrong page, they stop trusting all of it.</p>
+    <p>So build the habit. Whenever you work on something, check the related docs. Update them, mark them as outdated, or delete them. And keep docs right next to the code, so they change together.</p>
+    <p>And it isn't only on developers. Managers need to give teams time for it. Because trusted docs pay off every day: newcomers learn on their own, old debates stay settled, and your design keeps its value long after people move on.</p>
+    <h4>An up-to-date map gets used. An old one gets ignored. Now, let's open that map and look at the building blocks, starting with where your data lives.</h4>
+  </aside>
+</section>
+
+<section class="S25">
+  <h1>What Are Your Main Data Storage Choices?</h1>
+  <p class="subtitle">The right place for each kind of data</p>
+  <div class="r-stack">
+    <img src="images/what/s25-home-storage.png" alt="A home with keys on a hook by the door, color-coded folders in a filing cabinet, and boxes stacked in the garage">
+    <img class="fragment fade-in-then-out" src="images/what/s25-four-types.png" alt="Four storage symbols: linked tables, a stack of differently shaped documents, a key tag on a box, and a crate holding photos, videos, and backups">
+    <img class="fragment" src="images/what/s25-many-stores.png" alt="An application connected to tables, documents, a key-value box, a file crate, search, and a graph, with the table linking to the files">
+  </div>
+  <aside class="notes">
+    <h2>What Are Your Main Data Storage Choices?</h2>
+    <h3>Where do you keep your keys at home? Probably on a hook by the door, so you can grab them in a second. Important papers go in labeled folders. Old photos and big things go in boxes in the garage. You don't keep everything in one place, because each thing needs its own kind of storage. Your data is no different.</h3>
+    <p>First, relational databases, like those labeled folders. Data lives in tables with fixed columns, and tables link to each other. They shine when several changes must succeed or fail together, like an order and its payment. That's why they're a common, safe default for business data.</p>
+    <p>Second, document databases. Each record is one flexible document, like a product with all its details. Records don't all need the same shape, so they work well for catalogs or user profiles that keep changing.</p>
+    <p>Third, key-value stores: your keys on the hook. You save a value under a name, and get it back in a blink. Great for login sessions or shopping carts.</p>
+    <p>And fourth, object storage, the boxes in the garage. Images, videos, backups: big files, stored cheaply at huge scale. The database just keeps a link to each file.</p>
+    <p>There are special ones too, like search engines and graph databases. But the point is: choose by the shape of your data and how you use it, not by habit. Many systems use more than one. And since data often outlives the code around it, moving it later is expensive.</p>
+    <h4>Right data, right place. But even in the right place, some data gets looked up over and over again. What if you didn't have to fetch it every time?</h4>
+  </aside>
+</section>
+
+
+<section class="S26">
+  <h1>What Is Caching?</h1>
+  <p class="subtitle">Keep a fresh copy close by</p>
+  <div class="r-stack">
+    <img src="images/what/s26-milk-fridge.png" alt="A bottle of milk within reach in an open fridge next to a coffee cup, with a supermarket far away through the window">
+    <img class="fragment fade-in-then-out" src="images/what/s26-hit-miss.png" alt="A request answered quickly by a cache box, and a longer path to the database that brings back a copy for the cache">
+    <img class="fragment" src="images/what/s26-fresh-copy.png" alt="An expired grey card in a cache replaced by a fresh one from the database, while a coin card stays safely with the database">
+  </div>
+  <aside class="notes">
+    <h2>What Is Caching?</h2>
+    <h3>Nobody walks to the supermarket every time they need milk for their coffee. You keep a bottle of milk in the fridge, right next to you. It's faster, and it saves the trip. But that bottle has an expiry date. Forget to check it, and your morning coffee gets a nasty surprise. That's caching: fast, but only while it's fresh.</h3>
+    <p>A cache keeps a copy of often-used data somewhere faster and closer than its source. When a request comes in, your system checks the cache first. Found it? That's a cache hit, and the answer comes back almost instantly. Not there? That's a miss: you fetch it from the database, and keep a copy for next time.</p>
+    <p>Caches can live in several places: in the user's browser, on servers spread around the world close to your users, or right next to your app, often in the key-value store we just saw.</p>
+    <p>And the payoff is real. Your database stops answering the same question again and again, responses get faster, and you don't pay for a bigger database just to repeat itself.</p>
+    <p>But here's the catch: the copy can go stale, just like the milk. So every copy gets an expiry time, or gets cleared when the real data changes. Getting this right is famously tricky.</p>
+    <p>That's why you cache data that's read often and changes rarely, like a product list or app settings. And be careful with data that must always be exact, like an account balance.</p>
+    <h4>Cache what's read often, keep it fresh, and your database can breathe. Next, the other kind of waiting: slow work, like sending an email, that keeps the user waiting.</h4>
+  </aside>
+</section>
+
+
+<section class="S27">
+  <h1>What Are Queues?</h1>
+  <p class="subtitle">Let slow work wait in line, not your users</p>
+  <div class="r-stack">
+    <img src="images/what/s27-postbox.png" alt="A cutaway postbox with letters and greeting cards piling up neatly inside, and a postal van coming to collect them">
+    <img class="fragment fade-in-then-out" src="images/what/s27-order-queue.png" alt="A phone showing an order placed instantly, while job cards for an email, an invoice, and a box wait on a belt for a worker station">
+    <img class="fragment" src="images/what/s27-spike-line.png" alt="A burst of job cards settling into an orderly line for several worker stations, with a repeated job safely producing only one charge">
+  </div>
+  <aside class="notes">
+    <h2>What Are Queues?</h2>
+    <h3>When you post a letter, do you stand by the postbox until it's delivered? Of course not. You drop it in and go on with your day. Later, the postal worker collects it. And during the holidays, when everyone sends cards at once, the box just fills up. Nothing gets lost. Your system can work the same way.</h3>
+    <p>A queue is a waiting line for work. One part of your system drops off a job, like 'send this order confirmation.' Another part, called a worker, picks it up when it's ready.</p>
+    <p>So when a user places an order, they see 'Order placed!' right away. The email, the invoice, the stock update: all of that happens a moment later, without anyone staring at a loading spinner.</p>
+    <p>Queues also absorb spikes. When a sale starts and traffic jumps, jobs simply line up, and workers get through them at their own pace. So you can size your servers for normal days, not just the busiest one. Just make sure the line gets shorter again. And if a worker fails, the job stays in the queue and gets tried again.</p>
+    <p>Sounds like events? Close. An event is a note on the bulletin board, for anyone who cares. A queue hands each job to one worker.</p>
+    <p>One catch: a job can sometimes arrive twice, so handling it twice must be safe. Remember from robustness: never charge a card twice.</p>
+    <h4>So, queue the slow work, make it safe to repeat, and your users never wait. But what happens when all those requests land on one single server?</h4>
+  </aside>
+</section>
+
+
+<section class="S28">
+  <h1>What Is Load Balancing?</h1>
+  <p class="subtitle">Spread traffic across servers, skip broken ones</p>
+  <div class="r-stack">
+    <img src="images/what/s28-airport-security.png" alt="An airport staff member pointing travelers to the shortest security lane, while a broken scanner is blocked off">
+    <img class="fragment fade-in-then-out" src="images/what/s28-load-balancer.png" alt="Requests flowing into a traffic-director hub and spreading to healthy servers, with one broken server skipped">
+    <img class="fragment" src="images/what/s28-rolling-shared.png" alt="One server being updated while two keep serving, all connected to a shared session store, with the traffic director running as two copies">
+  </div>
+  <aside class="notes">
+    <h2>What Is Load Balancing?</h2>
+    <h3>At a busy airport, there's often one staff member standing where the security lines begin. They don't check anyone's bag. They just point each traveler to the shortest line. And when one scanner breaks down, they simply stop sending people there. Nobody gets stuck, and the lines keep moving. Your servers need someone like that.</h3>
+    <p>That's a load balancer. Remember horizontal scaling: add more copies, and spread the traffic between them? The load balancer does the spreading. It sits in front of your servers and sends each request to one of them. It doesn't do the work itself. It just directs it.</p>
+    <p>How does it choose? Often simply by taking turns, or by picking the server that's least busy right now.</p>
+    <p>And here's the part that saves you at night: health checks. The load balancer keeps asking each server, 'Are you okay?' If one stops answering, it stops getting traffic, just like the broken scanner. One server crashes, and most users don't even notice.</p>
+    <p>There's a business bonus too. You can update your servers one at a time, while the others keep serving. New releases, no downtime.</p>
+    <p>Two catches. First, any copy must be able to handle any request, so don't keep user sessions on one server. Put them in a shared store, like the key-value store we saw earlier. Second, the load balancer itself can't become the weak spot. That's why cloud load balancers run as several copies too.</p>
+    <h4>Now look at your own architecture: is there still one box that everything depends on? Very often, it's the database behind all those servers.</h4>
+  </aside>
+</section>
+
+
+<section class="S29">
+  <h1>What Is Database Replication?</h1>
+  <p class="subtitle">Live copies of your database, kept in sync</p>
+  <div class="r-stack">
+    <img src="images/what/s29-classroom.png" alt="A teacher drawing on the board while students copy it into notebooks, with one student a line behind">
+    <img class="fragment fade-in-then-out" src="images/what/s29-primary-replicas.png" alt="A primary database receiving writes and copying them to three replicas that serve many reads, with one replica taking over when the primary fails">
+    <img class="fragment" src="images/what/s29-not-backup.png" alt="A mistake on the primary copied to every replica, while a separate safe keeps an intact backup">
+  </div>
+  <aside class="notes">
+    <h2>What Is Database Replication?</h2>
+    <h3>A teacher writes on the board, and every student copies it into their notebook. Now dozens of people can read the same notes at once. And if someone wipes the board, the notebooks still have everything. But a student who looks up late is a line behind. And if the teacher writes something wrong, everyone copies the mistake too. Database copies work the same way.</h3>
+    <p>That's replication: live copies of your database on other servers, kept in sync automatically. One server, the primary, takes all the writes. It copies every change to the others, called replicas.</p>
+    <p>First benefit: more reading power. Many apps read far more than they write. Think of how often you browse products, compared to how often you actually buy one. So the replicas answer the reads, and the primary stays free for the writes.</p>
+    <p>Second benefit: surviving failure. If the primary goes down, a replica takes over. That's called failover, and managed databases can do it for you automatically. One failure no longer takes the whole app down.</p>
+    <p>Now the catches. Replicas can be a moment behind, like the student who looked up late. A user updates their profile, refreshes, and sees the old one. That trade-off gets its own lesson soon.</p>
+    <p>And a replica isn't a backup. Delete a table by mistake, and that mistake is copied to every replica within seconds. So keep real backups too.</p>
+    <h4>Copies plus backups: more reads, fewer outages, and nothing lost. But every copy still holds all the data, and every write still goes to one primary. What happens when that's too much?</h4>
+  </aside>
+</section>
+<section class="S30">
+  <h1>What Is Sharding?</h1>
+  <p class="subtitle">Split your data across several databases</p>
+  <div class="r-stack">
+    <img src="images/what/s30-registration-desks.png" alt="Three conference registration desks marked with a circle, a triangle, and a square, with one desk facing a much longer line than the others">
+    <img class="fragment fade-in-then-out" src="images/what/s30-shards.png" alt="One overstuffed database splitting into three smaller ones, with a sorting gate sending each data card to its matching database">
+    <img class="fragment" src="images/what/s30-hot-shard.png" alt="One overloaded database glowing hot beside two nearly empty ones, and a question collecting answers from all three into one report">
+  </div>
+  <aside class="notes">
+    <h2>What Is Sharding?</h2>
+    <h3>Ever checked in at a big conference? One desk can't handle thousands of guests, so the desks are split by last name: A to H, I to P, Q to Z. Each desk handles only its share. But if lots of names start with the same letter, that one desk gets a long line. And finding everyone from one company? You have to ask every desk.</h3>
+    <p>That's sharding. Instead of one database holding everything, you split the data across several databases, called shards. A simple rule, the shard key, decides where each record lives, for example by customer ID or by region. Now the writes and the storage are spread out, not just the reads.</p>
+    <p>But it comes with real costs. First, questions that cross shards. 'Show me all orders from last month' now has to ask every shard and combine the answers, just like asking every desk.</p>
+    <p>Second, a bad key creates a hot shard. If one huge customer or one busy region lands on the same shard, that shard is overloaded while the others sit idle.</p>
+    <p>Third, changing it later is painful. Moving live data to new shards is a project of its own. And each shard usually needs its own replicas too.</p>
+    <p>That's why sharding is a late step, not a first one. Fix slow queries, try a bigger machine, caching, and replicas first. Shard only when writes or data truly outgrow one primary.</p>
+    <h4>Split only when you must, and pick the key with care. Because once your data lives on many machines, those machines don't always agree. And that's our next big trade-off.</h4>
+  </aside>
+</section>
+
+
+<section class="S31">
+  <h1>What Are Consistency Trade-offs?</h1>
+  <p class="subtitle">When copies disagree: wait, or answer anyway?</p>
+  <div class="r-stack">
+    <img src="images/what/s31-ticket-sellers.png" alt="Two ticket sellers at separate theater entrances with a broken phone line between them and one seat left on the seating chart">
+    <img class="fragment fade-in-then-out" src="images/what/s31-wait-or-answer.png" alt="Two databases with a broken link: one stops a request to keep its data correct, the other answers right away with data that may be old">
+    <img class="fragment" src="images/what/s31-choose-per-data.png" alt="A seat, a coin, and a key card protected behind a locked shield, while heart and eye cards sync their copies at their own pace">
+  </div>
+  <aside class="notes">
+    <h2>What Are Consistency Trade-offs?</h2>
+    <h3>Two ticket sellers work at different entrances of the same theater. They share one seating chart over the phone. One seat is left. Then the phone line stops working. Now each seller has a choice. Stop selling until the line is back, and send customers away. Or keep selling, and risk selling that last seat twice. There's no third option.</h3>
+    <p>Your data has the same problem. Once copies live on several machines, they stay in sync over the network. Most of the time, that takes a blink. But networks fail. And when the machines can't reach each other, your system faces the same choice as the sellers.</p>
+    <p>Option one: stay consistent. The system refuses to answer until the copies agree again. Users may see an error, but never wrong data. Option two: stay available. Every machine keeps answering with what it has. Users always get an answer, but it may be outdated.</p>
+    <p>This has a name: the CAP theorem. In plain words: when the network between your machines breaks, you can't have both. You have to choose.</p>
+    <p>And often, slightly old data is fine. A like count that's a few seconds behind hurts nobody. Eventually, the copies catch up. That's called eventual consistency.</p>
+    <p>So don't make one choice for the whole system. Choose for each kind of data. The last seat, an account balance, a password: those must be exact, even if that sometimes means an error. A feed or a view counter: keep answering. It's a business decision, so make it on purpose.</p>
+    <h4>For each kind of data, ask: what's worse, no answer or a wrong one? Next: what if one client sends far too many requests?</h4>
+  </aside>
+</section>
+
+<section class="S32">
+  <h1>What Is Rate Limiting?</h1>
+  <p class="subtitle">A fair request limit for every client</p>
+  <div class="r-stack">
+    <img src="images/what/s32-store-limit.png" alt="A store shelf with a sign limiting each customer to two items, customers each carrying two boxes, and one customer with an empty oversized cart">
+    <img class="fragment fade-in-then-out" src="images/what/s32-limit-gate.png" alt="A gate in front of servers letting calm clients through while most requests from one noisy script bounce off, with a cost meter staying under its ceiling">
+    <img class="fragment" src="images/what/s32-try-again.png" alt="A gate handing a client a card with an hourglass, the client waiting beside a timer, and separate usage counters for each client">
+  </div>
+  <aside class="notes">
+    <h2>What Is Rate Limiting?</h2>
+    <h3>A store puts its most popular item on sale, with a small sign: limit, two per customer. Without that sign, the first person in line fills a whole cart, and everyone behind them leaves with nothing. With it, everybody gets a fair share, and the shelf lasts all day. Your API needs the same sign.</h3>
+    <p>That sign is a rate limit: a rule for how many requests one client may send in a set time. Say, a hundred per minute. Stay under it, and nothing changes. Go over it, and the extra requests are turned away with the standard error code, 429: too many requests.</p>
+    <p>Why turn anyone away? First, fairness. Without a limit, one buggy script or one bot can use up everything, and all your other users get slow pages or errors.</p>
+    <p>Second, money. In the cloud, every request costs you something, and some cost a lot. A limit puts a ceiling on what any single client can cost you. And third, security: it slows down someone guessing passwords, one attempt after another.</p>
+    <p>Where does it live? At the front door, before requests reach your services. And it counts per user or per API key, so one noisy client doesn't use up everyone's share.</p>
+    <p>Two things make it work well. Set the limit above what normal users need, so they never notice it. And like the sign, be clear: tell the client when it can try again, so a well-behaved client waits, and doesn't retry right away.</p>
+    <h4>So put up the sign before you need it: a fair limit, clearly announced. And limits matter even more when every request costs real money. Next: AI models.</h4>
+  </aside>
+</section>
+
+<section class="S33">
+  <h1>What Changes When Your Backend Calls an AI Model?</h1>
+  <p class="subtitle">Slow, paid per use, and sometimes wrong</p>
+  <div class="r-stack">
+    <img src="images/what/s33-machine-vs-expert.png" alt="A vending machine dropping an identical snack instantly, next to a human expert at a desk with an hourglass, a stack of coins, and two slightly different answers">
+    <img class="fragment fade-in-then-out" src="images/what/s33-slow-paid-varies.png" alt="An AI model block with an hourglass and a half-written answer, a coin meter fed by small pieces of text, and two similar answers being inspected">
+    <img class="fragment" src="images/what/s33-outside-service.png" alt="Your system sending data through a checkpoint to an outside AI provider, with a stopwatch, a held-back personal data card, and a fallback path">
+  </div>
+  <aside class="notes">
+    <h2>What Changes When Your Backend Calls an AI Model?</h2>
+    <h3>What's the difference between a vending machine and a human expert? Press a button on the machine, and you get the same snack, right away, for a fixed price. Ask the expert, and you wait. You pay for their time. The answer is a little different each time. And sometimes it's wrong, but sounds sure. A normal API is like the machine. An AI model is more like the expert.</h3>
+    <p>So design for the expert. First, speed. An AI model can take several seconds to answer. So show the answer as it's being written, word by word, and send long jobs to a queue.</p>
+    <p>Second, cost. You pay for every request, by the amount of text going in and coming out, counted in small pieces called tokens. So limit usage per user, and cache the answers to questions that keep coming back.</p>
+    <p>Third, the answer itself. Ask twice, and the wording can change. And sometimes it's simply wrong. So check the output before your system acts on it, and never store it as fact.</p>
+    <p>Fourth, it's someone else's service, with its own limits and its own outages. So set a timeout, retry with care, and decide what your feature does when the model isn't there.</p>
+    <p>And fifth, your data leaves your system. Whatever you send goes to the provider. So decide early what's allowed to go, especially personal data. That's a compliance question, not just a technical one.</p>
+    <h4>Treat an AI model like an expert you hired, not a machine you bought: plan for the wait, the bill, and the mistakes. But even an expert has never seen your company's data. So how do you give it the facts?</h4>
+  </aside>
+</section>
+<section class="S34">
+  <h1>What Is Retrieval-Augmented Generation (RAG)?</h1>
+  <p class="subtitle">The AI reads your documents first, then answers</p>
+  <div class="r-stack">
+    <img src="images/what/s34-first-day-expert.png" alt="An expert on their first day taking a customer call without knowing the answer, while a helpful hand slides the policy folder across the desk">
+    <img class="fragment fade-in-then-out" src="images/what/s34-rag-flow.png" alt="A question searching a shelf of document pieces, the best matches bundled with the question, and an AI model turning the bundle into an answer">
+    <img class="fragment" src="images/what/s34-sources-permissions.png" alt="An answer linked to its source documents, and a gate that lets a user reach only the documents their key allows">
+  </div>
+  <aside class="notes">
+    <h2>What Is Retrieval-Augmented Generation (RAG)?</h2>
+    <h3>It's the first day for the expert you hired. A customer calls and asks about your refund policy. The expert is brilliant, but has never read that policy. So there are two ways this can go. They guess, and sound completely sure. Or you hand them the policy first, and they answer from it. An AI model is in that position every time you ask.</h3>
+    <p>A model knows only what it was trained on: mostly public text, up to a certain date. Your documents weren't part of that. And when a model doesn't know, it can make something up.</p>
+    <p>The fix is called retrieval-augmented generation, or RAG. Before your system asks the model, it searches your own documents for the parts that matter, and hands them over together with the question. Look it up, add it, then write the answer. That's the whole name.</p>
+    <p>How does the search find the right parts? Your documents are cut into small pieces and stored so they can be found by meaning, not just by exact words. That store is often called a vector database.</p>
+    <p>Two benefits. Update the stored documents, and the next answer uses them, with no retraining of the model. And the answer can show its sources, so people can check it.</p>
+    <p>Two catches. The answer is only as good as what the search finds. And the search must return only what this user is allowed to see, or your assistant becomes a way around your access rules. RAG makes made-up answers rarer. It doesn't make them impossible.</p>
+    <h4>Give the model your facts, and control what it can see. So far, the AI only answers. Next, we let it act.</h4>
+  </aside>
+</section>
+
+<section class="S35">
+  <h1>What Are AI Agents?</h1>
+  <p class="subtitle">AI that takes actions on its own</p>
+  <div class="r-stack">
+    <img src="images/what/s35-badge-not-master-key.png" alt="A new employee receiving an access badge that opens only some doors, while the master key and payment card stay locked in a glass case">
+    <img class="fragment fade-in-then-out" src="images/what/s35-agent-loop.png" alt="An AI model working in a loop with tools for calling systems, searching, and sending messages, while a document with a hidden instruction slides toward it">
+    <img class="fragment" src="images/what/s35-four-rules.png" alt="An AI model surrounded by four safeguards: a limited access badge, a human approval stamp, a meter with a ceiling, and a logbook of actions">
+  </div>
+  <aside class="notes">
+    <h2>What Are AI Agents?</h2>
+    <h3>Do you hand a new employee the master key and the company credit card on their first day? Of course not. They get a badge that opens only the doors they need. Their card has a spending limit. Big decisions come to you first. And there's a record of what they do. Now your AI is about to start doing things, not just answering. It needs the same rules.</h3>
+    <p>An AI agent is a model that can use tools: call your APIs, search, send messages. It works in a loop. It picks a step, does it, looks at the result, and picks the next one, until the task is done.</p>
+    <p>That changes the risk. When AI only answers, the worst case is a wrong sentence. When it acts, the worst case is a wrong action: a refund sent, a record deleted, an email to every customer.</p>
+    <p>And there's a new kind of attack, called prompt injection. An agent reads emails, web pages, and documents, and that text can contain instructions written by someone else. The model may follow them. So treat everything it reads as untrusted.</p>
+    <p>So give it the new employee's rules. First, least access: only the tools and data this task needs, with the user's permissions, never an admin's. Second, approval: a person confirms anything that can't be undone, or that spends money.</p>
+    <p>Third, limits: cap the steps, the time, and the spending, so a loop can't run forever. And fourth, a record: log every action, so you can see what it did.</p>
+    <h4>Give your agent a badge, not the master key. That was our last building block. Now let's step back and look at them all together.</h4>
+  </aside>
+</section>
+<section class="S36">
+  <h1>What Makes a Design Good?</h1>
+  <p class="subtitle">Three questions to check any architecture</p>
+  <div class="r-stack">
+    <img src="images/what/s36-house-inspection.png" alt="A house being inspected with a clipboard of three checklist rows, a magnifying glass on the foundation, and a level on the roof">
+    <img class="fragment fade-in-then-out" src="images/what/s36-built-and-real-world.png" alt="Two panels of icons: four for a well-built design, and seven for security, law, visibility, speed, simplicity, cost, and people">
+    <img class="fragment" src="images/what/s36-building-blocks.png" alt="A shelf of eight building blocks, each tagged with a check mark and a warning, and a simple design in front that uses only three of them">
+  </div>
+  <aside class="notes">
+    <h2>What Makes a Design Good?</h2>
+    <h3>Nobody buys a house after one quick walk through it. You check it, point by point. Is it well built, with a solid foundation and a roof that doesn't leak? Does it work for real life: the budget, the building rules, the family? And is it made of the right materials? A design deserves the same inspection, and now you know what to look for.</h3>
+    <p>Here are three questions for any design. Ask each one separately. Don't look at the whole picture and say, 'Seems fine overall.' That's the quick walk through the house.</p>
+    <p>First: is it well built? Modularity: is it split into parts that make sense? Scalability: can it handle growth? Robustness: does it keep working when something fails? And flexibility: can it take the next feature without a rebuild?</p>
+    <p>Second: does it survive the real world? Is it secure, and does it follow the law? Can you see what's happening inside? Is it fast and reliable enough? Is it simple enough to explain? Do you know what it really costs? Can your team support the technology? And do the people who must approve it agree?</p>
+    <p>Third: did you pick the right building blocks? Storage, caching, queues, load balancing, replication, sharding, rate limiting, AI. Each one solves a problem. And each one brings a catch.</p>
+    <p>So for every block, ask what it fixes, and what it costs. A good design isn't the one with the most blocks. It's the one where every piece is there for a reason.</p>
+    <h4>Three questions, asked one at a time: that's how you inspect a design. You now know what a good design is made of. Next: when do you actually need one?</h4>
+  </aside>
+</section>
+
 
     </div>
   </div>
