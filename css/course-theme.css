@@ -8,6 +8,10 @@
     --r-heading1-size: 1.6em;
 }
 
+.reveal .slides section {
+  padding-top: 2em;
+}
+
 .reveal h1 { 
   font-size: var(--r-heading1-size);
   line-height: 1.2;
@@ -23,11 +27,17 @@
 }
 
 .reveal img {
-  border-radius: 0;
-   box-shadow: none
+  border-radius: 1em;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 30px rgba(35, 28, 62, 0.6);
 }
 
+
+
+
+
+
 .reveal .r-stack img {
-  max-height: 800px;
+  max-height: 768px;
   width: auto;
 }

@@ -16,9 +16,9 @@
         <h1>Design Backend Systems with Confidence</h1>
         <p class="subtitle">From writing code to designing systems</p>
         <div class="r-stack">
-          <img src="images/intro/s1-bricks.jpg" alt="A brick wall being built, one brick at a time">
+          <img src="images/intro/s1-bricks.png" alt="A brick wall being built, one brick at a time">
           <img class="fragment fade-in-then-out" src="images/intro/s1-blueprint.png" alt="A blueprint of a family house">
-          <img class="fragment" src="images/intro/s1-playbook.jpg" alt="A checklist with ticked boxes, ready to use">
+          <img class="fragment" src="images/intro/s1-playbook.png" alt="A checklist with ticked boxes, ready to use">
         </div>
         <aside class="notes">
           <h2>Design Backend Systems with Confidence</h2>
@@ -31,6 +31,316 @@
             <h4>From laying bricks to drawing the blueprint: that's the journey we're on together. So let's look at the road ahead.</h4>
         </aside>
       </section>
+            <section class="S2">
+        <h1>Your Roadmap from Code to Design</h1>
+        <p class="subtitle">What · When · Architectures · How · Evolution</p>
+        <img class="r-stretch" src="images/intro/s2-roadmap.png" alt="A hiker at the start of a trail, studying a map of the route ahead">
+        <aside class="notes">
+          <h2>Your Roadmap from Code to Design</h2>
+          <h3>Before a long hike, experienced hikers do one thing first: they look at the whole map. Not to memorize every turn, but to know where the route is heading, so they never feel lost along the way. That's what we're gonna do right now: one quick look at the whole route from code to design, before we take the first step.</h3>
+          <p>First, the what. Because how can you design something you don't fully understand? We start with what a backend architecture design really is, and the building blocks behind it, AI included, so you can follow architecture discussions with confidence.</p>
+          <p>Next, the when. You don't design a new architecture every day, so spotting the moment you need one is a skill in itself. So is knowing when you don't, and saving your team the time and the money.</p>
+          <p>Then, the three architectures you hear about everywhere: monoliths, distributed services, and serverless. Not just the names, but which one fits which situation, and why, so you can defend your choice in design reviews, and even in interviews.</p>
+          <p>After that comes the heart of this workshop: the how. A step-by-step playbook, from the very first question all the way to production, so you can face a real problem at work and know exactly where to start.</p>
+          <p>And finally, evolution: how architectures change as your company grows, in small, safe steps instead of risky rewrites, and sometimes even back a step.</p>
+          <h4>So that's the whole route, from code to design. Before we set off, let's make sure you've packed what you need.</h4>
+        </aside>
+      </section>
+
+            <section class="S3">
+        <h1>Check If You're Ready to Start</h1>
+        <p class="subtitle">Who it's for, and what you need</p>
+        <div class="r-stack">
+          <img src="images/intro/s3-packing.png" alt="A light daypack with shoes, water and a laptop, next to heavy climbing gear pushed aside">
+          <img class="fragment" src="images/intro/s3-audience.png" alt="Three hikers of different levels setting off on a trail together">
+        </div>
+        <aside class="notes">
+          <h2>Check If You're Ready to Start</h2>
+          <h3>So, what do you actually need to pack for this hike? Not climbing ropes, not professional gear. Just good shoes and some water. This workshop works the same way: the packing list is short. Let's check you've got it, and see who this route was made for.</h3>
+          <p>The main thing you need is a basic understanding of software development. If you've built an app, written some code, or worked on a project with a team, you're ready.</p>
+          <p>If you've never built software before, some parts might feel challenging, and that's okay. This workshop is mostly conceptual. It's less about writing code, and more about learning to think like someone who designs systems.</p>
+          <p>It also helps to know your frontend from your backend: what users see and click, versus what happens behind the walls, which is where we spend most of our time. If that feels rusty, take a few minutes to read up on how a frontend talks to a backend.</p>
+          <p>And you don't need a cloud account. Most examples use AWS, but Azure and Google Cloud offer the same building blocks, so everything here carries over to whichever cloud you use.</p>
+          <p>So, who is this for? If you're a junior or mid-level developer tired of building designs without knowing why, a senior looking for a structured way to make and defend decisions, or a tech leader who needs to explain design choices in terms of cost and risk, this route was made for you.</p>
+          <h4>So, bags packed, shoes on. Let's take the first step, and start with what a backend architecture design really is.</h4>
+        </aside>
+      </section>
+
+            <section class="S4">
+        <h1>What Is Backend Architecture Design?</h1>
+        <p class="subtitle">Modularity, interfaces, and data flow</p>
+        <div class="r-stack">
+          <img src="images/what/s4-car-hood.png" alt="A puzzled designer looking at an open car hood">
+          <img class="fragment" src="images/what/s4-accidental-house.png" alt="A house that grew by accident next to a house that was designed">
+        </div>
+        <aside class="notes">
+          <h2>What Is Backend Architecture Design?</h2>
+          <h3>Imagine you're hiring someone to design a new car, and in the very first meeting they ask, 'Wait, what does a gearbox actually do?' That's the end of the meeting. You can't design what you don't understand. Backend systems are no different. So before we design anything, let's get crystal clear on what a backend architecture design really is.</h3>
+          <p>So here's a practical definition we use in this workshop. A backend architecture design is the process of defining a system's modularity, its interfaces, and its data flow, so that it meets a specific set of requirements.</p>
+          <p>In plain words: how you split the system into parts, how those parts talk to each other, and how information moves between them.</p>
+          <p>And that last piece, the requirements, is what ties it all together. A good design isn't random, and it isn't a collection of trendy tools. Every decision answers one question: does this serve what the system actually needs to do?</p>
+          <p>It's also worth saying what architecture is not: choosing a framework, a database brand, or a cloud service. Those choices come later. Mix the two up, and design meetings turn into tool debates, while the structure that really matters gets overlooked.</p>
+          <p>And here's the part many teams learn the hard way. Paul Clements, a software architecture researcher at Carnegie Mellon, put it simply: every system has an architecture. If you don't design one on purpose, you get one anyway. And the architecture nobody designed is usually the most expensive one to change.</p>
+          <h4>So the real choice isn't whether your system has an architecture, but whether you design it. Now, let's open the hood and look at its three parts.</h4>
+        </aside>
+      </section>
+
+
+            <section class="S5">
+        <h1>What Are Modules, Interfaces, and Data Flow?</h1>
+        <p class="subtitle">Neighborhoods, roads, and traffic</p>
+        <div class="r-stack">
+          <img src="images/what/s5-city.png" alt="A city from above with neighborhoods, roads and traffic">
+          <img class="fragment" src="images/what/s5-route-jam.png" alt="A route through a city where one traffic jam holds up the whole journey">
+        </div>
+        <aside class="notes">
+          <h2>What Are Modules, Interfaces, and Data Flow?</h2>
+          <h3>Look at a city from above. You see neighborhoods, the roads that connect them, and the traffic moving between them. Plan those three things well, and the city just works. Plan them badly, and you get traffic jams nobody can explain. Your backend is a city too, built from modules, interfaces, and data flow.</h3>
+          <p>Let's start with the neighborhoods: those are your modules. They're the parts your system is split into, like users, orders, or payments, each with its own job.</p>
+          <p>The roads are your interfaces: how those modules connect and talk to each other. A neighborhood nobody can reach is useless, and so is a module nobody can call.</p>
+          <p>And the traffic is your data flow: how information moves through the system, from request to response. Here's the key: it's not separate from the other two. How you split and connect your modules decides how data moves.</p>
+          <p>So when you look at any architecture, ask two questions. How many jumps does the data take between services? Every jump adds a little delay, and one more place where something can fail. And is each connection fast enough? When each step waits for the one before, one slow link holds up the whole journey.</p>
+          <p>Answer those two, and you know the route. So the next time something slows down or breaks, you're not guessing for hours. You know exactly where to start looking.</p>
+          <h4>Try it on a system you work with: can you trace one request from start to finish? Next, let's look at the map that makes that route visible: the architecture diagram.</h4>
+        </aside>
+      </section>
+
+            <section class="S6">
+        <h1>What Does an Architecture Diagram Tell You?</h1>
+        <p class="subtitle">Read a diagram in four steps</p>
+        <div class="r-stack">
+          <img src="images/what/s6-floor-plan.png" alt="An apartment floor plan with the front door, hallway, storage and a private room highlighted">
+          <img class="fragment fade-in-then-out" src="images/what/s6-meeting-confused.png" alt="A developer looking lost at a tangled architecture diagram in a meeting">
+          <img class="fragment" src="images/what/s6-diagram-decoded.png" alt="A clean architecture diagram with its entry point, data flow, database and boundary highlighted">
+        </div>
+        <aside class="notes">
+          <h2>What Does an Architecture Diagram Tell You?</h2>
+          <h3>When you look at the floor plan of an apartment you're thinking of buying, what do you check first? The front door. Then how the rooms connect, where the storage is, and which rooms are private. In about a minute, you know the place. An architecture diagram is a floor plan for your system, and you can read it exactly the same way.</h3>
+          <p>We've all been there: a diagram pops up in a meeting, boxes and arrows everywhere, and all you can think is, 'What am I even looking at?' So here's a simple way to read it.</p>
+          <p>First, find the front door: where users or requests come in. Second, follow the arrows. That's your data flow, so count the jumps, just like we did with the city. But check what the arrows mean first: some show who calls whom, others which way the data moves.</p>
+          <p>Third, find where the data lives: the databases and storage. That's usually where the most important decisions, and the biggest risks, sit.</p>
+          <p>And fourth, spot the boundaries: what's public, what's internal, and which team owns which part. Not sure what a box means? Look for the legend, or just ask. That's exactly what experienced engineers do.</p>
+          <p>And one smart question for any review: is this diagram still current? Diagrams often fall behind the real system. With these four steps, you understand a new system in minutes, and you're ready to share your own opinion on it.</p>
+          <h4>Read it like a floor plan, and diagrams stop being a mystery. But why draw the plan before building at all? Let's see what designing first really gives you.</h4>
+        </aside>
+      </section>
+
+            <section class="S7">
+        <h1>What Do You Gain by Designing First?</h1>
+        <p class="subtitle">Save money, manage complexity, win support</p>
+        <div class="r-stack">
+          <img src="images/what/s7-wall-down.png" alt="Builders knocking down a finished kitchen wall while the homeowner watches money fly away">
+          <img class="fragment fade-in-then-out" src="images/what/s7-house-layers.png" alt="A cutaway of a house showing its foundation, pipes, wiring and roof working together">
+          <img class="fragment" src="images/what/s7-team-support.png" alt="A developer presenting a clear design to colleagues who nod along">
+        </div>
+        <aside class="notes">
+          <h2>What Do You Gain by Designing First?</h2>
+          <h3>Picture building a house without a plan. The walls are already up when you realize the kitchen belongs on the other side. So the walls come down, the pipes come out, and you pay twice: once in time, and once in materials you throw away. Software works the same way. Skip the design, and every mistake costs double.</h3>
+          <p>Sound familiar? Someone jumps straight into the code, and two months later they're asking, 'Wait, what did I just build?' So what does designing first actually give you?</p>
+          <p>First, it saves money. Moving a box on a diagram takes minutes. Changing the structure of running code means rework, retesting, and moving data around. A design also shows you early if an idea is too complex, too simple, or wrong for the business, while that's still cheap to fix.</p>
+          <p>Second, it makes big problems manageable. A house looks simple, but it's really layers: foundation, wiring, plumbing, roof, all working together. Every new feature adds a layer to your system too, and a design helps you manage those layers and keep them working together smoothly.</p>
+          <p>Third, it wins support. Explaining an idea out loud only gets you so far. Show people a design, and even other teams can see what you're aiming for. That builds trust, and it gets your ideas approved.</p>
+          <p>Now, not every small change needs a design. But for the decisions that are expensive to change later, think first. Otherwise, you're spending company money on a guess.</p>
+          <h4>So be the one in the room who says, 'Hold on, let's think this through first.' And the first thing to think through is how to split your system into pieces.</h4>
+        </aside>
+      </section>
+
+            <section class="S8">
+        <h1>What Is Modularity, and How Much Is Enough?</h1>
+        <p class="subtitle">Not one big block, not fifty tiny pieces</p>
+        <div class="r-stack">
+          <img src="images/what/s8-drawers.png" alt="A messy junk drawer, fifty tiny drawers, and four neatly organized drawers side by side">
+          <img class="fragment" src="images/what/s8-bricks.png" alt="Toy building bricks grouped by color into modules that connect at just a few points">
+        </div>
+        <aside class="notes">
+          <h2>What Is Modularity, and How Much Is Enough?</h2>
+          <h3>Which kitchen do you want to cook in? One with a single giant drawer where everything's thrown together, one with fifty tiny drawers where you open half of them just to find a spoon, or one with a few well-organized drawers? The last one, easily. Your system works the same way: the goal isn't more pieces or fewer pieces, but the right ones.</h3>
+          <p>Modularity means splitting your system into parts in the way that works best for the problem. And here's a common misconception: modular doesn't automatically mean dozens of services spread across servers. Sometimes the right split is many parts. Sometimes it's one application, well organized inside.</p>
+          <p>Shopify is a great example. Its core runs as one huge application with millions of lines of code, but with strict boundaries between the different areas of the business. That's called a modular monolith: one system, cleanly divided inside.</p>
+          <p>Split too much, though, and you pay for it. A simple feature means changing several parts at once. New developers have to learn how all the pieces work together before they can help. And when something breaks, you're hunting across more and more parts.</p>
+          <p>Split too little, and everything's mixed together. Change one thing, and something unrelated breaks.</p>
+          <p>So how do you judge your split? Two simple checks. High cohesion: everything inside a module belongs together. Loose coupling: modules depend on each other as little as possible. If both are true, you're probably on the right track.</p>
+          <h4>One big block or fifty tiny pieces, both hurt. Keep what belongs together, together. Next, let's make sure each part has one clear job, and a name that says so.</h4>
+        </aside>
+      </section>
+
+            <section class="S9">
+        <h1>What Is Separation of Concerns?</h1>
+        <p class="subtitle">One clear job, one clear name</p>
+        <div class="r-stack">
+          <img src="images/what/s9-aisles-fun.png" alt="A confused shopper in a supermarket whose aisles are marked with a phoenix, a lightning bolt and a unicorn">
+          <img class="fragment" src="images/what/s9-aisles-clear.png" alt="The same supermarket with aisles marked by milk, bread and a snowflake, and a happy shopper">
+        </div>
+        <aside class="notes">
+          <h2>What Is Separation of Concerns?</h2>
+          <h3>Imagine a supermarket where the aisles are called Phoenix, Thunderbolt, and Unicorn, instead of Dairy, Bakery, and Frozen. Fun names, sure. But now you're wandering around just to find the milk, and so is every new shopper after you. Your system works the same way: every part needs one clear job, and a name that tells everyone what that job is.</h3>
+          <p>That's separation of concerns: each part of your system takes care of one concern, one area of responsibility, and stays out of the others.</p>
+          <p>And one job doesn't mean one tiny action. A user service can handle sign-up, profiles, and settings. That's still one clear job: everything about users. The real test is simple: can you say, 'This part does this, and here's why it exists'?</p>
+          <p>When every part passes that test, your system starts to feel like a map. Payments live here, users live there. Changes land in the right place, and people reuse what already exists instead of rebuilding it.</p>
+          <p>And then there's the name. Many teams name their services after cartoon characters, fruits, or planets. It's fun, but every new developer has to ask, 'Wait, what does Rocket do again?' More questions, more interruptions, more meetings. That's friction.</p>
+          <p>Now compare that with user-service or payment-service. Boring? Maybe. But anyone understands them instantly. Product brand names can be as fun as you like. But for the internal services your team works with every day, clear beats clever.</p>
+          <h4>Here's a quick test: could a new teammate guess what each of your services does, just from its name? Next, let's look at where each service lives, and which ones the outside world can reach.</h4>
+        </aside>
+      </section>
+
+
+            <section class="S10">
+        <h1>What Are Service Tiers?</h1>
+        <p class="subtitle">Every service has its place</p>
+        <div class="r-stack">
+          <img src="images/what/s10-office.png" alt="An office building in cutaway with a reception desk, open lobby, badge-only floors, a mailroom and a night cleaner">
+          <img class="fragment" src="images/what/s10-tiers.png" alt="A system diagram in five tiers, with one public gateway and private services behind it">
+        </div>
+        <aside class="notes">
+          <h2>What Are Service Tiers?</h2>
+          <h3>When you visit an office building, how do you know where you're allowed to go? There's one reception desk at the entrance. The lobby is open, the office floors need a badge, the mailroom works quietly in the back, and the cleaners come in at night. Nobody has to ask. Service tiers give your system that same clarity.</h3>
+          <p>Here's a setup many teams use, with five tiers. These names aren't an official standard. They're a convention your team agrees on, and you can shape your own.</p>
+          <p>First, the frontend tier, where all your frontends live. Then the backend tier, for your internal services. And here's the most important rule: nothing in the backend tier is ever public. Not a single service.</p>
+          <p>So how does the outside world get in? Through the gateway tier, the only public door into your system. Just like the reception desk, every visitor goes through it.</p>
+          <p>Behind the scenes, the worker tier handles background jobs, often picking them up from a queue, like the mailroom. And the runner tier handles scheduled tasks, like a nightly cleanup, just like the night cleaners.</p>
+          <p>The payoff? Everyone knows instantly what's public and what's protected. A new service has an obvious home, so you can grow to dozens of services without the chaos. And you can change one tier, say, move your frontends to serverless, without touching the rest.</p>
+          <h4>One public door, and every service in its place: a building anyone can find their way around. But how should all these services actually talk to each other?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S11">
+        <h1>What Are the Main API Styles?</h1>
+        <p class="subtitle">REST, gRPC, and events</p>
+        <div class="r-stack">
+          <img src="images/what/s11-three-ways.png" alt="Three panels: a phone call, two people with walkie-talkies and a shared codebook, and a note on a bulletin board">
+          <img class="fragment" src="images/what/s11-styles-map.png" alt="A system showing public calls at the edge, fast calls between services, and announcements on a shared board">
+        </div>
+        <aside class="notes">
+          <h2>What Are the Main API Styles?</h2>
+          <h3>There are three ways to reach people. A phone call: anyone can make one, and you get an answer right away. A walkie-talkie with a shared codebook: fast and precise, but both sides need the same codebook. Or a note on the bulletin board: you post it, and whoever cares reacts later. Services talk to each other in these same three ways.</h3>
+          <p>The phone call is REST: requests over standard web calls, usually with JSON. Every browser, app, and partner can use it, and it's easy to debug. That's why it's the default for public APIs.</p>
+          <p>The walkie-talkie is gRPC. Both sides share a schema, that's the codebook, and messages travel in a compact binary format. It's fast, and great between your own services. The catch: browsers can't call it directly, and you can't read the messages by eye.</p>
+          <p>The bulletin board is events. A service announces, 'An order was placed,' and anyone interested reacts: one sends the confirmation email, another updates the stock. Nobody waits for a reply. The catch: it's harder to trace what happened, and in what order.</p>
+          <p>You may also hear about GraphQL: it lets a frontend ask for exactly the data a screen needs, in a single request.</p>
+          <p>So here's a simple rule of thumb: REST for anything public, gRPC for fast calls between your own services, and events when the sender doesn't need to wait. Many teams use all three, each one on purpose.</p>
+          <h4>Phone, walkie-talkie, or bulletin board: pick the one each conversation really needs. But what happens when every team picks its own, without a plan?</h4>
+        </aside>
+      </section>
+
+            <section class="S12">
+        <h1>What Happens When Every Team Talks Differently?</h1>
+        <p class="subtitle">One standard, no adapters</p>
+        <div class="r-stack">
+          <img src="images/what/s12-adapters.png" alt="A frustrated person holding a bag of tangled plug adapters in a house where every room has a different socket">
+          <img class="fragment" src="images/what/s12-one-standard.png" alt="The same house with identical sockets, where every device plugs straight in">
+        </div>
+        <aside class="notes">
+          <h2>What Happens When Every Team Talks Differently?</h2>
+          <h3>Imagine moving into a house where every room has a different power socket. The kitchen takes one plug, the bedroom another, the office a third. Now you need a bag full of adapters just to charge your phone. Annoying, right? That's exactly what happens in a system where every team connects its services in its own way.</h3>
+          <p>Here's how it usually happens. One team builds its service with gRPC. Another picks REST. A third invents something of its own. Each choice makes sense on its own. Together, they turn into a mess.</p>
+          <p>Now every connection between those services needs its own special handling: that's your bag of adapters. Someone has to write that glue code, test it, and keep it working. That's engineering time spent on plumbing instead of features, and every special case is one more place for bugs to hide.</p>
+          <p>And every new developer has to learn several ways of doing the same thing before they can connect anything.</p>
+          <p>Now, mixing styles isn't wrong. Remember the rule of thumb: REST for public, gRPC inside, events for background work. That's a deliberate mix. What hurts is mixing by accident.</p>
+          <p>So agree on a standard: one style for each kind of connection, written down where everyone can find it. Need an exception? Fine, just say why, and agree on it. Then a new service doesn't need a meeting to decide. It just plugs in.</p>
+          <h4>So, how many adapters is your system carrying today? Next: some problems, like errors, show up in every single service. Let's solve them once.</h4>
+        </aside>
+      </section>
+
+            <section class="S13">
+        <h1>What Are Shared Interfaces and Standard Libraries?</h1>
+        <p class="subtitle">Solve it once, use it everywhere</p>
+        <div class="r-stack">
+          <img src="images/what/s13-coffee-chain.png" alt="One recipe card connected to many identical cafés, including a new café being opened">
+          <img class="fragment" src="images/what/s13-shared-library.png" alt="One shared toolbox connected to many services, with a new service plugging in">
+        </div>
+        <aside class="notes">
+          <h2>What Are Shared Interfaces and Standard Libraries?</h2>
+          <h3>How does a coffee chain with a hundred cafés make every latte taste the same? One shared recipe. When they improve it, they change it once, and every café follows. And when a new café opens, it uses that recipe from day one, no guesswork. Your services can work exactly the same way.</h3>
+          <p>Picture 50 services, and someone asks, 'How do we handle errors across all of them?' If every service does it its own way, that's 50 different answers. Every caller has to decode each one, and every change means 50 updates.</p>
+          <p>So start with a shared interface: one agreed format for things every service deals with, like errors, logging, and checking who's signed in. There's even an official internet standard for API error formats, called Problem Details. Your team still picks its own codes inside it.</p>
+          <p>Then put that agreement into a standard library: code every service uses. Need a new error type? Add it once, and every service picks it up on its next update. And a brand-new service is ready from day one, just like the new café.</p>
+          <p>Two honest tips. Keep the library to the technical basics. Put business logic in it, and you tie your services together. And a library only works within one programming language, so if you use several, the shared format matters even more.</p>
+          <p>Done right, the next developer doesn't reinvent anything. They use what already works. And when something breaks, every service tells the story the same way.</p>
+          <h4>One recipe, a hundred cafés, the same latte everywhere. But what happens when every café suddenly gets ten times more customers?</h4>
+        </aside>
+      </section>
+
+            <section class="S14">
+        <h1>What Is Scalability?</h1>
+        <p class="subtitle">Bigger machines, more machines, no bottlenecks</p>
+        <div class="r-stack">
+          <img src="images/what/s14-busy-cafe.png" alt="A small café overwhelmed by a long line of customers">
+          <img class="fragment fade-in-then-out" src="images/what/s14-vertical-horizontal.png" alt="One giant espresso machine next to four baristas with their own machines">
+          <img class="fragment" src="images/what/s14-bottleneck.png" alt="Coffees ready fast while every customer waits at one slow cash register">
+        </div>
+        <aside class="notes">
+          <h2>What Is Scalability?</h2>
+          <h3>So, your café is suddenly ten times busier. You can buy a bigger, faster espresso machine. Or you can add more baristas, each with their own machine. But if everyone still pays at one slow cash register, the whole line backs up anyway. That's scalability in a nutshell: growing to meet the crowd, without one weak spot holding everyone back.</h3>
+          <p>Scalability means your system can handle growth in traffic, especially on the days that matter most: the big sale, the product launch, the moment you go viral. Crash then, and customers leave, and so does the revenue.</p>
+          <p>The first way to scale is vertical: make the machine bigger. More memory, more CPU, in the cloud often just a bigger server size. It's simple. But there's a ceiling, and it's still one machine. If it goes down, everything goes down.</p>
+          <p>The second way is horizontal: add more copies, and spread the traffic between them. There's almost no ceiling, but every copy has to handle any request, and there are more moving parts to run.</p>
+          <p>And the load is often bigger than it looks. One click on 'Place order' can trigger four or five steps behind the scenes: charging the card, updating the stock, sending the email, preparing the shipment.</p>
+          <p>That's where bottlenecks hide: in the one part that can't keep up. Remember, one slow link holds up the whole journey. So scale the part that's actually busy, not everything, or you're paying for capacity nobody uses.</p>
+          <h4>So, where's the slow cash register in your system? And handling growth is only half the story. Next: what happens when something actually breaks?</h4>
+        </aside>
+      </section>
+
+            <section class="S15">
+        <h1>What Is Robustness?</h1>
+        <p class="subtitle">Fail small, recover fast</p>
+        <div class="r-stack">
+          <img src="images/what/s15-tower.png" alt="A tall tower swaying during an earthquake, its central column visible, still standing">
+          <img class="fragment fade-in-then-out" src="images/what/s15-unknown-error.png" alt="A puzzled developer staring at an error pop-up that shows only a question mark">
+          <img class="fragment" src="images/what/s15-check-engine.png" alt="A mechanic reading one clear code from a diagnostic scanner plugged into a car">
+        </div>
+        <aside class="notes">
+          <h2>What Is Robustness?</h2>
+          <h3>Here's something remarkable. In 2011, Japan was hit by one of the strongest earthquakes ever recorded. The Tokyo Skytree, still under construction, swayed several meters at the top, and wasn't damaged. Its engineers had planned for that day, with a central column inspired by ancient pagodas. Robust systems work the same way: they expect failure, and keep standing.</h3>
+          <p>Robustness means your system handles errors and surprises, and keeps going. Quick question: how many of you have errors in production that nobody really understands? ... Like the classic: 'Unknown Error.' What does that even mean?</p>
+          <p>So whenever two parts connect, ask early: what could break here, how is the error reported, and how should the other side react? Code that gets a message it doesn't understand shouldn't just crash.</p>
+          <p>Give your errors your own codes, on top of standard status codes, just like a car's check-engine code. And never decide what to do by searching an error message for a word. Reword the message, and every check silently breaks. Codes don't.</p>
+          <p>With a clear code, a service knows what to do: retry, use a backup, or skip that step and keep going. Just retry carefully: only a few times, with a pause in between, and never retry anything that could charge a card twice.</p>
+          <p>And your users? Give them a friendly message with a short reference code. When they call support, the first question is simply, 'What's the code?' And support knows right away.</p>
+          <h4>Expect failure, and keep standing, just like the tower. But when something does break, how do you actually see what happened inside?</h4>
+        </aside>
+      </section>
+
+
+      <section class="S16">
+  <h1>What Is Flexibility?</h1>
+  <p class="subtitle">Make room for the next feature</p>
+  <div class="r-stack">
+    <img src="images/what/s16-washing-machine.png" alt="A new washing machine sliding into a laundry corner where the water pipe, drain, and socket are already in place">
+    <img class="fragment fade-in-then-out" src="images/what/s16-payment-port.png" alt="A checkout block with one connector port, and several payment providers lining up to plug into it">
+    <img class="fragment" src="images/what/s16-feature-switches.png" alt="A control panel of toggle switches, each turning a small feature module on or off">
+  </div>
+  <aside class="notes">
+    <h2>What Is Flexibility?</h2>
+    <h3>Picture buying a new washing machine. If the water pipe, the drain, and the socket are already in place, it's installed in ten minutes. If not, you're breaking open walls and calling a plumber, and it takes days. Same machine, same job. The only difference is whether the house was built with room for it.</h3>
+    <p>In software, it looks like this. The business asks for something small, and the answer is always: 'Sure, but first we need to refactor this, move that, and rewrite those.' Flexibility means your system takes new features without that kind of major rework.</p>
+    <p>Take an online store built for one payment provider. If checkout calls that provider directly, all over the code, adding a second one means rewriting big parts of checkout. But if every payment goes through one clear connection point, the new provider plugs in behind it.</p>
+    <p>That's loose coupling at work: when parts know little about each other, you can replace one without touching the rest.</p>
+    <p>But flexible doesn't mean preparing for every possible future. That's over-engineering: it costs time now and adds complexity for years. Just like the house, you add connections for the washing machine you can reasonably expect, not a socket for every appliance ever invented.</p>
+    <p>And for new features, use feature flags: switches that turn a feature on or off without a new deployment. Release it to a few users first, and if something goes wrong, switch it off. That's how you say 'yes' to the business quickly, and safely.</p>
+    <h4>Make room for the changes you can reasonably expect, and switch new features on when you're ready. But how do you even notice something's going wrong?</h4>
+  </aside>
+</section>
+
+<section class="S17">
+  <h1>What Is Observability?</h1>
+  <p class="subtitle">See inside, skip the noise</p>
+  <div class="r-stack">
+    <img src="images/what/s17-cameras.png" alt="Two security cameras watching a yard: one feeding a mountain of storage boxes, the other with a motion sensor feeding one tidy box">
+    <img class="fragment fade-in-then-out" src="images/what/s17-signals.png" alt="A system sending out three signals: a scrolling list of logs, a gauge and chart of metrics, and a dotted path of one request through several services">
+    <img class="fragment" src="images/what/s17-clean-logs.png" alt="A heap of crumpled papers turning into a neat cabinet of drawers, with a magnifying glass finding one glowing error card">
+  </div>
+  <aside class="notes">
+    <h2>What Is Observability?</h2>
+    <h3>Say you have two security cameras watching your yard. One records every second, all day and night. The other records only when it detects motion. Which one costs less to store? And when something actually happens, which one gets you to the right moment faster? The motion one, of course. Seeing inside your system works the same way.</h3>
+    <p>That's observability: understanding what's happening inside your system from the signals it sends out. The three main ones: logs tell you what happened, metrics tell you how much and how fast, and traces follow one request through every service. The simplest start is a request ID, logged with every step and every error.</p>
+    <p>A common mistake is logging everything: every request, every detail, every step. Then the cloud bill arrives, because storing and processing logs isn't free. And during an outage, the one error that matters is buried under millions of lines. So the goal isn't more logs. It's better logs.</p>
+    <p>First, make them structured. Instead of random sentences, use a consistent format, like key-value pairs, so you can search and filter in seconds.</p>
+    <p>Second, log by level: debug, info, warning, error. Keep detailed debug logs off in production, and switch them on only while you're investigating. Third, decide how long you need logs, and let older ones expire.</p>
+    <p>But don't swing too far the other way. Errors and important events, with useful context like that request ID, are exactly what saves you. So when a user calls support, one ID leads straight to their exact request.</p>
+    <h4>Like the motion camera: record what matters, and every problem leaves a clear trail. But cameras only watch. What actually keeps the wrong people out?</h4>
+  </aside>
+</section>
 
 
 
