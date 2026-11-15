@@ -729,6 +729,338 @@
   </aside>
 </section>
 
+<section class="S37">
+  <h1>Know When to Design, and When Not To</h1>
+  <p class="subtitle">Full design or focused design</p>
+  <div class="r-stack">
+    <img src="images/when/s37-treehouse-vs-house.png" alt="A small tree house built from a few boards next to a half-built family house with a blueprint spread out in front of it">
+    <img class="fragment" src="images/when/s37-three-questions.png" alt="Three icons for hard to undo, touches several parts or teams, and an expensive mistake, above a scale running from a quick sketch to a detailed blueprint">
+  </div>
+  <aside class="notes">
+    <h2>Know When to Design, and When Not To</h2>
+    <h3>Do you hire an architect to build a tree house? Probably not. A few boards, a weekend, done. But for a family house? Absolutely. The real skill is knowing which one you're building, before you start.</h3>
+    <p>Not every task needs a design, and not every design covers the whole system. A full design covers all of it: a new system, or a redesign. A focused design covers only the part that changes. Get it wrong, and it costs you either way: a week of diagrams for an afternoon's job, or months of rework.</p>
+    <p>So ask three questions. Is it hard to undo? Does it touch several parts of the system, or several teams? And is a mistake expensive? Each yes means a mistake costs more to fix later. The more yeses, the more detail it deserves. Three times no, and a quick sketch is enough.</p>
+    <p>A personal blog doesn't need Kubernetes, a tool built to run large systems across many servers. Start simple, and add more only when the project needs it.</p>
+    <h4>Design as much as the task needs, and no more. This section covers the common signals that say it's time. First: you're starting something new.</h4>
+  </aside>
+</section>
+
+
+<section class="S38">
+  <h1>A New Project or Product</h1>
+  <p class="subtitle">Design it while nothing is in your way</p>
+  <div class="r-stack">
+    <img src="images/when/s38-empty-land.png" alt="An empty plot of land marked with stakes, a house blueprint on a table in front, and unopened bricks waiting to the side">
+    <img class="fragment" src="images/when/s38-modular-start.png" alt="A small building of three modular blocks with dotted outlines for future blocks, and underground pipes leading to existing buildings for accounts, data, and login">
+  </div>
+  <aside class="notes">
+    <h2>A New Project or Product</h2>
+    <h3>You've just bought an empty piece of land for your dream house. No old walls, no pipes, nothing to work around. So what comes first: the bricks, or the plan? The plan, of course. You never get this much freedom again.</h3>
+    <p>A new project is the best moment for a full design. It has a name: greenfield, from construction, for land where nothing has been built yet. Your first choices become the foundation every later feature stands on: how you split the system into modules, how you connect them, and how data travels between them. They're cheap to make now, and expensive to change later if you get them wrong.</p>
+    <p>But a full design doesn't have to be a big one. Build the simplest useful version, release it to real users, and learn. That's called a minimum viable product. Make sure you use a modular approach, so it has room to grow.</p>
+    <p>One catch: is it really a fresh start? In companies, a brand-new service often still needs your existing user accounts, data, or login. Find those connections first, not halfway through.</p>
+    <h4>Use the freedom, but check what it connects to. What about a big feature in an existing system?</h4>
+  </aside>
+</section>
+
+
+<section class="S39">
+  <h1>A Big New Feature</h1>
+  <p class="subtitle">A focused design for the parts it touches</p>
+  <div class="r-stack">
+    <img src="images/when/s39-second-floor.png" alt="A one-story house getting a second floor, with the foundation, the new staircase, and the pipes and wires running up highlighted">
+    <img class="fragment" src="images/when/s39-focused-design.png" alt="A system map where a new subscription block and the five blocks it touches glow inside a highlighted area, each flagged by its team, while the rest stays dim">
+  </div>
+  <aside class="notes">
+    <h2>A Big New Feature</h2>
+    <h3>Adding a second floor to your house doesn't mean redrawing the whole thing. But you do check a few things first. Can the foundation carry the weight? Where do the stairs go? How do the pipes and wires reach up? A big feature works the same way.</h3>
+    <p>Say you add subscriptions to an online store. It looks like one feature, but it touches checkout, payments, user accounts, emails, and invoices. Find that out halfway through, and every week brings a new surprise.</p>
+    <p>So give it a focused design: not the whole system, just the feature and the parts it touches. Which parts change? How do they connect? How does the feature's data travel between them? And which team owns each part? Agree on that first, and the teams can build in parallel.</p>
+    <p>And work with the architecture you already have, so the feature works like the rest of the system. But if it fights the architecture everywhere, that's a bigger signal. More on that at the end of this section.</p>
+    <h4>Give a big feature a focused design, and build it the way the system already works. Next: the feature that changes more than most, adding AI.</h4>
+  </aside>
+</section>
+
+
+<section class="S40">
+  <h1>Adding AI to Your System</h1>
+  <p class="subtitle">Even a quick demo needs a design</p>
+  <div class="r-stack">
+    <img src="images/when/s40-fireplace.png" alt="A cozy living room with a fireplace, its chimney, safety screen, and firewood with a coin above it highlighted">
+    <img class="fragment" src="images/when/s40-ai-feature-plan.png" alt="An AI demo on a laptop moving through a blueprint into a real system, surrounded by five safeguards for data, access, cost, failures, and approval">
+  </div>
+  <aside class="notes">
+    <h2>Adding AI to Your System</h2>
+    <h3>Thinking about a fireplace in your living room? It looks like one cozy addition. But the smoke needs a safe way out. The fire needs safety rules. And the wood costs money, every single winter. Nobody builds one without a plan. An AI feature is a lot like that fireplace.</h3>
+    <p>AI features often start as a quick demo that skips the design. The demo works, so there's pressure to ship it as is. That's when the bill can grow, data can leak, and an outage at the AI provider becomes yours.</p>
+    <p>Run our three questions. A mistake is expensive: every call costs money, and a wrong answer can reach a customer. It's hard to undo: data sent to a provider can't be taken back. And it touches several parts: your data, your permissions, often a queue. Three yeses, even for a small feature.</p>
+    <p>So give it a focused design that answers five things. What data may leave your system? Who may see what? What may it cost per user? What happens when the model is slow, wrong, or down? And may it act on its own?</p>
+    <h4>Plan the fireplace before you light it. What about a system that's slowing down?</h4>
+  </aside>
+</section>
+
+
+<section class="S41">
+  <h1>Your System Is Getting Slow</h1>
+  <p class="subtitle">Find the one step everyone waits for</p>
+  <div class="r-stack">
+    <img src="images/when/s41-one-bathroom.png" alt="Five people in a house lined up in the morning outside one bathroom, while the big kitchen and bedrooms sit unused">
+    <img class="fragment" src="images/when/s41-signup-email.png" alt="A signup waiting on a slow email step, next to the same signup finishing instantly while the email waits in a queue for a worker">
+  </div>
+  <aside class="notes">
+    <h2>Your System Is Getting Slow</h2>
+    <h3>Every morning, five people in one house wait for one bathroom. A bigger kitchen doesn't help. More bedrooms don't help either. The whole morning runs late because of one room. Fix that room, and suddenly everyone leaves on time. Your system works the same way.</h3>
+    <p>The signal is easy to feel: pages load slower than they used to, and users give up after a few seconds. Your monitoring shows where: one step that everything waits for. That's a bottleneck, and adding more servers often doesn't fix it.</p>
+    <p>Often, a solution that works created it. Take signup. Many systems send the welcome email inside the signup request: create the account, call the email service, and wait. That adds seconds. And if the email service fails, the whole signup fails, even though the account was fine.</p>
+    <p>So give that one step a focused design. Here, send the email in the background, through a queue. The user gets in right away, and the email follows a moment later. No rebuild, just the slow part fixed.</p>
+    <h4>This week, look at your slowest flow and find the step everyone waits for. And speed isn't the only thing that gets worse over time. Sometimes, it's the bill.</h4>
+  </aside>
+</section>
+
+
+      <section class="S42">
+        <h1>Your Cloud Bill Keeps Growing</h1>
+        <p class="subtitle">When costs grow faster than your users</p>
+        <div class="r-stack">
+          <img src="images/when/s42-leaking-house.png" alt="A house at night with lights on in empty rooms, an open window above a running heater, and an old freezer in the garage, each losing coins">
+          <img class="fragment" src="images/when/s42-cloud-waste.png" alt="A mostly empty server rack, data moving between two clouds and out to the internet, and a growing stack of old archives, all leaking coins into one bill under a magnifying glass">
+        </div>
+        <aside class="notes">
+          <h2>Your Cloud Bill Keeps Growing</h2>
+          <h3>What if your electricity bill doubled, but nobody new moved in? So you walk through the house. Lights on in empty rooms. A window open, with the heating on. And an old freezer in the garage, running for years. Nothing broken. Just money leaking, one room at a time.</h3>
+          <p>Your cloud bill works the same way. A growing bill alone isn't the problem: more users should cost more. The signal is a cost per user, or per order, that keeps rising. Somewhere, the design is wasting money.</p>
+          <p>Three causes are common. Servers sized for the busiest day, running every day. Data moving where it doesn't need to, between regions or out to the internet, which providers often charge for. And things kept forever: old copies, backups, and logs that never expire.</p>
+          <p>So first, find where the money goes. Split the bill per service and per team. Then give the biggest item a focused design. The goal isn't the smallest bill. It's a bill that grows with the business, not ahead of it.</p>
+          <h4>Watch the cost per user, and walk through the house before you cut anything. Now, what about a system that doesn't waste money, but keeps breaking?</h4>
+        </aside>
+      </section>
+      <section class="S43">
+        <h1>Your System Keeps Breaking</h1>
+        <p class="subtitle">Find the pattern behind the outages</p>
+        <div class="r-stack">
+          <img src="images/when/s43-leaking-roof.png" alt="A house in the rain with buckets under drips in the kitchen, hallway and bedroom, all fed by one crack in the roof">
+          <img class="fragment" src="images/when/s43-outage-pattern.png" alt="Several past outages placed side by side, linked to three causes: a change sent to everyone at once, one pillar holding up everything, and connected parts pulling each other down, with the most common cause glowing">
+        </div>
+        <aside class="notes">
+          <h2>Your System Keeps Breaking</h2>
+          <h3>It rains, and the kitchen ceiling drips. You put a bucket under it. Next week, the hallway drips. Another bucket. Then the bedroom. Soon you're emptying buckets every night. Each bucket helps. But the problem isn't the drips. It's the roof.</h3>
+          <p>Your outages work the same way. Every system fails sometimes, so one outage isn't the signal. The signal is outages that keep coming back, while the team rushes from one fix to the next. But nobody stops to ask why.</p>
+          <p>So put the last few outages side by side, and ask what caused each one. Three causes are common. A change that goes out to everyone at once, and is hard to undo. One part that everything depends on. And a small failure that spreads, because the parts are too tightly connected.</p>
+          <p>Then give the most common cause a focused design. You can't stop every outage. But you can stop the same one from coming back, and keep one failure small.</p>
+          <h4>Fix the roof, not just the drips. And sometimes an outage keeps coming back because the same logic lives in many places, and the fix only reached one of them.</h4>
+        </aside>
+      </section>
+
+      <section class="S44">
+        <h1>The Same Logic Lives in Many Places</h1>
+        <p class="subtitle">DRY: Don't Repeat Yourself</p>
+        <div class="r-stack">
+          <img src="images/when/s44-moving-house.png" alt="A person in front of a new house updating their address with a bank, a gym, a phone shop and more, while one missed place sends a letter to the old house">
+          <img class="fragment" src="images/when/s44-one-rule-home.png" alt="One rule copied into three services with one copy out of date, next to the same three services all using a single copy of the rule from one central place">
+        </div>
+        <aside class="notes">
+          <h2>The Same Logic Lives in Many Places</h2>
+          <h3>Raise your hand if you've ever moved house and changed your address with the bank, the gym, the phone company, and more, one by one. There's always one you forget. And it keeps sending letters to your old house.</h3>
+          <p>Your code works the same way. Someone copies a rule, like how a discount is calculated, into a second place, then a third. It's quick at first. But now one small change means editing every copy. And the copy you forget gives users a different answer.</p>
+          <p>So give each rule one home. Put it in one shared module, or in the one part of the system that owns it, and let everything else use it from there. Developers call this DRY: Don't Repeat Yourself. One change, one place.</p>
+          <p>But only for code that really is the same rule. Two pieces of code can look alike and still mean different things. Ask: if this rule changes, must every copy change with it? If not, keep them separate.</p>
+          <h4>So try not to repeat yourself. But code isn't the only thing that repeats. Sometimes every service asks for the same data, again and again, on every request.</h4>
+        </aside>
+      </section>
+
+            <section class="S45">
+        <h1>Services Keep Asking for the Same Data</h1>
+        <p class="subtitle">Ask once, then pass it along</p>
+        <div class="r-stack">
+          <img src="images/when/s45-wristband-gates.png" alt="Event gates where staff phone one busy ticket office while long lines wait, next to gates where visitors with wristbands walk straight through">
+          <img class="fragment" src="images/when/s45-token-services.png" alt="A user receives a signed note with their identity, role and an expiry hourglass, and four services each check the note without calling the user service">
+        </div>
+        <aside class="notes">
+          <h2>Services Keep Asking for the Same Data</h2>
+          <h3>Do you know why you get a wristband at a big conference, festival, or theme park? Because if you don't, every gate has to call the ticket office to validate your ticket. Long lines everywhere. And if the phone goes down, nobody gets in.</h3>
+          <p>Many systems work the same way. One user request passes through several services, and each one asks the same service: who is this user, and what may they do? Every call adds waiting time. If that one service slows down, everything does.</p>
+          <p>So ask once, then pass it along. When the user logs in, give them an access token, a signed note that carries their ID and roles. Each service validates the token and reads what it needs, without calling anyone. It works like the wristband.</p>
+          <p>But keep it small. Anyone holding the token can read it, so never put secrets inside. And it can go out of date: if a user's role changes, the old token still says the old one until it expires.</p>
+          <h4>Hand out the wristband once, and let every gate trust it. But what if the slow part isn't the requests, but your team, busy fixing instead of building?</h4>
+        </aside>
+      </section>
+
+            <section class="S46">
+        <h1>Maintenance Takes More and More Time</h1>
+        <p class="subtitle">Automate it, or hand it off</p>
+        <div class="r-stack">
+          <img src="images/when/s46-big-garden.png" alt="A person mowing a huge lawn with overgrown bushes and trees around it, while an empty deck chair by the house goes unused">
+          <img class="fragment" src="images/when/s46-automate-handoff.png" alt="An engineer building a new feature while repeated upkeep tasks go either to a robot arm or to a helper in the cloud">
+        </div>
+        <aside class="notes">
+          <h2>Maintenance Takes More and More Time</h2>
+          <h3>You buy a house with a big, beautiful garden. At first, mowing takes an hour. Then the bushes need cutting, then the trees. Soon every weekend goes to the garden. Nothing is broken. You just never get to enjoy the house.</h3>
+          <p>Your system can work the same way. Every system needs upkeep: deploys, restarts, patches, upgrades. That's normal. The signal is when it keeps taking a bigger part of the week, and new features slow down. Engineers call the repeated part toil.</p>
+          <p>So first, write down where the week goes. Then, for each repeated job, ask two questions. Can a machine do it? Automate it, like a robot mower. Does your team need to run it at all? If not, hand it to a managed service, like hiring a gardener.</p>
+          <p>A managed service saves time, but you give up some control, so hand off what doesn't make your product special. And when you design something new, ask: who keeps this running?</p>
+          <h4>Get the mower, hire the gardener, and take your weekends back. But sometimes the slowdown isn't the work. It's that each team sees the system differently.</h4>
+        </aside>
+      </section>
+
+
+            <section class="S48">
+        <h1>Only One Person Knows How It Works</h1>
+        <p class="subtitle">Share it, and write it down</p>
+        <div class="r-stack">
+          <img src="images/when/s48-taken-over-system.png" alt="An engineer with a flashlight looks into a large unlabeled system, next to the empty chair of the person who left">
+          <img class="fragment" src="images/when/s48-share-write-down.png" alt="Two engineers working together at one screen, a short notebook with what it does, how to run it, and why, and the expert relaxing on vacation while the team keeps working">
+        </div>
+        <aside class="notes">
+          <h2>Only One Person Knows How It Works</h2>
+          <h3>Have you ever taken over a system from someone who already left? No notes, no diagram, just code. You spend weeks figuring out what it does, and the one person who knew how it works is gone.</h3>
+          <p>You can see the signs long before anyone leaves. Everyone asks the same person. Work on their part stops when they're on vacation. And they explain the same thing again and again. Engineers call this a bus factor of one: one person away, and work stops.</p>
+          <p>So share it. Make sure at least two people really understand every critical part. Work on it together, and take turns: the second person makes the next change, with the expert beside them. That protects the expert too.</p>
+          <p>And write the basics down: what it does, how to run it, and why it's built that way. Not a book. Just enough that the next person can start without asking. Then ask: if this person is away for a month, what stops?</p>
+          <h4>Two people for every critical part, and the basics on paper. But what happens when the problem flips: not too few people who know the system, but too many people working in it?</h4>
+        </aside>
+      </section>
+
+            <section class="S49">
+        <h1>Your Team Is Growing</h1>
+        <p class="subtitle">Give each team a part it owns</p>
+        <div class="r-stack">
+          <img src="images/when/s49-shared-bedroom.png" alt="Three kids trying to sleep, study and play in one crowded bedroom, while the other rooms of the house stay empty">
+          <img class="fragment" src="images/when/s49-team-parts.png" alt="One building with three rooms, each owned by a team for orders, payments and users, a new member arriving with a map of just one room, and one part moved out into its own small house with a clear border">
+        </div>
+        <aside class="notes">
+          <h2>Your Team Is Growing</h2>
+          <h3>Imagine three kids sharing one bedroom. One wants to sleep, one wants to study, one has friends over. Nobody can do anything without asking the others. The house isn't too small. The room is.</h3>
+          <p>Your codebase can work the same way. More people now edit the same code. Teams wait for each other's changes. One team's bug holds up everyone's release. And new people take weeks to start, because they have to understand everything first.</p>
+          <p>So, like giving each child a room, give each team a clear part of the system to own: orders, payments, or users. Start inside the same codebase, with clear modules and one owner each. A new person then learns one part first, not everything.</p>
+          <p>Move a part out into its own service only when that team really needs to release on its own, like a grown child moving out. But only if the borders are already clear. Unclear parts inside stay unclear as services, now with a network in between.</p>
+          <h4>Clear parts, one owner each, and services only when needed. But teams aren't the only thing that grows. What happens when a big jump in traffic is on its way?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S50">
+        <h1>A Big Jump in Traffic Is Coming</h1>
+        <p class="subtitle">Test it before the day</p>
+        <div class="r-stack">
+          <img src="images/when/s50-party-overload.png" alt="A crowded family party with too few chairs and one overloaded oven, next to a calendar with the day circled">
+          <img class="fragment" src="images/when/s50-test-before-day.png" alt="An engineer sends test traffic into a row of system parts, fixes the first one that breaks while the next weak spot glows behind it, and keeps the checkout switch on while extras are switched off, all before the marked day">
+        </div>
+        <aside class="notes">
+          <h2>A Big Jump in Traffic Is Coming</h2>
+          <h3>Sixty guests arrive for the party. The oven only cooks enough for twenty. There aren't enough chairs. Everyone knew this day was coming, for weeks. Nobody checked whether the house could handle it.</h3>
+          <p>Systems fail the same way. A launch, a campaign, a big new customer, a busy season. You often know the date weeks ahead. The system works fine today, so nobody tests it at several times today's traffic. Then the busiest moment is the one that breaks.</p>
+          <p>So test it before the day. First, estimate the peak, from past busy days or the business plan. Then run a load test: that much traffic, plus a margin. Find the part that breaks first, like the oven, and fix that part. Then test again: there's often another one behind it.</p>
+          <p>And decide now what can go, if it's still too much. Keep the core working, like checkout, and turn off the extras, like recommendations, with a switch you've already tested. Dessert goes. Dinner stays.</p>
+          <h4>Count the guests, test the oven, and know what you skip. But some growth isn't more of the same. What if your next guests come from another country, with another language and currency?</h4>
+        </aside>
+      </section>
+
+            <section class="S51">
+        <h1>You're Entering New Markets</h1>
+        <p class="subtitle">Add new market rules with data, not code</p>
+        <div class="r-stack">
+          <img src="images/when/s51-charger-socket.png" alt="A traveler abroad holds a round-pin charger up to a socket with flat slots, while a travel adapter waits in the suitcase">
+          <img class="fragment" src="images/when/s51-market-data.png" alt="An unchanged system next to a drawer of country cards with currency, language, tax with start dates and local time, as a new country card slides in">
+        </div>
+        <aside class="notes">
+          <h2>You're Entering New Markets</h2>
+          <h3>Why does your charger stop working the moment you travel from Europe to Japan? Nothing is broken. It was built for one kind of socket. And as long as you stay in Europe, you never notice.</h3>
+          <p>Systems work the same way. Built for one country, they assume one currency, one language, one tax rate, one time zone, often written straight into the code. Then the business enters a new country, and every assumption turns into work.</p>
+          <p>Take taxes. In Finland, the general VAT rate went from 24 to 25.5 percent in September 2024. If 24 is written in the checkout, the receipts, and the reports, someone has to find every copy. And earlier sales must keep the old rate, so you can't just replace the number.</p>
+          <p>So keep market rules as data. Tax rates per country, each with a start date. Prices per currency. Text in translation files. Times stored in one standard time, shown in local time. Then a new country is mostly new data, not new code.</p>
+          <h4>Pack the adapter before you fly. And a new country brings more than new prices. Sometimes it brings new laws, and your system has to follow them.</h4>
+        </aside>
+      </section>
+
+      <section class="S52">
+        <h1>A New Regulation Applies to You</h1>
+        <p class="subtitle">Find the gaps before the deadline</p>
+        <div class="r-stack">
+          <img src="images/when/s52-shop-stairs.png" alt="A shop with three steps at the door and a person in a wheelchair outside, while the shopkeeper reads an official letter and two designs, a ramp and a new street-level entrance, are sketched beside it">
+          <img class="fragment" src="images/when/s52-regulation-gaps.png" alt="A checklist marking each requirement as met, partly met or missing, linked to the parts of a system it touches, with logs and monitoring being added for the missing item, an adviser with a balance scale, and a plan going back from the deadline">
+        </div>
+        <aside class="notes">
+          <h2>A New Regulation Applies to You</h2>
+          <h3>A new regulation says every shop must be reachable without stairs. Your shop has three steps at the front door. A sign saying "sorry" doesn't count. Someone has to design a ramp, or move the entrance, and keep the shop open.</h3>
+          <p>Your system can face the same moment. A new regulation takes effect, or your business grows into one: a new industry, a new kind of customer, a bigger size. Some rules need a small change, like a checkbox. Others change the structure, like the ramp.</p>
+          <p>Take NIS2, the EU's cybersecurity rules. If they apply to you, you must warn the authorities about a serious incident within a day. That's not just paperwork. Your system must already record enough, in logs and monitoring, to tell what happened.</p>
+          <p>So list what the regulation asks, and map each item to the parts it touches. Mark each one: met, partly met, or missing. Check with legal what it really means. Then give the gaps a focused design, and plan backward from the deadline.</p>
+          <h4>Build the ramp before the inspector arrives. But not every outside demand comes from a regulator. Sometimes it's a partner, and your system has to talk to theirs.</h4>
+        </aside>
+      </section>
+
+
+            <section class="S53">
+        <h1>You Need to Connect with Other Systems</h1>
+        <p class="subtitle">One external API, one dedicated service</p>
+        <div class="r-stack">
+          <img src="images/when/s53-couriers-every-office.png" alt="Couriers in an office building waiting for the elevator, searching for the right door, waiting for a signature, and leaving a closed office still holding a package">
+          <img class="fragment" src="images/when/s53-dedicated-service.png" alt="An outside provider sends data to one dedicated service that handles sign-in, timeouts and retries, converts the data into your own format, and keeps an older result ready, while your other services only talk to it and stay unchanged when the provider changes">
+        </div>
+        <aside class="notes">
+          <h2>You Need to Connect with Other Systems</h2>
+          <h3>Do you know why many commercial buildings have one dedicated mailroom? Because without it, every courier has to go to every office. They wait for the elevator, search for the right room, wait for someone to sign, and come back when nobody's there. For every single delivery.</h3>
+          <p>Many systems work the same way. When every service calls an outside API directly, each one handles the waiting, the sign-in, the retries, and the API's own format. And when the provider changes something, every service has to change with it.</p>
+          <p>So, one external API, one dedicated service. It's the only part that talks to the provider. It handles sign-in, timeouts, and retries, and turns their data into yours. Everything else asks it, in your own format. In a smaller system, a module can do the same job.</p>
+          <p>Now, when the provider changes its API, you change one place. When it goes down, one place decides what happens: wait, retry later, or show an older result. And if you ever switch providers, only that one service changes.</p>
+          <h4>One external API, one dedicated service, one place to change. But what if the part getting old isn't theirs, but yours?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S54">
+        <h1>Your Technology Is Getting Outdated</h1>
+        <p class="subtitle">Upgrade before support ends</p>
+        <div class="r-stack">
+          <img src="images/when/s54-old-phone.png" alt="A person calmly holding an old phone that still works, with a cracked open padlock and a dimmed bank app showing it no longer gets security updates">
+          <img class="fragment" src="images/when/s54-upgrade-list.png" alt="A list of system parts with end-of-support dates, one coming soon, an engineer upgrading in small steps toward a shield, and an old building replaced block by block while its lights stay on">
+        </div>
+        <aside class="notes">
+          <h2>Your Technology Is Getting Outdated</h2>
+          <h3>Do you know why using an old phone can be dangerous, especially for apps like your banking app? Because it stopped getting security updates long ago. It still works fine, so it feels safe. But every new security hole stays open.</h3>
+          <p>Your system works the same way. Languages, frameworks, and databases all reach an end-of-support date. After that, no more security patches. It keeps working, so nobody touches it, until an audit or an attack finds it.</p>
+          <p>So keep a simple list of what you run: each part, its version, and its end-of-support date. Then upgrade in small steps, well before that date. You don't need the newest version. You need a supported one.</p>
+          <p>Skip it for years, and a small upgrade turns into a big rewrite, under pressure. If a part is too old to upgrade, replace it piece by piece, while the rest keeps running. Not all at once. Each step is small, so you can test it and undo it.</p>
+          <h4>Upgrade before the apps stop working, not after. And sometimes the warning comes too late: an attack or an audit has already found the gap.</h4>
+        </aside>
+      </section>
+
+
+            <section class="S55">
+        <h1>A Security Incident or Audit Finding</h1>
+        <p class="subtitle">Fix the design behind it, not just the incident</p>
+        <div class="r-stack">
+          <img src="images/when/s55-bank-access-cards.png" alt="In a bank lobby, an employee's card fails at a door reader while staff hand out more replacement cards, and a technician follows the reader's wires back to find the real cause">
+          <img class="fragment" src="images/when/s55-one-key-every-door.png" alt="One leaked key opening every database, next to the same services each with its own key, where one leaked key opens only one database, and a tested fix">
+        </div>
+        <aside class="notes">
+          <h2>A Security Incident or Audit Finding</h2>
+          <h3>At a bank, some employees' access cards suddenly stop working. Are you going to replace each card, one by one, every time it happens? Or find out why they fail, and fix the system behind them?</h3>
+          <p>Security findings work the same way. An attack gets in, or an audit flags a vulnerability. The quick fix is to patch that one hole and close the ticket. Like replacing the card, it's needed, and it comes first. But it's not enough.</p>
+          <p>Then ask what in the design let it happen. Where else does the same vulnerability exist? And how far could one vulnerability take an attacker? Say one stolen key opened every database. Rotating that key fixes the incident. The design question is why one key opened everything.</p>
+          <p>Give that a focused design: each service its own key, with only the access it needs. Then check the same vulnerability everywhere, and test that the fix holds. Next time a key leaks, it opens one door, not all of them.</p>
+          <h4>Replace the card, then fix the system behind it. And that leaves one last question for every signal in this section: does it need a full redesign, or a focused design?</h4>
+        </aside>
+      </section>
+
+            <section class="S56">
+        <h1>Full Redesign or Focused Design?</h1>
+        <p class="subtitle">Three questions before you rebuild</p>
+        <div class="r-stack">
+          <img src="images/when/s56-car-repairs.png" alt="The same car over the years: new brakes first, then engine and gearbox trouble and rust, with a growing pile of repair slips next to the outline of a new car">
+          <img class="fragment" src="images/when/s56-three-questions.png" alt="Three questions shown as a cracked foundation, a fix that keeps coming back, and safety with a fair cost, above two paths: replacing one block, or rebuilding piece by piece while the lights stay on">
+        </div>
+        <aside class="notes">
+          <h2>Full Redesign or Focused Design?</h2>
+          <h3>Your car's brakes fail. You fix the brakes, and the car runs fine for years. Then one winter, it's the engine, then the gearbox, then rust in the frame. At some point, fixing one more part costs more than a new car.</h3>
+          <p>Systems work the same way. Most of the time, most of the system works, so start with a focused design: fix the part that hurts. Rebuild everything instead, and months go to replacing parts that worked.</p>
+          <p>Ask three questions before a full redesign. Is the problem in the foundation every part depends on, not in one part? Have careful focused fixes been tried, and the same problems keep coming back? Or can the current design no longer do what the business needs, safely and at a fair cost?</p>
+          <p>If the answers say yes, rebuild piece by piece, while the rest keeps running. And when you choose the smaller fix, write it down as a known shortcut, with a date to come back to it. If those shortcuts keep piling up, that's your answer.</p>
+          <h4>That's the when. Every signal here is on one checklist, with these three questions at the end. Use it whenever something changes. Now, the how.</h4>
+        </aside>
+      </section>
+
 
     </div>
   </div>
