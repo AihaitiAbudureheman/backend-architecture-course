@@ -1860,6 +1860,436 @@
           <h4>Serverless gives you a lot, but you give up some visibility, so plan for the day your provider fails. So now the question is, with all these architectures in mind, how do you design your own system, step by step?</h4>
         </aside>
       </section>
+
+
+      <section class="S99">
+        <h1>Your Design Playbook: How It Works</h1>
+        <p class="subtitle">Seven phases, from the first question to production, and back again</p>
+        <div class="r-stack">
+          <img src="images/how/s99-wobbly-shelf.png" alt="A person sits next to a freshly assembled bookshelf that leans and wobbles, holding one leftover screw, while the instruction booklet lies unopened beside them">
+          <img class="fragment" src="images/how/s99-seven-phase-cycle.png" alt="Seven phase icons on a circle, understand, requirements, explore, design, buy-in, deliver, operate and improve, connected clockwise, with an arrow from the last back to the first, a dashed arrow from design back to explore, and a checklist in the center">
+        </div>
+        <aside class="notes">
+          <h2>Your Design Playbook: How It Works</h2>
+          <h3>Ever tried putting together IKEA furniture without the instructions? You usually get it standing in the end, but there's a screw left over, and the shelf wobbles a little. Designing a backend without a process is a lot like that: you skip a step, and you only find out halfway through building. That's why this section is a playbook, with every step in order.</h3>
+          <p>The playbook has seven phases. First, you understand the problem: who it's for, what it does, and why it matters. Then you set the requirements, like speed, uptime, security, and cost. Next, you explore your options, and only then do you design. After that, you get buy-in, which means the people around you agree with the plan and support it. Then you deliver, and finally, you operate and improve the system.</p>
+          <p>Here's the thing, though: it's not a straight line. Operating the system teaches you something new, like a page users keep complaining about, and that takes you back to the start. And sometimes you go back sooner. If you reach the design phase and still can't choose, that usually means your research isn't finished, so you go back a phase.</p>
+          <p>Each lesson in this section covers one step, and ends with one line for your checklist. Put those lines together, and that's the playbook you take with you. In my experience, it's a starting point, not a rulebook, and every project you work on might add something to it.</p>
+          <h4>Here's the first line on your checklist: go through the phases in order, and go back a phase when something is missing. So now the question is, what do you ask first?</h4>
+        </aside>
+      </section>
+
+      <section class="S100">
+        <h1>Answer Who, What, and Why</h1>
+        <p class="subtitle">Three questions before you design anything</p>
+        <div class="r-stack">
+          <img src="images/how/s100-before-you-draw.png" alt="A manager asks a developer for a notification service. The developer faces an empty diagram canvas, with three thought bubbles above: a person, a puzzle piece, and a clock">
+          <img class="fragment" src="images/how/s100-who-what-why.png" alt="Three panels: a customer waiting for an order, the same customer calling a busy support agent, and a growing stack of ringing phones. Below, a notification service sends a message to the customer before they call">
+        </div>
+        <aside class="notes">
+          <h2>Answer Who, What, and Why</h2>
+          <h3>Your manager stops by and says, 'We need a notification service. Can you design it?' It's tempting to open a drawing tool right away. But who reads those notifications? What problem do they solve? And why does the company need them now? Until you can answer those three questions, you don't really know what you're designing.</h3>
+          <p>Start with who: who actually benefits from this service? Is it customers waiting for their order, or the support team? If you can't point to anyone, that's a warning sign, because maybe nobody really needs it.</p>
+          <p>Then, what: what exactly is the problem? Here's the thing: 'we need notifications' isn't a problem, it's a solution. The real problem might be that customers keep calling support to ask where their order is. Now you know what the service has to do: tell them before they call.</p>
+          <p>And finally, why, and why now? Maybe those support calls keep growing every week. That tells you how much it matters, and how soon. A simple test: ask what happens if you wait six months. If nobody can explain why now, it can probably wait.</p>
+          <p>Your answers don't need to be perfect, because they usually change as you learn more. But even rough answers stop you from designing the wrong thing. So write them down in a few lines, and share them with your team, so everyone designs for the same reason.</p>
+          <h4>For your checklist: can you say who this is for, what problem it solves, and why it matters now? So now the question is, once you know your users, what does each of their requests touch?</h4>
+        </aside>
+      </section>
+      <section class="S101">
+        <h1>Map Your Users and Their Request Paths</h1>
+        <p class="subtitle">Every request touches more than you see</p>
+        <div class="r-stack">
+          <img src="images/how/s101-missing-parts.png" alt="A simple whiteboard sketch: the order service sends to a notification service, which sends a message to a phone. Two missing pieces float outside it, the customer's contact details and an outside text-message provider">
+          <img class="fragment" src="images/how/s101-traced-path.png" alt="The full traced request path: from the order service to the notification service, to the customer's contact settings, across a company boundary to an outside text-message provider, and on to the customer's phone. A customer and another system stand at the start as the two kinds of users">
+        </div>
+        <aside class="notes">
+          <h2>Map Your Users and Their Request Paths</h2>
+          <h3>Back to our notification service. You know who it's for, and why it matters, so you sketch it: the order service says an order has shipped, and your service sends the customer a message. Simple, right? Then, a week into building, someone asks where the customer's phone number comes from, and who actually sends the text message. Neither one is in your design.</h3>
+          <p>That's what happens when you only design what users see. So start by listing your users, and there are usually two kinds: people using the product, like the customer waiting for a parcel, and other systems calling yours, like the order service. Those are easy to miss, because they don't call support. They just stop working when something changes.</p>
+          <p>Then take each main request, and follow it all the way through. Remember tracing one request from start to finish? It's the same skill, just used earlier, before anything is built. For 'order shipped', the path goes from the order service to yours, then to the customer's contact settings, and finally out to an SMS provider outside your company. Draw it as boxes and arrows, one box for every part the request touches.</p>
+          <p>Every part on that path belongs in your design. If the contact settings are slow, your message is slow. If the SMS provider goes down, nothing gets sent. And what each user expects, like how fast and how reliable, turns into your requirements in the next phase.</p>
+          <h4>For your checklist: have you listed every kind of user, and traced each main request through everything it touches? So now the question is, with all these parts on the map, where does your design stop?</h4>
+        </aside>
+      </section>
+      <section class="S102">
+        <h1>Define a Clear Scope</h1>
+        <p class="subtitle">Write down what's in, and what's out</p>
+        <div class="r-stack">
+          <img src="images/how/s102-scope-creep.png" alt="People keep sticking new blocks onto a small notification service, a newsletter, promotional messages, and a support chat, until it grows lopsided while the developer holds an unfinished plan">
+          <img class="fragment" src="images/how/s102-in-and-out.png" alt="A clear boundary around the notification service, with contact settings read from the edge. New requests outside wait at three signposts: add now, later, or their own scope, and marketing messages sit in a separate boundary of their own">
+        </div>
+        <aside class="notes">
+          <h2>Define a Clear Scope</h2>
+          <h3>Your notification service is almost designed. Then marketing asks, 'Can it also send our weekly newsletter?' Sure, why not, it already sends messages. Next week, someone wants promotional text messages, and then a chat with support. Each one sounds small, but a month later, your simple service is turning into a marketing platform, and the design still isn't finished. That's scope creep.</h3>
+          <p>Here's what helps: write down what your design covers, and what it doesn't, in a short list at the top of your design document. Ours covers order updates to customers. It reads their contact settings, but doesn't change them. And it doesn't send marketing messages. That last line is called a non-goal, and in my experience, it's the most useful one, because now 'Can we also add this?' has a clear answer.</p>
+          <p>That doesn't mean every new request is a bad idea. Some really matter. So decide on purpose: add it to this scope, move it to a later phase, or give it its own scope. Just don't let it in without a decision. And make that decision together with whoever owns the product, so the scope belongs to everyone, not just to you.</p>
+          <p>And when the scope keeps growing, it's often because you're really looking at two systems. Marketing messages have different users, a different reason to exist, and different rules: in the EU, customers usually have to agree first, and they can always say no to more. That's a separate system, with its own scope.</p>
+          <h4>For your checklist: have you written down what this design covers, and what it doesn't? So now the question is, inside that scope, what exactly does the system need to do?</h4>
+        </aside>
+      </section>
+      <section class="S103">
+        <h1>Define the Functionality, Then Question Every Extra</h1>
+        <p class="subtitle">If no user needs it, why build it?</p>
+        <div class="r-stack">
+          <img src="images/how/s103-extras-inside-scope.png" alt="Inside a clear scope boundary, extras drift toward the notification service: read receipts, a dashboard of every message, and an over-built design of three boxes and a queue">
+          <img class="fragment" src="images/how/s103-which-story.png" alt="Story cards filter the extras: read receipts wait on a shelf, the dashboard passes once a support team story exists, and the three boxes and queue shrink into one simple box">
+        </div>
+        <aside class="notes">
+          <h2>Define the Functionality, Then Question Every Extra</h2>
+          <h3>Your notification service has a clear scope now: order updates to customers, nothing else. But inside that scope, the ideas keep coming. Read receipts sound nice, and so does a dashboard of every message ever sent. Someone even suggests three separate services with their own queue, just in case. None of these break the scope, but does any customer actually need them?</h3>
+          <p>Start with what the system has to do. People call these functional requirements, and a simple way to write them is as user stories: 'As a customer, I want a message when my order ships, so that I don't have to call support.' Notice something? It's who, what, and why again, in one plain sentence anyone on the team can check.</p>
+          <p>Then take every extra, and ask: why are we including this, and which user story needs it? Read receipts? No customer asked for them, so they go on the 'later' list from the last lesson. The dashboard might be different: maybe the support team needs it, and if so, write their story first.</p>
+          <p>Ask the same question about the design itself. Three services and a queue for one simple job is an extra too, because every service is one more thing to build, test, and run. Unless a real need calls for it, keep it simple.</p>
+          <p>And it's a question, not an automatic no. If there's a good reason, the extra stays. But now it has one.</p>
+          <h4>For your checklist: does every feature have a user story, and has every extra answered 'why are we including this?' That's Phase 1 done. So now the question is, how fast does the system need to do it?</h4>
+        </aside>
+      </section>
+
+            <section class="S104">
+        <h1>Set Performance Targets</h1>
+        <p class="subtitle">How fast, for whom, and under what load</p>
+        <div class="r-stack">
+          <img src="images/how/s104-instant-or-a-minute.png" alt="A developer builds a huge, over-powered machine to send one message instantly, while the customer relaxes and is happy to get the parcel message a little later. A dial with a question mark shows nobody agreed on a target">
+          <img class="fragment" src="images/how/s104-targets-by-who-waits.png" alt="Two speed gauges: a calm, slow target for a parcel message and a fast target for a checkout page. A grid of one hundred dots shows almost all requests fast, and a small AI corner adds a stopwatch and a coin">
+        </div>
+        <aside class="notes">
+          <h2>Set Performance Targets</h2>
+          <h3>How fast does our notification service need to be? Someone on your team says, 'Instant, of course,' and starts planning for answers in milliseconds. But think about the customer: their parcel just left the warehouse. Does it matter if the message arrives a few seconds later, or even a minute later? Not really. Without an agreed target, everyone guesses, and the guesses are usually too high or too low.</h3>
+          <p>Phase 1 was about what the system does. Phase 2 is about how well it does it, and people call these non-functional requirements. Speed comes first.</p>
+          <p>Set one target for each key request, based on who's waiting. Our customer can wait a minute for a message. But someone paying at checkout is watching the screen, so that page needs to answer in well under a second. Same company, very different targets. Agree each number with the business, and write it down, so nobody has to guess later.</p>
+          <p>A good target has three parts: how fast, for how many requests, and at what load. For example: 95 out of 100 checkout requests in under half a second, at your busiest hour. You often see this on monitoring dashboards as p95. Why not just the average? Because an average can look fine while hiding the slow requests your users actually feel.</p>
+          <p>And if a request calls an AI model, add two more targets: how long until the first words appear, and how much one request is allowed to cost.</p>
+          <h4>For your checklist: does each key request have an agreed speed target, at the load you expect? So now the question is, how much downtime is okay for your users?</h4>
+        </aside>
+      </section>
+
+      <section class="S105">
+        <h1>Set Uptime Targets</h1>
+        <p class="subtitle">How much downtime is okay, service by service</p>
+        <div class="r-stack">
+          <img src="images/how/s105-same-downtime.png" alt="The same short outage on two services: the notification service pauses while a few messages wait calmly, but checkout breaks and a long line of frustrated shoppers cannot pay">
+          <img class="fragment" src="images/how/s105-targets-and-dependencies.png" alt="Checkout has a long row of uptime lights and the notification service a short one. Messages wait safely in a queue while the outside text-message provider is down, and a signed promise sits in the corner">
+        </div>
+        <aside class="notes">
+          <h2>Set Uptime Targets</h2>
+          <h3>Someone in a planning meeting says, 'Everything has to be up all the time.' It sounds responsible, so nobody argues. But think about our notification service. If it stops for ten minutes, and the messages can wait, they go out a little late, and nobody really notices. Now imagine checkout stops for ten minutes, and every customer who tries to pay gets an error. Same downtime, very different effects.</h3>
+          <p>First, find out whether someone has already made a promise. Remember SLAs, service level agreements? They're the uptime your company promises its customers. Ask whoever signs the contracts, because if a promise exists, your design has to keep it.</p>
+          <p>Then agree a target for each service, based on what downtime really does. Checkout might need four nines, under an hour of downtime a year. The notification service can accept much less, as long as its messages wait in a queue and go out when it's back. Every nine you don't need is money you don't spend.</p>
+          <p>Last, check what you depend on. A service can't be more available than the services it can't work without. If the SMS provider is down, no messages get sent. But with a queue in between, holding the messages until the provider is back, that outage only delays them. Google's rule of thumb: what you depend on needs one more nine than you promise. So to promise three nines, you want providers with four.</p>
+          <h4>For your checklist: does each service have an agreed uptime target, checked against existing promises and what it depends on? So now the question is, these targets work for today, but what happens when you grow?</h4>
+        </aside>
+      </section>
+
+      <section class="S106">
+        <h1>Plan for Growth</h1>
+        <p class="subtitle">Make room for future growth</p>
+        <div class="r-stack">
+          <img src="images/how/s106-room-for-a-shaft.png" alt="A cutaway office building with two working elevators and a third empty shaft ready for later, while a crate with an elevator car waits outside">
+          <img class="fragment" src="images/how/s106-parts-that-grow-first.png" alt="A system map: a growing stream of messages flows out of the notification service, while orders, payments, and notifications all read the customer contact settings, which sit in a roomy space ready for more. Spare servers wait on a shelf">
+        </div>
+        <aside class="notes">
+          <h2>Plan for Growth</h2>
+          <h3>Say you're designing an office building for 200 people, and the company plans to double in a few years. Do you put in twice the elevators today? No, that's money spent on empty elevators. But you might leave space for one more elevator shaft, because adding a shaft to a finished building is a huge job. Growth in your system works the same way.</h3>
+          <p>Start with an estimate: how much should the system grow, and by when? Ask the business about its plans, and if the system already exists, check your monitoring. Say the plan expects orders to double next year. Then our notification service sends twice the messages too.</p>
+          <p>Next, find the parts that grow first. Some get the most traffic, like the messages. Others get reused by many services, like the customer contact settings: orders read them, payments read them, and notifications read them. When a part like that slows down, everything that reads it slows down with it.</p>
+          <p>Then write down what the design makes room for now, and what can wait. Giving the contact settings one clear place, one part of the system that owns that data, is like leaving room for the shaft. Later, you can give that one part more capacity without touching everything else. Extra servers are more like the elevators: add them when the traffic actually arrives. Separating a part has its own cost too, so do it when the numbers say so.</p>
+          <h4>For your checklist: do you know how much it should grow, by when, and which parts grow first? So now the question is, who should be allowed to see all that customer data?</h4>
+        </aside>
+      </section>
+
+      <section class="S107">
+        <h1>Capture Security Requirements</h1>
+        <p class="subtitle">Know what to protect before you design</p>
+        <div class="r-stack">
+          <img src="images/how/s107-late-review.png" alt="A stakeholder from the security team, holding a magnifying glass, finds customer phone numbers going to an outside provider and an unlocked folder of messages, while the launch rocket is held back">
+          <img class="fragment" src="images/how/s107-security-requirements.png" alt="Inside the company boundary: locked sensitive data, a support agent with limited access, and services exchanging keys. Only a small message leaves through a narrow gate to the text-message provider, an AI provider waits outside without access, and the team asks what could go wrong">
+        </div>
+        <aside class="notes">
+          <h2>Capture Security Requirements</h2>
+          <h3>A week before launch, the security team reviews our notification service. Their first question: 'Which outside provider gets our customers' phone numbers, and what else goes with them?' Nobody knows. Then: 'Who inside the company can read the message history?' Nobody decided that either. So the launch waits while the design gets fixed. That's what happens when security comes last.</h3>
+          <p>Instead, capture your security requirements now, before anything is designed. First, which data is sensitive? Here, it's the customer's phone number, and the order details in each message. Second, who may access it? Maybe the support team can see whether a message was sent, but not read every message. And third, how do services prove who they are? Remember zero trust: the order service needs its own key to call yours, even inside your network.</p>
+          <p>Then list everything that leaves your company. The SMS provider gets the phone number and the message, so send only what the message needs, not the whole order. And if someone suggests an AI model to write friendlier messages, that's one more provider getting your data. Decide now what it may see.</p>
+          <p>Finally, sit down with your team and ask what could go wrong. People call this threat modeling, and it can start with four simple questions: What are we working on? What can go wrong? What are we going to do about it? And did we do a good enough job? Write the answers down, because they become requirements too.</p>
+          <h4>For your checklist: have you listed the sensitive data, who may access it, and what leaves your system? So now the question is, which laws decide what you may store?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S108">
+        <h1>Capture Compliance Rules</h1>
+        <p class="subtitle">Map every place personal data goes</p>
+        <div class="r-stack">
+          <img src="images/how/s108-delete-not-everywhere.png" alt="A developer deletes a customer account. The contact settings and message history are cleared, but the phone number is still left in the logs, the backups, and at an outside provider">
+          <img class="fragment" src="images/how/s108-data-map.png" alt="A data map drawn like a subway line through five stations: contact settings, message history, logs, backups, and an outside provider beyond an EU boundary. Each station shows how long data is kept, where it is stored, and how it is deleted, while a legal advisor points at the map">
+        </div>
+        <aside class="notes">
+          <h2>Capture Compliance Rules</h2>
+          <h3>Six months after launch, a customer asks to delete their account. The team clears the contact settings and the message history, and closes the ticket. But the phone number is still in the logs, in the backups, and at the SMS provider. Nobody planned for those places, because nobody listed them, so now it's an urgent clean-up.</h3>
+          <p>Start before you design: ask your legal or privacy experts which rules apply. In Europe, personal data means GDPR, the General Data Protection Regulation. And if you take card payments, there's also a card-payment standard called PCI DSS.</p>
+          <p>Then make a data map: every place personal data lives, and every place it flows. For our service, that's the contact settings, the message history, the logs, the backups, and the SMS provider. Logs are the place people forget, because nobody thinks of them as storage.</p>
+          <p>For each place, write down three things. How long is it kept? GDPR says only as long as you need it. Where is it stored? That matters: Meta was fined 1.2 billion euros in 2023 for sending European users' data to the US without enough protection. And how does 'delete my account' reach it?</p>
+          <p>Here's a bonus: under GDPR, most companies must keep a record like this anyway, listing who receives the data, whether it leaves the EU, and how long it's kept. Your data map is most of that work done.</p>
+          <h4>For your checklist: do you know which rules apply, and have you mapped where personal data lives, where it flows, and how long it's kept? So now the question is, which systems already exist, and what rules do they set for yours?</h4>
+        </aside>
+      </section>
+
+            <section class="S109">
+        <h1>Check What Already Exists</h1>
+        <p class="subtitle">What's already there shapes your requirements</p>
+        <div class="r-stack">
+          <img src="images/how/s109-two-of-everything.png" alt="Two identical setups side by side, each with its own message service, text-message provider, and signed agreement. A developer who just built the second one peeks over the wall and notices the first">
+          <img class="fragment" src="images/how/s109-look-around-first.png" alt="A developer with binoculars looks around before building. The new notification service reuses the existing message service, uses the same plug shape as its neighbors, and asks the owner for contact settings instead of copying them. One different plug carries a note, a deliberate exception">
+        </div>
+        <aside class="notes">
+          <h2>Check What Already Exists</h2>
+          <h3>Two weeks into building our notification service, you find out that another team already pays an SMS provider. They have a signed privacy agreement, and one service that already talks to that provider. Your design adds a second provider, a second agreement, and a second service doing the same job. Just because we forgot to check what was already there.</h3>
+          <p>Before you design, look around. Start with anything that already does part of the job: ask other teams, check the list of services, and ask which providers the company already pays. Reusing that SMS service means no new provider, no new privacy agreement, and one less thing to manage.</p>
+          <p>Then look at how the systems around you work. Do they talk through events or direct calls? How do they sign in, and what error format do they share? Remember the bag of adapters? Match what's there, and your service connects from day one.</p>
+          <p>And check the data you need. The contact settings already have an owner, so ask that service, instead of keeping your own copy. Two copies drift apart, and then a customer's new phone number only reaches one of them.</p>
+          <p>None of this decides your design for you, but it shapes your requirements. If there's a real reason to do something different, say the existing SMS service can't handle your volume, that's fine. Just make it a decision, and write down why.</p>
+          <h4>For your checklist: have you listed the systems you connect to, the standards they follow, and anything that already does part of the job? So now the question is, what about the people who are already there?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S110">
+        <h1>Know Your Team's Skills</h1>
+        <p class="subtitle">Check your plan against what your team can support</p>
+        <div class="r-stack">
+          <img src="images/how/s110-shiny-new-language.png" alt="In a design meeting, one developer holds up a shiny new tool while the team sits with its familiar toolbox, wondering who fixes it at night and whether the speed is even needed">
+          <img class="fragment" src="images/how/s110-skills-check.png" alt="A skills board with two people under every skill, plus the team that supports the system after launch. Plan tiles match the board, and one gap branches into three choices: use what you know, a managed service, or planned learning">
+        </div>
+        <aside class="notes">
+          <h2>Know Your Team's Skills</h2>
+          <h3>In the design meeting, someone suggests writing our notification service in a new programming language. It's fast, and everyone's talking about it. But your team writes Python, and nobody has used this language in production. So who fixes it when it fails at night? And do you even need the speed, when a message can wait a minute?</h3>
+          <p>Here's the best practice: write down what your team can build and fix today, like its languages, databases, and cloud services. And include whoever supports the system after launch, because sometimes that's a different team, with different skills.</p>
+          <p>Then check every technology in your plan against that list. Each one either matches, or it's a gap. A gap isn't an automatic no, but it has to be a decision, not a surprise.</p>
+          <p>For each gap, you have three choices. Use something the team already knows. Use a managed service, like a hosted database instead of managing your own, so the provider handles the hard part. Or plan the learning: start small, make sure at least two people really learn it, and put that time into your estimate.</p>
+          <p>For our service, the answer is easy. The team knows Python, and nobody needs the extra speed. The new language can wait for a side project, where it's safe to learn.</p>
+          <h4>For your checklist: does every technology in your plan have at least two people who can build and support it, or a plan to get there? So now the question is, with the servers, providers, and learning time, what does all this really cost?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S111">
+        <h1>Estimate the Real Cost</h1>
+        <p class="subtitle">Build it, run it, keep it working</p>
+        <div class="r-stack">
+          <img src="images/how/s111-only-the-cloud-bill.png" alt="A design review approves a tiny cloud bill. Three months later, finance holds up a long, growing text-message invoice while two engineers spend every Friday keeping the service working">
+          <img class="fragment" src="images/how/s111-three-part-estimate.png" alt="Three estimate blocks: building it (developers, hours, learning time), running it (cloud, text-message provider, AI requests that grow with each order), and keeping it working (fixes, updates, on call). A scale shows reuse as the lighter option, and the business and developer agree a budget">
+        </div>
+        <aside class="notes">
+          <h2>Estimate the Real Cost</h2>
+          <h3>The design review asks one question about cost: 'What's the cloud bill?' It's small, so the design gets approved. Three months later, finance asks why the SMS invoice keeps growing, and why two engineers spend every Friday keeping the service working. Because none of that was in the original estimate.</h3>
+          <p>Remember the puppy from earlier? The price tag was never the real cost. Here's a simple way to estimate the rest, in three parts.</p>
+          <p>First, building it: the engineering hours, including any learning time from the skills check. Say three developers for six weeks, at around 100 euros an hour. That's already about 70,000 euros, before the first message goes out.</p>
+          <p>Second, running it: the cloud, plus every outside provider. Each text message costs money, and so does each AI request. Estimate it per order, not just per month, because when orders double, this part doubles too.</p>
+          <p>Third, keeping it working: updates, fixes, and someone on call. Even a few hours a week adds up, year after year.</p>
+          <p>Then use the same three parts to compare your options. Reusing the existing SMS service costs almost nothing to build. A new provider costs build hours, a new agreement, and more upkeep. And just like your speed and uptime targets, agree the budget with the business, and write it down.</p>
+          <h4>For your checklist: have you estimated the cost to build it, run it, and keep it working, including hours, and agreed a budget? That's Phase 2 done. So now the question is, what job does your design actually need doing?</h4>
+        </aside>
+      </section>
+
+            <section class="S112">
+        <h1>Define the Job Before Picking Technology</h1>
+        <p class="subtitle">Describe the problem before the tool</p>
+        <div class="r-stack">
+          <img src="images/how/s112-tool-first.png" alt="In a design meeting, someone holds up a shiny new tool while the requirements folder stays closed, and the design sketch on the whiteboard starts bending around the tool">
+          <img class="fragment" src="images/how/s112-job-then-table.png" alt="The job written as a problem at the top, then a comparison table: speed, uptime, company standards, team skills, and budget down the side, three options across the top. The existing queue meets every row, and a developer calmly points at the table">
+        </div>
+        <aside class="notes">
+          <h2>Define the Job Before Picking Technology</h2>
+          <h3>Phase 2 is done, and the first design meeting starts. Before anyone opens the requirements, someone says, 'Let's use Kafka for this.' Half the room nods, because everyone's heard of it. But nobody has said what job it's supposed to do. And once a tool comes first, the rest of the design starts bending around it.</h3>
+          <p>Start by writing the job as a problem, in one sentence. Not 'use Kafka', but 'send each customer an order update within a minute, even when the SMS provider is down.' That sentence comes straight from your Phase 2 targets. It says what success looks like, and nothing about tools yet.</p>
+          <p>Then make a simple comparison table. Your requirements go down the side: speed, uptime, your company's standards, your team's skills, and the budget. Your options go across the top, like the queue your company already uses, a managed messaging service from your cloud provider, and Kafka. Then check which option meets which need.</p>
+          <p>In my experience, the shortlist often picks itself. Maybe it's a great tool, but nobody on the team has managed it, and the existing queue already meets every row. That's not a no to Kafka forever. It's just not the right tool for this job.</p>
+          <p>And when someone later asks, 'Why not Kafka?', you don't have to argue opinions. You just point at the table.</p>
+          <h4>For your checklist: have you written the job as a problem, and compared each option against your requirements? So now the question is, what if the better answer isn't a different tool, but a different way of doing the job?</h4>
+        </aside>
+      </section>
+
+      <section class="S113">
+        <h1>Explore New Approaches, Not Just New Tools</h1>
+        <p class="subtitle">Same job, a different way of doing it</p>
+        <div class="r-stack">
+          <img src="images/how/s113-swapping-tools.png" alt="A team spends weeks comparing three nearly identical text-message providers while the long invoice keeps growing on the floor">
+          <img class="fragment" src="images/how/s113-different-approach.png" alt="The notification service sends most updates as cheap app notifications and only the out-for-delivery update as a text message, with a much shorter invoice. In the corner, a developer describes servers in code that a teammate checks, and the comparison table gains columns for approaches">
+        </div>
+        <aside class="notes">
+          <h2>Explore New Approaches, Not Just New Tools</h2>
+          <h3>The SMS invoice keeps growing, so the team starts comparing SMS providers. One is a little cheaper per message, and another has better support. Weeks go into that comparison. But every option still sends a text message for every single update. The tool changes, and the problem stays exactly where it was.</h3>
+          <p>That's what happens when you only explore tools. Also ask a second question: is there a different way to do the same job? Our job was to tell customers before they call. It never said 'by text message.'</p>
+          <p>App notifications cost much less than text messages, often nothing at all. So if most customers use your app, send most updates there, and keep text messages for the one that really matters, like 'out for delivery'. Same job, same team, and a much smaller bill.</p>
+          <p>Approaches can also change how the team works. Take Infrastructure as Code: instead of setting up servers by clicking around in a cloud dashboard, you describe them in code files. Now every change can be reviewed and repeated, like any other code. It's less about a new tool, and more about a new way of working, and it helps every system your team builds next.</p>
+          <p>Then put each approach in the same comparison table as the tools. It still has to meet your requirements, and suit your team's skills.</p>
+          <h4>For your checklist: have you explored different ways to do the job, not just different tools, and checked them against the same requirements? So now the question is, with so many tools and approaches to try, when do you stop exploring?</h4>
+        </aside>
+      </section>
+
+            <section class="S114">
+        <h1>Time-Box Your Exploration</h1>
+        <p class="subtitle">A question, a limit, and a decision</p>
+        <div class="r-stack">
+          <img src="images/how/s114-endless-exploring.png" alt="A team happily absorbed in experiments while weeks pass on the calendar and the launch rocket still sits unbuilt in its box">
+          <img class="fragment" src="images/how/s114-time-box.png" alt="A glowing time box where two developers test only a queue and one push service. Attached to the box are a question, an hourglass for the limit, and a signpost for the default decision. Other ideas wait on a shelf for later, and the rocket is now ready on its launch pad">
+        </div>
+        <aside class="notes">
+          <h2>Time-Box Your Exploration</h2>
+          <h3>After the last lesson, the team is excited. They want to try three push services, describe everything as code, and maybe test a new queue too. Every idea sounds useful. Three weeks later, they're still comparing, the launch date hasn't moved, and nothing is built yet. Exploring is fun, but it never ends on its own.</h3>
+          <p>That's why you set a time box before you start, and a good one has three parts. First, a question: what exactly do you need to find out? For us, it's this: can the existing queue, plus one push service, meet all our requirements, from speed to budget?</p>
+          <p>Second, a limit: say, two days. Keep it in proportion to the project. If the whole project takes a few weeks, a few days of exploring is plenty. And third, a default: what you pick if time runs out. Usually, that's the best option so far.</p>
+          <p>Many agile teams call this a spike. Not the traffic kind, but a short, time-limited piece of research that ends with a decision.</p>
+          <p>When the two days are up, you decide, even if one more day sounds tempting. And the ideas you didn't get to? They're not gone. Put them on the 'later' list, and try them on the next project.</p>
+          <h4>For your checklist: did your exploration have a question, a time limit, and a default, and did you decide when the time ran out? So now the question is, with the research done, how do you choose the architecture itself?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S115">
+        <h1>Let Your Research Choose the Architecture</h1>
+        <p class="subtitle">If the choice isn't clear, your research isn't done</p>
+        <div class="r-stack">
+          <img src="images/how/s115-apartment-choice.png" alt="A person with four clear needs, budget, area, rooms, and moving date, watches most apartment listings drop away until one clear choice is left">
+          <img class="fragment" src="images/how/s115-research-chooses.png" alt="A comparison table with three architecture options: a module in the existing system, a separate service, and a serverless function on a queue. The requirements check off the serverless column, habit and hype walk away, and a dashed arrow leads back to research for when no option wins">
+        </div>
+        <aside class="notes">
+          <h2>Let Your Research Choose the Architecture</h2>
+          <h3>Looking for a new apartment? If you already know your budget, the area, how many rooms you need, and when you have to move, how hard is it to choose? Not very, because most options drop out on their own. And if you still can't decide, you probably don't know one of those things yet.</h3>
+          <p>Choosing an architecture works the same way: not by habit, and not by hype. Put your options in the same comparison table you used for tools. For our notification service, that's a module inside the existing order system, a separate service, or a serverless function that runs for each message in the queue.</p>
+          <p>Then let your requirements decide. A message within a minute is fine, so a cold start doesn't matter. Messages come in bursts, so paying only for what you use helps. The queue already handles outages, and the team can write the function in Python. For this job, serverless comes out ahead. For another job, it might not.</p>
+          <p>But what if no option clearly wins? That usually doesn't mean you need one more meeting. It means something is missing from your research. Maybe nobody knows the real traffic, or the budget was never agreed. Go back a phase, find the missing answer, and the choice usually gets much clearer.</p>
+          <p>And sometimes, two options are both good. Then pick the one that best serves what matters most to this project, and write down why.</p>
+          <h4>For your checklist: did your requirements choose the architecture, and if nothing clearly won, did you go back to research? That's Phase 3 done. So now the question is, how do all the parts connect?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S116">
+        <h1>Arrange Your Components Until Everything Works Together</h1>
+        <p class="subtitle">Check every connection before you start building</p>
+        <div class="r-stack">
+          <img src="images/how/s116-missing-device-token.png" alt="Three teams stop work mid-build and look up at a device token for app notifications that hangs in the air, connected to nothing in the design, while calendar pages fly off the wall">
+          <img class="fragment" src="images/how/s116-one-diagram.png" alt="Developers arrange every component on one sheet like puzzle pieces, and a new device-token card completes the missing connection. Nested rectangles show the four zoom levels, and a rough whiteboard sketch sits next to a clean version on a laptop">
+        </div>
+        <aside class="notes">
+          <h2>Arrange Your Components Until Everything Works Together</h2>
+          <h3>Three weeks into coding, the app team asks a simple question: 'How does the push service know which phone belongs to which customer?' Nobody planned that. To send an app notification, the push service needs a special ID for each customer's phone, called a device token. And no part of our design stores those. Now three teams change their plans, because nobody put every piece on one page first.</h3>
+          <p>Before anyone starts building, put every part on one diagram: the order service, the queue, the notification function, the contact settings, the push service, the SMS service, and the message history. This is where modules, interfaces, and data flow finally come together.</p>
+          <p>Then move the pieces around, and check every connection. Who calls whom? What data does each call need, and where does it come from? Follow 'order shipped' through the diagram, and the push service asks for a device token that nothing on the page provides. Five minutes on paper, instead of three weeks of rework.</p>
+          <p>For structure, many teams use the C4 model. It draws a system at four zoom levels, like a map app: Context, the system and who uses it; Containers, the apps, services, and databases; Components, the parts inside each one; and Code, which most teams skip.</p>
+          <p>And a tip from my experience: sketch on a whiteboard or paper while you're moving things around. But for the final version, design it in a tool like draw.io, so you can share it with others easily.</p>
+          <h4>For your checklist: is every part on one diagram, with every connection checked? So now the question is, when someone asks why it looks like this, what's your answer?</h4>
+        </aside>
+      </section>
+
+      <section class="S117">
+        <h1>Back Every Choice with Reasoning</h1>
+        <p class="subtitle">Why this, why not that, and what it costs</p>
+        <div class="r-stack">
+          <img src="images/how/s117-just-a-feeling.png" alt="In a design review, a stakeholder points at the serverless function on the diagram and the presenter shrugs, backed only by an empty feeling, while the same debate loops back on the calendar">
+          <img class="fragment" src="images/how/s117-reason-card.png" alt="A reason card pinned to the serverless function on the diagram, in three parts: the requirement, the option chosen over the alternative, and the cost accepted. The stakeholder nods, and a loop arrow shows the reason can be checked again if traffic turns steady and heavy">
+        </div>
+        <aside class="notes">
+          <h2>Back Every Choice with Reasoning</h2>
+          <h3>In the design review, someone points at the diagram and asks, 'Why serverless?' If the answer is, 'It just felt like the right choice,' the room goes quiet, because nobody can argue with a feeling, but nobody can trust it either. A month later, the same question comes back, and the same debate starts all over again.</h3>
+          <p>Now, the feeling itself isn't the problem. A gut feeling usually comes from experience, so it's worth listening to. But on its own, nobody else can act on it. You have to put it into words. Interviewers listen for this too: the problem first, then the reasoning, then the solution.</p>
+          <p>Here's a simple way: one sentence for every important choice. 'Because of this requirement, we chose this over that, and we accept this cost.' For our service: 'Because a message within a minute is fine, and messages come when orders ship, with quiet nights in between, we chose a serverless function over a separate service, and we accept cold starts and harder local testing.'</p>
+          <p>That last part, what you give up, is the one people skip. In my experience, it's also what makes people trust the rest. Every choice costs something, and saying it out loud shows you've thought it through.</p>
+          <p>Remember Architecture Decision Records? Your sentence is the short version of one. Write it down next to the diagram, so next month, nobody has to ask again. And if traffic ever turns steady and heavy, that reason is gone, so compare servers and serverless again.</p>
+          <h4>For your checklist: does every important choice have its reason, what you rejected, and what it costs? So now the question is, where is your design weakest?</h4>
+        </aside>
+      </section>
+            <section class="S118">
+        <h1>Challenge Your Design Before Others Do</h1>
+        <p class="subtitle">Always be ready for pushback</p>
+        <div class="r-stack">
+          <img src="images/how/s118-caught-off-guard.png" alt="In a design meeting, finance and the on-call engineer raise questions the presenter has not thought about, and the design heads back to the drawing board">
+          <img class="fragment" src="images/how/s118-edge-cases-ready.png" alt="A developer checks every part of the diagram for edge cases: slow, down, full, and old data. The full queue gets an alert and old device tokens get refreshed and cleaned up, and the developer hands calm stakeholders ready answers">
+        </div>
+        <aside class="notes">
+          <h2>Challenge Your Design Before Others Do</h2>
+          <h3>The design review starts well. Then someone from finance asks, 'What happens to the bill if orders double?' And the on-call engineer asks, 'How do we even know when messages stop going out?' You haven't thought about either one, so you say, 'Good question, let me get back to you.' Twice. And the design goes back for another round.</h3>
+          <p>Here's how to be ready: attack your own design first. Go through every part on your diagram, and list its edge cases. What if it's slow, or down? What if it's full? What if the data is old or wrong? In my experience, that's where designs break.</p>
+          <p>For our service, two show up fast. During a big sale, the queue fills up, messages arrive hours late, and nobody notices, so add an alert when messages wait too long. And some device tokens get old, so app notifications quietly stop for those customers. Refresh them, and clean up the old ones.</p>
+          <p>Then step into the shoes of each stakeholder, everyone the project affects. Finance asks about cost, and you already have the cost per order. On-call asks how they know it's broken, and security asks what leaves the company. Write down their likely questions, and answer them before the meeting.</p>
+          <p>Now, when the question comes, you can say, 'I've already looked at that, and here's what I found. What do you think?' The meeting stops being a fight, and becomes a conversation.</p>
+          <h4>For your checklist: have you listed the edge cases for every part, and prepared answers to each stakeholder's likely questions? So now the question is, that covers the people inside the company, but what about your users?</h4>
+        </aside>
+      </section>
+
+            <section class="S119">
+        <h1>Check In with Users at Every Stage</h1>
+        <p class="subtitle">User feedback matters before launch, too</p>
+        <div class="r-stack">
+          <img src="images/how/s119-notifications-off.png" alt="A customer buried under five notifications for one order switches app notifications off, while a support agent faces a growing pile of calls">
+          <img class="fragment" src="images/how/s119-check-in-stages.png" alt="A path of four check-ins before launch: talking about problems, a simple sketch with only two notifications, a short demo, and a small group trying it first. Extra notifications are crossed out, and a developer from another team adds a missing field to the event">
+        </div>
+        <aside class="notes">
+          <h2>Check In with Users at Every Stage</h2>
+          <h3>Launch day goes well. Messages go out fast, and nothing breaks. But a week later, support calls are back again. Why? Customers were getting five app notifications for every order, so many of them switched notifications off. Now they miss the one that matters, and they call support instead, which is exactly the problem we set out to fix.</h3>
+          <p>The answer isn't a better launch. It's checking in before it. At every stage, show users something small, and ask one question: is this still what you need?</p>
+          <p>In research, you talk about their problems, like we did with who, what, and why. In design, you show a simple sketch: here's what the messages look like, and when they arrive. In development, a short demo. And before launch, let a small group try it first, often called a beta.</p>
+          <p>Show customers that sketch, and they say, 'Just tell me when it ships, and when it's out for delivery.' Two messages, not five, found in a five-minute conversation, before anyone writes any code.</p>
+          <p>And your users aren't always customers. Show the order service team the 'order shipped' event you plan to receive, and they might spot a missing field in minutes.</p>
+          <p>Sometimes feedback cuts things, like those extra messages. Other times, it shows you something important that's missing. Either way, it's much cheaper to hear it now than after launch.</p>
+          <h4>For your checklist: did you check in with users at every stage, not just at the start? So now the question is, when people keep asking the same questions about your design, where do you point them?</h4>
+        </aside>
+      </section>
+      <section class="S120">
+        <h1>Write Technical Design Documentation, Share One Link</h1>
+        <p class="subtitle">Answer "what about this?" before it's asked</p>
+        <div class="r-stack">
+          <img src="images/how/s120-same-question-everywhere.png" alt="A tired developer answers the same question in many chats and meetings, while pieces of the answer lie scattered in old messages, notes, and a notebook">
+          <img class="fragment" src="images/how/s120-one-link.png" alt="One technical design document with seven sections, from the problem and scope to options considered, the diagram, edge cases, and user feedback, with comments next to each part. One link goes out to everyone, and a chat summary flows back into the document">
+        </div>
+        <aside class="notes">
+          <h2>Write Technical Design Documentation, Share One Link</h2>
+          <h3>'Why not Kafka?' You've answered that question three times in chat this month, and twice in meetings. Each time, you explain the same comparison, and each time, someone who missed the last answer asks again. The answer exists, but it's spread across old messages, meeting notes, and your memory. So it gets asked again, and again.</h3>
+          <p>Write it down once, in your technical design documentation. And here's the good news: you already have its outline. It's this playbook: the problem, the scope and what's out, the requirements, the options you compared, the diagram, the edge cases, and what users said.</p>
+          <p>The most valuable part is what you rejected, and why. Put the comparison table and your reason sentences there. Now 'why not Kafka?' has an answer before anyone asks it.</p>
+          <p>Then share one link, not the same explanation again. When people have comments, ask them to add those in the documentation, right next to the part they mean. Most documentation tools, like Confluence or Google Docs, let you do that. Now the decision and the discussion live in one place, often called a single source of truth.</p>
+          <p>Quick questions in chat are fine. Just make sure that if something gets decided there, a short summary goes into the documentation. Otherwise, it's gone the moment the chat scrolls away.</p>
+          <h4>For your checklist: is your design written down in one place, including what you rejected and why, and do questions go there instead of chat? That's Phase 4 done. So now the question is, who else needs to be part of this, and when?</h4>
+        </aside>
+      </section>
+
+            <section class="S121">
+        <h1>Involve Everyone from the Beginning</h1>
+        <p class="subtitle">Ask early: "What do you think?"</p>
+        <div class="r-stack">
+          <img src="images/how/s121-what-do-you-think.png" alt="In a short, friendly meeting, a designer shares an early sketch and asks for opinions. Support points out late deliveries, security says phone numbers must stay out of the logs, and a developer warns about duplicate messages on retry">
+          <img class="fragment" src="images/how/s121-everyone-shapes-it.png" alt="Stakeholders around a table each add a piece to the design: a customer, another team, support, security, finance, and on-call. The designer leads and makes the final marks, while past lessons wait on a shelf">
+        </div>
+        <aside class="notes">
+          <h2>Involve Everyone from the Beginning</h2>
+          <h3>You share an early draft of the notification service with a few people, and ask, 'What do you think?' Support says most calls are about late deliveries, not shipping, so a 'delayed' message matters more. Security says phone numbers must never appear in the logs. And a developer remembers the last notification system: every retry sent the customer a duplicate. Three things you didn't know, in one short meeting.</h3>
+          <p>That's why you involve everyone early: each person knows something you don't. Some bring knowledge, like support. Some bring their own requirements, like security. And some bring experience, like that developer, who already learned it the hard way.</p>
+          <p>At the start, list all your stakeholders: users, the teams you connect to, support, security, finance, and whoever is on call at night. Then share an early draft, and ask each one a specific question. 'What could go wrong for your team?' gets a much better answer than 'Any thoughts?'</p>
+          <p>And read past postmortems and retrospectives too, because many lessons are already written down.</p>
+          <p>There's a bonus. Remember the IKEA shelf? Researchers found that people value things more when they helped build them, and designs seem to work the same way. People who helped shape it want it to succeed. And it's never too late, and never wrong, to ask someone, 'What do you think?'</p>
+          <p>Just remember, this isn't design by committee. You still lead the design and make the final calls. Everyone else helps shape it.</p>
+          <h4>For your checklist: did you list all your stakeholders, and ask each of them early, with a specific question? So now the question is, how do you get the business to say yes?</h4>
+        </aside>
+      </section>
+
+            <section class="S122">
+        <h1>Pitch Your Design in Business Terms</h1>
+        <p class="subtitle">Same idea, different language</p>
+        <div class="r-stack">
+          <img src="images/how/s122-same-idea-two-pitches.png" alt="The same design pitched twice to the same leaders: first as a complex technical diagram that gets polite nods, then a week later with one simple business result that gets a thumbs-up">
+          <img class="fragment" src="images/how/s122-translate-to-business.png" alt="Technical choices translated into business results: paying only when orders ship, a smaller bill, and problems caught before customers notice. A falling chart of support calls is backed by measurement, and the technical diagram is kept in a folder">
+        </div>
+        <aside class="notes">
+          <h2>Pitch Your Design in Business Terms</h2>
+          <h3>You present the notification service to the leadership team: 'An event-driven serverless function, with app notifications and SMS for the last step.' Polite nods, and no decision. A week later, you come back with exactly the same design, and one different sentence: 'This cuts the "where is my order?" calls to support, at a known cost per order.' Approved in five minutes.</h3>
+          <p>Here's why. Engineering opinions matter, but the people who control the budget usually make the final call. And they decide based on what the business gets: happier customers, lower costs, more revenue, or less risk.</p>
+          <p>Then translate every technical choice, and keep asking, 'What does that do for the business?' Serverless becomes 'we only pay when orders ship.' App notifications become 'a much smaller SMS bill.' The queue alert becomes 'we find out before customers do.'</p>
+          <p>But make it real, not spin. Back it with numbers. Say support gets two thousand 'where is my order?' calls a month. Cutting even half of them is a result anyone in the room understands, and you already have the cost per order from your estimate. No numbers yet? Say so, and explain how you plan to measure it.</p>
+          <p>And don't throw the technical details away. They belong in your technical design documentation, for the people who need them.</p>
+          <h4>For your checklist: does your pitch say what the business gains, backed by real numbers? So now the question is, what if it's not your design, and something about it feels wrong?</h4>
+        </aside>
+      </section>
     </div>
   </div>
   <script type="module" src="/main.js"></script>
