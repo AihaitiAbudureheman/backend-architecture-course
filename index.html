@@ -1683,6 +1683,183 @@
       </section>
 
 
+            <section class="S89">
+        <h1>Serverless API</h1>
+        <p class="subtitle">Expose your functions through an API gateway</p>
+        <div class="r-stack">
+          <img src="images/architectures/s89-nothing-waiting.png" alt="Left: a backend server waits all day for requests. Right: no waiting server, just resting functions, and a single gateway catches an incoming request to pass it to the right function">
+          <img class="fragment" src="images/architectures/s89-gateway-routes.png" alt="Requests from a browser and a phone reach one managed gateway that checks login, limits requests, and validates them, then routes each to its own function. Busy checkout runs many copies while the cart stays quick, and the provider's staff manage the servers below">
+        </div>
+        <aside class="notes">
+          <h2>Serverless API</h2>
+          <h3>In a monolith, or with distributed services, a backend service waits all day for requests. With functions-as-a-service, nothing is waiting. So when your frontend sends a request, where does it go? Into an API gateway, which passes it to the right function.</h3>
+          <p>An API gateway is a managed front door for your functions. You define your endpoints, like adding an item to the cart, and connect each one to a function. When that endpoint is called, its function runs. Is there a server behind the gateway? Of course. But the provider manages it, so the gateway is serverless, too.</p>
+          <p>It's the same gateway idea from earlier, now in front of functions. And it handles the shared jobs in one place: checking who's logged in, limiting how many requests come in, and rejecting requests that are clearly invalid. So each function can focus on its own job.</p>
+          <p>Each endpoint also scales on its own. Adding to the cart and placing an order can be separate functions, so a busy checkout doesn't slow down the cart.</p>
+          <p>Do you always need a gateway? Not for one simple function. AWS now offers function URLs, a web address for a single function. But once you have many endpoints, or need those shared checks, a gateway is the usual choice.</p>
+          <h4>With a serverless API, the gateway receives every request and passes it to the right function, and the provider manages both. But what happens when a function hasn't run for a while, and a request suddenly comes in?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S90">
+        <h1>Cold Starts</h1>
+        <p class="subtitle">The first request waits while a new copy starts</p>
+        <div class="r-stack">
+          <img src="images/architectures/s90-office-printer.png" alt="An office printer in three moments: in the morning someone waits while it warms up, a colleague right after gets a page quickly, and later the printer is asleep again as the next person arrives">
+          <img class="fragment" src="images/architectures/s90-cold-warm-ready.png" alt="In the cloud, a request triggers a new function copy that has to be set up first, another request goes straight to a ready copy, and for the shopping cart, a few copies are kept ready for a small fee">
+        </div>
+        <aside class="notes">
+          <h2>Cold Starts</h2>
+          <h3>You know the office printer? First thing in the morning, you click print, and then you wait. It makes some noise, it warms up, and finally your page comes out. That's a cold start. Your colleague prints right after you, and their page comes out much faster, because the printer is still awake. That's a warm start. But leave it alone for a while, and it quietly goes to sleep. So the next person waits again, because it has to warm up again. Another cold start.</h3>
+          <p>Functions-as-a-service work the same way. When a request comes in and no copy of your function is ready, the platform first sets one up: it loads your code, starts the runtime, and runs your setup code. A new copy also starts cold when traffic jumps, and right after every deploy.</p>
+          <p>AWS says cold starts happen in under 1% of calls, and take from under 100 milliseconds to over a second. And unlike the printer, there's no sleep timer you can set. AWS decides how long a copy stays ready, and it doesn't promise how long.</p>
+          <p>So for paths your users click, like adding to the cart, many teams pay to keep a few copies always ready. On AWS, that's called provisioned concurrency. It's like turning off the printer's sleep mode: no waiting, but you pay for the power.</p>
+          <p>Everywhere else, keep cold starts short, with small functions and light setup code. For background work, a second's delay usually doesn't matter at all.</p>
+          <h4>Keep copies ready where users wait, and keep functions light everywhere else. So now the question is, what happens when thousands of requests arrive at once?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S91">
+        <h1>Every Request Gets Its Own Copy</h1>
+        <p class="subtitle">No waiting in line behind other requests</p>
+        <div class="r-stack">
+          <img src="images/architectures/s91-supermarket-line.png" alt="Left: one cashier and a long line stuck behind a slow customer. Right: shoppers scan and pay on their own phones, each checking out without waiting behind anyone">
+          <img class="fragment" src="images/architectures/s91-copy-per-request.png" alt="Each incoming order gets its own function copy, so one slow order doesn't hold up the others. A gate turns away requests above the platform's cap, and a small queue forms at the shared database">
+        </div>
+        <aside class="notes">
+          <h2>Every Request Gets Its Own Copy</h2>
+          <h3>Picture a supermarket on a busy Saturday, with just one cashier. Everyone waits in one long line, and one slow customer holds up everybody behind them. Now many stores let you scan your products with their app and pay right on your phone. Each shopper checks out on their own, without waiting behind anyone. Functions-as-a-service work the same way.</h3>
+          <p>On a regular server, requests share the same machine. When it's busy, your request waits until others finish, and one slow order can hold up the next. With functions-as-a-service, each copy of your function handles one request at a time. When more requests arrive, the platform starts more copies.</p>
+          <p>So on a busy sale day, every order gets its own copy, and a slow order doesn't slow down anyone else's. If you process 5,000 orders that day, your function runs 5,000 times.</p>
+          <p>There are two limits to know, though. First, the platform has caps. On AWS, each function can add up to 1,000 copies every 10 seconds, and your account has a shared limit, which you can ask to raise. Above that, requests waiting for an answer get turned away.</p>
+          <p>Second, your functions scale, but the database behind them might not. If every copy opens its own database connection, the database becomes the new waiting line.</p>
+          <h4>Every request gets its own copy, so no request waits behind another, as long as you watch the caps and your database. So now the question is, who looks after the servers behind all those copies?</h4>
+        </aside>
+      </section>
+      <section class="S92">
+        <h1>No Servers to Manage</h1>
+        <p class="subtitle">The provider manages the servers, your team builds the product</p>
+        <div class="r-stack">
+          <img src="images/architectures/s92-email-server.png" alt="Left: at night, one tired person fixes the company's own email server in a closet. Right: in daytime, the team works calmly using hosted email, while the provider's staff look after the servers in the cloud">
+          <img class="fragment" src="images/architectures/s92-shared-responsibility.png" alt="The shared responsibility model as a stack: below the line, the provider manages servers, operating system, runtime, patches, scaling, and uptime. Above it, the team owns its code, libraries, and permissions, and builds the product">
+        </div>
+        <aside class="notes">
+          <h2>No Servers to Manage</h2>
+          <h3>Not long ago, many small companies had their own email server. Someone had to install the updates, apply the security patches, check the backups, and fix it when it went down at night. Today, many companies just use Gmail or Outlook. The servers are still there, but the provider manages them. Serverless does the same for your backend.</h3>
+          <p>With functions-as-a-service, the provider takes over the server work. AWS, for example, manages the hardware, the operating system, and the runtime your code runs on, including the security patches. It also handles scaling and keeps everything online. You upload your code, and the platform takes it from there.</p>
+          <p>That matters most for small teams. A team of three often has nobody dedicated to servers. So every hour spent patching, or answering an alert at night, is an hour not spent on the product. With serverless, much of that work moves to the provider.</p>
+          <p>But not everything moves. Your code is still yours, and so are the libraries it uses: a library with a security hole is still your problem. Who can call your functions, and what they're allowed to do, is still yours too. AWS calls this the shared responsibility model.</p>
+          <h4>With serverless, the provider manages the servers, and your team spends its time on the product, while code, libraries, and permissions stay yours. So now the question is, what does all this do to your bill?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S93">
+        <h1>Pay Only for What You Use</h1>
+        <p class="subtitle">Pay for the work done, not the hours waiting</p>
+        <div class="r-stack">
+          <img src="images/architectures/s93-stores-uploading.png" alt="In the evening, fifty stores upload their sales files to the company's database, while a server has been on all day waiting for them, with a coin meter ticking up">
+          <img class="fragment" src="images/architectures/s93-pay-per-use.png" alt="Over a day, an always-on server costs money every hour, while functions cost only during short evening bursts when files arrive and get extracted, cleaned, and loaded. An idle dev laptop at night costs almost nothing">
+        </div>
+        <aside class="notes">
+          <h2>Pay Only for What You Use</h2>
+          <h3>Say you work for a retail chain with fifty stores. Every evening, each store uploads a file with the day's sales, and that data has to be cleaned up and loaded into the company's database. So, do you keep a server on all day, waiting for files that mostly arrive in the evening? Or do you pay only when a file actually shows up?</h3>
+          <p>A regular server costs money for every hour it's on, about 730 hours a month, even when it's just waiting. With functions-as-a-service, you pay per request, and only for the milliseconds your code actually runs.</p>
+          <p>So for our stores, each new file triggers a function that pulls the data out, cleans it up, and loads it into the database. That job is called ETL: extract, transform, load. Fifty files means fifty short runs, and in between, almost nothing on your bill. For jobs too big for one run, which is capped at 15 minutes, AWS Glue is a serverless service built for ETL.</p>
+          <p>The same goes for dev and test environments. They're busy during the workday and idle every night and weekend, so with pay-per-use, those idle hours cost almost nothing.</p>
+          <p>One honest note, though. Stored data still costs money, even when nobody touches it. And for steady, heavy traffic, paying per use can cost more. We come back to that later in this section.</p>
+          <h4>With pay-per-use, idle hours cost almost nothing, and your bill follows the work that actually happens. So now the question is, what about the opposite: a sudden spike nobody planned for?</h4>
+        </aside>
+      </section>
+      <section class="S94">
+        <h1>Scaling Happens Automatically</h1>
+        <p class="subtitle">Up during the spike, back down when it passes</p>
+        <div class="r-stack">
+          <img src="images/architectures/s94-match-spike.png" alt="During a big match, fans all open the sports app at once, creating one sharp spike in an otherwise quiet week, while a planner wonders how many servers to keep on">
+          <img class="fragment" src="images/architectures/s94-auto-scale-stream.png" alt="Match events flow as a data stream into the cloud, where functions process them in batches. The number of functions and the database grow during the peak and shrink back after, while a separate server outside still needs planning">
+        </div>
+        <aside class="notes">
+          <h2>Scaling Happens Automatically</h2>
+          <h3>Say you're building a live sports app that shows scores and match stats as they happen. During a big match, events come in every second: goals, cards, substitutions. And fans all open the app at once. Between matches? Almost nothing. So how many servers do you plan for? Enough for the final, and pay for them all week? Or fewer, and hope?</h3>
+          <p>With your own servers, this is hard. You can set up autoscaling, but someone still has to choose the limits, tune them, and watch the dashboards during every big match. And new servers take time to start, so a sudden spike can arrive before they're ready.</p>
+          <p>With serverless, the provider scales for you. When the match starts, more copies of your functions start, the gateway takes the extra requests, and a serverless database grows with them. When the final whistle blows, everything scales back down, and so does your bill.</p>
+          <p>The match events themselves are a data stream. A stream service, like Kinesis on AWS, collects them, and functions process them in small batches, moments after they arrive. In on-demand mode, the stream scales on its own, too.</p>
+          <p>Just remember the caps we saw earlier. And anything that isn't serverless, like your own database server, still needs planning.</p>
+          <h4>With serverless, the platform scales up during the spike and back down after it, with nobody planning capacity. But what if the spike isn't fans at all, but a bug, or an attack?</h4>
+        </aside>
+      </section>
+            <section class="S95">
+        <h1>Surprise Cloud Bills</h1>
+        <p class="subtitle">When a bug or an attack scales up your bill</p>
+        <div class="r-stack">
+          <img src="images/architectures/s95-water-leak.png" alt="In an empty apartment, a pipe leaks under the sink while the water meter spins and days pass on the calendar, until a bill with an exclamation mark arrives through the door">
+          <img class="fragment" src="images/architectures/s95-three-layers.png" alt="Real users, bots, and a looping request reach three layers: a shield that blocks bots, a gate that caps how much gets through, and a bell that rings when costs climb. Behind them, functions scale calmly and costs stay modest">
+        </div>
+        <aside class="notes">
+          <h2>Surprise Cloud Bills</h2>
+          <h3>Think about your water bill. You pay only for the water you actually use, which is great. Now imagine a pipe starts leaking while you're away for a week. The meter keeps counting, every hour, and nobody's there to notice, until the bill arrives. Pay-per-use in the cloud works the same way: the meter doesn't care why it's counting.</h3>
+          <p>Automatic scaling works for real users, but also for attacks. A wave of bot traffic makes your functions scale, and you pay for every request. Public files, like a static frontend, cost money for every download, too. In 2024, AWS stopped charging for rejected requests to your storage, but successful downloads still show up on your bill.</p>
+          <p>Bugs can do the same. A common one is a loop: one function triggers another, which triggers the first one again. AWS now stops some of these loops automatically, but not all of them, so it's still your job to stop those loops from happening.</p>
+          <p>So protect yourself in three layers. First, stop bad traffic before it reaches your bill. In my setup, I put Cloudflare's bot protection in front of AWS, and make sure AWS only accepts traffic coming through it. AWS's own firewall can do a similar job.</p>
+          <p>Second, cap the damage, with rate limits at the gateway and a limit on how many copies of a function can run at once. And third, set billing alerts, so you hear about it early, not at the end of the month.</p>
+          <h4>Block bad traffic first, cap the damage, and set alerts, so the meter counts real work, not leaks. But what if all your traffic is real, steady, and heavy?</h4>
+        </aside>
+      </section>
+
+            <section class="S96">
+        <h1>When Servers Are Cheaper</h1>
+        <p class="subtitle">Steady, heavy traffic can cost more on pay-per-use</p>
+        <div class="r-stack">
+          <img src="images/architectures/s96-gym-turning-point.png" alt="A gym and a simple chart: paying per visit rises with each visit and crosses the flat monthly membership at one turning point. Occasional visitors pay per visit, frequent visitors save with a membership">
+          <img class="fragment" src="images/architectures/s96-move-busy-part.png" alt="In a serverless system, one function gets a steady stream of requests day and night, so just that part moves to a fixed-price server, while the rest stays serverless. A team member with a wrench and a clock shows the time servers still need">
+        </div>
+        <aside class="notes">
+          <h2>When Servers Are Cheaper</h2>
+          <h3>Say your gym charges 10 euros a visit, or 50 euros for a monthly membership. If you go three times a month, paying per visit costs 30 euros. Easy choice. But if you go twenty times a month, that's 200 euros, and the membership wins. The turning point is five visits. Pay-per-use in the cloud works the same way.</h3>
+          <p>Paying per request is like paying per visit. When traffic is low or spiky, it's great. But with thousands of requests every second, all day, every day, you pay for each one, plus how long it runs. At some point, that costs more than a server with a fixed monthly price. It's pure math.</p>
+          <p>Even AWS agrees. In late 2025, it launched Lambda Managed Instances: you keep writing Lambda functions, but they run on regular AWS servers, at server prices. AWS says it's built for steady, high-volume workloads.</p>
+          <p>So when one part of your system gets busy and steady, you don't have to move everything. Move just that part to a fixed-price server, and keep the rest serverless.</p>
+          <p>But remember, servers cost your team time, too: updates, monitoring, and being on call. So the real turning point usually comes later than the pure math suggests.</p>
+          <h4>Find your turning point, move only the busy part, and count your team's time, not just the bill. So now the question is, how do you test all these cloud pieces on your own laptop?</h4>
+        </aside>
+      </section>
+
+            <section class="S97">
+        <h1>Testing Needs the Internet</h1>
+        <p class="subtitle">No internet, no real test</p>
+        <div class="r-stack">
+          <img src="images/architectures/s97-flight-no-wifi.png" alt="A developer codes on a plane with no Wi-Fi. On the laptop, a function's connections to its cloud database, queue, and permissions are all broken">
+          <img class="fragment" src="images/architectures/s97-localhost-needs-cloud.png" alt="A function runs slowly on localhost, but everything it talks to, the database, queue, permissions, and other functions, lives in the cloud, reached over the internet. A new queue must be deployed before it can be tested">
+        </div>
+        <aside class="notes">
+          <h2>Testing Needs the Internet</h2>
+          <h3>Ever tried coding on a long flight with no Wi-Fi? With a monolith, you can start the whole app on your laptop and keep working. With serverless, much of it stops. Your functions live in the cloud, and they talk to other cloud services: a database, a queue, permissions. So the moment you're offline, you can't really test them.</h3>
+          <p>You can run your functions on localhost, with tools like AWS's SAM CLI or the serverless-offline plugin. But in my experience, it's slow, and it still needs the internet. Your function runs on your laptop, but everything it talks to, like the database, the queue, and the permissions, has to be already deployed in the cloud.</p>
+          <p>So if you change one of those other parts, like adding a new queue, or updating another function your code calls, you can't test that change locally. You deploy it first, and then you test.</p>
+          <p>Even AWS says local copies can behave differently from the real cloud, and calls testing in the cloud the most reliable option.</p>
+          <p>For most developers, who are online all day, this doesn't change much. But if you like working offline, you can't really test your serverless app at all, because even localhost needs the internet.</p>
+          <h4>With serverless, localhost helps, but the real test happens in the cloud, after you deploy. So now the question is, when something breaks in there, how do you find out why?</h4>
+        </aside>
+      </section>
+
+            <section class="S98">
+        <h1>Troubleshooting Is Harder</h1>
+        <p class="subtitle">You can't see inside your provider's services</p>
+        <div class="r-stack">
+          <img src="images/architectures/s98-provider-black-box.png" alt="A team looks at a sealed cloud provider cube with a hidden broken part inside. The connection from their app is broken, and their users' phones show blank screens">
+          <img class="fragment" src="images/architectures/s98-trace-and-fallback.png" alt="One request is traced end to end through several functions into a database, with a status signal above and a dashed fallback path to a backup database below">
+        </div>
+        <aside class="notes">
+          <h2>Troubleshooting Is Harder</h2>
+          <h3>In October 2025, apps like Snapchat and Fortnite stopped working for hours, at the same time. The problem wasn't in their code. It was a bug deep inside AWS, in a service those teams couldn't see or fix. All they could do was wait, and tell their users.</h3>
+          <p>AWS later explained it. A hidden bug in the system that manages DynamoDB's DNS records left an empty record, so apps couldn't find the database. That's the same serverless database from our diagram, and the problem spread to other AWS services. Full recovery took about fifteen hours.</p>
+          <p>That's what makes troubleshooting serverless harder. You can't see inside your provider's services. You may not know about a limit until you hit it. And when they have an outage, so do you. On top of that, one request can pass through many short-lived functions, so the clues are spread across many logs.</p>
+          <p>The fix is to prepare before it happens. Trace each request across your services, so you can follow its whole path; on AWS, that's X-Ray. Learn your provider's limits before you hit them. Follow their status page, because when they announce an outage, you often need to announce one too. And for the parts that matter most, plan a fallback.</p>
+          <h4>Serverless gives you a lot, but you give up some visibility, so plan for the day your provider fails. So now the question is, with all these architectures in mind, how do you design your own system, step by step?</h4>
+        </aside>
+      </section>
     </div>
   </div>
   <script type="module" src="/main.js"></script>
