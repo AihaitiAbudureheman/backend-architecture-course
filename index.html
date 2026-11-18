@@ -1907,9 +1907,9 @@
           <h2>Map Your Users and Their Request Paths</h2>
           <h3>Back to our notification service. You know who it's for, and why it matters, so you sketch it: the order service says an order has shipped, and your service sends the customer a message. Simple, right? Then, a week into building, someone asks where the customer's phone number comes from, and who actually sends the text message. Neither one is in your design.</h3>
           <p>That's what happens when you only design what users see. So start by listing your users, and there are usually two kinds: people using the product, like the customer waiting for a parcel, and other systems calling yours, like the order service. Those are easy to miss, because they don't call support. They just stop working when something changes.</p>
-          <p>Then take each main request, and follow it all the way through. Remember tracing one request from start to finish? It's the same skill, just used earlier, before anything is built. For 'order shipped', the path goes from the order service to yours, then to the customer's contact settings, and finally out to an SMS provider outside your company. Draw it as boxes and arrows, one box for every part the request touches.</p>
-          <p>Every part on that path belongs in your design. If the contact settings are slow, your message is slow. If the SMS provider goes down, nothing gets sent. And what each user expects, like how fast and how reliable, turns into your requirements in the next phase.</p>
-          <h4>For your checklist: have you listed every kind of user, and traced each main request through everything it touches? So now the question is, with all these parts on the map, where does your design stop?</h4>
+          <p>Then take each main request, and follow it all the way through. Remember tracing one request from start to finish? It's the same skill, just used earlier, before anything is built. For 'order shipped', the path goes from the order service to yours, then to the customer's contact settings, and finally out to an SMS provider outside your company. Draw it as boxes and arrows, one box for every service the request touches.</p>
+          <p>Every service on that path belongs in your design. If the contact settings are slow, your message is slow. If the SMS provider goes down, nothing gets sent. And what each user expects, like how fast and how reliable, turns into your requirements in the next phase.</p>
+          <h4>For your checklist: have you listed every kind of user, and traced each main request through everything it touches? So now the question is, with all these services on the map, where does your design stop?</h4>
         </aside>
       </section>
       <section class="S102">
@@ -1992,9 +1992,9 @@
           <h2>Plan for Growth</h2>
           <h3>Say you're designing an office building for 200 people, and the company plans to double in a few years. Do you put in twice the elevators today? No, that's money spent on empty elevators. But you might leave space for one more elevator shaft, because adding a shaft to a finished building is a huge job. Growth in your system works the same way.</h3>
           <p>Start with an estimate: how much should the system grow, and by when? Ask the business about its plans, and if the system already exists, check your monitoring. Say the plan expects orders to double next year. Then our notification service sends twice the messages too.</p>
-          <p>Next, find the parts that grow first. Some get the most traffic, like the messages. Others get reused by many services, like the customer contact settings: orders read them, payments read them, and notifications read them. When a part like that slows down, everything that reads it slows down with it.</p>
-          <p>Then write down what the design makes room for now, and what can wait. Giving the contact settings one clear place, one part of the system that owns that data, is like leaving room for the shaft. Later, you can give that one part more capacity without touching everything else. Extra servers are more like the elevators: add them when the traffic actually arrives. Separating a part has its own cost too, so do it when the numbers say so.</p>
-          <h4>For your checklist: do you know how much it should grow, by when, and which parts grow first? So now the question is, who should be allowed to see all that customer data?</h4>
+          <p>Next, find the services that grow first. Some get the most traffic, like the one sending messages. Others get reused by many services, like the customer contact settings: orders read them, payments read them, and notifications read them. When a service like that slows down, everything that reads it slows down with it.</p>
+          <p>Then write down what the design makes room for now, and what can wait. Giving the contact settings one clear place, one service that owns that data, is like leaving room for the shaft. Later, you can give that one service more capacity without touching everything else. Extra servers are more like the elevators: add them when the traffic actually arrives. Separating a service has its own cost too, so do it when the numbers say so.</p>
+          <h4>For your checklist: do you know how much it should grow, by when, and which services grow first? So now the question is, who should be allowed to see all that customer data?</h4>
         </aside>
       </section>
 
@@ -2072,12 +2072,12 @@
       </section>
 
 
-            <section class="S111">
+      <section class="S111">
         <h1>Estimate the Real Cost</h1>
         <p class="subtitle">Build it, run it, keep it working</p>
         <div class="r-stack">
           <img src="images/how/s111-only-the-cloud-bill.png" alt="A design review approves a tiny cloud bill. Three months later, finance holds up a long, growing text-message invoice while two engineers spend every Friday keeping the service working">
-          <img class="fragment" src="images/how/s111-three-part-estimate.png" alt="Three estimate blocks: building it (developers, hours, learning time), running it (cloud, text-message provider, AI requests that grow with each order), and keeping it working (fixes, updates, on call). A scale shows reuse as the lighter option, and the business and developer agree a budget">
+          <img class="fragment" src="images/how/s111-three-part-estimate.png" alt="Three estimate blocks: building it (developers, hours, learning time), running it (cloud, text-message provider, AI requests that grow with each order), and keeping it working (fixes, updates, on call). A balance shows reuse as the lighter option, and the business and developer agree a budget">
         </div>
         <aside class="notes">
           <h2>Estimate the Real Cost</h2>
@@ -2146,7 +2146,7 @@
       </section>
 
 
-            <section class="S115">
+      <section class="S115">
         <h1>Let Your Research Choose the Architecture</h1>
         <p class="subtitle">If the choice isn't clear, your research isn't done</p>
         <div class="r-stack">
@@ -2157,15 +2157,15 @@
           <h2>Let Your Research Choose the Architecture</h2>
           <h3>Looking for a new apartment? If you already know your budget, the area, how many rooms you need, and when you have to move, how hard is it to choose? Not very, because most options drop out on their own. And if you still can't decide, you probably don't know one of those things yet.</h3>
           <p>Choosing an architecture works the same way: not by habit, and not by hype. Put your options in the same comparison table you used for tools. For our notification service, that's a module inside the existing order system, a separate service, or a serverless function that runs for each message in the queue.</p>
-          <p>Then let your requirements decide. A message within a minute is fine, so a cold start doesn't matter. Messages come in bursts, so paying only for what you use helps. The queue already handles outages, and the team can write the function in Python. For this job, serverless comes out ahead. For another job, it might not.</p>
+          <p>Then let your requirements decide. A message within a minute is fine, so a cold start doesn't matter. Messages come when orders ship, and nights are quiet, so paying only for what you use helps. The queue already handles outages, and the team can write the function in Python. For this job, serverless comes out ahead. For another job, it might not.</p>
           <p>But what if no option clearly wins? That usually doesn't mean you need one more meeting. It means something is missing from your research. Maybe nobody knows the real traffic, or the budget was never agreed. Go back a phase, find the missing answer, and the choice usually gets much clearer.</p>
           <p>And sometimes, two options are both good. Then pick the one that best serves what matters most to this project, and write down why.</p>
-          <h4>For your checklist: did your requirements choose the architecture, and if nothing clearly won, did you go back to research? That's Phase 3 done. So now the question is, how do all the parts connect?</h4>
+          <h4>For your checklist: did your requirements choose the architecture, and if nothing clearly won, did you go back to research? That's Phase 3 done. So now the question is, how do all the services connect?</h4>
         </aside>
       </section>
 
 
-            <section class="S116">
+      <section class="S116">
         <h1>Arrange Your Components Until Everything Works Together</h1>
         <p class="subtitle">Check every connection before you start building</p>
         <div class="r-stack">
@@ -2174,12 +2174,12 @@
         </div>
         <aside class="notes">
           <h2>Arrange Your Components Until Everything Works Together</h2>
-          <h3>Three weeks into coding, the app team asks a simple question: 'How does the push service know which phone belongs to which customer?' Nobody planned that. To send an app notification, the push service needs a special ID for each customer's phone, called a device token. And no part of our design stores those. Now three teams change their plans, because nobody put every piece on one page first.</h3>
-          <p>Before anyone starts building, put every part on one diagram: the order service, the queue, the notification function, the contact settings, the push service, the SMS service, and the message history. This is where modules, interfaces, and data flow finally come together.</p>
+          <h3>Three weeks into coding, the app team asks a simple question: 'How does the push service know which phone belongs to which customer?' Nobody planned that. To send an app notification, the push service needs a special ID for each customer's phone, called a device token. And no service in our design stores those. Now three teams change their plans, because nobody put every piece on one page first.</h3>
+          <p>Before anyone starts building, put every service on one diagram: the order service, the queue, the notification function, the contact settings, the push service, the SMS service, and the message history. This is where modules, interfaces, and data flow finally come together.</p>
           <p>Then move the pieces around, and check every connection. Who calls whom? What data does each call need, and where does it come from? Follow 'order shipped' through the diagram, and the push service asks for a device token that nothing on the page provides. Five minutes on paper, instead of three weeks of rework.</p>
-          <p>For structure, many teams use the C4 model. It draws a system at four zoom levels, like a map app: Context, the system and who uses it; Containers, the apps, services, and databases; Components, the parts inside each one; and Code, which most teams skip.</p>
+          <p>For structure, many teams use the C4 model. It draws a system at four zoom levels, like a map app: Context, the system and who uses it; Containers, the apps, services, and databases; Components, what's inside each one; and Code, which most teams skip.</p>
           <p>And a tip from my experience: sketch on a whiteboard or paper while you're moving things around. But for the final version, design it in a tool like draw.io, so you can share it with others easily.</p>
-          <h4>For your checklist: is every part on one diagram, with every connection checked? So now the question is, when someone asks why it looks like this, what's your answer?</h4>
+          <h4>For your checklist: is every service on one diagram, with every connection checked? So now the question is, when someone asks why it looks like this, what's your answer?</h4>
         </aside>
       </section>
 
@@ -2200,21 +2200,21 @@
           <h4>For your checklist: does every important choice have its reason, what you rejected, and what it costs? So now the question is, where is your design weakest?</h4>
         </aside>
       </section>
-            <section class="S118">
+      <section class="S118">
         <h1>Challenge Your Design Before Others Do</h1>
         <p class="subtitle">Always be ready for pushback</p>
         <div class="r-stack">
           <img src="images/how/s118-caught-off-guard.png" alt="In a design meeting, finance and the on-call engineer raise questions the presenter has not thought about, and the design heads back to the drawing board">
-          <img class="fragment" src="images/how/s118-edge-cases-ready.png" alt="A developer checks every part of the diagram for edge cases: slow, down, full, and old data. The full queue gets an alert and old device tokens get refreshed and cleaned up, and the developer hands calm stakeholders ready answers">
+          <img class="fragment" src="images/how/s118-edge-cases-ready.png" alt="A developer checks every service on the diagram for edge cases: slow, down, full, and old data. The full queue gets an alert and old device tokens get refreshed and cleaned up, and the developer hands calm stakeholders ready answers">
         </div>
         <aside class="notes">
           <h2>Challenge Your Design Before Others Do</h2>
           <h3>The design review starts well. Then someone from finance asks, 'What happens to the bill if orders double?' And the on-call engineer asks, 'How do we even know when messages stop going out?' You haven't thought about either one, so you say, 'Good question, let me get back to you.' Twice. And the design goes back for another round.</h3>
-          <p>Here's how to be ready: attack your own design first. Go through every part on your diagram, and list its edge cases. What if it's slow, or down? What if it's full? What if the data is old or wrong? In my experience, that's where designs break.</p>
+          <p>Here's how to be ready: attack your own design first. Go through every service on your diagram, and list its edge cases. What if it's slow, or down? What if it's full? What if the data is old or wrong? In my experience, that's where designs break.</p>
           <p>For our service, two show up fast. During a big sale, the queue fills up, messages arrive hours late, and nobody notices, so add an alert when messages wait too long. And some device tokens get old, so app notifications quietly stop for those customers. Refresh them, and clean up the old ones.</p>
           <p>Then step into the shoes of each stakeholder, everyone the project affects. Finance asks about cost, and you already have the cost per order. On-call asks how they know it's broken, and security asks what leaves the company. Write down their likely questions, and answer them before the meeting.</p>
           <p>Now, when the question comes, you can say, 'I've already looked at that, and here's what I found. What do you think?' The meeting stops being a fight, and becomes a conversation.</p>
-          <h4>For your checklist: have you listed the edge cases for every part, and prepared answers to each stakeholder's likely questions? So now the question is, that covers the people inside the company, but what about your users?</h4>
+          <h4>For your checklist: have you listed the edge cases for every service, and prepared answers to each stakeholder's likely questions? So now the question is, that covers the people inside the company, but what about your users?</h4>
         </aside>
       </section>
 
@@ -2288,6 +2288,309 @@
           <p>But make it real, not spin. Back it with numbers. Say support gets two thousand 'where is my order?' calls a month. Cutting even half of them is a result anyone in the room understands, and you already have the cost per order from your estimate. No numbers yet? Say so, and explain how you plan to measure it.</p>
           <p>And don't throw the technical details away. They belong in your technical design documentation, for the people who need them.</p>
           <h4>For your checklist: does your pitch say what the business gains, backed by real numbers? So now the question is, what if it's not your design, and something about it feels wrong?</h4>
+        </aside>
+      </section>
+
+
+      <section class="S123">
+        <h1>Raise Concerns with a Solid Case</h1>
+        <p class="subtitle">Start with a gut feeling, end with reasoning</p>
+        <div class="r-stack">
+          <img src="images/how/s123-new-member-notices.png" alt="A new team member hesitates with a gut feeling while looking at a diagram where the notification function, checkout, and payments all lean on the same contact settings, which glow under pressure">
+          <img class="fragment" src="images/how/s123-gut-to-case.png" alt="The gut feeling turns into a one-pager with three parts: the problem, the evidence, and a small fix. The new team member presents it to an interested team, a heavy anchor of past spending is set aside, and a manager's door stands open">
+        </div>
+        <aside class="notes">
+          <h2>Raise Concerns with a Solid Case</h2>
+          <h3>Let's say you're a new team member, halfway through building our notification service. Remember the contact settings, the service that orders, payments, and notifications all read? You notice that our notification function reads them for every single message. So during a big sale, could all those extra reads slow down checkout? It feels wrong. But everyone else seems fine with it, so should you even say anything?</h3>
+          <p>Yes, you should. Everyone on the team has a voice, whatever their title, and spotting problems is part of the job. When Google studied what makes its teams work, the most important factor they found was psychological safety: people feeling safe to speak up.</p>
+          <p>But having a gut feeling is easy, so remember to back it up with strong reasoning. Write a one-pager, maybe thirty minutes of work: the problem, the evidence, and the fix. For our service: at peak, that's thousands of extra reads a minute on a service checkout depends on. The fix is small: a short-lived cache, since phone numbers rarely change.</p>
+          <p>And be accurate. Don't walk in saying 'everything's on fire.' Say exactly what could break, and when.</p>
+          <p>If you hear, 'We're too far in now,' that's the sunk cost fallacy: sticking with something because of what you've already spent. Waiting usually makes it worse, so show what continuing costs, and what changing saves.</p>
+          <p>And if nobody listens? Take it to your manager, and say clearly that you think it's a serious problem.</p>
+          <h4>For your checklist: if something feels wrong, did you raise it with a short written case: the problem, the evidence, and the fix? So now the question is, who has to approve security before launch?</h4>
+        </aside>
+      </section>
+
+            <section class="S124">
+        <h1>Get Security's Approval First</h1>
+        <p class="subtitle">Security is your protector, not your blocker</p>
+        <div class="r-stack">
+          <img src="images/how/s124-not-on-the-list.png" alt="A developer hands a finished design to the security team, who calmly point out that the push notification provider is not on the approved list, while the launch calendar slips by weeks">
+          <img class="fragment" src="images/how/s124-shift-left.png" alt="A project timeline from idea to launch. Security moves from the end of the timeline to the design stage, reviewing the early design and data map with the developer, and a large shield protects the whole timeline">
+        </div>
+        <aside class="notes">
+          <h2>Get Security's Approval First</h2>
+          <h3>Remember the app notifications from a few lessons ago? They go out through a push service that an outside company manages. Your design is finished, so you send it to the security team for approval. Their answer: that provider isn't on the company's approved list, and approving a new one takes weeks. Now the launch waits, and nobody saw it coming.</h3>
+          <p>Here's why timing matters so much. In many companies, when security says no, it's a hard no, and often the head of security has the final say. So their yes is worth getting early.</p>
+          <p>There's a name for this: shift left. Picture your project as a timeline, from left to right. Shifting left means moving security closer to the start. Share your early design, your security requirements, and your data map with them, while changes are still cheap.</p>
+          <p>And on day one, ask how their approval actually works. Many companies have a form, a review meeting, or a test before launch, and approving a new outside provider can take weeks. Know that early, and you can plan the time in.</p>
+          <p>Most of all, treat them as a partner. You're all working toward the same goal, so don't see them as a blocker in your way. They're protecting your customers, your company, and your design. Ask what worries them, and you often get a faster yes.</p>
+          <h4>For your checklist: did you bring security in early, learn what their approval needs, and get their yes before you build? That's Phase 5 done. So now the question is, how do you hand this design to the people who build it?</h4>
+        </aside>
+      </section>
+
+
+      <section class="S125">
+        <h1>Hand Off a Design Developers Can Build Easily</h1>
+        <p class="subtitle">There's no perfect design, only better communication</p>
+        <div class="r-stack">
+          <img src="images/how/s125-designer-on-vacation.png" alt="The designer relaxes on vacation with the phone off, while three developers with unanswered questions each build a different version of the same component">
+          <img class="fragment" src="images/how/s125-clear-handoff.png" alt="The designer walks developers through the design, and each answer goes into the documentation. Two lists are pinned: what is decided and what is theirs to choose. In the corner, two people meet in the middle over a slightly different component">
+        </div>
+        <aside class="notes">
+          <h2>Hand Off a Design Developers Can Build Easily</h2>
+          <h3>Your design is approved, the documentation is written, and security said yes. So you hand it to the developers, and leave for a week of vacation. On day one, the questions start: which fields go in the event, how many retries, and can we log the phone number? Nobody can reach you, so the team guesses, and three developers guess three different ways.</h3>
+          <p>The design itself was fine. What was missing was communication. A good handoff means a developer can build each service from your documentation, without asking you at every step.</p>
+          <p>Start with two short lists. What's decided: the event format, the queue, serverless, and no phone numbers in the logs. And what's theirs to choose: how to structure the code, which libraries to use, and how to test it, within your team's standards. Clear requirements are what make that second list possible.</p>
+          <p>Then, before anyone starts, walk the developers through the design, and invite every question. Each answer goes into the documentation, so the next person finds it there instead of asking you.</p>
+          <p>And if someone builds a service differently than you expected, don't just correct them. Often, it's feedback on how clearly the design was explained. Talk it through, and meet in the middle. There's no perfect design, only better communication.</p>
+          <h4>For your checklist: can a developer build each service from your documentation, and is it clear what's decided and what's theirs to choose? So now the question is, once it's built, how do you know it actually works?</h4>
+        </aside>
+      </section>
+
+
+      <section class="S126">
+        <h1>Test Before Your Users Do</h1>
+        <p class="subtitle">Test what could go wrong, not just what should work</p>
+        <div class="r-stack">
+          <img src="images/how/s126-double-message.png" alt="Every service in the notification system has a passing check mark, but a slow messaging provider triggers a retry, and three customers each get the same delivery notification twice">
+          <img class="fragment" src="images/how/s126-test-what-goes-wrong.png" alt="An engineer tests a safe copy of the system, where each service branches into the expected result and what could go wrong, before a quick check on the real system after release">
+        </div>
+        <aside class="notes">
+          <h2>Test Before Your Users Do</h2>
+          <h3>The developers built the notification system, and every service passed its own tests. So it goes live. On the first Monday morning, the SMS provider is slow to respond, so the function tries again, and some customers get "out for delivery" twice. Remember the early draft meeting? A developer warned about exactly this: duplicates on retry. But the tests only checked that a message gets sent, not what could go wrong along the way.</h3>
+          <p>Nothing was broken. Each service did its job. The problem was a side effect: a slow response led to a retry, and the retry led to a second message. Tests that only check the good path can't catch that.</p>
+          <p>For each service on your diagram, ask two questions. What could go wrong here? And if it does, what else happens because of it? Start with the edge cases you already listed, like a slow provider, a full queue, or an expired device token, and write a test for each. For example, make the SMS provider respond slowly on purpose, and check that the customer still gets exactly one message.</p>
+          <p>Run these tests in staging, a safe copy of production. After every deployment, run a few quick checks, called smoke tests, to confirm the main flow still works. And keep every test, so an old bug can't quietly come back.</p>
+          <p>In my experience, this speeds a team up, not down. When something breaks, you find out in minutes, not from an unhappy customer.</p>
+          <h4>For your checklist: do your tests cover what could go wrong, and its side effects, and do they pass in staging before every deployment? So now the question is, can it handle real traffic?</h4>
+        </aside>
+      </section>
+
+
+      <section class="S127">
+        <h1>Test Under Realistic Traffic</h1>
+        <p class="subtitle">Simulate your busiest day before it happens</p>
+        <div class="r-stack">
+          <img src="images/how/s127-few-orders-in-staging.png" alt="A safe test copy of the system handles three slow parcels with every check passing, while a huge wave of parcels from a busy warehouse approaches, still untested">
+          <img class="fragment" src="images/how/s127-realistic-traffic-test.png" alt="A testing machine pumps heavy traffic into a safe copy of the system; the function copies itself easily, but the shared contact settings strain and the stand-in messaging provider lets only a few messages through at a time">
+        </div>
+        <aside class="notes">
+          <h2>Test Under Realistic Traffic</h2>
+          <h3>Your tests now cover what could go wrong, and they all pass in staging. But in staging, only a few test orders go through at a time. Remember the plan: orders double next year, and the busiest hour comes right after a big sale, when the warehouse ships thousands of parcels at once. Nobody has sent that much traffic through the system yet. Until someone does, the speed targets in your requirements are only a guess.</h3>
+          <p>Simulate that day before it comes. A load-testing tool sends the traffic you expect at your busiest hour, plus extra in case your estimate is low. Then check what percentage of your requests meet your target. This is called a load test.</p>
+          <p>Make the data realistic too: as many contact settings as the real system, because a small test database can hide a slow lookup. But generate it, don't copy real customers' data.</p>
+          <p>A stress test goes past your peak, to find where it breaks. A spike test jumps from quiet to busy in seconds, like the end of that sale.</p>
+          <p>And watch the services behind the function. Serverless scales the function on its own, but not what it calls: the contact settings that many services read, and the SMS provider, which limits messages per second. Test with a fake provider, since real text messages cost money, and check the real limit in its documentation.</p>
+          <p>Whatever breaks first, fix it, and test again. Remember, you never really know your system until you really test it.</p>
+          <h4>For your checklist: did your system meet its targets under realistic traffic, and do you know where it breaks? So now the question is, are you ready to deploy?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S128">
+        <h1>Deploy with Confidence</h1>
+        <p class="subtitle">A late deployment is better than a bad one</p>
+        <div class="r-stack">
+          <img src="images/how/s128-how-do-we-stop-it.png" alt="The day before launch, a confident team sits around a glowing launch button, until a support person raises a hand with a warning on a phone, and nobody knows how to stop it">
+          <img class="fragment" src="images/how/s128-go-no-go-and-stop-switch.png" alt="Four stakeholders hold up go or no-go cards, and one no-go keeps the launch waiting. After launch, new messages reach only a small fenced group of phones, with a lever ready to switch back to the older path">
+        </div>
+        <aside class="notes">
+          <h2>Deploy with Confidence</h2>
+          <h3>Your tests cover what could go wrong, and the system handled realistic traffic. Launch is set for Monday. In the last meeting before it, everyone agrees: the tests passed, security approved, and the developers are ready. Then someone from support asks, "If customers start getting the wrong messages, how do we stop them?" The room goes quiet, because nobody has an answer.</h3>
+          <p>That question is what a go/no-go check is for. Before every launch, each stakeholder, from developers to security to support, says "go" or "no-go", based on evidence: the test results, the traffic numbers, the approvals. One "no-go" means you wait. The check also gives anyone with a concern a planned moment to say it.</p>
+          <p>One question always belongs in that check: how do we stop it? A rollback, going back to the previous version, works for code. But you can't un-send a text message. For anything that's hard to undo, plan two more things. First, start small, with a canary release that reaches only a small share of customers. Second, add a switch, a feature flag, that stops the new messages in seconds and falls back to the old way. Then test that switch in staging, before Monday.</p>
+          <p>If any answer is "no", go back to the phase you rushed, and fix it. Moving the launch date can feel like failing. But in my experience, a late deployment is better than a bad one.</p>
+          <h4>For your checklist: did every stakeholder say "go", based on evidence, and can you stop the release in seconds? That's Phase 6 done. So now the question is, how do you keep it working, month after month?</h4>
+        </aside>
+      </section>
+      <section class="S129">
+        <h1>Plan for Maintenance Before You Launch</h1>
+        <p class="subtitle">Testing makes sure it works, maintenance makes sure it keeps working</p>
+        <div class="r-stack">
+          <img src="images/how/s129-quiet-decay.png" alt="A notification system with a steady green status light sends messages to many phones, but messages to old, replaced or stored phones dissolve in mid-air, with nobody watching">
+          <img class="fragment" src="images/how/s129-maintenance-plan.png" alt="The same system with a named owner team, gauges for its targets with an alert on failed sends, a robot doing repeating jobs like clearing old device tokens, and an arrow feeding lessons back into the design">
+        </div>
+        <aside class="notes">
+          <h2>Plan for Maintenance Before You Launch</h2>
+          <h3>The launch went well. The canary release looked fine, and nobody needed the switch. Six months later, nothing is down. But every month, more messages go to old device tokens, from phones that were replaced or apps that were removed. Each of those sends fails quietly, and those customers simply stop getting updates. The system gets a little worse each month, and nothing in the design is watching for it.</h3>
+          <p>Testing showed the system worked on launch day. But phones, users, and providers keep changing after that. Write a short maintenance plan into your documentation, before you launch, and answer three questions.</p>
+          <p>First, who owns it? The project team moves on, so name the team that answers the alerts and keeps it healthy.</p>
+          <p>Second, what do you watch? Not just "is it up?", but the targets in your requirements, speed and uptime, plus messages waiting in the queue, failed sends, and the SMS bill. An alert on failed sends catches our problem in the first month.</p>
+          <p>Third, which jobs repeat? Security patches and upgrades, from the list we talked about earlier. Removing a device token when the provider says it's no longer registered. Comparing the SMS bill with your estimate. Automate whatever you can, so nothing depends on someone remembering.</p>
+          <p>And production teaches you what testing can't. Real data is messier, and real users surprise you. Feed what you learn back into the design. Sometimes it sends you back a phase, and that's the playbook working.</p>
+          <h4>For your checklist: does your documentation say who owns the system, what you watch, and which jobs repeat? So now the question is, your alerts watch the system, but who's listening to your users?</h4>
+        </aside>
+      </section>
+      <section class="S130">
+        <h1>Never Stop Listening to User Feedback After Launch</h1>
+        <p class="subtitle">Your users are the final test of your system</p>
+        <div class="r-stack">
+          <img src="images/how/s130-green-but-late.png" alt="Every gauge in the operations room is green and the message goes out fast, but at the front door the driver is already handing over the parcel when the customer's phone finally shows the notification">
+          <img class="fragment" src="images/how/s130-listen-and-fix-the-cause.png" alt="An engineer collects every complaint, follows the one that keeps coming back to a driver's scanner holding updates, and fixes it so each update is sent instantly; beside it, a phone scans a QR code on a TV instead of typing with the remote">
+        </div>
+        <aside class="notes">
+          <h2>Never Stop Listening to User Feedback After Launch</h2>
+          <h3>Your maintenance plan is working. Every alert is green, and every message goes out within a minute of its event, just as the speed target in your requirements says. But support keeps hearing the same complaint: "The out-for-delivery message arrived after the driver had already knocked." The system does exactly what it was designed to do, and customers are still unhappy.</h3>
+          <p>Where's the problem? Not in our service. The drivers' scanners send their updates only once an hour, so the "out for delivery" event itself arrives late. Our target counts from that event, so it still looks perfect.</p>
+          <p>That's why you never stop listening. Your speed and uptime targets measure the system, but your users feel the whole experience. Collect what they say: support tickets, app reviews, and analytics showing where people give up. Look into every complaint: some are random errors, and some keep coming back, which is a warning signal.</p>
+          <p>Then fix the cause, not the symptom. A quick patch hides it, like a message saying "your driver may arrive early". The real fix: ask the delivery team to send each update as it happens, and add a target that matches what customers feel, like "the message arrives before the driver does."</p>
+          <p>Signing in to Netflix on a TV used to mean typing your email and password letter by letter, with the remote. Many people found that painful. Now you can scan a QR code with your phone instead. I think that's the lesson: find the step people hate, and design it away.</p>
+          <h4>For your checklist: do you trace every complaint after launch, and fix the cause? So now the question is, which improvement comes first?</h4>
+        </aside>
+      </section>
+      <section class="S131">
+        <h1>Build It, Run It, Improve It</h1>
+        <p class="subtitle">Your system was just born. Keep it alive.</p>
+        <div class="r-stack">
+          <img src="images/how/s131-first-birthday.png" alt="The notification service celebrates its first birthday with a single candle, surrounded by a year of change: twice the parcels, a newer provider plug, and customers who expect more, while its team stands ready with tools">
+          <img class="fragment" src="images/how/s131-three-best-practices.png" alt="Three best practices: the team that builds the system also answers its pager at night; a calm postmortem looks for the cause in the system, not a person; and a reliability gauge decides whether improvements keep shipping or the team pauses to strengthen the system">
+        </div>
+        <aside class="notes">
+          <h2>Build It, Run It, Improve It</h2>
+          <h3>Your notification service has been live for a year. So much has changed since launch: twice the orders, a new version of the provider's API, and customers who expect more. It isn't the same system anymore, and that's normal. Launch day was its birthday, not its finish line.</h3>
+          <p>When a system gets built and nobody touches it again for years, there's usually one of two reasons. Either it works so well that nobody needs to change it, which does happen, but it's rare. Or, more often, it's been forgotten. So let me share three best practices that might help you with your day-to-day building.</p>
+          <p>The first is simple: you build it, you run it, and most importantly, you own it. The team that builds a service also keeps it running. That keeps developers close to their customers. Once your own system has woken you up at night, you start designing much more carefully.</p>
+          <p>The second is the blameless postmortem. After an incident, the team writes down what happened, and why. The question isn't who made the mistake. It's what in the system let it happen. When nobody needs to protect themselves, people share the full story, and the same failure stops coming back.</p>
+          <p>And the third is the error budget. Say the uptime target in your requirements is 99.9 percent. That leaves a little room for failure. While you're within it, the team keeps shipping improvements. But once it's used up, reliability comes first. Then the numbers decide, not the loudest voice.</p>
+          <h4>For your checklist: do you own it, learn from incidents, and let the numbers decide? That's Phase 7 done. So now the question is, where do you start?</h4>
+        </aside>
+      </section>
+            <section class="S132">
+        <h1>How to Use This Playbook</h1>
+        <div class="r-stack">
+          <img src="images/how/s132-playbook-in-a-folder.png" alt="On a busy Monday, a developer rushes through a small ticket against the clock, while a seven-tab playbook binder sits closed and dusty on the shelf behind them">
+          <img class="fragment" src="images/how/s132-using-the-playbook.png" alt="The same developer uses the playbook on the small ticket, with a dial of three questions set low so only a few tabs are needed, adds a new tab after the project, and in the background a junior listens in on a design review">
+        </div>
+        <aside class="notes">
+          <h2>How to Use This Playbook</h2>
+          <h3>That's the whole playbook: seven phases, from the first question to a system that keeps getting better, with one line for your checklist from every lesson. But here's what often happens. Monday comes, there's a small ticket and a tight deadline, and the playbook stays in a folder. Before we move on, let me share how I actually use it.</h3>
+          <p>First, I don't wait for a big new project. I start with whatever is on my desk. Even for a small ticket, the first questions, who it's for, what it does, and why it matters, take about ten minutes, and they often save days.</p>
+          <p>Second, I use only as much as the change needs. Remember the three questions from earlier: is it hard to undo, does it touch several services or teams, and is a mistake expensive? If all three are no, a few checklist lines are enough. The more yeses, the more of the playbook you need.</p>
+          <p>And third, I keep making it mine. Every company works a little differently, so when you join a new team, adapt the playbook instead of fighting it. And after every project, add one line you wish you had at the start.</p>
+          <p>If you're early in your career, you don't need to lead the design to use it. Bring the checklist questions to someone else's design review, and listen to how experienced people answer them. In my experience, that's how design skill grows: one project, and one line, at a time.</p>
+          <h4>For your checklist: start by checking what you already have in the playbook, and add more after every project. That's the playbook. So now the question is, how does architecture grow?</h4>
+        </aside>
+      </section>
+
+
+            <section class="S133">
+        <h1>Evolve Your Architecture as Your Business Grows</h1>
+        <div class="r-stack">
+          <img src="images/evolution/s133-restaurant-journey.png" alt="One restaurant's journey along a road: first under one roof, then split into a kitchen, a bakery and a delivery warehouse, and finally working with delivery-partner couriers for takeaway">
+          <img class="fragment" src="images/evolution/s133-architecture-evolves.png" alt="A system diagram evolving in three neat stages: one box with one database, then two modules moved out with their own databases, then one replaced by a function that runs only when requests arrive, while an overcomplicated day-one design floats away crossed out">
+        </div>
+        <aside class="notes">
+          <h2>Evolve Your Architecture as Your Business Grows</h2>
+          <h3>Think back over our journey so far. Our restaurant started under one roof, and that's the monolith. Then the kitchen, the bakery, and the warehouse each moved into a building of their own, and those are services. And for takeaway, we partnered with a delivery service and paid only per order, and that's serverless. Now, does a real business jump from one to the next overnight? Of course not. It changes one thing at a time, as it grows and its needs change. Backend architecture evolves the same way.</h3>
+          <p>This is really how your architecture should grow: over time, one change at a time. Systems naturally get more complex as they grow, but with good design, your architecture should actually become more defined, easier to understand, and easier to look at along the way.</p>
+          <p>Amazon and Twitch are good examples. Both started as monoliths, and moved to services gradually, as they grew.</p>
+          <p>Try to build your final architecture on day one, or never change it at all, and you either overbuild too early, or get stuck with a system that no longer works for you. But evolve it one change at a time, and every change stays small, matches your real needs, and your architecture stays clear, even as you grow.</p>
+          <h4>So what we're gonna do now is walk through the evolution of a backend system architecture, from one stage to the next.</h4>
+        </aside>
+      </section>
+
+            <section class="S134">
+        <h1>Not Sure Where to Begin? Start Simple with a Monolith</h1>
+        <div class="r-stack">
+          <img src="images/evolution/s134-restaurant-one-roof.png" alt="A small restaurant on opening day with the dining area and kitchen under one roof, where a chef tries new dishes and a young tree grows by the door">
+          <img class="fragment" src="images/evolution/s134-monolith-in-control.png" alt="A developer runs one neat monolith on a laptop, moves it to the cloud and back in an improvement loop, sets aside distributed services and serverless limitations, while more teammates start arriving through a doorway">
+        </div>
+        <aside class="notes">
+          <h2>Not Sure Where to Begin? Start Simple with a Monolith</h2>
+          <h3>Where did our restaurant begin? Under one roof, with the dining area and the kitchen together. Why? Because when you're just starting out, that's the simplest way to get cooking, learn what works, and grow from there. Your backend architecture starts the same way: with a monolith.</h3>
+          <p>So, we start with a monolith. This is the most common way people start. We've already talked about why, so we don't need to go into a lot of detail here.</p>
+          <p>But if you're at a company, and you want to start something from scratch, or you're not sure where to begin, a monolith is a great place to start. Remember the simplicity, the consistency, and the efficiency we talked about? That's exactly why.</p>
+          <p>You don't have to deal with all the complexity of distributed systems. You don't have to worry about the limitations of serverless, like cold starts, or needing the internet just to test.</p>
+          <h4>You have a lot more control: you can run it locally, develop it, put it in the cloud, and keep improving it, again and again, until you're ready for the next step. And for many companies, that next step comes when the team starts to grow, and people start getting in each other's way.</h4>
+        </aside>
+      </section>
+
+            <section class="S135">
+        <h1>Growing Team? Time to Split into Services</h1>
+        <div class="r-stack">
+          <img src="images/evolution/s135-crowded-kitchen.png" alt="A crowded restaurant kitchen under one roof, where cooks bump into each other and wait for the same stove, and fries and burger teams block each other, while an empty kitchen space waits next door">
+          <img class="fragment" src="images/evolution/s135-teams-split-services.png" alt="Two services move out of one big box, users and transactions, each with its own database and team shipping on its own; a crack stays inside one service, and the remaining box still holds modules that were not split">
+        </div>
+        <aside class="notes">
+          <h2>Growing Team? Time to Split into Services</h2>
+          <h3>Now, our restaurant is growing, and you keep hiring more cooks. But they're all squeezed into that one kitchen under the same roof, bumping into each other, and waiting for the same stove. You've even hired specialists now, a fries team and a burger team. What's the natural next step? Give each team its own space to work. Your architecture follows the same path: as your team grows, it's time to split into services.</h3>
+          <p>The next step is splitting into services. We've talked about generic services and microservices, and how those approaches work.</p>
+          <p>The idea is that once a company or project grows, you start needing to split your logic into separate units, for the benefits we covered: independent development, independent deployment, and fault isolation. And usually, that first split creates generic services, not microservices, just like we saw earlier.</p>
+          <p>When you're hiring more people, and building more teams, independent development lets each team work without waiting on the others. This is a very common step for a company that's starting to grow, not just in users, but in employees too.</p>
+          <p>And with more people, you want those teams to be able to deploy on their own, and have their own fault isolation, so one team's problem doesn't become everyone's problem.</p>
+          <p>Also, at this point, you're usually hiring for specific areas. You want a team that handles user data, and another that handles processing transactions, and so on.</p>
+          <h4>So at this stage, it becomes much easier to see where to split your services, just like the users and payments example we looked at earlier. But seeing where you could split doesn't mean splitting everything at once.</h4>
+        </aside>
+      </section>
+
+
+            <section class="S136">
+        <h1>Split Only What Needs to Scale</h1>
+        <div class="r-stack">
+          <img src="images/evolution/s136-fries-station-first.png" alt="In a busy restaurant, only the fries station is overloaded, so two cooks move just that station into its own small space, while the rest of the kitchen keeps working and a plan to rebuild everything is crossed out">
+          <img class="fragment" src="images/evolution/s136-split-what-needs-to-scale.png" alt="At a pool, one developer dips a toe in while monitoring shows one busy component being moved out on its own, while another developer belly flops in with a tangled pile of services, crossed out">
+        </div>
+        <aside class="notes">
+          <h2>Split Only What Needs to Scale</h2>
+          <h3>Back in our restaurant, let's say the fries line is always backed up, but every other station runs just fine. Do you tear everything down and rebuild the whole restaurant? Or move just the fries station into its own space first, and see how it goes? Just the fries station, of course. Splitting into services works the same way: split only when you need to, one service at a time.</h3>
+          <p>Because if you start splitting too early, it can be really hard, especially if you're just one person. If you're one person building services, you might not even need to split anything yet. You think, 'I guess I could split this here,' but you can't really know until you're actually at scale.</p>
+          <p>That's why the testing and monitoring we talked about earlier matter so much here. Run your system for a while, watch it, and see what really needs to scale, and what doesn't, just like finding the bottlenecks. And one last thing about splitting into services: only do it when you actually need to.</p>
+          <p>So if you're running a monolith, stay in it. Start looking at which components really need to scale, and split only those components first.</p>
+          <p>Dip your toe into distributed architecture. Don't just dive in. If you dive in, and do everything at once, it's gonna hurt. It's gonna be a bad experience, a bit like belly flopping into a pool. It's not gonna be fun.</p>
+          <h4>And once your services are split where they need to be, there's one more change that can save you a lot of money, in the right places: serverless.</h4>
+        </aside>
+      </section>
+
+
+            <section class="S137">
+        <h1>Add Serverless Where It Saves the Most</h1>
+        <div class="r-stack">
+          <img src="images/evolution/s137-takeaway-handed-off.png" alt="In the evening rush, delivery-partner couriers pick up takeaway bags from the restaurant's busy kitchen, while the restaurant's own delivery vans sit parked and unused">
+          <img class="fragment" src="images/evolution/s137-serverless-where-it-saves.png" alt="Most services stay on regular servers, while one tired team moves its service to a serverless function that wakes only for evening traffic; a balance scale shows that steady, heavy traffic is cheaper on a regular server">
+        </div>
+        <aside class="notes">
+          <h2>Add Serverless Where It Saves the Most</h2>
+          <h3>Remember our restaurant's takeaway? Orders kept pouring in, especially in the evenings. Instead of buying more vans that sit around all day, we handed delivery to a service like Wolt, and paid only per delivery. And notice: we still run our own kitchen. We only handed off the one job that was hard to keep up with. That's where your architecture can go next: not moving everything to serverless, just the services where it saves the most.</h3>
+          <p>Finally: saving with serverless. We talked about the need to save money in specific situations: saving on operations, saving on resources, and saving on scaling challenges.</p>
+          <p>After starting with a monolith, and then splitting that logic into services, a system can benefit even more from serverless, for exactly those things.</p>
+          <p>At this point, you should have some good experience with distributed systems. Your teams and services should already be clearly separated.</p>
+          <p>And maybe some specific teams want to start using serverless. That doesn't mean all of your infrastructure has to move to serverless. It might just mean that one specific team is running up a lot of costs.</p>
+          <p>Maybe they're spending a lot of time managing infrastructure, or they keep running into scaling issues, especially with traffic that's quiet most of the day and busy in the evenings, like those deliveries. That's where you can go to that team and say: 'Okay, why don't you start moving some of these services over to serverless?'</p>
+          <h4>Just remember the turning point we talked about: for steady, heavy traffic, a regular server can become cheaper from a certain point. And that's a good reminder that architecture doesn't only move in one direction.</h4>
+        </aside>
+      </section>
+
+
+            <section class="S138">
+        <h1>Your Architecture Is Alive: Let It Grow and Adapt</h1>
+        <div class="r-stack">
+          <img src="images/evolution/s133-architecture-evolves.png" alt="The system diagram from earlier, evolving in three stages: one monolith, then a few services with their own databases, then a serverless function that runs only when requests arrive">
+          <img class="fragment" src="images/evolution/s138-moving-back.png" alt="The evolution diagram with arrows looping both forward and back; one video-monitoring service moves from many costly serverless functions passing frames around to one tidy box with a much smaller bill, while the other services keep running unchanged">
+        </div>
+        <aside class="notes">
+          <h2>Your Architecture Is Alive: Let It Grow and Adapt</h2>
+          <h3>Now look at this diagram one more time. Remember, it's where we ended up: slowly moving more toward serverless to save money. But this time, look at it as one complete story, from a monolith, to services, to serverless. And here's the question: does that story only ever go in one direction? Not at all. You can move back too.</h3>
+          <p>This shows the evolution in more detail, and why you go from one stage to the next. But does that mean you can also go from serverless back to servers, or even back to a monolith? Yes, if you have a good reason for it. It doesn't mean you only ever move in one direction. You might move forward, then move back, then forward again, and back again.</p>
+          <p>For example, in 2023, Amazon's own Prime Video team shared how they rebuilt one of their services, a tool that checks live video streams for problems, like frozen frames. They had first built it with serverless components, which helped them build it quickly, but at scale, it became very expensive. Then they moved that one service to a monolith, and cut its infrastructure costs by over 90%. And notice: Prime Video as a whole is still built from many services. They just picked the right architecture for that one service.</p>
+          <p>These architectures are dynamic. They're alive, almost like living creatures, in a way. They evolve, they grow, they run into pain points, and eventually, they solve those pain points.</p>
+          <h4>And that brings us to the end of our journey together.</h4>
+        </aside>
+      </section>
+
+            <section class="S139">
+        <h1>Keep Learning, Keep Building!</h1>
+        <div class="r-stack">
+          <img src="images/evolution/s139-first-small-house.png" alt="A former developer stands at a drafting table, ready to draw their first small house, with the road of the course journey behind them and a skyline of bigger designs far ahead">
+          <img class="fragment" src="images/evolution/s139-keep-learning-keep-building.png" alt="Engineers share their own findings around a round table under three different buildings, with two downloadable guides in front: a seven-tab playbook and a checklist">
+        </div>
+        <aside class="notes">
+          <h2>Keep Learning, Keep Building!</h2>
+          <h3>Well, first off, thank you for sticking with me through this whole course. I really appreciate it. Remember, every great architect started with their very first small house. Now it's your turn. I hope this course was informative, and that it empowers and inspires you to go build these types of architectures yourself.</h3>
+          <p>And remember: this is all continuous learning and adaptation. There's no one solution, and no one person who has all the answers, or one 'best' way to do it. If you want to be a good engineer, explore it yourself. Go out, learn these things on your own, and come back to the table with your own observations.</p>
+          <p>That's something I ask everyone taking this course to do. Yes, you can take recommendations from other companies. But at the end of the day, that's all they are: recommendations. Think about Amazon, Twitch, or Prime Video. Every one of their choices was made for their own problems, at their own moment.</p>
+          <p>The way you solve a problem depends entirely on the problem you're solving. And this approach doesn't just keep your skills relevant. It also helps you design systems that are robust, adaptable, and ready for the future.</p>
+          <h4>Before you go, download the two guides that come with this course: the How to Design playbook, with every checklist line we built together, and the When to Design checklist, to help you spot when it's time to design, or redesign. Thank you, and keep learning, keep building.</h4>
         </aside>
       </section>
     </div>
