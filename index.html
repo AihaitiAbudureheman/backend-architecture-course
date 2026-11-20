@@ -22,13 +22,10 @@
         </div>
         <aside class="notes">
           <h2>Design Backend Systems with Confidence</h2>
-          <h3>Picture your dream house. One person has laid thousands of bricks. Another has designed thousands of houses. Both matter, but which one do you ask to design yours? The architect. And that's exactly what this workshop is all about: going from writing backend code to designing backend systems, with confidence.</h3>
-          <p>So, welcome, everyone, to Design Backend Systems with Confidence. It's great to have you here.</p>
-          <p>In this workshop, we're gonna look at how backend systems really get designed: the core ideas behind a good architecture, how to spot the moment you need one, and how to actually build it, step by step. Because knowing a backend architecture design is one thing. Knowing when it's the right time to use it is what really makes the difference.</p>
-          <p>And you're not leaving with just ideas. By the end, you get a design playbook: a step-by-step checklist you can pick up and use on your very next project. Your own experience adds to it over time, but it gives you a solid place to start.</p>
-          <p>If you take away one thing, let it be this: I want you to feel confident making architecture decisions yourself. Not because you've memorized every backend architecture design, but because you have a clear way to think them through.</p>
-          <p>So whether you're early in your career, a senior engineer, or leading a team, if you've ever wondered how large systems are designed and built, or wanted to build the right system for a problem, not just one that works, you're in the right place.</p>
-            <h4>From laying bricks to drawing the blueprint: that's the journey we're on together. So let's look at the road ahead.</h4>
+          <h3>Picture someone laying bricks for a house. Getting each brick right takes skill, and so does figuring out how the rooms, stairs, and entrances should work together for the people who live there. You make a similar shift in software when you go from writing the code for a feature to deciding how that feature should work across the system.</h3>
+          <p>Maybe your team wants to send customers an order confirmation. You know how to write the code that sends a message, but now you have a few decisions to make. Where does that work belong? What happens to the order if the message fails? And how do you explain your choice so the rest of the team can build from it?</p>
+          <p>That’s the kind of design work we’ll practice in this course. We’ll look at when a change needs design, how to compare a few approaches, and how to explain the trade-offs behind the one you choose. You’ll get a design playbook with a checklist you can bring to your next project, starting with what the change needs to accomplish and working toward a proposal your team can review.</p>
+          <h4>The goal is to give you a way to work through those decisions and explain the reasoning behind them. Let’s look at the course roadmap so you can see how we’ll get there.</h4>
         </aside>
       </section>
             <section class="S2">
@@ -37,51 +34,44 @@
         <img class="r-stretch" src="images/intro/s2-roadmap.png" alt="A hiker at the start of a trail, studying a map of the route ahead">
         <aside class="notes">
           <h2>Your Roadmap from Code to Design</h2>
-          <h3>Before a long hike, experienced hikers do one thing first: they look at the whole map. Not to memorize every turn, but to know where the route is heading, so they never feel lost along the way. That's what we're gonna do right now: one quick look at the whole route from code to design, before we take the first step.</h3>
-          <p>First, the what. Because how can you design something you don't fully understand? We start with what a backend architecture design really is, and the building blocks behind it, AI included, so you can follow architecture discussions with confidence.</p>
-          <p>Next, the when. You don't design a new architecture every day, so spotting the moment you need one is a skill in itself. So is knowing when you don't, and saving your team the time and the money.</p>
-          <p>Then, the three architectures you hear about everywhere: monoliths, distributed services, and serverless. Not just the names, but which one fits which situation, and why, so you can defend your choice in design reviews, and even in interviews.</p>
-          <p>After that comes the heart of this workshop: the how. A step-by-step playbook, from the very first question all the way to production, so you can face a real problem at work and know exactly where to start.</p>
-          <p>And finally, evolution: how architectures change as your company grows, in small, safe steps instead of risky rewrites, and sometimes even back a step.</p>
-          <h4>So that's the whole route, from code to design. Before we set off, let's make sure you've packed what you need.</h4>
+          <h3>When you’re about to start a hike, it helps to take a quick look at the map. You can see where you’re headed and what’s along the way. Let’s do the same for this course by following the questions that come up when you’re designing something for your team.</h3>
+          <p>First, we’ll look at what backend architecture is and get familiar with the pieces that make up a system. Once you know what you’re looking at, it’s easier to ask the next question: does this change need a design, and how much of the system do you need to think about?</p>
+          <p>When a change calls for design, you’ll want a few options to compare. We’ll look at monoliths, distributed services, and serverless, and talk through what each approach makes easier and what it asks of your team.</p>
+          <p>Then we’ll put those ideas to work with the design playbook. It gives you a way to clarify what the system needs to do, compare options, and explain your choices so the team can review them and start building. We’ll finish by looking at what happens after that, when new demands change the design you started with.</p>
+          <h4>That’s the route from understanding a backend system to making decisions about how it changes. Before we set off, let’s check what you already know and what’s useful to have in place.</h4>
         </aside>
       </section>
 
             <section class="S3">
         <h1>Check If You're Ready to Start</h1>
-        <p class="subtitle">Who it's for, and what you need</p>
+        <p class="subtitle">Who it’s for and what you need</p>
         <div class="r-stack">
           <img src="images/intro/s3-packing.png" alt="A light daypack with shoes, water and a laptop, next to heavy climbing gear pushed aside">
           <img class="fragment" src="images/intro/s3-audience.png" alt="Three hikers of different levels setting off on a trail together">
         </div>
         <aside class="notes">
           <h2>Check If You're Ready to Start</h2>
-          <h3>So, what do you actually need to pack for this hike? Not climbing ropes, not professional gear. Just good shoes and some water. This workshop works the same way: the packing list is short. Let's check you've got it, and see who this route was made for.</h3>
-          <p>The main thing you need is a basic understanding of software development. If you've built an app, written some code, or worked on a project with a team, you're ready.</p>
-          <p>If you've never built software before, some parts might feel challenging, and that's okay. This workshop is mostly conceptual. It's less about writing code, and more about learning to think like someone who designs systems.</p>
-          <p>It also helps to know your frontend from your backend: what users see and click, versus what happens behind the walls, which is where we spend most of our time. If that feels rusty, take a few minutes to read up on how a frontend talks to a backend.</p>
-          <p>And you don't need a cloud account. Most examples use AWS, but Azure and Google Cloud offer the same building blocks, so everything here carries over to whichever cloud you use.</p>
-          <p>So, who is this for? If you're a junior or mid-level developer tired of building designs without knowing why, a senior looking for a structured way to make and defend decisions, or a tech leader who needs to explain design choices in terms of cost and risk, this route was made for you.</p>
-          <h4>So, bags packed, shoes on. Let's take the first step, and start with what a backend architecture design really is.</h4>
+          <h3>Now that you’ve seen the route, let’s check what you need before we start. Think about packing for a day hike. Comfortable shoes and some water make sense, but you can leave the climbing gear behind. For this course, the equivalent is a little experience with software and a basic sense of what happens when an app talks to a backend.</h3>
+          <p>Here’s a quick way to check. Imagine you tap “Place order” in an app. The app sends a request, and the backend does the work of recording the order and sending back a result. If that interaction feels familiar and you’ve written some code or worked on a software project, you have enough background to start. If the interaction is new to you, spend a few minutes getting familiar with how an app sends a request and gets a response.</p>
+          <p>You can follow the lessons without a cloud account. We’ll spend our time working through design decisions, so what matters is being able to follow an example and think about what you’d choose.</p>
+          <p>The course is for developers beginning to make design decisions, experienced engineers who want a more structured way to explain their choices, and tech leads helping a team weigh cost and risk. You can bring a feature you’re working on and think through the examples with that feature in mind.</p>
+          <h4>If you can follow the order example, you already have something to build on. Next, we’ll zoom out from that one request and look at what we mean by backend architecture.</h4>
         </aside>
       </section>
 
             <section class="S4">
         <h1>What Is Backend Architecture Design?</h1>
-        <p class="subtitle">Modularity, interfaces, and data flow</p>
+        <p class="subtitle">How the system works together</p>
         <div class="r-stack">
-          <img src="images/what/s4-car-hood.png" alt="A puzzled designer looking at an open car hood">
-          <img class="fragment" src="images/what/s4-accidental-house.png" alt="A house that grew by accident next to a house that was designed">
+          <img src="images/what/s4-order-flow.png" alt="Simplified online order flow">
         </div>
         <aside class="notes">
           <h2>What Is Backend Architecture Design?</h2>
-          <h3>Imagine you're hiring someone to design a new car, and in the very first meeting they ask, 'Wait, what does a gearbox actually do?' That's the end of the meeting. You can't design what you don't understand. Backend systems are no different. So before we design anything, let's get crystal clear on what a backend architecture design really is.</h3>
-          <p>So here's a practical definition we use in this workshop. A backend architecture design is the process of defining a system's modularity, its interfaces, and its data flow, so that it meets a specific set of requirements.</p>
-          <p>In plain words: how you split the system into parts, how those parts talk to each other, and how information moves between them.</p>
-          <p>And that last piece, the requirements, is what ties it all together. A good design isn't random, and it isn't a collection of trendy tools. Every decision answers one question: does this serve what the system actually needs to do?</p>
-          <p>It's also worth saying what architecture is not: choosing a framework, a database brand, or a cloud service. Those choices come later. Mix the two up, and design meetings turn into tool debates, while the structure that really matters gets overlooked.</p>
-          <p>And here's the part many teams learn the hard way. Paul Clements, a software architecture researcher at Carnegie Mellon, put it simply: every system has an architecture. If you don't design one on purpose, you get one anyway. And the architecture nobody designed is usually the most expensive one to change.</p>
-          <h4>So the real choice isn't whether your system has an architecture, but whether you design it. Now, let's open the hood and look at its three parts.</h4>
+          <h3>In the last lesson, you tapped “Place order” and got a result back. Let’s look at what’s behind that interaction. Something needs to accept the request, something needs to save the order, and something may need to tell the customer it went through. How you arrange that work is a backend architecture decision.</h3>
+          <p>Your backend’s architecture is the way it’s organized: what does the work, how those pieces connect, and what they rely on to work together. Designing that architecture means making those choices with the system’s requirements in mind.</p>
+          <p>Take the confirmation message. Suppose the customer needs to see that their order went through even if email is temporarily unavailable. You could save the order and return a result to the app, then handle the email separately. That decision changes which work has to succeed before the customer gets a response. It also gives the team a clear reason for arranging the work that way.</p>
+          <p>You can ask the same question about a backend that already exists. It has a structure you can trace today, and looking at how it works gives you a starting point for deciding what, if anything, needs to change.</p>
+          <h4>To describe that structure, it helps to name three things: how you divide the work, how the pieces connect, and where the data goes. Next, we’ll look at those as modules, interfaces, and data flow.</h4>
         </aside>
       </section>
 
@@ -91,17 +81,14 @@
         <p class="subtitle">Neighborhoods, roads, and traffic</p>
         <div class="r-stack">
           <img src="images/what/s5-city.png" alt="A city from above with neighborhoods, roads and traffic">
-          <img class="fragment" src="images/what/s5-route-jam.png" alt="A route through a city where one traffic jam holds up the whole journey">
         </div>
         <aside class="notes">
           <h2>What Are Modules, Interfaces, and Data Flow?</h2>
-          <h3>Look at a city from above. You see neighborhoods, the roads that connect them, and the traffic moving between them. Plan those three things well, and the city just works. Plan them badly, and you get traffic jams nobody can explain. Your backend is a city too, built from modules, interfaces, and data flow.</h3>
-          <p>Let's start with the neighborhoods: those are your modules. They're the parts your system is split into, like users, orders, or payments, each with its own job.</p>
-          <p>The roads are your interfaces: how those modules connect and talk to each other. A neighborhood nobody can reach is useless, and so is a module nobody can call.</p>
-          <p>And the traffic is your data flow: how information moves through the system, from request to response. Here's the key: it's not separate from the other two. How you split and connect your modules decides how data moves.</p>
-          <p>So when you look at any architecture, ask two questions. How many jumps does the data take between services? Every jump adds a little delay, and one more place where something can fail. And is each connection fast enough? When each step waits for the one before, one slow link holds up the whole journey.</p>
-          <p>Answer those two, and you know the route. So the next time something slows down or breaks, you're not guessing for hours. You know exactly where to start looking.</p>
-          <h4>Try it on a system you work with: can you trace one request from start to finish? Next, let's look at the map that makes that route visible: the architecture diagram.</h4>
+          <h3>Last time, we looked at what happens after a customer places an order. To describe the backend behind it, we need to know who does the work, how they connect, and what moves between them. A city map is a useful way to picture those three things. You can see the neighborhoods, the roads that connect them, and the traffic moving along those roads.</h3>
+          <p>Think of a module as a neighborhood with a job. In our example, the orders module looks after orders, and the notifications module looks after messages. These can be separate groups of code inside the same application.</p>
+          <p>The roads help you picture how the modules connect. In software, an interface also tells you what you can ask another module to do and what information it expects. The notifications module, for example, might accept an order number and an email address when you ask it to send a confirmation.</p>
+          <p>Data flow is what actually moves. In this example, the order number and email address go from orders to notifications. The city’s traffic helps you picture that movement, but in the backend it matters what information is moving and in which direction.</p>
+          <h4>Try tracing one request in a system you know. Which modules do the work, how do they connect, and what data passes between them? Next, we’ll use those questions to read an architecture diagram.</h4>
         </aside>
       </section>
 
@@ -115,155 +102,130 @@
         </div>
         <aside class="notes">
           <h2>What Does an Architecture Diagram Tell You?</h2>
-          <h3>When you look at the floor plan of an apartment you're thinking of buying, what do you check first? The front door. Then how the rooms connect, where the storage is, and which rooms are private. In about a minute, you know the place. An architecture diagram is a floor plan for your system, and you can read it exactly the same way.</h3>
-          <p>We've all been there: a diagram pops up in a meeting, boxes and arrows everywhere, and all you can think is, 'What am I even looking at?' So here's a simple way to read it.</p>
-          <p>First, find the front door: where users or requests come in. Second, follow the arrows. That's your data flow, so count the jumps, just like we did with the city. But check what the arrows mean first: some show who calls whom, others which way the data moves.</p>
-          <p>Third, find where the data lives: the databases and storage. That's usually where the most important decisions, and the biggest risks, sit.</p>
-          <p>And fourth, spot the boundaries: what's public, what's internal, and which team owns which part. Not sure what a box means? Look for the legend, or just ask. That's exactly what experienced engineers do.</p>
-          <p>And one smart question for any review: is this diagram still current? Diagrams often fall behind the real system. With these four steps, you understand a new system in minutes, and you're ready to share your own opinion on it.</p>
-          <h4>Read it like a floor plan, and diagrams stop being a mystery. But why draw the plan before building at all? Let's see what designing first really gives you.</h4>
+          <h3>Last time, we traced what happens when a customer places an order. Now imagine someone shares a diagram of a backend in a meeting and asks you to follow a request. Think of it like looking at a floor plan for the first time. You can get oriented by finding the entrance and seeing what it connects to.</h3>
+          <p>First, check what the diagram is meant to show. The title can help you tell whether you’re looking at the whole backend or one feature. If it shows a request, look for where that request enters. In this sketch, that’s the doorway next to the users.</p>
+          <p>Second, follow one path and check what its arrows mean. An arrow might show that one component calls another, or it might show data moving between them. If the labels or legend leave that unclear, ask before you draw a conclusion.</p>
+          <p>Third, look for where the data is stored, if storage is shown. The cylinder here marks a database. Fourth, check any boundaries. A dashed line groups some boxes in this sketch. On a real diagram, check what that grouping means before assuming who owns those components or who can reach them.</p>
+          <h4>That gives you a first reading and a few questions to take back to the team. Next, we’ll look at what you gain by having that conversation before you build.</h4>
         </aside>
       </section>
 
             <section class="S7">
         <h1>What Do You Gain by Designing First?</h1>
-        <p class="subtitle">Save money, manage complexity, win support</p>
+        <p class="subtitle">Catch expensive changes early</p>
         <div class="r-stack">
-          <img src="images/what/s7-wall-down.png" alt="Builders knocking down a finished kitchen wall while the homeowner watches money fly away">
-          <img class="fragment fade-in-then-out" src="images/what/s7-house-layers.png" alt="A cutaway of a house showing its foundation, pipes, wiring and roof working together">
-          <img class="fragment" src="images/what/s7-team-support.png" alt="A developer presenting a clear design to colleagues who nod along">
+          <img src="images/what/s7-team-support.png" alt="A developer presenting a clear design to colleagues who nod along">
         </div>
         <aside class="notes">
           <h2>What Do You Gain by Designing First?</h2>
-          <h3>Picture building a house without a plan. The walls are already up when you realize the kitchen belongs on the other side. So the walls come down, the pipes come out, and you pay twice: once in time, and once in materials you throw away. Software works the same way. Skip the design, and every mistake costs double.</h3>
-          <p>Sound familiar? Someone jumps straight into the code, and two months later they're asking, 'Wait, what did I just build?' So what does designing first actually give you?</p>
-          <p>First, it saves money. Moving a box on a diagram takes minutes. Changing the structure of running code means rework, retesting, and moving data around. A design also shows you early if an idea is too complex, too simple, or wrong for the business, while that's still cheap to fix.</p>
-          <p>Second, it makes big problems manageable. A house looks simple, but it's really layers: foundation, wiring, plumbing, roof, all working together. Every new feature adds a layer to your system too, and a design helps you manage those layers and keep them working together smoothly.</p>
-          <p>Third, it wins support. Explaining an idea out loud only gets you so far. Show people a design, and even other teams can see what you're aiming for. That builds trust, and it gets your ideas approved.</p>
-          <p>Now, not every small change needs a design. But for the decisions that are expensive to change later, think first. Otherwise, you're spending company money on a guess.</p>
-          <h4>So be the one in the room who says, 'Hold on, let's think this through first.' And the first thing to think through is how to split your system into pieces.</h4>
+          <h3>In the last lesson, we used a diagram to work out where a request goes and what the system depends on. Now imagine your team is sketching the order confirmation feature before anyone builds it. Someone asks, “If the email provider is down, can the customer still place an order?” That’s a much easier question to discuss while the design is still a sketch.</h3>
+          <p>Suppose the first design makes checkout wait for the email provider. Seeing that dependency early gives you a chance to ask whether the wait is necessary. If it isn’t, the team can choose to confirm the order in the app and handle email separately. Discover the same problem after launch, and changing that behavior may mean revising the checkout code, updating tests, and rolling the change out safely.</p>
+          <p>The sketch also gives other people something concrete to respond to. A teammate might ask what happens to an email that fails, or who can tell whether it was sent. You can agree on what needs an answer now and what you can leave until you learn more.</p>
+          <h4>Spend the design time where a wrong assumption means real rework. In our example, that starts with deciding which work belongs together and which work can happen separately. That’s what we’ll look at next with modularity.</h4>
         </aside>
       </section>
 
             <section class="S8">
         <h1>What Is Modularity, and How Much Is Enough?</h1>
-        <p class="subtitle">Not one big block, not fifty tiny pieces</p>
+        <p class="subtitle">Group work that changes together</p>
         <div class="r-stack">
           <img src="images/what/s8-drawers.png" alt="A messy junk drawer, fifty tiny drawers, and four neatly organized drawers side by side">
           <img class="fragment" src="images/what/s8-bricks.png" alt="Toy building bricks grouped by color into modules that connect at just a few points">
         </div>
         <aside class="notes">
           <h2>What Is Modularity, and How Much Is Enough?</h2>
-          <h3>Which kitchen do you want to cook in? One with a single giant drawer where everything's thrown together, one with fifty tiny drawers where you open half of them just to find a spoon, or one with a few well-organized drawers? The last one, easily. Your system works the same way: the goal isn't more pieces or fewer pieces, but the right ones.</h3>
-          <p>Modularity means splitting your system into parts in the way that works best for the problem. And here's a common misconception: modular doesn't automatically mean dozens of services spread across servers. Sometimes the right split is many parts. Sometimes it's one application, well organized inside.</p>
-          <p>Shopify is a great example. Its core runs as one huge application with millions of lines of code, but with strict boundaries between the different areas of the business. That's called a modular monolith: one system, cleanly divided inside.</p>
-          <p>Split too much, though, and you pay for it. A simple feature means changing several parts at once. New developers have to learn how all the pieces work together before they can help. And when something breaks, you're hunting across more and more parts.</p>
-          <p>Split too little, and everything's mixed together. Change one thing, and something unrelated breaks.</p>
-          <p>So how do you judge your split? Two simple checks. High cohesion: everything inside a module belongs together. Loose coupling: modules depend on each other as little as possible. If both are true, you're probably on the right track.</p>
-          <h4>One big block or fifty tiny pieces, both hurt. Keep what belongs together, together. Next, let's make sure each part has one clear job, and a name that says so.</h4>
+          <h3>Last time, we asked which work belongs together and which work can happen separately. Think about a kitchen drawer. If measuring cups are scattered across several drawers, baking takes more searching than it needs to. If they share a drawer with batteries and tape, it’s still hard to find what you need. The useful grouping depends on what you do with it.</h3>
+          <p>Modularity is how you organize a system into groups of code with clear boundaries. In our order example, recording an order and checking whether it can be cancelled can belong in the orders module. Sending a confirmation can sit in a notifications module. Both modules can live inside one application.</p>
+          <p>To judge the split, imagine changing the wording of the confirmation email. If that requires editing checkout, order storage, and notifications, ask why those pieces all need to know about the wording. Now imagine putting each small step of order handling into its own module. If one change to the order rules sends you through several modules that always change together, those boundaries may be getting in your way.</p>
+          <p>A useful split keeps related work together. That’s cohesion. It also limits what each module needs to know about the others. That’s loose coupling. For example, orders can ask notifications to send a message without knowing how it chooses an email provider.</p>
+          <h4>Try the same check with a change your team makes often. See where the edits land, then ask whether you can describe what each module is responsible for. That question leads into separation of concerns.</h4>
         </aside>
       </section>
 
             <section class="S9">
         <h1>What Is Separation of Concerns?</h1>
-        <p class="subtitle">One clear job, one clear name</p>
+        <p class="subtitle">Give each responsibility a clear place</p>
         <div class="r-stack">
-          <img src="images/what/s9-aisles-fun.png" alt="A confused shopper in a supermarket whose aisles are marked with a phoenix, a lightning bolt and a unicorn">
-          <img class="fragment" src="images/what/s9-aisles-clear.png" alt="The same supermarket with aisles marked by milk, bread and a snowflake, and a happy shopper">
+          <img src="images/what/s9-aisles-clear.png" alt="The same supermarket with aisles marked by milk, bread and a snowflake, and a happy shopper">
         </div>
         <aside class="notes">
           <h2>What Is Separation of Concerns?</h2>
-          <h3>Imagine a supermarket where the aisles are called Phoenix, Thunderbolt, and Unicorn, instead of Dairy, Bakery, and Frozen. Fun names, sure. But now you're wandering around just to find the milk, and so is every new shopper after you. Your system works the same way: every part needs one clear job, and a name that tells everyone what that job is.</h3>
-          <p>That's separation of concerns: each part of your system takes care of one concern, one area of responsibility, and stays out of the others.</p>
-          <p>And one job doesn't mean one tiny action. A user service can handle sign-up, profiles, and settings. That's still one clear job: everything about users. The real test is simple: can you say, 'This part does this, and here's why it exists'?</p>
-          <p>When every part passes that test, your system starts to feel like a map. Payments live here, users live there. Changes land in the right place, and people reuse what already exists instead of rebuilding it.</p>
-          <p>And then there's the name. Many teams name their services after cartoon characters, fruits, or planets. It's fun, but every new developer has to ask, 'Wait, what does Rocket do again?' More questions, more interruptions, more meetings. That's friction.</p>
-          <p>Now compare that with user-service or payment-service. Boring? Maybe. But anyone understands them instantly. Product brand names can be as fun as you like. But for the internal services your team works with every day, clear beats clever.</p>
-          <h4>Here's a quick test: could a new teammate guess what each of your services does, just from its name? Next, let's look at where each service lives, and which ones the outside world can reach.</h4>
+          <h3>Last time, we asked where you’d make a change in your system. Imagine you’re looking for milk in a supermarket. A carton on the sign points you to the right aisle, and once you get there, you expect to find the milk on the shelf. The sign helps because it tells you something about how the store is organized.</h3>
+          <p>The same idea helps when you’re deciding where code belongs. In our order example, the orders module decides whether an order can be cancelled. The notifications module handles telling the customer what happened. If we let the email code decide whether cancellation is allowed, the rule ends up in a place where someone working on orders might never think to look.</p>
+          <p>Giving those responsibilities a clear place is an example of separation of concerns. A responsibility can cover several related tasks. Notifications might format a message, choose how to send it, and track whether it went out. Those tasks all support the same job. The name helps someone find that work, and the code inside should live up to the name.</p>
+          <h4>Pick a component your team works with and try describing its responsibility in one sentence. If you’d expect to find the same rule in two places, ask where it belongs. Once you know what a component is responsible for, there’s another question to ask: who needs to be able to reach it? That’s where service tiers come in.</h4>
         </aside>
       </section>
 
 
             <section class="S10">
         <h1>What Are Service Tiers?</h1>
-        <p class="subtitle">Every service has its place</p>
+        <p class="subtitle">Decide what needs to be reachable</p>
         <div class="r-stack">
           <img src="images/what/s10-office.png" alt="An office building in cutaway with a reception desk, open lobby, badge-only floors, a mailroom and a night cleaner">
-          <img class="fragment" src="images/what/s10-tiers.png" alt="A system diagram in five tiers, with one public gateway and private services behind it">
+          <img class="fragment" src="images/what/s10-order-flow.png" alt="A system diagram in five tiers, with one public gateway and private services behind it">
         </div>
         <aside class="notes">
           <h2>What Are Service Tiers?</h2>
-          <h3>When you visit an office building, how do you know where you're allowed to go? There's one reception desk at the entrance. The lobby is open, the office floors need a badge, the mailroom works quietly in the back, and the cleaners come in at night. Nobody has to ask. Service tiers give your system that same clarity.</h3>
-          <p>Here's a setup many teams use, with five tiers. These names aren't an official standard. They're a convention your team agrees on, and you can shape your own.</p>
-          <p>First, the frontend tier, where all your frontends live. Then the backend tier, for your internal services. And here's the most important rule: nothing in the backend tier is ever public. Not a single service.</p>
-          <p>So how does the outside world get in? Through the gateway tier, the only public door into your system. Just like the reception desk, every visitor goes through it.</p>
-          <p>Behind the scenes, the worker tier handles background jobs, often picking them up from a queue, like the mailroom. And the runner tier handles scheduled tasks, like a nightly cleanup, just like the night cleaners.</p>
-          <p>The payoff? Everyone knows instantly what's public and what's protected. A new service has an obvious home, so you can grow to dozens of services without the chaos. And you can change one tier, say, move your frontends to serverless, without touching the rest.</p>
-          <h4>One public door, and every service in its place: a building anyone can find their way around. But how should all these services actually talk to each other?</h4>
+          <h3>Last time, we asked who needs to reach a component. Think about visiting an office. You can walk up to reception, and the receptionist can direct your request to the right person. The staff offices and mailroom can do their work without being open to every visitor. A backend can draw a similar line between what clients reach and what runs behind it.</h3>
+          <p>Service tiers describe how you group services by role and how those groups can be reached. In one possible setup, the frontend is the website or app the customer uses. When they place an order, the app sends a request to a gateway. The gateway is the entry point for that request and routes it to the orders service, which the customer’s app doesn’t need to call directly.</p>
+          <p>Some work happens outside that request. A worker can pick up a pending job and send the confirmation email. A scheduled task runs when a timer triggers it, for example to clean up old records overnight. Those are different ways to start work, and they can use the same infrastructure if that meets your needs.</p>
+          <h4>Start by asking what clients need to reach and what can stay internal. Once you’ve drawn that boundary, you can decide how each interaction should work. In the next lesson, we’ll compare a few ways for services to communicate.</h4>
         </aside>
       </section>
 
 
             <section class="S11">
         <h1>What Are the Main API Styles?</h1>
-        <p class="subtitle">REST, gRPC, and events</p>
+        <p class="subtitle">Requests, replies, and events</p>
         <div class="r-stack">
           <img src="images/what/s11-three-ways.png" alt="Three panels: a phone call, two people with walkie-talkies and a shared codebook, and a note on a bulletin board">
-          <img class="fragment" src="images/what/s11-styles-map.png" alt="A system showing public calls at the edge, fast calls between services, and announcements on a shared board">
         </div>
         <aside class="notes">
           <h2>What Are the Main API Styles?</h2>
-          <h3>There are three ways to reach people. A phone call: anyone can make one, and you get an answer right away. A walkie-talkie with a shared codebook: fast and precise, but both sides need the same codebook. Or a note on the bulletin board: you post it, and whoever cares reacts later. Services talk to each other in these same three ways.</h3>
-          <p>The phone call is REST: requests over standard web calls, usually with JSON. Every browser, app, and partner can use it, and it's easy to debug. That's why it's the default for public APIs.</p>
-          <p>The walkie-talkie is gRPC. Both sides share a schema, that's the codebook, and messages travel in a compact binary format. It's fast, and great between your own services. The catch: browsers can't call it directly, and you can't read the messages by eye.</p>
-          <p>The bulletin board is events. A service announces, 'An order was placed,' and anyone interested reacts: one sends the confirmation email, another updates the stock. Nobody waits for a reply. The catch: it's harder to trace what happened, and in what order.</p>
-          <p>You may also hear about GraphQL: it lets a frontend ask for exactly the data a screen needs, in a single request.</p>
-          <p>So here's a simple rule of thumb: REST for anything public, gRPC for fast calls between your own services, and events when the sender doesn't need to wait. Many teams use all three, each one on purpose.</p>
-          <h4>Phone, walkie-talkie, or bulletin board: pick the one each conversation really needs. But what happens when every team picks its own, without a plan?</h4>
+          <h3>Last time, the customer’s app reached the orders service through a gateway. Now think about what each interaction needs. Sometimes you ask someone a question and wait for an answer, like on a phone call. Other times you leave a note on a bulletin board so people can act on it when they’re ready. Our order example needs both kinds of interaction.</h3>
+          <p>When the app wants to check an order, it can use a REST API to request that order over HTTP. In this case, the order is the resource, the thing the request is about. The app gets a response it can use to update the screen.</p>
+          <p>Another option for a direct request is gRPC. A service could call a named operation such as <code>CheckStock</code>, using a shared definition of the request and response. Think of the walkie-talkies with a shared codebook. Both sides know what the request is supposed to contain. With GraphQL, a client can ask for specific fields, such as the order status and expected delivery date.</p>
+          <p>Once the order is placed, the orders service can publish an event saying what happened. The notification service can react to it and send the email. The publisher doesn’t need to wait for the email to be sent. That’s the bulletin board idea.</p>
+          <h4>Start with what the caller needs: an answer now, or a way to tell others what happened. A team can use more than one style. Next, we’ll look at why shared conventions matter when several teams make those choices.</h4>
         </aside>
       </section>
 
             <section class="S12">
         <h1>What Happens When Every Team Talks Differently?</h1>
-        <p class="subtitle">One standard, no adapters</p>
+        <p class="subtitle">Agree on the details callers rely on</p>
         <div class="r-stack">
           <img src="images/what/s12-adapters.png" alt="A frustrated person holding a bag of tangled plug adapters in a house where every room has a different socket">
           <img class="fragment" src="images/what/s12-one-standard.png" alt="The same house with identical sockets, where every device plugs straight in">
         </div>
         <aside class="notes">
           <h2>What Happens When Every Team Talks Differently?</h2>
-          <h3>Imagine moving into a house where every room has a different power socket. The kitchen takes one plug, the bedroom another, the office a third. Now you need a bag full of adapters just to charge your phone. Annoying, right? That's exactly what happens in a system where every team connects its services in its own way.</h3>
-          <p>Here's how it usually happens. One team builds its service with gRPC. Another picks REST. A third invents something of its own. Each choice makes sense on its own. Together, they turn into a mess.</p>
-          <p>Now every connection between those services needs its own special handling: that's your bag of adapters. Someone has to write that glue code, test it, and keep it working. That's engineering time spent on plumbing instead of features, and every special case is one more place for bugs to hide.</p>
-          <p>And every new developer has to learn several ways of doing the same thing before they can connect anything.</p>
-          <p>Now, mixing styles isn't wrong. Remember the rule of thumb: REST for public, gRPC inside, events for background work. That's a deliberate mix. What hurts is mixing by accident.</p>
-          <p>So agree on a standard: one style for each kind of connection, written down where everyone can find it. Need an exception? Fine, just say why, and agree on it. Then a new service doesn't need a meeting to decide. It just plugs in.</p>
-          <h4>So, how many adapters is your system carrying today? Next: some problems, like errors, show up in every single service. Let's solve them once.</h4>
+          <h3>Last time, we saw why a system might use direct requests for some jobs and events for others. Now imagine plugging the same phone charger into three rooms and finding a different socket in each one. You’re trying to do the same thing every time, but you have to stop and work out which adapter you need.</h3>
+          <p>The same friction can show up even when teams choose the same API style. Suppose two REST APIs both receive a request for a record that doesn’t exist. One sends back a standard “not found” response. The other reports success and puts an error message in the response body. A caller that uses both needs to know the difference, and someone has to write and test both paths.</p>
+          <p>That’s where a shared convention helps. Agree on how similar interactions should behave, write down the default where teams can find it, and explain exceptions when there’s a good reason for them. You can still use a direct request to look up an order and an event to announce that it was placed.</p>
+          <h4>Think of two services your team calls for similar work. What does the caller have to learn twice? Once teams agree on those details, the next question is how to make the agreement easy to use. That’s where shared interfaces and standard libraries come in.</h4>
         </aside>
       </section>
 
             <section class="S13">
         <h1>What Are Shared Interfaces and Standard Libraries?</h1>
-        <p class="subtitle">Solve it once, use it everywhere</p>
+        <p class="subtitle">Agree on the format, reuse the code</p>
         <div class="r-stack">
           <img src="images/what/s13-coffee-chain.png" alt="One recipe card connected to many identical cafés, including a new café being opened">
           <img class="fragment" src="images/what/s13-shared-library.png" alt="One shared toolbox connected to many services, with a new service plugging in">
         </div>
         <aside class="notes">
           <h2>What Are Shared Interfaces and Standard Libraries?</h2>
-          <h3>How does a coffee chain with a hundred cafés make every latte taste the same? One shared recipe. When they improve it, they change it once, and every café follows. And when a new café opens, it uses that recipe from day one, no guesswork. Your services can work exactly the same way.</h3>
-          <p>Picture 50 services, and someone asks, 'How do we handle errors across all of them?' If every service does it its own way, that's 50 different answers. Every caller has to decode each one, and every change means 50 updates.</p>
-          <p>So start with a shared interface: one agreed format for things every service deals with, like errors, logging, and checking who's signed in. There's even an official internet standard for API error formats, called Problem Details. Your team still picks its own codes inside it.</p>
-          <p>Then put that agreement into a standard library: code every service uses. Need a new error type? Add it once, and every service picks it up on its next update. And a brand-new service is ready from day one, just like the new café.</p>
-          <p>Two honest tips. Keep the library to the technical basics. Put business logic in it, and you tie your services together. And a library only works within one programming language, so if you use several, the shared format matters even more.</p>
-          <p>Done right, the next developer doesn't reinvent anything. They use what already works. And when something breaks, every service tells the story the same way.</p>
-          <h4>One recipe, a hundred cafés, the same latte everywhere. But what happens when every café suddenly gets ten times more customers?</h4>
+          <h3>Last time, we saw what happens when two services describe the same error differently. Think of a café chain that gives each shop the same latte recipe. The recipe is the agreement, and each shop makes the drink in its own kitchen. In software, we can share an agreement like that and give teams code that helps them follow it.</h3>
+          <p>Suppose the orders service and the returns service both need to explain why a request failed. They can agree on what an error response looks like so callers know where to find its type and any explanation. Problem Details is an existing standard for describing errors in HTTP APIs. Both services can use that format even if they’re written in different languages.</p>
+          <p>If the services use the same programming language, they can also import a library that builds those responses. Think of it as giving each kitchen the same measuring tools. Each service uses the version it has installed, so publishing an update to the library doesn’t change the running services on its own. Keep the shared code focused on formatting the response. The orders service still decides whether an order can be cancelled.</p>
+          <h4>The recipe helps each café serve a familiar drink. Now suppose many more customers show up at once. Can the café keep up? That’s the question we’ll use to explore scalability.</h4>
         </aside>
       </section>
 
             <section class="S14">
         <h1>What Is Scalability?</h1>
-        <p class="subtitle">Bigger machines, more machines, no bottlenecks</p>
+        <p class="subtitle">Handle more work as demand grows</p>
         <div class="r-stack">
           <img src="images/what/s14-busy-cafe.png" alt="A small café overwhelmed by a long line of customers">
           <img class="fragment fade-in-then-out" src="images/what/s14-vertical-horizontal.png" alt="One giant espresso machine next to four baristas with their own machines">
@@ -271,19 +233,17 @@
         </div>
         <aside class="notes">
           <h2>What Is Scalability?</h2>
-          <h3>So, your café is suddenly ten times busier. You can buy a bigger, faster espresso machine. Or you can add more baristas, each with their own machine. But if everyone still pays at one slow cash register, the whole line backs up anyway. That's scalability in a nutshell: growing to meet the crowd, without one weak spot holding everyone back.</h3>
-          <p>Scalability means your system can handle growth in traffic, especially on the days that matter most: the big sale, the product launch, the moment you go viral. Crash then, and customers leave, and so does the revenue.</p>
-          <p>The first way to scale is vertical: make the machine bigger. More memory, more CPU, in the cloud often just a bigger server size. It's simple. But there's a ceiling, and it's still one machine. If it goes down, everything goes down.</p>
-          <p>The second way is horizontal: add more copies, and spread the traffic between them. There's almost no ceiling, but every copy has to handle any request, and there are more moving parts to run.</p>
-          <p>And the load is often bigger than it looks. One click on 'Place order' can trigger four or five steps behind the scenes: charging the card, updating the stock, sending the email, preparing the shipment.</p>
-          <p>That's where bottlenecks hide: in the one part that can't keep up. Remember, one slow link holds up the whole journey. So scale the part that's actually busy, not everything, or you're paying for capacity nobody uses.</p>
-          <h4>So, where's the slow cash register in your system? And handling growth is only half the story. Next: what happens when something actually breaks?</h4>
+          <h3>In the last lesson, each café had a recipe it could follow. Now imagine one of those cafés gets a rush of customers. The barista knows exactly how to make each drink, but the line keeps growing because orders arrive faster than the café can serve them. What could the café change to keep up?</h3>
+          <p>Scalability is the ability to handle more work as demand grows while keeping performance within an acceptable range. If the espresso machine is what limits the café, it could get one that makes more drinks at a time. In software, giving one server more processing power or memory is called scaling up, or vertical scaling.</p>
+          <p>The café could also add another machine and have two baristas make drinks in parallel. In software, adding more instances of the orders service and spreading requests across them is called scaling out, or horizontal scaling.</p>
+          <p>Either change helps when it adds capacity where the work is held up. If everyone is still waiting at one slow register, more espresso machines may barely shorten the line. The same thing can happen when you add copies of a service but they all rely on a database that’s already at capacity.</p>
+          <h4>Before adding capacity, check where the work is backing up and whether your change helps there. Now imagine that a machine stops working altogether. How much of the café can keep going? That’s our next question about robustness.</h4>
         </aside>
       </section>
 
             <section class="S15">
         <h1>What Is Robustness?</h1>
-        <p class="subtitle">Fail small, recover fast</p>
+        <p class="subtitle">Keep essential work going</p>
         <div class="r-stack">
           <img src="images/what/s15-tower.png" alt="A tall tower swaying during an earthquake, its central column visible, still standing">
           <img class="fragment fade-in-then-out" src="images/what/s15-unknown-error.png" alt="A puzzled developer staring at an error pop-up that shows only a question mark">
@@ -291,137 +251,111 @@
         </div>
         <aside class="notes">
           <h2>What Is Robustness?</h2>
-          <h3>Here's something remarkable. In 2011, Japan was hit by one of the strongest earthquakes ever recorded. The Tokyo Skytree, still under construction, swayed several meters at the top, and wasn't damaged. Its engineers had planned for that day, with a central column inspired by ancient pagodas. Robust systems work the same way: they expect failure, and keep standing.</h3>
-          <p>Robustness means your system handles errors and surprises, and keeps going. Quick question: how many of you have errors in production that nobody really understands? ... Like the classic: 'Unknown Error.' What does that even mean?</p>
-          <p>So whenever two parts connect, ask early: what could break here, how is the error reported, and how should the other side react? Code that gets a message it doesn't understand shouldn't just crash.</p>
-          <p>Give your errors your own codes, on top of standard status codes, just like a car's check-engine code. And never decide what to do by searching an error message for a word. Reword the message, and every check silently breaks. Codes don't.</p>
-          <p>With a clear code, a service knows what to do: retry, use a backup, or skip that step and keep going. Just retry carefully: only a few times, with a pause in between, and never retry anything that could charge a card twice.</p>
-          <p>And your users? Give them a friendly message with a short reference code. When they call support, the first question is simply, 'What's the code?' And support knows right away.</p>
-          <h4>Expect failure, and keep standing, just like the tower. But when something does break, how do you actually see what happened inside?</h4>
+          <h3>Last time, we asked how a café could handle a rush. Now suppose its espresso machine stops working. The staff can still serve brewed coffee, and they can tell customers which drinks are unavailable. A backend faces a similar decision when something fails: what can it still do, and what does it need to stop?</h3>
+          <p>Robustness is the ability to handle problems while keeping the system’s behavior predictable. Think about the order confirmation we’ve been using. If the order is saved and the email provider is unavailable, the app can still show the customer that the order went through. The email can wait. But if the system can’t verify that it saved the order, it shouldn’t tell the customer the order is confirmed.</p>
+          <p>The email worker also needs a plan. Give its call a time limit so it can stop waiting when the provider doesn’t respond. If the failure looks temporary and sending again is safe, the worker can try again later with a limit on attempts. That matters because a timeout tells you that you didn’t get an answer in time. The provider may already have received the message.</p>
+          <h4>For a dependency your system uses, ask what should keep working if it fails and what should stop. That’s a decision about failure. Next, we’ll look at a different pressure on the design: how easily you can change it when a new requirement comes along.</h4>
         </aside>
       </section>
 
 
       <section class="S16">
   <h1>What Is Flexibility?</h1>
-  <p class="subtitle">Make room for the next feature</p>
+  <p class="subtitle">Make likely changes easier</p>
   <div class="r-stack">
     <img src="images/what/s16-washing-machine.png" alt="A new washing machine sliding into a laundry corner where the water pipe, drain, and socket are already in place">
-    <img class="fragment fade-in-then-out" src="images/what/s16-payment-port.png" alt="A checkout block with one connector port, and several payment providers lining up to plug into it">
-    <img class="fragment" src="images/what/s16-feature-switches.png" alt="A control panel of toggle switches, each turning a small feature module on or off">
+    <img class="fragment" src="images/what/s16-payment-port.png" alt="A checkout block with one connector port, and several payment providers lining up to plug into it">
   </div>
   <aside class="notes">
     <h2>What Is Flexibility?</h2>
-    <h3>Picture buying a new washing machine. If the water pipe, the drain, and the socket are already in place, it's installed in ten minutes. If not, you're breaking open walls and calling a plumber, and it takes days. Same machine, same job. The only difference is whether the house was built with room for it.</h3>
-    <p>In software, it looks like this. The business asks for something small, and the answer is always: 'Sure, but first we need to refactor this, move that, and rewrite those.' Flexibility means your system takes new features without that kind of major rework.</p>
-    <p>Take an online store built for one payment provider. If checkout calls that provider directly, all over the code, adding a second one means rewriting big parts of checkout. But if every payment goes through one clear connection point, the new provider plugs in behind it.</p>
-    <p>That's loose coupling at work: when parts know little about each other, you can replace one without touching the rest.</p>
-    <p>But flexible doesn't mean preparing for every possible future. That's over-engineering: it costs time now and adds complexity for years. Just like the house, you add connections for the washing machine you can reasonably expect, not a socket for every appliance ever invented.</p>
-    <p>And for new features, use feature flags: switches that turn a feature on or off without a new deployment. Release it to a few users first, and if something goes wrong, switch it off. That's how you say 'yes' to the business quickly, and safely.</p>
-    <h4>Make room for the changes you can reasonably expect, and switch new features on when you're ready. But how do you even notice something's going wrong?</h4>
+    <h3>Last time, we asked what keeps working when something fails. Now imagine everything is working, but the business needs a change. Think about replacing a washing machine. If the new machine can use the existing water supply, drain, and outlet, most of the work stays in the laundry corner. That’s the kind of change we want to make easier in software.</h3>
+    <p>Flexibility is how easily a system can adapt when requirements change. Suppose your store needs a second payment provider. If checkout uses the first provider’s request format and error codes throughout its code, adding another provider can mean revisiting all those places.</p>
+    <p>Instead, give checkout an interface that describes what it needs from payments. Behind that interface, each provider gets its own adapter, a piece of code that translates between your system and the provider. The new provider still needs integration and testing. The benefit is that checkout can keep using the same interface as long as it covers what both providers need to do.</p>
+    <p>Start with a change you have a reason to expect. If a second provider is likely, a clear boundary can help. If you’re guessing at every payment feature you might need someday, that extra design can make today’s code harder to work with.</p>
+    <h4>Pick one likely change and ask how far it has to spread through your code. Then, once you ship a change, how can you tell what it’s doing in the running system? That’s where observability comes in.</h4>
   </aside>
 </section>
 
 <section class="S17">
   <h1>What Is Observability?</h1>
-  <p class="subtitle">See inside, skip the noise</p>
+  <p class="subtitle">See what the running system is doing</p>
   <div class="r-stack">
-    <img src="images/what/s17-cameras.png" alt="Two security cameras watching a yard: one feeding a mountain of storage boxes, the other with a motion sensor feeding one tidy box">
-    <img class="fragment fade-in-then-out" src="images/what/s17-signals.png" alt="A system sending out three signals: a scrolling list of logs, a gauge and chart of metrics, and a dotted path of one request through several services">
-    <img class="fragment" src="images/what/s17-clean-logs.png" alt="A heap of crumpled papers turning into a neat cabinet of drawers, with a magnifying glass finding one glowing error card">
+    <img src="images/what/s17-signals.png" alt="A system sending out three signals: a scrolling list of logs, a gauge and chart of metrics, and a dotted path of one request through several services">
   </div>
   <aside class="notes">
     <h2>What Is Observability?</h2>
-    <h3>Say you have two security cameras watching your yard. One records every second, all day and night. The other records only when it detects motion. Which one costs less to store? And when something actually happens, which one gets you to the right moment faster? The motion one, of course. Seeing inside your system works the same way.</h3>
-    <p>That's observability: understanding what's happening inside your system from the signals it sends out. The three main ones: logs tell you what happened, metrics tell you how much and how fast, and traces follow one request through every service. The simplest start is a request ID, logged with every step and every error.</p>
-    <p>A common mistake is logging everything: every request, every detail, every step. Then the cloud bill arrives, because storing and processing logs isn't free. And during an outage, the one error that matters is buried under millions of lines. So the goal isn't more logs. It's better logs.</p>
-    <p>First, make them structured. Instead of random sentences, use a consistent format, like key-value pairs, so you can search and filter in seconds.</p>
-    <p>Second, log by level: debug, info, warning, error. Keep detailed debug logs off in production, and switch them on only while you're investigating. Third, decide how long you need logs, and let older ones expire.</p>
-    <p>But don't swing too far the other way. Errors and important events, with useful context like that request ID, are exactly what saves you. So when a user calls support, one ID leads straight to their exact request.</p>
-    <h4>Like the motion camera: record what matters, and every problem leaves a clear trail. But cameras only watch. What actually keeps the wrong people out?</h4>
+    <h3>Last time, we added a second payment provider. Imagine that after the change, some customers say checkout feels slow. One report tells you something is worth looking at. To work out how widespread it is and what might be causing it, you need evidence from the running system.</h3>
+    <p>Observability is how well you can understand what’s happening inside a system from the signals it records. In our checkout example, start with metrics. These are measurements you can compare over time. You might look at how long checkout takes and see whether requests using the new provider are taking longer.</p>
+    <p>Then look at a trace. It follows one request through the steps that were recorded, so you can see where time was spent. If the trace shows a long wait during the payment call, a related log entry might tell you whether the call timed out or eventually returned. Logs record individual events. A shared identifier can help you find the entries for the same request.</p>
+    <p>Start with the questions you need to answer. Consistent log fields, such as the request identifier and the outcome, make those entries easier to search. Choose what detail to keep and for how long, because collecting and storing more data has a cost.</p>
+    <h4>Before your next change goes live, ask what evidence would help you tell whether it worked. Choosing what to record is one design decision you can make early. Next, we’ll look at another: how to protect the system and its data from the start.</h4>
   </aside>
 </section>
 
 
 <section class="S18">
   <h1>What Is Security by Design?</h1>
-  <p class="subtitle">Lock every door, not just the front</p>
+  <p class="subtitle">Decide what each caller can do</p>
   <div class="r-stack">
     <img src="images/what/s18-bank-layers.png" alt="A cutaway bank showing security in layers: a shield gate, a key card door, a vault, and safe deposit boxes each with its own lock">
-    <img class="fragment fade-in-then-out" src="images/what/s18-service-keys.png" alt="Services inside a network, each with its own key, checking identity before connecting, with one door staying closed to a service without the right key">
-    <img class="fragment" src="images/what/s18-exposed-service.png" alt="A private service behind a wall with one gate open by mistake, beams from the internet reaching it, and an alarm ringing">
+    <img class="fragment" src="images/what/s18-service-keys.png" alt="Services inside a network, each with its own key, checking identity before connecting, with one door staying closed to a service without the right key">
   </div>
   <aside class="notes">
     <h2>What Is Security by Design?</h2>
-    <h3>A bank doesn't stop at the guard by the entrance. Every inner door needs a key card. The vault has its own lock, and so does every safe deposit box inside it. Get past one layer, and the next one is still there. That's how you keep the wrong people out: not with one strong door, but with many.</h3>
-    <p>Security by design means building those layers into your architecture from day one, not adding them a week before launch. Quick question: how many of your internal services actually check who's calling them?</p>
-    <p>A lot of teams say, 'They're on the internal network, so they can trust each other.' But what if someone gets inside? Suddenly, every service is wide open. That's why many teams follow zero trust: no service is trusted automatically, just because it's internal.</p>
-    <p>So decide early how your services prove who they are. Even simple steps help: give each service its own key, rotate those keys regularly, and give each one only the access it needs. Just like every safe deposit box has its own lock.</p>
-    <p>And watch for a risk people underestimate: a private service becoming public by accident. One deployment goes slightly wrong, one firewall rule is off, and suddenly it's reachable from the internet.</p>
-    <p>Why does this matter so much? IBM puts the average data breach at nearly five million dollars. Designing the layers in early costs far less, and your design passes the security review instead of failing it right before launch.</p>
-    <h4>Before your next review, ask one question: what if someone's already inside? And security isn't the only late surprise. Legal rules can be one too.</h4>
+    <h3>Last time, we asked what evidence to record before a change goes live. Here’s another question to ask early: who should be able to see the information your system handles? Think of a bank. A badge that opens the staff entrance doesn’t automatically open the vault. Getting through one door gives you access to a particular area for a particular reason.</h3>
+    <p>Security by design means making protection decisions as you shape the system. In our order example, the notification worker needs enough information to send a confirmation. Decide what that information is and how it reaches the worker. The worker can receive an order reference and email address for the message without receiving payment details or permission to change an order.</p>
+    <p>Then ask two questions wherever access is checked. Who is making the request? What are they allowed to do? The first check verifies identity. The second checks permission for the action. Being on an internal network doesn’t answer either question by itself. Giving each service only the permissions it needs is called least privilege.</p>
+    <h4>Pick one service and ask what it needs to read or change to do its job. That gives you a starting point for deciding what access to grant. Next, we’ll look at how requirements from outside your team can also shape how you handle information.</h4>
   </aside>
 </section>
 
 
 <section class="S19">
   <h1>What Is Compliance?</h1>
-  <p class="subtitle">When laws shape your architecture</p>
+  <p class="subtitle">Turn applicable rules into requirements</p>
   <div class="r-stack">
-    <img src="images/what/s19-building-rules.png" alt="A house blueprint with an approval stamp above it, surrounded by symbols for height limits, distance from the road, and safety">
-    <img class="fragment fade-in-then-out" src="images/what/s19-delete-button.png" alt="One delete button on an app screen, with lines spreading behind it into services, databases, backups, and an outside cloud">
-    <img class="fragment" src="images/what/s19-data-borders.png" alt="A made-up map region with databases inside a glowing border, and a data packet stopped at a gate on the edge">
+    <img src="images/what/s19-account-deletion.png" alt="A house blueprint with an approval stamp above it, surrounded by symbols for height limits, distance from the road, and safety">
+
   </div>
   <aside class="notes">
     <h2>What Is Compliance?</h2>
-    <h3>Why do you check the local building rules before you even sketch a house? Because those rules decide what you're allowed to build: how tall, how far from the road, how safe. Ignore them, and there's no permit. Or worse, you build it, and then you're told to tear part of it down. Software has building rules too.</h3>
-    <p>Compliance means your system follows the laws that apply to it, especially around personal data: how you store it, share it, and protect it. In Europe, that's GDPR, and other regions and industries have their own rules.</p>
-    <p>Here's why it shapes the architecture. Under GDPR, people can ask a company to delete their personal data. On screen, that's one simple button: 'Delete my account.' But behind it, your system has to find and remove that person's data everywhere it lives: every service, every database, every copy.</p>
-    <p>Planned early, that's a feature. Discovered late, it's a project that touches every part of your system.</p>
-    <p>And some rules go even deeper. Laws can decide where your data is allowed to be stored, or whether it can leave a region at all. That's not one feature anymore. It shapes where you host, how you copy data, and which outside services you can use.</p>
-    <p>And the stakes are real: GDPR fines can reach four percent of a company's global yearly revenue. So let compliance shape your design from day one, and you pass legal reviews, launch in new markets with confidence, and earn your users' trust.</p>
-    <h4>Check the building rules before you sketch, not after you build. And there's one more set of requirements nobody writes down until it's too late: how fast, and how reliable?</h4>
+    <h3>In the last lesson, we asked who needs access to customer information. Now imagine a customer closes their account and asks you to delete their personal data. Their email address might be in the account database, in records for past orders, and with the provider that sends confirmations. The request looks simple from the app, but the team needs to know what rules apply to each record.</h3>
+    <p>Compliance means meeting the rules that apply to your system. In the European Union, the General Data Protection Regulation, or GDPR, gives people the right to have personal data erased in certain circumstances. There are exceptions, including when the law requires the organization to keep the data.</p>
+    <p>That changes what you design. First, find where the relevant information lives and who holds it. Then confirm which data the organization needs to erase and which records it must keep. In an online store, for example, you might remove profile data while keeping information in a transaction record that the law requires you to retain. The system needs a way to apply those decisions to the right records.</p>
+    <h4>When you hear that a rule applies, ask what the system needs to do differently because of it. That turns the rule into a design requirement. Next, we’ll look at two other kinds of requirements: how quickly the system needs to respond and how often it needs to be available.</h4>
   </aside>
 </section>
 
 <section class="S20">
   <h1>What Are Performance and Uptime Requirements?</h1>
-  <p class="subtitle">Speed, availability, and promises</p>
+  <p class="subtitle">How fast, and how often available?</p>
   <div class="r-stack">
     <img src="images/what/s20-pizza-promise.png" alt="A pizza shop at night with a door sign promising on-time delivery or it's free, and open late, with ovens glowing and a delivery scooter waiting">
-    <img class="fragment fade-in-then-out" src="images/what/s20-requirements.png" alt="A system block connected to a speedometer, a day-and-night clock with an always-on light, and a sealed contract with a coin attached">
-    <img class="fragment" src="images/what/s20-nines-stairs.png" alt="A staircase where each step is taller than the last, with server racks and coin piles growing bigger at every step">
+    <img class="fragment" src="images/what/s20-requirements.png" alt="A system block connected to a speedometer, a day-and-night clock with an always-on light, and a sealed contract with a coin attached">
   </div>
   <aside class="notes">
     <h2>What Are Performance and Uptime Requirements?</h2>
-    <h3>A pizza place puts a promise on its door: delivered in thirty minutes, or it's free. Open every day until midnight. That promise decides everything behind the counter: how many ovens, how many drivers, who works the late shift. Promise ten minutes, and the whole kitchen changes. Promise nothing, and nobody knows what the kitchen needs.</h3>
-    <p>Your system needs the same promises. Performance requirements say how fast it must respond under real load. Fast enough for what you actually need, not 'can it handle a billion requests?' Too slow, and users leave. Built for a billion, and you pay for complexity nobody needed.</p>
-    <p>Uptime requirements say how often the system must be available. Can it go down for an hour of maintenance on a Sunday night? Or must it stay up around the clock?</p>
-    <p>And sometimes, your company has already promised it. That's an SLA, a service level agreement: the uptime or speed promised to customers, often with penalties when it's missed. Just like the free pizza.</p>
-    <p>Uptime is usually counted in nines. Three nines, 99.9 percent, allows almost nine hours of downtime a year. Four nines, 99.99 percent, allows about fifty-two minutes. And every extra nine makes your system much harder, and much more expensive, to build.</p>
-    <p>That's why these numbers belong at the very start. They decide how many servers you run, where you run them, and how you recover from failure. Know them early, and you spend only where it counts, and keep every promise your company makes.</p>
-    <h4>Promise only what you can deliver, and build exactly for that. Because every extra nine, every extra server, adds something else too: complexity. So when is it too much?</h4>
+    <h3>Last time, we turned a rule into something the system needs to do. Think about ordering pizza. You want to know whether the shop is taking orders and how long delivery might take. Those are two different questions. We can ask the same questions about an online checkout and turn the answers into targets the team can measure.</h3>
+    <p>A performance requirement can describe how quickly checkout needs to respond under a given load. For example, your team might set a target of two seconds or less for at least 95 percent of checkout requests during a sale, at the traffic you expect. That gives you something specific to test and makes room for the fact that some requests take longer.</p>
+    <p>An uptime requirement describes how much of a period checkout needs to be available. If your target is 99.9 percent uptime over a 30-day month and you count all downtime, that leaves about 43 minutes of downtime. Agree on what counts as unavailable. For customers, checkout may be unavailable even when the page loads, if they can’t place an order.</p>
+    <p>Your team can set these targets for its own work. If your company makes a formal commitment to customers, it may put the targets and what happens if they’re missed in a service level agreement.</p>
+    <h4>Decide what users need, how you’ll measure it, and over what period. A tighter target can change what you need to build and operate. That brings us to the next question: how much complexity are those requirements worth?</h4>
   </aside>
 </section>
 
 
 <section class="S21">
   <h1>What Is Complexity?</h1>
-  <p class="subtitle">When it's too much, and what to do</p>
+  <p class="subtitle">Trace what depends on what</p>
   <div class="r-stack">
     <img src="images/what/s21-cable-mess.png" alt="A messy bundle of cables behind a desk running into one overloaded power strip, with a question mark over a half-pulled plug">
-    <img class="fragment fade-in-then-out" src="images/what/s21-spaghetti-design.png" alt="An architecture diagram with arrows crossing everywhere like spaghetti, an hourglass almost empty, and a confused audience">
-    <img class="fragment" src="images/what/s21-managed-database.png" alt="A database handed to a cloud provider along with backups, patches, and night-time failures, leaving one neat cable behind">
   </div>
   <aside class="notes">
     <h2>What Is Complexity?</h2>
-    <h3>Ever looked behind a desk where cables were added one at a time, for years? Each one had a good reason: a new monitor, a charger, a speaker. But now it's a mess, and nobody dares to unplug anything, because who knows what goes dark. That's complexity: every piece made sense on its own, but not together.</h3>
-    <p>In software, it grows the same way. You add boxes and arrows to your design, each one logical in the moment. Then you step back, look at the whole thing, and think: 'Oh no. This is spaghetti.'</p>
-    <p>And the more you spread your system across services, the faster complexity grows. Every new service is one more cable: more connections, more to deploy, more that can break. The more complexity you add, the more you own.</p>
-    <p>So when is it too much? Here's a simple test. Present your design for twenty minutes. If nobody in the room really understands it, that's a warning sign. Either the design is too complex, or the way you're explaining it is.</p>
-    <p>That's why you watch complexity while you design, not just at the end. Deal with the dependencies early, before they pile up.</p>
-    <p>And sometimes, the smartest way to manage a complex part is to stop managing it yourself. Running your own database means backups, patches, and fixing failures in the middle of the night. A managed database is the same database, but the cloud provider handles all of that. One less cable for you.</p>
-    <h4>Look at your own system: which part are you running that someone else could run better? Just remember, handing it off isn't free. So what does a system really cost?</h4>
+    <h3>Last time, we saw how a tighter uptime target can change what you build. Think of the cables behind a desk. Each one connects something useful, but if you can’t tell what a plug powers, moving one device becomes a guessing game. That’s a useful way to think about complexity in a backend.</h3>
+    <p>Complexity is how hard it is to understand what the system does and predict what happens when you change it. Suppose you want to change the wording of an order confirmation. If the notification service owns the wording, the change can stay there. If checkout builds the message, the orders service adds details, and the notification service finishes it, you have to trace all three to see what you can safely change.</p>
+    <p>Try walking through one request with a teammate. Ask what each component needs from the others and what the customer sees if one of them is unavailable. If you can’t answer, check whether the diagram is missing information or whether the design has a dependency you can simplify. Some dependencies are worth keeping because they meet a requirement. The point is to know what each one buys you.</p>
+    <h4>Once you can explain why a dependency exists, ask what it takes to keep it working. That might mean more testing, more coordination, or more work when something fails. Those costs are where we’ll pick up next.</h4>
   </aside>
 </section>
 
@@ -430,19 +364,14 @@
   <h1>What Does a System Really Cost?</h1>
   <p class="subtitle">More than the cloud bill</p>
   <div class="r-stack">
-    <img src="images/what/s22-puppy.png" alt="A happy puppy with a bow on a welcome mat, surrounded by icons for food, vet visits, insurance, toys, and daily walks in rain or snow">
-    <img class="fragment fade-in-then-out" src="images/what/s22-iceberg.png" alt="An iceberg with a small cloud bill on the tip and a huge hidden part full of clocks, wrenches, and coins">
-    <img class="fragment" src="images/what/s22-scale.png" alt="A balance scale weighing a free gift box piled with clocks and wrenches against a priced box with a chain link">
+    <img src="images/what/s22-iceberg.png" alt="An iceberg with a small cloud bill on the tip and a huge hidden part full of clocks, wrenches, and coins">
   </div>
   <aside class="notes">
     <h2>What Does a System Really Cost?</h2>
-    <h3>Bringing home a puppy is one of life's best decisions. And it might even cost nothing. But every dog lover knows what comes next: food, vet visits, insurance, new toys, and a walk every single day, rain or snow, for years. Worth every minute. But the price tag was never the real cost. Software works the same way, just without the cuddles.</h3>
-    <p>In software, the price tag is usually the cloud bill, and that's the number teams watch. But the real cost of a system also includes engineering hours: building it, maintaining it, fixing it, and even the time spent planning and coordinating.</p>
-    <p>Those hours are often a black box. Nobody tracks them, because 'we already have the engineers, so it's basically free.' It isn't. Every hour spent keeping a system alive is an hour not spent on new features.</p>
-    <p>Remember the self-run database? Say it takes ten hours a week to keep it running. That's a quarter of one engineer's time, every week, for years. That can cost more than the managed service itself.</p>
-    <p>Same with open source. It's free to download, but someone has to set it up, update it, and fix it when it breaks. There's a name for counting all of it: total cost of ownership. Everything a technology costs over its whole life, not just the price tag.</p>
-    <p>And sometimes, a paid vendor is actually cheaper, because they do the daily walks for you. Just remember, lock-in has a cost too: prices can rise, and leaving later is hard.</p>
-    <h4>So count the walks, not just the price tag. And once you know the real cost, the next question is: which technology is actually worth it?</h4>
+    <h3>Last time, we asked what it takes to keep a dependency working. Imagine two ways to run the database for your online store. One has a lower monthly bill, but your team handles updates, backups, and recovery. The other costs more on the invoice and takes on some of that work. Which one costs your team more over the next year?</h3>
+    <p>That’s a question about total cost of ownership. It includes what you pay for the technology and what it takes to set it up, run it, change it, and eventually replace it. The cloud bill is easy to see. The hours your team spends keeping the database working can be harder to spot.</p>
+    <p>To compare the two options, use the same time period and the same requirements. For each one, estimate the bill, the setup work, and the time your team spends on routine maintenance and incidents. With a managed service, check which tasks the provider handles and which remain yours. If switching later looks likely, include the work of moving your data and changing the application.</p>
+    <h4>Once you’ve counted the money and the time, ask whether your team can actually do the work you’ve listed. That’s where we’ll pick up next, when we look at what makes a technology the right choice.</h4>
   </aside>
 </section>
 
@@ -451,129 +380,105 @@
   <h1>What Makes a Technology the Right Choice?</h1>
   <p class="subtitle">Pick what your team can support</p>
   <div class="r-stack">
-    <img src="images/what/s23-bug-zapper.png" alt="Cute bugs circling a glowing bug zapper in a garden, ignoring a flower and a plant nearby">
-    <img class="fragment fade-in-then-out" src="images/what/s23-night-failure.png" alt="A shiny new database flashing a warning at night while a puzzled team stands around it with question marks">
+    <img src="images/what/s23-night-failure.png" alt="A shiny new database flashing a warning at night while a puzzled team stands around it with question marks">
     <img class="fragment" src="images/what/s23-side-project.png" alt="A new tool tested under a glass dome on a workbench, with a path through a checked gate to a steady production system">
   </div>
   <aside class="notes">
     <h2>What Makes a Technology the Right Choice?</h2>
-    <h3>Ever watched bugs around a bug zapper on a summer evening? They get pulled toward the bright glow, circling closer and closer. Not toward the safest spot, not toward food. Just the shiniest thing in the garden. And that's exactly what gets them. Choosing technology can work the same way: the newest, brightest tool pulls you right in.</h3>
-    <p>Choosing technology is one of the hardest calls in any design. And the right choice isn't the newest one. It's the one your team understands, and can build, run, troubleshoot, and support.</p>
-    <p>Picture this. Your team picks a brand-new database because everyone's talking about it. It works fine, until one night it starts failing in production. And nobody on the team knows how to fix it, or even where to start looking. Hours of guessing, while users wait.</p>
-    <p>So think about the whole team, not just yourself. If only one person understands a tool, or nobody does, it probably doesn't belong in your design.</p>
-    <p>That doesn't mean ignoring new technology. Stay aware of trends, like serverless or event-driven systems. Knowing what's possible gives you more options. But knowing when not to use them matters just as much.</p>
-    <p>So try new tools on side projects first. Learn how they behave, and how they break. Then, when one really solves a problem at work, you can bring it in with confidence, and your team can support it.</p>
-    <h4>Before you bring in anything new, ask: can my team fix this at 2 a.m.? And once you've chosen, write down why. Because six months from now, someone's going to ask.</h4>
+    <h3>Last time, we counted the work that comes with running a database. Imagine your team is choosing one for a new order history feature. One database is already familiar. Another looks promising, but nobody on the team has run it in production. How do you decide whether it’s worth learning and taking on?</h3>
+    <p>Start with what the feature needs. For order history, that could mean finding a customer’s recent orders quickly and keeping those records for as long as your requirements say. If the database you already use can do that, it’s a useful baseline. If another option solves a specific problem the familiar one can’t, you have a reason to investigate it.</p>
+    <p>Then ask what the team needs to do after launch. Who can diagnose a slow query, roll out an update, or restore the data? If those answers are unclear, try the new database in a small test environment. Use queries like the ones the feature needs, and have another teammate restore a backup using the instructions you wrote. That tells you more about what it takes to support the tool than a demo that only shows it working.</p>
+    <h4>Once you’ve made the choice, write down the requirement it meets and what you learned about supporting it. That gives the next person a way to understand why you chose it. We’ll look at where to capture that reasoning in the next lesson.</h4>
   </aside>
 </section>
 
 <section class="S24">
   <h1>What Is Architecture Documentation?</h1>
-  <p class="subtitle">Write down the why, and keep it current</p>
+  <p class="subtitle">Show how it works and why</p>
   <div class="r-stack">
     <img src="images/what/s24-old-map.png" alt="An old paper map showing a road that, in the real landscape behind it, ends at a fence in an open field">
-    <img class="fragment fade-in-then-out" src="images/what/s24-decision-record.png" alt="A document card with three sections for context, decision, and consequences, with faded rejected options behind it">
-    <img class="fragment" src="images/what/s24-docs-next-to-code.png" alt="A code window and a document page linked by sync arrows, with an outdated page dropping into a recycling bin">
+    <img class="fragment" src="images/what/s24-decision-record.png" alt="A document card with three sections for context, decision, and consequences, with faded rejected options behind it">
   </div>
   <aside class="notes">
     <h2>What Is Architecture Documentation?</h2>
-    <h3>An old map is worse than no map. Follow it once, and the road ends in a field, because that road changed years ago. After that, you stop trusting the whole map, even the parts that are still right. So you put it away and ask someone for directions. Your documentation works the same way.</h3>
-    <p>Architecture documentation is your system's map: the diagrams, how the parts connect, and the decisions behind them. And the decisions matter most. Not just what you chose, but what you rejected, and why.</p>
-    <p>Many teams use a simple format for this, called an Architecture Decision Record. One short document per decision: the context, what you decided, and the consequences. Six months later, when someone asks, 'Why did we do it this way?', the answer is already written down.</p>
-    <p>But here's the problem. Many teams say, 'We don't have time for docs. Let's just build.' So the docs fall behind the system. And just like the old map, once people find one wrong page, they stop trusting all of it.</p>
-    <p>So build the habit. Whenever you work on something, check the related docs. Update them, mark them as outdated, or delete them. And keep docs right next to the code, so they change together.</p>
-    <p>And it isn't only on developers. Managers need to give teams time for it. Because trusted docs pay off every day: newcomers learn on their own, old debates stay settled, and your design keeps its value long after people move on.</p>
-    <h4>An up-to-date map gets used. An old one gets ignored. Now, let's open that map and look at the building blocks, starting with where your data lives.</h4>
+    <h3>Last time, we chose a database for order history. Imagine joining the team six months later. You can see which database the application uses, but the code may give you little insight into why the team chose it. You also need to know how order history works today, especially if you’re about to change it.</h3>
+    <p>Architecture documentation gives people both views. A short description and a diagram can show where order records live and which components read them. Think of the diagram as a map. If the read path changes and the map still points to the old database, update the map as part of the change.</p>
+    <p>To keep the reasoning, write a short architecture decision record. Describe the situation and the options you considered, then record the choice and what it means for the team. For example, you might keep the existing database because it handles the queries you need and the team already knows how to restore it. The trade-off is that order history shares database capacity with checkout.</p>
+    <p>If you later move order history to another store, update the diagram to show the current setup. Keep the old decision record and link it to the decision that replaced it, so the next person can see what changed and why.</p>
+    <h4>A diagram helps you find where the data lives. A decision record helps you understand why it lives there. Next, we’ll look at the storage choices you can make when you’re designing a system.</h4>
   </aside>
 </section>
 
 <section class="S25">
   <h1>What Are Your Main Data Storage Choices?</h1>
-  <p class="subtitle">The right place for each kind of data</p>
+  <p class="subtitle">Start with how you’ll use the data</p>
   <div class="r-stack">
-    <img src="images/what/s25-home-storage.png" alt="A home with keys on a hook by the door, color-coded folders in a filing cabinet, and boxes stacked in the garage">
-    <img class="fragment fade-in-then-out" src="images/what/s25-four-types.png" alt="Four storage symbols: linked tables, a stack of differently shaped documents, a key tag on a box, and a crate holding photos, videos, and backups">
-    <img class="fragment" src="images/what/s25-many-stores.png" alt="An application connected to tables, documents, a key-value box, a file crate, search, and a graph, with the table linking to the files">
+    <img src="images/what/s25-four-types.png" alt="Four storage symbols: linked tables, a stack of differently shaped documents, a key tag on a box, and a crate holding photos, videos, and backups">
   </div>
   <aside class="notes">
     <h2>What Are Your Main Data Storage Choices?</h2>
-    <h3>Where do you keep your keys at home? Probably on a hook by the door, so you can grab them in a second. Important papers go in labeled folders. Old photos and big things go in boxes in the garage. You don't keep everything in one place, because each thing needs its own kind of storage. Your data is no different.</h3>
-    <p>First, relational databases, like those labeled folders. Data lives in tables with fixed columns, and tables link to each other. They shine when several changes must succeed or fail together, like an order and its payment. That's why they're a common, safe default for business data.</p>
-    <p>Second, document databases. Each record is one flexible document, like a product with all its details. Records don't all need the same shape, so they work well for catalogs or user profiles that keep changing.</p>
-    <p>Third, key-value stores: your keys on the hook. You save a value under a name, and get it back in a blink. Great for login sessions or shopping carts.</p>
-    <p>And fourth, object storage, the boxes in the garage. Images, videos, backups: big files, stored cheaply at huge scale. The database just keeps a link to each file.</p>
-    <p>There are special ones too, like search engines and graph databases. But the point is: choose by the shape of your data and how you use it, not by habit. Many systems use more than one. And since data often outlives the code around it, moving it later is expensive.</p>
-    <h4>Right data, right place. But even in the right place, some data gets looked up over and over again. What if you didn't have to fetch it every time?</h4>
+    <h3>Last time, we wrote down why a team chose its database for order history. Now imagine the store also needs to show product details, retrieve shopping carts, and serve photos. Before you pick a storage tool, ask what the application needs to do with each kind of data. Let’s look at four common choices through that store.</h3>
+    <p>A relational database stores records in tables and lets you connect related records. For order history, you might link each order to its line items, then save the order and its items together in one transaction, so either both are saved or neither is.</p>
+    <p>A document database can keep a product’s details together in one record. That can help when the app usually reads the whole product and different products have different details. A jacket might have sizes, while a lamp has a wattage.</p>
+    <p>A key-value store lets you look up a value by a known key. If you have a cart ID and need the contents of that cart, that’s a natural match. Object storage is useful for files like product photos. You can keep the photo there and store its reference alongside the product details.</p>
+    <h4>Start with a store that supports the reads and writes you need. Add another when it solves a specific problem. Even with the right store, you might read the same product details over and over. Next, we’ll look at how caching can reduce those repeated reads.</h4>
   </aside>
 </section>
 
 
 <section class="S26">
   <h1>What Is Caching?</h1>
-  <p class="subtitle">Keep a fresh copy close by</p>
+  <p class="subtitle">Reuse a copy, plan for changes</p>
   <div class="r-stack">
     <img src="images/what/s26-milk-fridge.png" alt="A bottle of milk within reach in an open fridge next to a coffee cup, with a supermarket far away through the window">
-    <img class="fragment fade-in-then-out" src="images/what/s26-hit-miss.png" alt="A request answered quickly by a cache box, and a longer path to the database that brings back a copy for the cache">
-    <img class="fragment" src="images/what/s26-fresh-copy.png" alt="An expired grey card in a cache replaced by a fresh one from the database, while a coin card stays safely with the database">
+    <img class="fragment" src="images/what/s26-hit-miss.png" alt="A request answered quickly by a cache box, and a longer path to the database that brings back a copy for the cache">
   </div>
   <aside class="notes">
     <h2>What Is Caching?</h2>
-    <h3>Nobody walks to the supermarket every time they need milk for their coffee. You keep a bottle of milk in the fridge, right next to you. It's faster, and it saves the trip. But that bottle has an expiry date. Forget to check it, and your morning coffee gets a nasty surprise. That's caching: fast, but only while it's fresh.</h3>
-    <p>A cache keeps a copy of often-used data somewhere faster and closer than its source. When a request comes in, your system checks the cache first. Found it? That's a cache hit, and the answer comes back almost instantly. Not there? That's a miss: you fetch it from the database, and keep a copy for next time.</p>
-    <p>Caches can live in several places: in the user's browser, on servers spread around the world close to your users, or right next to your app, often in the key-value store we just saw.</p>
-    <p>And the payoff is real. Your database stops answering the same question again and again, responses get faster, and you don't pay for a bigger database just to repeat itself.</p>
-    <p>But here's the catch: the copy can go stale, just like the milk. So every copy gets an expiry time, or gets cleared when the real data changes. Getting this right is famously tricky.</p>
-    <p>That's why you cache data that's read often and changes rarely, like a product list or app settings. And be careful with data that must always be exact, like an account balance.</p>
-    <h4>Cache what's read often, keep it fresh, and your database can breathe. Next, the other kind of waiting: slow work, like sending an email, that keeps the user waiting.</h4>
+    <h3>Last time, we talked about where product details live. Imagine hundreds of shoppers opening the same product page. Do you need to ask the database for the same description every time? Think of keeping milk in the fridge for your morning coffee. If it’s there and you can still use it, you save a trip to the shop.</h3>
+    <p>A cache keeps a copy of data so the application can reuse it. One common approach is to check the cache first. If it has a usable copy of the product description, that’s a cache hit, and the app can answer without reading the database. If there’s no usable copy, that’s a cache miss. The app reads the database and puts a copy in the cache for the next request.</p>
+    <p>Now suppose someone edits the product description. The cached copy can still show the old wording. If a short delay is acceptable, you can give the copy an expiry time, after which a request fetches it again. If you need the change to show up sooner, you can also remove the cached copy when the description is updated. Decide how long it’s acceptable for shoppers to see the earlier version.</p>
+    <h4>A cache can save the app from fetching the same data again. But some requests are slow because they have work to do, like sending a confirmation email. Next, we’ll see how a queue can let that work happen separately.</h4>
   </aside>
 </section>
 
 
 <section class="S27">
   <h1>What Are Queues?</h1>
-  <p class="subtitle">Let slow work wait in line, not your users</p>
+  <p class="subtitle">Hand off work that can wait</p>
   <div class="r-stack">
     <img src="images/what/s27-postbox.png" alt="A cutaway postbox with letters and greeting cards piling up neatly inside, and a postal van coming to collect them">
-    <img class="fragment fade-in-then-out" src="images/what/s27-order-queue.png" alt="A phone showing an order placed instantly, while job cards for an email, an invoice, and a box wait on a belt for a worker station">
-    <img class="fragment" src="images/what/s27-spike-line.png" alt="A burst of job cards settling into an orderly line for several worker stations, with a repeated job safely producing only one charge">
   </div>
   <aside class="notes">
     <h2>What Are Queues?</h2>
-    <h3>When you post a letter, do you stand by the postbox until it's delivered? Of course not. You drop it in and go on with your day. Later, the postal worker collects it. And during the holidays, when everyone sends cards at once, the box just fills up. Nothing gets lost. Your system can work the same way.</h3>
-    <p>A queue is a waiting line for work. One part of your system drops off a job, like 'send this order confirmation.' Another part, called a worker, picks it up when it's ready.</p>
-    <p>So when a user places an order, they see 'Order placed!' right away. The email, the invoice, the stock update: all of that happens a moment later, without anyone staring at a loading spinner.</p>
-    <p>Queues also absorb spikes. When a sale starts and traffic jumps, jobs simply line up, and workers get through them at their own pace. So you can size your servers for normal days, not just the busiest one. Just make sure the line gets shorter again. And if a worker fails, the job stays in the queue and gets tried again.</p>
-    <p>Sounds like events? Close. An event is a note on the bulletin board, for anyone who cares. A queue hands each job to one worker.</p>
-    <p>One catch: a job can sometimes arrive twice, so handling it twice must be safe. Remember from robustness: never charge a card twice.</p>
-    <h4>So, queue the slow work, make it safe to repeat, and your users never wait. But what happens when all those requests land on one single server?</h4>
+    <h3>Last time, a cache helped us avoid reading the same data again. What if the work still needs to happen, like sending an order confirmation? Think about dropping a letter into a postbox. You can leave once you’ve handed it off, and the postal worker collects it later. A queue gives your backend a place to hand off work in much the same way.</h3>
+    <p>After the backend saves the order, it can put a message in a queue asking for a confirmation email. The app can show that the order was placed without waiting for the email. A worker, which is code that processes pending jobs, picks up the message and sends the email. The queue holds the work until a worker can take it.</p>
+    <p>During a sale, jobs can arrive faster than workers can finish them. A queue can absorb a short burst, but the wait keeps growing if workers can’t catch up. Some queues can also deliver the same message again, so plan for what happens if a worker sees the same job twice.</p>
+    <h4>An event tells other components what happened. A queue can hold the work they need to do in response. Next, we’ll look at a different kind of handoff: how a load balancer spreads incoming requests across servers that can handle them now.</h4>
   </aside>
 </section>
 
 
 <section class="S28">
   <h1>What Is Load Balancing?</h1>
-  <p class="subtitle">Spread traffic across servers, skip broken ones</p>
+  <p class="subtitle">Send new requests to healthy servers</p>
   <div class="r-stack">
     <img src="images/what/s28-airport-security.png" alt="An airport staff member pointing travelers to the shortest security lane, while a broken scanner is blocked off">
-    <img class="fragment fade-in-then-out" src="images/what/s28-load-balancer.png" alt="Requests flowing into a traffic-director hub and spreading to healthy servers, with one broken server skipped">
-    <img class="fragment" src="images/what/s28-rolling-shared.png" alt="One server being updated while two keep serving, all connected to a shared session store, with the traffic director running as two copies">
+    <img class="fragment" src="images/what/s28-load-balancer.png" alt="Requests flowing into a traffic-director hub and spreading to healthy servers, with one broken server skipped">
   </div>
   <aside class="notes">
     <h2>What Is Load Balancing?</h2>
-    <h3>At a busy airport, there's often one staff member standing where the security lines begin. They don't check anyone's bag. They just point each traveler to the shortest line. And when one scanner breaks down, they simply stop sending people there. Nobody gets stuck, and the lines keep moving. Your servers need someone like that.</h3>
-    <p>That's a load balancer. Remember horizontal scaling: add more copies, and spread the traffic between them? The load balancer does the spreading. It sits in front of your servers and sends each request to one of them. It doesn't do the work itself. It just directs it.</p>
-    <p>How does it choose? Often simply by taking turns, or by picking the server that's least busy right now.</p>
-    <p>And here's the part that saves you at night: health checks. The load balancer keeps asking each server, 'Are you okay?' If one stops answering, it stops getting traffic, just like the broken scanner. One server crashes, and most users don't even notice.</p>
-    <p>There's a business bonus too. You can update your servers one at a time, while the others keep serving. New releases, no downtime.</p>
-    <p>Two catches. First, any copy must be able to handle any request, so don't keep user sessions on one server. Put them in a shared store, like the key-value store we saw earlier. Second, the load balancer itself can't become the weak spot. That's why cloud load balancers run as several copies too.</p>
-    <h4>Now look at your own architecture: is there still one box that everything depends on? Very often, it's the database behind all those servers.</h4>
+    <h3>Last time, we put work that could wait into a queue. Now think about a request the customer is waiting on, like opening their order history. At an airport, a staff member can direct travelers to several screening lanes. If a scanner goes out of service, the staff member sends new arrivals to the lanes that are still open.</h3>
+    <p>A load balancer does a similar job for incoming traffic. If you run several copies of the same application, the load balancer receives requests and forwards each one to a copy that can handle it. One way to distribute requests is to take turns among the eligible servers. That’s called round robin.</p>
+    <p>A load balancer can also use health checks, which are periodic tests of whether a server is ready to serve traffic. If a server fails enough checks to be marked unhealthy, the balancer can send new requests to the healthy servers instead. A request that was already on the failing server might still fail, and the remaining servers need enough capacity to keep up.</p>
+    <h4>Look at a service you know and ask where new requests go if one server stops responding. Then look one step farther. If all those servers rely on the same database, what happens when that database fails? Next, we’ll look at how database replication can help.</h4>
   </aside>
 </section>
 
 
 <section class="S29">
   <h1>What Is Database Replication?</h1>
-  <p class="subtitle">Live copies of your database, kept in sync</p>
+  <p class="subtitle">Keep copies for reads and recovery</p>
   <div class="r-stack">
     <img src="images/what/s29-classroom.png" alt="A teacher drawing on the board while students copy it into notebooks, with one student a line behind">
     <img class="fragment fade-in-then-out" src="images/what/s29-primary-replicas.png" alt="A primary database receiving writes and copying them to three replicas that serve many reads, with one replica taking over when the primary fails">
@@ -581,118 +486,95 @@
   </div>
   <aside class="notes">
     <h2>What Is Database Replication?</h2>
-    <h3>A teacher writes on the board, and every student copies it into their notebook. Now dozens of people can read the same notes at once. And if someone wipes the board, the notebooks still have everything. But a student who looks up late is a line behind. And if the teacher writes something wrong, everyone copies the mistake too. Database copies work the same way.</h3>
-    <p>That's replication: live copies of your database on other servers, kept in sync automatically. One server, the primary, takes all the writes. It copies every change to the others, called replicas.</p>
-    <p>First benefit: more reading power. Many apps read far more than they write. Think of how often you browse products, compared to how often you actually buy one. So the replicas answer the reads, and the primary stays free for the writes.</p>
-    <p>Second benefit: surviving failure. If the primary goes down, a replica takes over. That's called failover, and managed databases can do it for you automatically. One failure no longer takes the whole app down.</p>
-    <p>Now the catches. Replicas can be a moment behind, like the student who looked up late. A user updates their profile, refreshes, and sees the old one. That trade-off gets its own lesson soon.</p>
-    <p>And a replica isn't a backup. Delete a table by mistake, and that mistake is copied to every replica within seconds. So keep real backups too.</p>
-    <h4>Copies plus backups: more reads, fewer outages, and nothing lost. But every copy still holds all the data, and every write still goes to one primary. What happens when that's too much?</h4>
+    <h3>Last time, we spread traffic across several application servers, but they still depended on one database. What if we kept copies of its data? Think of a teacher writing on a board while students copy the notes. Several people can read from their notebooks at once, but one student might still be catching up when the teacher adds a line.</h3>
+    <p>Database replication keeps copies updated as the data changes. In a common setup, one database, called the primary, accepts writes and sends changes to other databases, called replicas. An online store might send some catalog reads to a replica. If a product description was just edited, that replica might still show the old version until it catches up.</p>
+    <p>A replica can also help if the primary goes down. In a setup that supports failover, an eligible replica can take over as the primary. That can shorten the outage, although switching takes time and recent changes may be missing if the replica was behind.</p>
+    <p>Replication also copies changes you didn’t intend. If someone deletes a table by mistake, that deletion can reach the replicas too. A separate backup gives you a way to recover an earlier version, provided it covers the point you need.</p>
+    <h4>Replication gives you copies of the same data. What if the data or the write traffic grows beyond what one primary can handle? Next, we’ll look at how sharding divides the data across databases.</h4>
   </aside>
 </section>
 <section class="S30">
   <h1>What Is Sharding?</h1>
-  <p class="subtitle">Split your data across several databases</p>
+  <p class="subtitle">Divide the data by a rule</p>
   <div class="r-stack">
     <img src="images/what/s30-registration-desks.png" alt="Three conference registration desks marked with a circle, a triangle, and a square, with one desk facing a much longer line than the others">
-    <img class="fragment fade-in-then-out" src="images/what/s30-shards.png" alt="One overstuffed database splitting into three smaller ones, with a sorting gate sending each data card to its matching database">
-    <img class="fragment" src="images/what/s30-hot-shard.png" alt="One overloaded database glowing hot beside two nearly empty ones, and a question collecting answers from all three into one report">
   </div>
   <aside class="notes">
     <h2>What Is Sharding?</h2>
-    <h3>Ever checked in at a big conference? One desk can't handle thousands of guests, so the desks are split by last name: A to H, I to P, Q to Z. Each desk handles only its share. But if lots of names start with the same letter, that one desk gets a long line. And finding everyone from one company? You have to ask every desk.</h3>
-    <p>That's sharding. Instead of one database holding everything, you split the data across several databases, called shards. A simple rule, the shard key, decides where each record lives, for example by customer ID or by region. Now the writes and the storage are spread out, not just the reads.</p>
-    <p>But it comes with real costs. First, questions that cross shards. 'Show me all orders from last month' now has to ask every shard and combine the answers, just like asking every desk.</p>
-    <p>Second, a bad key creates a hot shard. If one huge customer or one busy region lands on the same shard, that shard is overloaded while the others sit idle.</p>
-    <p>Third, changing it later is painful. Moving live data to new shards is a project of its own. And each shard usually needs its own replicas too.</p>
-    <p>That's why sharding is a late step, not a first one. Fix slow queries, try a bigger machine, caching, and replicas first. Shard only when writes or data truly outgrow one primary.</p>
-    <h4>Split only when you must, and pick the key with care. Because once your data lives on many machines, those machines don't always agree. And that's our next big trade-off.</h4>
+    <h3>Last time, we made copies of the same database. Now imagine a conference with three registration desks. Each desk has a different list of guests, and the symbol on your badge tells you which desk has your name. The desks can work in parallel because each handles a different group. That’s the idea behind sharding.</h3>
+    <p>Sharding divides records across multiple databases or servers. Each group of records is called a shard. An online store might use customer ID as its shard key. A routing rule uses that ID to decide where each customer’s orders belong. If you look up one customer’s order history and have their ID, you can go straight to the shard that holds it.</p>
+    <p>That can spread storage and writes across several servers, but the rule matters. If one customer generates a large share of the orders, their shard can get overloaded while the others have capacity to spare. That’s a hot shard, like the registration desk with the long line.</p>
+    <p>The questions you ask matter too. A report covering orders from every customer might need to collect results from several shards and combine them. Before splitting the data, check which requests can go straight to one shard and which need to visit several.</p>
+    <h4>Sharding decides where records live. You can still keep copies of each shard. If those copies fall out of sync, what should the system tell a user? That’s the consistency question we’ll look at next.</h4>
   </aside>
 </section>
 
 
 <section class="S31">
   <h1>What Are Consistency Trade-offs?</h1>
-  <p class="subtitle">When copies disagree: wait, or answer anyway?</p>
+  <p class="subtitle">What can you promise when copies can’t talk?</p>
   <div class="r-stack">
     <img src="images/what/s31-ticket-sellers.png" alt="Two ticket sellers at separate theater entrances with a broken phone line between them and one seat left on the seating chart">
-    <img class="fragment fade-in-then-out" src="images/what/s31-wait-or-answer.png" alt="Two databases with a broken link: one stops a request to keep its data correct, the other answers right away with data that may be old">
-    <img class="fragment" src="images/what/s31-choose-per-data.png" alt="A seat, a coin, and a key card protected behind a locked shield, while heart and eye cards sync their copies at their own pace">
   </div>
   <aside class="notes">
     <h2>What Are Consistency Trade-offs?</h2>
-    <h3>Two ticket sellers work at different entrances of the same theater. They share one seating chart over the phone. One seat is left. Then the phone line stops working. Now each seller has a choice. Stop selling until the line is back, and send customers away. Or keep selling, and risk selling that last seat twice. There's no third option.</h3>
-    <p>Your data has the same problem. Once copies live on several machines, they stay in sync over the network. Most of the time, that takes a blink. But networks fail. And when the machines can't reach each other, your system faces the same choice as the sellers.</p>
-    <p>Option one: stay consistent. The system refuses to answer until the copies agree again. Users may see an error, but never wrong data. Option two: stay available. Every machine keeps answering with what it has. Users always get an answer, but it may be outdated.</p>
-    <p>This has a name: the CAP theorem. In plain words: when the network between your machines breaks, you can't have both. You have to choose.</p>
-    <p>And often, slightly old data is fine. A like count that's a few seconds behind hurts nobody. Eventually, the copies catch up. That's called eventual consistency.</p>
-    <p>So don't make one choice for the whole system. Choose for each kind of data. The last seat, an account balance, a password: those must be exact, even if that sometimes means an error. A feed or a view counter: keep answering. It's a business decision, so make it on purpose.</p>
-    <h4>For each kind of data, ask: what's worse, no answer or a wrong one? Next: what if one client sends far too many requests?</h4>
+    <h3>Last time, we saw that each shard can have copies. Imagine two ticket booths with copies of the same seating chart. Both last saw one seat available, and now the phone line between them is down. If a customer buys the seat at one booth, what can the other booth safely tell the next customer?</h3>
+    <p>That broken link is like a network partition. The database servers are still running, but some can’t communicate with the others. The CAP theorem says that during a partition, a distributed system can’t guarantee both that every request to a working server succeeds and that every read reflects the latest completed write.</p>
+    <p>For seat reservations, you might allow sales only at a booth that can verify the current booking. The other booth may need to turn customers away for now. For a show’s view count, you might still display the number you last received. If updates stop and reach all the copies, they can converge on the same value. That’s the idea behind eventual consistency.</p>
+    <h4>Ask what each operation needs to promise when the network fails. A booking needs a different answer from a view count. Even with a healthy network, there’s another reason to turn requests away: one client can send more than its share. That’s where rate limiting comes in.</h4>
   </aside>
 </section>
 
 <section class="S32">
   <h1>What Is Rate Limiting?</h1>
-  <p class="subtitle">A fair request limit for every client</p>
+  <p class="subtitle">Set a request limit over time</p>
   <div class="r-stack">
     <img src="images/what/s32-store-limit.png" alt="A store shelf with a sign limiting each customer to two items, customers each carrying two boxes, and one customer with an empty oversized cart">
-    <img class="fragment fade-in-then-out" src="images/what/s32-limit-gate.png" alt="A gate in front of servers letting calm clients through while most requests from one noisy script bounce off, with a cost meter staying under its ceiling">
     <img class="fragment" src="images/what/s32-try-again.png" alt="A gate handing a client a card with an hourglass, the client waiting beside a timer, and separate usage counters for each client">
   </div>
   <aside class="notes">
     <h2>What Is Rate Limiting?</h2>
-    <h3>A store puts its most popular item on sale, with a small sign: limit, two per customer. Without that sign, the first person in line fills a whole cart, and everyone behind them leaves with nothing. With it, everybody gets a fair share, and the shelf lasts all day. Your API needs the same sign.</h3>
-    <p>That sign is a rate limit: a rule for how many requests one client may send in a set time. Say, a hundred per minute. Stay under it, and nothing changes. Go over it, and the extra requests are turned away with the standard error code, 429: too many requests.</p>
-    <p>Why turn anyone away? First, fairness. Without a limit, one buggy script or one bot can use up everything, and all your other users get slow pages or errors.</p>
-    <p>Second, money. In the cloud, every request costs you something, and some cost a lot. A limit puts a ceiling on what any single client can cost you. And third, security: it slows down someone guessing passwords, one attempt after another.</p>
-    <p>Where does it live? At the front door, before requests reach your services. And it counts per user or per API key, so one noisy client doesn't use up everyone's share.</p>
-    <p>Two things make it work well. Set the limit above what normal users need, so they never notice it. And like the sign, be clear: tell the client when it can try again, so a well-behaved client waits, and doesn't retry right away.</p>
-    <h4>So put up the sign before you need it: a fair limit, clearly announced. And limits matter even more when every request costs real money. Next: AI models.</h4>
+    <h3>Last time, we saw why a system might turn away a request when it can’t verify the answer. A healthy system can turn requests away too. Think of a shop that limits a sale item to two boxes per customer. The limit stops one shopper from taking the whole shelf. An API can set a similar limit, but it also needs to say how much time the limit covers.</h3>
+    <p>Rate limiting caps how many requests a client can make in a given time. Imagine a store that lets each partner make up to 100 product lookups per minute. If one partner’s script starts making requests in a loop, the limit can stop those extra requests from crowding out other partners.</p>
+    <p>Decide what you’re counting, who shares the limit, and how much time it covers. In this example, you could count product lookups by partner account. Pick a limit based on how partners actually use the API, including short bursts. When a caller goes over, the API can return HTTP status 429, Too Many Requests. It can also include a <code>Retry-After</code> header to tell the caller how long to wait before trying again.</p>
+    <h4>A limit helps you manage demand for work your system needs to do. That matters even more when a request can start a slow or costly operation. Next, we’ll look at what changes when your backend calls an AI model.</h4>
   </aside>
 </section>
 
 <section class="S33">
   <h1>What Changes When Your Backend Calls an AI Model?</h1>
-  <p class="subtitle">Slow, paid per use, and sometimes wrong</p>
+  <p class="subtitle">Plan for latency, cost, and uncertain answers</p>
   <div class="r-stack">
-    <img src="images/what/s33-machine-vs-expert.png" alt="A vending machine dropping an identical snack instantly, next to a human expert at a desk with an hourglass, a stack of coins, and two slightly different answers">
-    <img class="fragment fade-in-then-out" src="images/what/s33-slow-paid-varies.png" alt="An AI model block with an hourglass and a half-written answer, a coin meter fed by small pieces of text, and two similar answers being inspected">
+    <img src="images/what/s33-slow-paid-varies.png" alt="An AI model block with an hourglass and a half-written answer, a coin meter fed by small pieces of text, and two similar answers being inspected">
     <img class="fragment" src="images/what/s33-outside-service.png" alt="Your system sending data through a checkpoint to an outside AI provider, with a stopwatch, a held-back personal data card, and a fallback path">
   </div>
   <aside class="notes">
     <h2>What Changes When Your Backend Calls an AI Model?</h2>
-    <h3>What's the difference between a vending machine and a human expert? Press a button on the machine, and you get the same snack, right away, for a fixed price. Ask the expert, and you wait. You pay for their time. The answer is a little different each time. And sometimes it's wrong, but sounds sure. A normal API is like the machine. An AI model is more like the expert.</h3>
-    <p>So design for the expert. First, speed. An AI model can take several seconds to answer. So show the answer as it's being written, word by word, and send long jobs to a queue.</p>
-    <p>Second, cost. You pay for every request, by the amount of text going in and coming out, counted in small pieces called tokens. So limit usage per user, and cache the answers to questions that keep coming back.</p>
-    <p>Third, the answer itself. Ask twice, and the wording can change. And sometimes it's simply wrong. So check the output before your system acts on it, and never store it as fact.</p>
-    <p>Fourth, it's someone else's service, with its own limits and its own outages. So set a timeout, retry with care, and decide what your feature does when the model isn't there.</p>
-    <p>And fifth, your data leaves your system. Whatever you send goes to the provider. So decide early what's allowed to go, especially personal data. That's a compliance question, not just a technical one.</p>
-    <h4>Treat an AI model like an expert you hired, not a machine you bought: plan for the wait, the bill, and the mistakes. But even an expert has never seen your company's data. So how do you give it the facts?</h4>
+    <h3>Last time, we limited how often a client could call an API. Now imagine your store adds a support feature that uses a hosted AI model to answer return questions. A customer asks whether a sale item can be returned. Before you make that call, think about how long they can wait, what the call costs, and what happens if the answer is wrong.</h3>
+    <p>Start with the wait and the cost. Set a time limit for the call and decide what the customer sees if it expires, such as a link to the returns page. Many hosted text models charge by tokens, the small pieces of text they process or generate. Sending more context or allowing longer replies can increase the cost, even when the number of requests stays the same.</p>
+    <p>Then think about the answer. The model can produce a plausible reply that gets your policy wrong. Test it on realistic questions and decide what your application should do when it can’t verify an answer. Before sending anything to the provider, also decide what information the call actually needs. A general policy question may need the item category and purchase date without needing the customer’s name or email address.</p>
+    <h4>For this feature, the next question is where the model gets the store’s actual policy. Next, we’ll look at how your backend can find the relevant policy text and give it to the model with the question.</h4>
   </aside>
 </section>
 <section class="S34">
   <h1>What Is Retrieval-Augmented Generation (RAG)?</h1>
-  <p class="subtitle">The AI reads your documents first, then answers</p>
+  <p class="subtitle">Find relevant sources before answering</p>
   <div class="r-stack">
-    <img src="images/what/s34-first-day-expert.png" alt="An expert on their first day taking a customer call without knowing the answer, while a helpful hand slides the policy folder across the desk">
-    <img class="fragment fade-in-then-out" src="images/what/s34-rag-flow.png" alt="A question searching a shelf of document pieces, the best matches bundled with the question, and an AI model turning the bundle into an answer">
+    <img src="images/what/s34-rag-flow.png" alt="A question searching a shelf of document pieces, the best matches bundled with the question, and an AI model turning the bundle into an answer">
     <img class="fragment" src="images/what/s34-sources-permissions.png" alt="An answer linked to its source documents, and a gate that lets a user reach only the documents their key allows">
   </div>
   <aside class="notes">
     <h2>What Is Retrieval-Augmented Generation (RAG)?</h2>
-    <h3>It's the first day for the expert you hired. A customer calls and asks about your refund policy. The expert is brilliant, but has never read that policy. So there are two ways this can go. They guess, and sound completely sure. Or you hand them the policy first, and they answer from it. An AI model is in that position every time you ask.</h3>
-    <p>A model knows only what it was trained on: mostly public text, up to a certain date. Your documents weren't part of that. And when a model doesn't know, it can make something up.</p>
-    <p>The fix is called retrieval-augmented generation, or RAG. Before your system asks the model, it searches your own documents for the parts that matter, and hands them over together with the question. Look it up, add it, then write the answer. That's the whole name.</p>
-    <p>How does the search find the right parts? Your documents are cut into small pieces and stored so they can be found by meaning, not just by exact words. That store is often called a vector database.</p>
-    <p>Two benefits. Update the stored documents, and the next answer uses them, with no retraining of the model. And the answer can show its sources, so people can check it.</p>
-    <p>Two catches. The answer is only as good as what the search finds. And the search must return only what this user is allowed to see, or your assistant becomes a way around your access rules. RAG makes made-up answers rarer. It doesn't make them impossible.</p>
-    <h4>Give the model your facts, and control what it can see. So far, the AI only answers. Next, we let it act.</h4>
+    <h3>In the last lesson, a shopper asked whether a sale item could be returned. The model might give a convincing answer without knowing your store’s policy. Imagine a support teammate looking up the policy before replying. Your backend can do something similar by finding the relevant text and giving it to the model along with the question.</h3>
+    <p>That’s retrieval-augmented generation, or RAG. Retrieval is the lookup. Your application searches a source, such as the store’s policy library, for passages about sale items and returns. Then it sends those passages with the customer’s question. The model uses that material to draft an answer. You can update the policy in the searchable source without retraining the model.</p>
+    <p>The quality of the answer depends on what the search finds and how the model uses it. If the search finds the general policy but misses the exception for sale items, the answer can still be wrong. Show links to the sources so the customer can check them, and provide a fallback when the passages don’t support an answer. Apply the customer’s access permissions during retrieval so staff-only material never reaches the model for that request.</p>
+    <h4>Now the assistant can use your policy to explain a return. What if the customer asks it to start one? Next, we’ll look at what changes when an AI system can use tools to act.</h4>
   </aside>
 </section>
 
 <section class="S35">
   <h1>What Are AI Agents?</h1>
-  <p class="subtitle">AI that takes actions on its own</p>
+  <p class="subtitle">AI systems that choose and use tools</p>
   <div class="r-stack">
     <img src="images/what/s35-badge-not-master-key.png" alt="A new employee receiving an access badge that opens only some doors, while the master key and payment card stay locked in a glass case">
     <img class="fragment fade-in-then-out" src="images/what/s35-agent-loop.png" alt="An AI model working in a loop with tools for calling systems, searching, and sending messages, while a document with a hidden instruction slides toward it">
@@ -700,18 +582,16 @@
   </div>
   <aside class="notes">
     <h2>What Are AI Agents?</h2>
-    <h3>Do you hand a new employee the master key and the company credit card on their first day? Of course not. They get a badge that opens only the doors they need. Their card has a spending limit. Big decisions come to you first. And there's a record of what they do. Now your AI is about to start doing things, not just answering. It needs the same rules.</h3>
-    <p>An AI agent is a model that can use tools: call your APIs, search, send messages. It works in a loop. It picks a step, does it, looks at the result, and picks the next one, until the task is done.</p>
-    <p>That changes the risk. When AI only answers, the worst case is a wrong sentence. When it acts, the worst case is a wrong action: a refund sent, a record deleted, an email to every customer.</p>
-    <p>And there's a new kind of attack, called prompt injection. An agent reads emails, web pages, and documents, and that text can contain instructions written by someone else. The model may follow them. So treat everything it reads as untrusted.</p>
-    <p>So give it the new employee's rules. First, least access: only the tools and data this task needs, with the user's permissions, never an admin's. Second, approval: a person confirms anything that can't be undone, or that spends money.</p>
-    <p>Third, limits: cap the steps, the time, and the spending, so a loop can't run forever. And fourth, a record: log every action, so you can see what it did.</p>
-    <h4>Give your agent a badge, not the master key. That was our last building block. Now let's step back and look at them all together.</h4>
+    <h3>Last time, our assistant looked up the store’s policy to answer a question. Now imagine the shopper says, “Can you start the return for me?” Think of a new support teammate with a badge that opens only the doors they need. What would you let that teammate do on their own?</h3>
+    <p>An AI agent is a system that uses a model to decide which tools to call and what to do with the results. It might look up an order, check whether it qualifies, then prepare a return. Each result helps it choose the next step. The loop ends when the task is complete, the agent needs help, or a limit is reached.</p>
+    <p>Tool access raises the stakes. A customer’s message or a document may contain instructions that try to steer the model. That’s called prompt injection. Treat that content as data. Your backend should enforce what the agent is allowed to do, even if the model asks to do more.</p>
+    <p>Start with four rules. Give the agent only the access it needs for the task. Require human approval before it issues a refund. Set limits on steps, time, and spend. And log tool calls and their outcomes so you can trace what happened.</p>
+    <h4>That badge is a design choice. It lets the agent help with returns while keeping sensitive actions under your control. Next, we’ll step back and use three questions to check whether choices like this add up to a good architecture.</h4>
   </aside>
 </section>
 <section class="S36">
   <h1>What Makes a Design Good?</h1>
-  <p class="subtitle">Three questions to check any architecture</p>
+  <p class="subtitle">Three questions to check an architecture</p>
   <div class="r-stack">
     <img src="images/what/s36-house-inspection.png" alt="A house being inspected with a clipboard of three checklist rows, a magnifying glass on the foundation, and a level on the roof">
     <img class="fragment fade-in-then-out" src="images/what/s36-built-and-real-world.png" alt="Two panels of icons: four for a well-built design, and seven for security, law, visibility, speed, simplicity, cost, and people">
@@ -719,13 +599,11 @@
   </div>
   <aside class="notes">
     <h2>What Makes a Design Good?</h2>
-    <h3>Nobody buys a house after one quick walk through it. You check it, point by point. Is it well built, with a solid foundation and a roof that doesn't leak? Does it work for real life: the budget, the building rules, the family? And is it made of the right materials? A design deserves the same inspection, and now you know what to look for.</h3>
-    <p>Here are three questions for any design. Ask each one separately. Don't look at the whole picture and say, 'Seems fine overall.' That's the quick walk through the house.</p>
-    <p>First: is it well built? Modularity: is it split into parts that make sense? Scalability: can it handle growth? Robustness: does it keep working when something fails? And flexibility: can it take the next feature without a rebuild?</p>
-    <p>Second: does it survive the real world? Is it secure, and does it follow the law? Can you see what's happening inside? Is it fast and reliable enough? Is it simple enough to explain? Do you know what it really costs? Can your team support the technology? And do the people who must approve it agree?</p>
-    <p>Third: did you pick the right building blocks? Storage, caching, queues, load balancing, replication, sharding, rate limiting, AI. Each one solves a problem. And each one brings a catch.</p>
-    <p>So for every block, ask what it fixes, and what it costs. A good design isn't the one with the most blocks. It's the one where every piece is there for a reason.</p>
-    <h4>Three questions, asked one at a time: that's how you inspect a design. You now know what a good design is made of. Next: when do you actually need one?</h4>
+    <h3>We just gave our returns assistant limited access and put refunds behind an approval step. How do we tell whether those choices add up to a good design? Think of a house inspection. You check how the house is built, whether it suits the people who will live there, and whether the materials make sense. We can give our returns design the same kind of walkthrough.</h3>
+    <p>First, is it well built? Look at how easily you can change one part and what happens if another fails. Could you update the return policy without changing how refunds are issued? If the order service goes down, can you pause the return and tell the shopper what happened?</p>
+    <p>Second, does it work under real conditions? Think about a busy day after a sale. Can the design handle the traffic, protect customer data, and meet the rules the business has to follow? Can the support team see why a request is stuck, and can the business afford to run it?</p>
+    <p>Third, did we choose the right building blocks? A queue might help requests wait safely during a traffic spike, but someone has to monitor it and handle retries. For each block, ask what problem it solves and what it takes to run.</p>
+    <h4>Those three questions give you a way to review a design. But a small change to the return policy and a redesign of the whole returns system call for different levels of detail. Next, we’ll look at how to decide how much design work a change deserves.</h4>
   </aside>
 </section>
 
