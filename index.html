@@ -954,784 +954,727 @@
 
 
             <section class="S57">
-        <h1>Craft Your Architecture, Don't Just Pick One</h1>
-        <p class="subtitle">Combine the styles your problems need</p>
+        <h1>How Do You Choose an Architecture Style?</h1>
+        <p class="subtitle">Start with what the system and team need</p>
         <div class="r-stack">
-          <img src="images/architectures/s57-architect-catalog.png" alt="An architect pushes aside a catalog of house styles and designs a simple house from the land, the family and the budget">
-          <img class="fragment" src="images/architectures/s57-mixed-architecture.png" alt="One well-organized main application with a few serverless functions, two separate services where needed, and an AI model plugged in as a component">
+          <img src="images/architecture/s57-architect-catalog.png" alt="An architect pushes aside a catalog of house styles and designs a simple house from the land, the family and the budget">
+          <img class="fragment" src="images/architecture/s57-mixed-architecture.png" alt="One well-organized main application with a few serverless functions, two separate services where needed, and an AI model plugged in as a component">
         </div>
         <aside class="notes">
-          <h2>Craft Your Architecture, Don't Just Pick One</h2>
-          <h3>Does a good architect open a catalog, point at a random house, and say, "Let's build that one"? Of course not. They look at the land, the family, and the budget first. And if a simple, traditional house is the best choice, that's not a weakness. It's the right call.</h3>
-          <p>Backend architecture works the same way. When people reach this part, they often ask, "So which one is the best? Monolith, microservices, or serverless?" And honestly, that's the wrong question. These aren't products on a shelf. You craft your architecture around your problems, your team, and your business.</p>
-          <p>And if it works, nobody should judge it. Shopify chose to keep its core as one big, well-organized monolith, instead of splitting it into microservices. Stack Overflow has served a huge amount of traffic from a monolith on just a few servers for years. If an architecture supports a successful business, it's doing its job.</p>
-          <p>You can also mix them. A monolith at the core, with a few serverless functions for jobs like resizing uploaded images. Or a few separate services, only where one part really needs it. It's like taking the train to the airport and then flying: you use what works for each part of the trip.</p>
-          <p>And AI isn't a fourth style. It's a component you add to any of them, usually an outside model your system calls, like any other external service. The architecture around it still decides how safe, fast, and affordable it is.</p>
-          <h4>Look at the land before you choose the house. Next, let's start with the style many companies begin with, and some never leave: the monolith.</h4>
+          <h2>How Do You Choose an Architecture Style?</h2>
+          <h3>Last time, we decided how much of a system needed to change. Now we can ask how to build it. Imagine you’re planning a house. A catalog gives you ideas, but the steep lot, the people who’ll live there, and the budget help you decide which ideas are worth keeping. Architecture styles give you options in much the same way.</h3>
+          <p>Say a small team is building the first version of our store. The catalog, cart, and orders change together, and the same team releases them. Keeping those parts in one application means the team can deploy them together. That’s a monolith, and it may be a good fit for this store.</p>
+          <p>Now suppose staff upload product photos and need smaller versions for the catalog. The store can hand that job to a serverless function that runs when a photo arrives. The main application still handles shopping and orders. If another part later needs its own release schedule, the team can weigh the benefit of a separate service against the work of running it.</p>
+          <p>The same store could call an AI model to answer return questions. That gives the store a new capability. The team still decides how it fits into the application and what happens if the model is unavailable.</p>
+          <h4>Start with what changes together, then ask what would benefit from running separately. Next, we’ll look inside a monolith and follow what happens when a shopper places an order.</h4>
         </aside>
       </section>
 
             <section class="S58">
         <h1>What Is a Monolith?</h1>
-        <p class="subtitle">One codebase, deployed as one unit</p>
+        <p class="subtitle">One backend application deployed as a unit</p>
         <div class="r-stack">
-          <img src="images/architectures/s58-restaurant-one-roof.png" alt="A small restaurant in cutaway view: dining area and kitchen under one roof, staff taking orders, serving, cooking and washing dishes, one front door opening">
-          <img class="fragment" src="images/architectures/s58-monolith-one-unit.png" alt="Users on laptops and phones send requests to one large application split into module compartments, which uses one shared database">
+          <img src="images/architecture/s58-restaurant-one-roof.png" alt="A small restaurant in cutaway view: dining area and kitchen under one roof, staff taking orders, serving, cooking and washing dishes, one front door opening">
+          <img class="fragment" src="images/architecture/s58-monolith-one-unit.png" alt="Users on laptops and phones send requests to one large application split into module compartments, which uses one shared database">
         </div>
         <aside class="notes">
           <h2>What Is a Monolith?</h2>
-          <h3>Think about a small restaurant you like. There's the dining area, where you sit, order, and eat, and the kitchen behind it. Taking orders, serving, cooking, washing dishes, lots of different jobs, but one building, one front door, and when it opens in the morning, everything opens together.</h3>
-          <p>A monolith works the same way. All your features live in one codebase, and you build, test, and deploy them together, as one unit. Sometimes it also builds the pages your users see, and sometimes the frontend is its own project. Either way, what makes it a monolith isn't its size or its age, it's that the backend goes out together.</p>
-          <p>Here's what that looks like when a customer places an order. The request comes in, and one application handles all of it: it checks who the customer is, looks up the product, calculates the price, and saves the order. Every step is a function call inside the same application, not a call over the network, and usually all the data lives in one shared database. Users, one application, one database. That's the whole picture.</p>
-          <p>Quick question: how many of you work on a monolith right now? ... Yeah, it's very common. In fact, Martin Fowler, a well-known software author, noticed that almost all the successful microservice stories he heard about started with a monolith that got too big and was broken up.</p>
-          <p>And one unit doesn't have to mean one big mess. A well-built monolith is split into modules inside, like the stations in a kitchen, all under the same roof.</p>
-          <h4>If it all goes out together, it's a monolith. And that's exactly where its first big strength comes from.</h4>
+          <h3>Last time, we kept the store’s catalog, cart, and orders in one application. What does that look like when someone places an order? Picture a small restaurant. The server takes your order, the kitchen cooks it, and someone brings it to your table. They do different jobs, but they all work under one roof.</h3>
+          <p>When a shopper taps “Place order,” the request reaches the store’s backend. The cart module checks what they’re buying, the pricing module calculates the total, and the orders module saves the purchase. In this example, all three run inside the same application and can call one another directly.</p>
+          <p>Now imagine the team changes how it calculates a discount. It builds and deploys a new version of the backend application with that change. Cart, pricing, and orders go out as one unit, even though only pricing changed. That shared deployment is what makes this backend a monolith.</p>
+          <p>The diagram shows one database, but the definition comes from how the application is deployed. The web frontend can still be deployed separately, and the team can run several copies of the same backend to handle traffic. Each copy runs the same application.</p>
+          <h4>When you look at a backend, ask which parts go out together. Next, we’ll take one change through development, testing, and release to see what a shared deployment makes easier.</h4>
         </aside>
       </section>
 
             <section class="S59">
-        <h1>Simple to Develop, Test, and Deploy</h1>
-        <p class="subtitle">Spend your time on features, not setup</p>
+        <h1>Developing, Testing, and Releasing a Monolith</h1>
+        <p class="subtitle">Follow one change through a shared release</p>
         <div class="r-stack">
-          <img src="images/architectures/s59-new-dish-same-day.png" alt="Inside one restaurant building, a chef sketches a new dish in the morning, the team tastes it in the kitchen, and it is served to guests in the evening">
-          <img class="fragment" src="images/architectures/s59-one-change-one-release.png" alt="Left: one change goes through a single application box and out in one release. Right: the same change spread across several service boxes, each with its own release line, connected by coordination arrows">
+          <img src="images/architecture/s59-new-dish-same-day.png" alt="Inside one restaurant building, a chef sketches a new dish in the morning, the team tastes it in the kitchen, and it is served to guests in the evening">
+          <img class="fragment" src="images/architecture/s59-one-change-one-release.png" alt="Left: one change goes through a single application box and out in one release. Right: the same change spread across several service boxes, each with its own release line, connected by coordination arrows">
         </div>
         <aside class="notes">
-          <h2>Simple to Develop, Test, and Deploy</h2>
-          <h3>Back in our small restaurant, the chef gets an idea for a new dish in the morning. What happens next? She tries it in the same kitchen, the team tastes it, and by the evening, it's on the guests' tables. No trucks, no second building, and no waiting on anyone.</h3>
-          <p>A monolith works the same way, at least while it's small. You develop in one place, with one codebase, and your tools are built for exactly that. In my experience, you can often run the whole application on your laptop with a single command, and that's it, you're working.</p>
-          <p>You test in one place too. Everything sits inside one application, so checking that the parts work together is much simpler: you run it and try it out, end to end. And you deploy one thing: one build, one pipeline, one release.</p>
-          <p>Here's a simple example. Say you want to add a phone number to your signup form. You update the form, the check in the backend, and the database in one change, test it together, and release it once. Now picture the same change across separate services. You might have to update several of them, keep them in sync, and agree on who releases first.</p>
-          <p>That's why many small teams and startups begin here. Martin Fowler calls the extra cost and risk of running many services the microservice premium, and he warns it can slow development down considerably. With a monolith, you skip most of that, and you spend your time on the product instead.</p>
-          <h4>So while your team is small, keep it in one place and ship. And that same simplicity helps one more person: your next new hire.</h4>
+          <h2>Developing, Testing, and Releasing a Monolith</h2>
+          <h3>Last time, we saw that the parts of a monolith go out together. Think back to our restaurant. A chef tries a new dish in the kitchen, the team tastes it, and the servers bring it to the tables that evening. Each person has a different job, but the same team can take that dish from idea to service.</h3>
+          <p>Say the store wants to let shoppers add delivery instructions at checkout. The backend needs to accept the note, check its length, and save it with the order. If checkout and orders live in the same application, the team can make those changes together.</p>
+          <p>Run the backend in a test environment and place an order with a note. Does the note come back when you open the saved order? What happens if it’s too long? Those checks let you see whether the modules work together before you deploy one new version of the application. If saving the note requires a database change, plan when to make that change so checkout can keep working during the rollout.</p>
+          <p>If checkout and orders are separate services, the same feature may also change what one service sends to the other. The team needs to check that both versions can work together while the releases roll out. A monolith can simplify this kind of change because the modules can ship together.</p>
+          <h4>When a change crosses modules that deploy together, test the whole flow and release it as one application. Next, we’ll see how that same structure can help a new teammate find their way around.</h4>
         </aside>
       </section>
 
 
             <section class="S60">
-        <h1>Easy for Newcomers to Understand</h1>
-        <p class="subtitle">One place to look, one way to work</p>
+        <h1>Finding Your Way Around a Monolith</h1>
+        <p class="subtitle">Trace one request before you change it</p>
         <div class="r-stack">
-          <img src="images/architectures/s60-new-cook-tour.png" alt="A new cook on the first day gets a short tour of one restaurant building: the kitchen, the storage room and the order window, then starts cooking">
-          <img class="fragment" src="images/architectures/s60-one-place-to-look.png" alt="Left: a new developer follows one glowing path through a single application box to its database. Right: another new developer holds a large map of many connected service boxes, looking unsure where to start">
+          <img src="images/architecture/s60-new-cook-tour.png" alt="A new cook on the first day gets a short tour of one restaurant building: the kitchen, the storage room and the order window, then starts cooking">
+          <img class="fragment" src="images/architecture/s60-one-place-to-look.png" alt="Left: a new developer follows one glowing path through a single application box to its database. Right: another new developer holds a large map of many connected service boxes, looking unsure where to start">
         </div>
         <aside class="notes">
-          <h2>Easy for Newcomers to Understand</h2>
-          <h3>Imagine it's your first day as a new cook in our restaurant. Someone gives you a short tour: here's the kitchen, here's the storage, and here's where the orders come in. And that's it. Everything's in one building, so by lunchtime, you're already cooking.</h3>
-          <p>A monolith works the same way for new developers. There's one repository to clone, one project to open, and one application to run. And when they want to understand a feature, they can follow a single request from the moment it comes in, all the way to the database, without jumping between services.</p>
-          <p>There's usually one way of doing things, too. In my experience, there's an existing example for almost anything you need: a similar feature, a similar page, a similar query. So a new person looks at how it's done, follows the same pattern, and ships their first change quickly.</p>
-          <p>Compare that with a system split into many services. On top of the code, a newcomer has to learn where each service lives, how they talk to each other, and which one owns which data. With a monolith, you can simply say, "Here's the application, and here's the part we work on."</p>
-          <p>Now, to be honest, this works best while the monolith is small and well organized. When it grows big, the codebase itself can overwhelm new people, so give them one module to learn first, just like we said about growing teams.</p>
-          <h4>Give a new person one place to look and one way to work, and they start contributing sooner. And keeping everything together helps your system too: its parts talk without a network in between.</h4>
+          <h2>Finding Your Way Around a Monolith</h2>
+          <h3>Last time, we added a delivery note at checkout and followed it through to release. Now imagine you’ve just joined the team and need to change how long that note can be. Think back to the restaurant. A new cook can learn a lot by following one order from the ticket window to the stove. You can start the same way with one checkout request.</h3>
+          <p>Place a test order with a delivery note. Start where the backend receives the request, then follow it to the check that limits the note’s length and the code that saves it with the order. In this store, those steps are in the same application. You can follow the calls between modules in the code you already have open.</p>
+          <p>Once you find the check, look for a test that exercises it. Change the limit and try notes on either side of the new cutoff. By the time you’re done, you’ll know where the rule lives, how to verify it, and which part to ask about if the behavior surprises you.</p>
+          <p>A large monolith can still be hard to navigate. A short map that shows where requests enter and which module owns each step can help a new teammate get started.</p>
+          <h4>Give a new teammate one request to follow and one small change to test. Next, we’ll look at what happens when modules call each other inside the same application, and what changes when those calls cross a network.</h4>
         </aside>
       </section>
 
             <section class="S61">
-        <h1>Consistent, Without Service Overhead</h1>
-        <p class="subtitle">Direct calls, one transaction</p>
+        <h1>Direct Calls and Shared Transactions</h1>
+        <p class="subtitle">Follow one order from price to purchase</p>
         <div class="r-stack">
-          <img src="images/architectures/s61-kitchen-across-street.png" alt="Left: a waiter calls an order through the kitchen window to the chef. Right: the kitchen sits across the street, a runner carries orders over, and one order slip blows away">
-          <img class="fragment" src="images/architectures/s61-direct-calls-one-transaction.png" alt="Left: modules inside one application call each other with short direct arrows, and an order and a stock update are saved together inside one shield to one database. Right: separate services connected by long network paths with hourglasses along them and one broken link">
+          <img src="images/architecture/s61-kitchen-across-street.png" alt="Left: a waiter calls an order through the kitchen window to the chef. Right: the kitchen sits across the street, a runner carries orders over, and one order slip blows away">
+          <img class="fragment" src="images/architecture/s61-direct-calls-one-transaction.png" alt="Left: modules inside one application call each other with short direct arrows, and an order and a stock update are saved together inside one shield to one database. Right: separate services connected by long network paths with hourglasses along them and one broken link">
         </div>
         <aside class="notes">
-          <h2>Consistent, Without Service Overhead</h2>
-          <h3>In our restaurant, the waiter just calls the order through the kitchen window, and the chef starts cooking right away. Now picture the kitchen in a building across the street. Every order has to be carried over, every plate carried back, and sometimes, an order gets lost on the way.</h3>
-          <p>A monolith works like that kitchen window. When the order module needs a price, it calls a function in the same process. There's no network in between, nothing to package up and send, and the call can't fail just because a connection dropped.</p>
-          <p>Split those parts into services, and every call becomes a trip across the network. Martin Fowler puts it simply: remote calls are orders of magnitude slower, and there's always a chance they fail. As a rough, classic estimate, one round trip inside the same data center takes about half a millisecond. On its own, that's tiny, but a request that hops between several services pays it again and again.</p>
-          <p>And here's the second half: consistency. With one application and one database, saving an order and reducing the stock can happen in one transaction. Either both succeed, or neither does. Once each service has its own data, you have to build that guarantee yourself.</p>
-          <p>That's why speed-critical parts often stay together. In a multiplayer match, every move and every shot is a message to the server, many times a second. AWS's game hosting service, for example, runs each match inside one server process, like a small monolith inside a big platform.</p>
-          <h4>Keep the chatty parts close together, and you skip the trip. And when traffic grows? A monolith has a simple answer for that too.</h4>
+          <h2>Direct Calls and Shared Transactions</h2>
+          <h3>Last time, we followed a request through the store’s code. Now let’s look at what happens when one part asks another to do some work. In our restaurant, a server can call an order through the kitchen window. Put the kitchen across the street, and someone has to carry the order over and bring the answer back. There’s more waiting, and the slip can get lost on the way.</h3>
+          <p>When a shopper places an order, checkout asks the pricing module for the total. In this monolith, both modules run in the same process, so checkout can call pricing directly. If pricing runs in a separate service, the request crosses the network. Checkout then needs a plan for what to do if the reply takes too long or never arrives.</p>
+          <p>Now follow the same order a step further. The store needs to save the order and reduce the stock count. If both changes use the same database and the code puts them in one transaction, they commit together. If the transaction fails, neither takes effect. If orders and stock live in separate databases, the team needs a plan for what shoppers and staff should see if one update succeeds before the other.</p>
+          <h4>When you consider splitting a flow, look at which calls would cross the network and which updates need to succeed together. Next, we’ll look at how to give an application more capacity while keeping it together.</h4>
         </aside>
       </section>
 
             <section class="S62">
-        <h1>Simple to Scale Up</h1>
-        <p class="subtitle">Need more power? Get a bigger server</p>
+        <h1>Scaling Up a Monolith</h1>
+        <p class="subtitle">Give the same application more room to work</p>
         <div class="r-stack">
-          <img src="images/architectures/s62-restaurant-expands.png" alt="A busy restaurant with a line at the door takes over the shop next door, knocking through to add more stoves and tables, while small branch buildings across the city sit faded in the background">
-          <img class="fragment" src="images/architectures/s62-scale-up-vs-out.png" alt="Left: one application server grows taller with more CPU and memory, next to a faint outline of the largest size possible. Right: several identical copies of the application behind a load balancer">
+          <img src="images/architecture/s62-restaurant-expands.png" alt="A busy restaurant with a line at the door takes over the shop next door, knocking through to add more stoves and tables, while small branch buildings across the city sit faded in the background">
+          <img class="fragment" src="images/architecture/s62-scale-up-vs-out.png" alt="Left: one application server grows taller with more CPU and memory, next to a faint outline of the largest size possible. Right: several identical copies of the application behind a load balancer">
         </div>
         <aside class="notes">
-          <h2>Simple to Scale Up</h2>
-          <h3>Business at our restaurant is booming, and there's a line at the door every evening. So what do you do first? Open new branches across the city, each with its own staff? Or take over the shop next door, add more stoves, and put in more tables?</h3>
-          <p>Most people pick the shop next door, and that's exactly what scaling up a monolith looks like. It's called vertical scaling: you give your one server more CPU and more memory. You don't change the code, you don't add a load balancer, and in the cloud, it's often just choosing a bigger server size.</p>
-          <p>One thing to know, though. On AWS, for example, you have to stop a server before you can change its size, so plan it for a quiet hour, not the middle of your busiest day.</p>
-          <p>And to be fair, a monolith can scale out too. You can run several copies behind a load balancer, as long as any copy can handle any request. But if one bigger server is enough, why take on the extra moving parts?</p>
-          <p>Of course, there are limits. There's a largest server you can buy, and one big server is still one server, so if it goes down, everything goes down with it. But in my experience, that ceiling is a lot higher than most people expect. Remember Stack Overflow, running a monolith on just a few servers?</p>
-          <h4>When you need more power fast, start with a bigger server. It's the simplest move you have. But what if only the dining area is packed, and the kitchen is doing just fine?</h4>
+          <h2>Scaling Up a Monolith</h2>
+          <h3>Last time, we saw why the store might keep parts of checkout together. What happens when more shoppers show up? Think of our restaurant taking over the shop next door. It can add another stove and more tables while keeping one location. That expansion helps if cooking space or seating is what’s holding it back.</h3>
+          <p>Say checkout slows down during a sale. The team measures where requests spend their time and finds that the application server is running out of CPU capacity. They could move the same application to a server with more CPU. Giving one server more resources, such as CPU or memory, is called vertical scaling, or scaling up.</p>
+          <p>Before making the move, check whether it will interrupt checkout. Then run the same load test on the larger server to see whether it handles the expected traffic. If requests are spending most of their time waiting for the database, giving the application server more CPU may do little for that wait.</p>
+          <p>There’s also a limit to how large one server can get. The store can scale out by running several copies of the same monolith behind a load balancer, provided any copy can handle the incoming request.</p>
+          <h4>Measure where the system runs out of capacity, then test whether a larger server helps. Next, we’ll look at what happens when one busy part drives the cost of scaling the whole application.</h4>
         </aside>
       </section>
 
             <section class="S63">
-        <h1>Scale One Part, Pay for Everything</h1>
-        <p class="subtitle">When one busy part sets the size for all</p>
+        <h1>When One Busy Part Drives Scaling Costs</h1>
+        <p class="subtitle">Decide whether one job needs its own capacity</p>
         <div class="r-stack">
-          <img src="images/architectures/s63-bigger-everything.png" alt="A restaurant with a packed dining area and a calm kitchen moves into a much bigger building, where the extra-large kitchen stands mostly empty">
-          <img class="fragment" src="images/architectures/s63-sized-for-the-hungriest.png" alt="Three identical copies of one large application box, each sized for its busiest part, an image-processing compartment and a large memory compartment, while other compartments sit small and quiet. A separate small function handles images on the side">
+          <img src="images/architecture/s63-bigger-everything.png" alt="A restaurant with a packed dining area and a calm kitchen moves into a much bigger building, where the extra-large kitchen stands mostly empty">
+          <img class="fragment" src="images/architecture/s63-sized-for-the-hungriest.png" alt="Three identical copies of one large application box, each sized for its busiest part, an image-processing compartment and a large memory compartment, while other compartments sit small and quiet. A separate small function handles images on the side">
         </div>
         <aside class="notes">
-          <h2>Scale One Part, Pay for Everything</h2>
-          <h3>Remember our question? The dining area is packed every evening, but the kitchen is doing just fine. All you need is more tables, and there's no space left next door. So you move to a bigger place, and now you're paying for a bigger kitchen too.</h3>
-          <p>A monolith works the same way. Martin Fowler and James Lewis put it plainly: scaling a monolith means scaling the entire application, not just the parts that need more resources. And it doesn't matter which way you scale. A bigger server is bigger for everything, and every extra copy is the whole application, quiet parts included.</p>
-          <p>Here's a common example. Say one part of your system resizes uploaded images, and it needs a lot of CPU. Another part keeps a big product catalog in memory. Because they're deployed together, you pick one server type that's big enough for both, and you pay for that size on every copy.</p>
-          <p>Now, to be precise, in my experience, the quiet code doesn't burn much CPU. The real cost is that every copy carries the whole application's memory, and the server is sized for the hungriest part, not for what most of the system actually needs.</p>
-          <p>So when one part keeps outgrowing the rest, that's often the first real sign to separate just that part. Remember the image resizing in a serverless function? You don't need to split everything, only the part that's pushing up the bill.</p>
-          <h4>Watch which part grows fastest, and separate only that one. Because in a monolith, scaling isn't the only thing that moves as one. Every change does too.</h4>
+          <h2>When One Busy Part Drives Scaling Costs</h2>
+          <h3>Last time, we gave our restaurant more room to serve a crowd. Now imagine the dining room is full, but the kitchen can already keep up. If you move to a bigger building with a larger kitchen just to get more tables, you’re paying for space you didn’t need. Something similar can happen when one job drives the size of your application servers.</h3>
+          <p>Say the store resizes product photos inside the same application that handles checkout. On mornings when staff upload a batch of photos, the servers need more CPU. Checkout traffic is about the same as usual. The team can buy more capacity by using larger servers or adding more copies, but each copy still runs the whole application.</p>
+          <p>If bigger servers solve the problem at a cost the team can live with, that may be enough. If photo uploads regularly drive up the bill, try giving image resizing its own capacity. The store could queue each photo and let a background worker resize it. The team can then add workers when uploads pile up while keeping checkout capacity sized for shoppers.</p>
+          <p>Before making that split, compare the cost of running the worker and queue with the cost of scaling the whole application. Check that photos are still ready when staff need them.</p>
+          <h4>Look for work that needs more capacity on a different schedule from the rest of the application. Next, we’ll look at another consequence of keeping parts together: what gets deployed when you make a small change.</h4>
         </aside>
       </section>
 
             <section class="S64">
-        <h1>Small Change, Full Redeploy</h1>
-        <p class="subtitle">Every fix ships the whole application</p>
+        <h1>A Small Change Still Ships the Whole Application</h1>
+        <p class="subtitle">Plan the release around what you deploy together</p>
         <div class="r-stack">
-          <img src="images/architectures/s64-one-pipe-whole-building.png" alt="A plumber fixes one small pipe under the restaurant kitchen while the water is off for the whole building, and the dining area stands closed with chairs on the tables">
-          <img class="fragment" src="images/architectures/s64-whole-app-swapped.png" alt="A tiny code change rides inside a full new copy of the whole application. Three running copies are replaced one at a time, so users stay connected, while a few teams wait in line with their own changes">
+          <img src="images/architecture/s64-one-pipe-whole-building.png" alt="A plumber fixes one small pipe under the restaurant kitchen while the water is off for the whole building, and the dining area stands closed with chairs on the tables">
+          <img class="fragment" src="images/architecture/s64-whole-app-swapped.png" alt="A tiny code change rides inside a full new copy of the whole application. Three running copies are replaced one at a time, so users stay connected, while a few teams wait in line with their own changes">
         </div>
         <aside class="notes">
-          <h2>Small Change, Full Redeploy</h2>
-          <h3>A small pipe under our kitchen starts leaking. Small job, right? Except the plumber has to turn off the water for the whole building, and the dining area has to close while the work is done. One little pipe, and the entire restaurant stops for the afternoon.</h3>
-          <p>A monolith works the same way. Remember one build, one release? It's the same fact, just the other side of it. When a change touches many parts, one release is great. But for a one-line fix, the whole application still gets rebuilt, retested, and redeployed.</p>
-          <p>Now, to be fair, that doesn't have to mean downtime. If you run several copies, rolling updates, in Kubernetes for example, replace them one at a time, so the system stays up. But the whole application still gets swapped out, and that has a cost.</p>
-          <p>First, risk: a bug anywhere in the release can affect the entire system, even parts nobody touched. Second, waiting: your change gets packaged with every other team's changes, so you often wait for the next release. And third, time: as the monolith grows, every build and every test run takes longer.</p>
-          <p>So when does this not matter much? When the process is simple and stable. A booking app for a local salon barely changes from one year to the next, and redeploying it once in a while is no problem at all.</p>
-          <h4>Keep your tests strong and your releases routine, and a full redeploy stays boring, in a good way. But if one part changes far more often than the rest, it may deserve its own release. And as the monolith grows, something else grows with it.</h4>
+          <h2>A Small Change Still Ships the Whole Application</h2>
+          <h3>Last time, we saw what happens when you add capacity to the whole application for one busy job. Something similar happens when you release a small change. Imagine a plumber fixing a leak under our restaurant’s kitchen sink. If there’s only one shutoff valve, the plumber has to turn off the water for the whole building. The valve tells you how much of the building the repair affects.</h3>
+          <p>Say the store fixes how checkout rounds a discount. The pricing change is small, but pricing, orders, and the catalog are packaged in the same backend. The team builds and deploys a new version of that whole application. Before shipping, it checks the discount and runs through checkout to make sure shoppers can still place orders.</p>
+          <p>The restaurant has to close while the water is off. The store can keep serving shoppers if it has several copies of the backend and enough capacity to replace them gradually. During that rollout, old and new versions may run together, so check that both can work with any shared data the release changes.</p>
+          <p>A shared release can be routine. If pricing fixes regularly wait for unrelated changes, find out where the wait comes from. You may be able to ship smaller batches through the same deployment process.</p>
+          <h4>When a small fix is hard to ship, look at what goes out together and what holds up the release. Next, we’ll look inside the application and see how clear module boundaries can keep changes easier to reason about.</h4>
         </aside>
       </section>
 
 
             <section class="S65">
-        <h1>Complexity Grows Over Time</h1>
-        <p class="subtitle">One codebase, many clear parts</p>
+        <h1>How a Monolith Gets Harder to Change</h1>
+        <p class="subtitle">Give each module a clear job and a clear way in</p>
         <div class="r-stack">
-          <img src="images/architectures/s65-crowded-kitchen.png" alt="Years later, a restaurant kitchen is crowded with cooks, tools and ingredients piled everywhere. One cook moves a pan, and across the room another cook's dish comes out wrong">
-          <img class="fragment" src="images/architectures/s65-mud-vs-clear-parts.png" alt="Left: one application box filled with a knot of lines connecting everything to everything. Right: the same size application box divided into clear components with walls, each connected through one small door">
+          <img src="images/architecture/s65-crowded-kitchen.png" alt="Years later, a restaurant kitchen is crowded with cooks, tools and ingredients piled everywhere. One cook moves a pan, and across the room another cook's dish comes out wrong">
+          <img class="fragment" src="images/architecture/s65-mud-vs-clear-parts.png" alt="Left: one application box filled with a knot of lines connecting everything to everything. Right: the same size application box divided into clear components with walls, each connected through one small door">
         </div>
         <aside class="notes">
-          <h2>Complexity Grows Over Time</h2>
-          <h3>Let's jump a few years ahead in our restaurant. The menu started small, and now it's pages long. The kitchen is packed with cooks, tools, and ingredients, and nobody's sure where anything goes. So one cook moves a pan, and somewhere else, a dish comes out wrong.</h3>
-          <p>A monolith grows the same way. More features, more developers, more libraries, all in one codebase. And here's the thing: because everything lives in one place, nothing stops one part from reaching straight into another. Martin Fowler and James Lewis point out that, over time, it gets hard to keep a change for one module inside that module.</p>
-          <p>That's when complexity shows up. It's that feeling of, "I don't know how this was built, so I don't know what my change might break." At that point, you rely completely on your tests, and if they're weak, every release feels risky. Engineers have a name for where this ends: a big ball of mud.</p>
-          <p>So how do you stop it? Remember Shopify, keeping its core as one big monolith? A big part of why it works is boundaries. They found their problems came from a lack of boundaries in the code, so they kept one codebase, but split it into clear components, with rules about which part can call which.</p>
-          <p>It's the same idea as giving each team a part to own: one codebase, many clear parts. Draw those lines early, and a monolith can stay easy to change for years.</p>
-          <h4>That's the monolith: simple, fast, and strong, as long as you keep it organized. But what happens when one roof isn't enough, and parts of the restaurant get buildings of their own?</h4>
+          <h2>How a Monolith Gets Harder to Change</h2>
+          <h3>Last time, a small pricing fix went out with the whole application. How much code you have to change for that fix is a separate question. Think back to our restaurant after the menu has grown. If cooks keep borrowing tools from one another’s stations, moving a pan can interrupt a dish halfway across the kitchen. A small change can surprise someone who depends on something you thought was yours to move.</h3>
+          <p>Say the store changes how it calculates discounts. Checkout and customer support both read the pricing module’s discount table directly. If the pricing team changes how that table is organized, both callers may need updates even when the discount itself works the same way.</p>
+          <p>A clearer boundary gives pricing ownership of that table. Checkout and support ask pricing to calculate the discount through a function with agreed inputs and a result. Now pricing can change how it stores the rules while callers keep using the same function, as long as the agreement still holds.</p>
+          <p>All three modules can still ship in one application. Add a check that catches code reaching into pricing’s internal data, so the boundary holds as more people work on the store.</p>
+          <h4>When a small change keeps spreading, look for callers that depend on details another module should own. Next, we’ll look at what changes when those parts can be deployed as separate services.</h4>
         </aside>
       </section>
 
             <section class="S66">
         <h1>What Are Distributed Services?</h1>
-        <p class="subtitle">Can you deploy one without the others?</p>
+        <p class="subtitle">Run separately and design for independent releases</p>
         <div class="r-stack">
-          <img src="images/architectures/s66-restaurant-spread-out.png" alt="The restaurant has spread into separate buildings: a kitchen, a bakery and a delivery warehouse, connected by paths. The bakery gets a new oven while the kitchen and the others keep working">
-          <img class="fragment" src="images/architectures/s66-independent-vs-distributed-monolith.png" alt="Left: three separate services, and only the payment service is replaced with a new version while the others keep running. Right: three services chained together, all forced to be replaced at the same time">
+          <img src="images/architecture/s66-restaurant-spread-out.png" alt="The restaurant has spread into separate buildings: a kitchen, a bakery and a delivery warehouse, connected by paths. The bakery gets a new oven while the kitchen and the others keep working">
+          <img class="fragment" src="images/architecture/s66-independent-vs-distributed-monolith.png" alt="Left: three separate services, and only the payment service is replaced with a new version while the others keep running. Right: three services chained together, all forced to be replaced at the same time">
         </div>
         <aside class="notes">
           <h2>What Are Distributed Services?</h2>
-          <h3>So, our restaurant outgrows its one roof. The kitchen moves into its own building, the bakery gets another, and deliveries run from a warehouse across town. Now, when the bakery needs a new oven, does the kitchen close? Not at all, everyone else just keeps working.</h3>
-          <p>Distributed services work the same way. Instead of one application, you have several separate services, each running in its own process, and they talk to each other over the network. Orders might be one service, payments another, and shipping a third.</p>
-          <p>And that's the payoff. Remember the pipe that closed the whole restaurant? With independent services, you change the payment service, deploy just that one, and everything else keeps running. Sam Newman uses a simple test for this: if you can change and deploy one service without deploying any others, it's independent.</p>
-          <p>But here's where many teams go wrong. They split the code into services, but every release still needs all of them to go out together. Newman calls that a distributed monolith, and it gets the downsides of both worlds: the network problems of services, and the all-at-once releases of a monolith.</p>
-          <p>And yes, separate buildings come with a cost. Every message between services crosses the network, so a call can be slow, or get dropped, just like an order lost on the way across the street.</p>
-          <h4>So before you call something a service, ask one question: can I deploy it on its own? And if you can, here's the next surprise: not every service has to be a microservice.</h4>
+          <h3>Last time, we gave pricing a clear boundary inside the store’s application. Now imagine the restaurant’s bakery moves into its own building. The bakers can install a new oven while the kitchen carries on. They still need to agree on when the bread will arrive and what to do if there’s a delay. A separate building changes both what they can do on their own and how they work together.</h3>
+          <p>In the store, orders, payments, and shipping could run as separate services. When orders asks payments to charge a customer, that request crosses the network. Orders needs to know what to do if it gets no reply, because the payment might have gone through even if the response never arrived.</p>
+          <p>Now suppose the payments team changes how it records a charge internally. If the requests and responses that orders relies on still work as agreed, payments can release its change on its own. Orders and shipping can stay on their current versions.</p>
+          <p>Separate processes give you a distributed system. Whether the services can release independently depends on how they’re designed. If ordinary changes repeatedly force orders, payments, and shipping to deploy together, you may have what’s called a distributed monolith. The calls still cross the network, and the teams still have to coordinate their releases.</p>
+          <h4>Pick one change and ask which services actually need a new release. Next, we’ll look at how much work can fit inside a single service and why a few larger services can be enough.</h4>
         </aside>
       </section>
 
             <section class="S67">
-        <h1>Generic Services: The Practical Middle Ground</h1>
-        <p class="subtitle">Not every split needs microservices</p>
+        <h1>When a Few Larger Services Are Enough</h1>
+        <p class="subtitle">Keep related work in one service</p>
         <div class="r-stack">
-          <img src="images/architectures/s67-buildings-not-stations.png" alt="Three restaurant buildings (kitchen, bakery, warehouse), each covering one big area of work. Small faded outlines of extra tiny buildings for single stations, like a salad stand and a grill hut, show the option that wasn't chosen">
-          <img class="fragment" src="images/architectures/s67-generic-services-layout.png" alt="A user interface connects to three larger services, orders, payments and shipping, each holding several related jobs inside. All three use one shared database, with one small dashed link marking the trade-off">
+          <img src="images/architecture/s67-buildings-not-stations.png" alt="Three restaurant buildings (kitchen, bakery, warehouse), each covering one big area of work. Small faded outlines of extra tiny buildings for single stations, like a salad stand and a grill hut, show the option that wasn't chosen">
+          <img class="fragment" src="images/architecture/s67-generic-services-layout.png" alt="A user interface connects to three larger services, orders, payments and shipping, each holding several related jobs inside. All three use one shared database, with one small dashed link marking the trade-off">
         </div>
         <aside class="notes">
-          <h2>Generic Services: The Practical Middle Ground</h2>
-          <h3>Our restaurant now has a kitchen, a bakery, and a warehouse, each in its own building. So should the salad station get a building too? And the grill, and the dessert counter? Probably not. Each building covers one big area of work, and for most days, that's plenty.</h3>
-          <p>Generic services work the same way. Each one covers one area of the business, like orders, payments, or shipping, with several related jobs inside it. Mark Richards and Neal Ford call this style service-based architecture, and they describe it as one of the most pragmatic styles out there.</p>
-          <p>Quick note on the word "service," because people use it in two ways. Sometimes it's just a class in your code, like an order service inside a monolith. Here, I mean a service that runs and deploys on its own.</p>
-          <p>So why is it a middle ground? You get separate deployments, but with fewer, bigger pieces, so there's less to run, monitor, and connect. Often the services even share one database, which keeps transactions simple. The trade-off is that one database change can tie them together again, so keep an eye on that.</p>
-          <p>And here's something I see a lot. Plenty of teams say they run microservices, but what they really run are generic services, and that's completely fine. Sometimes, even two monoliths side by side are all you need.</p>
-          <h4>So split by business area first, and stop when it's enough. And if you do go smaller, what actually makes something a microservice? It comes down to three things: one job, one database, and one team.</h4>
+          <h2>When a Few Larger Services Are Enough</h2>
+          <h3>Last time, the bakery could install a new oven while the kitchen kept working. Now look inside that kitchen. The grill and salad stations do different jobs, but they work together to get a meal out. Giving each station its own building would add another trip every time an order needed both.</h3>
+          <p>Say the store runs orders, payments, and shipping as three services. The orders service can accept a purchase, show its status, and handle a cancellation. Those jobs are related, and the team usually releases changes to them together. Keeping them in one service gives the team fewer things to deploy and monitor.</p>
+          <p>This is one form of service-based architecture. Each service covers a broad area of the business. The diagram shows a version where the services share a database. That can simplify some updates, but ownership still matters. If shipping reads the orders tables directly, a change to those tables might force both services to release together. If shipping gets the details it needs through an agreed interface, orders has more room to change how it stores them.</p>
+          <h4>Keep related work together while that arrangement serves the team. If one part keeps needing to change or scale on its own, take a closer look at its boundary. Next, we’ll see what a narrower boundary looks like in a microservice.</h4>
         </aside>
       </section>
       <section class="S68">
-        <h1>Microservices: One Job, One Database, One Team</h1>
-        <p class="subtitle">Small in scope, not in code</p>
+        <h1>What Makes a Service a Microservice?</h1>
+        <p class="subtitle">Give it a focused job, control of its data, and a clear owner</p>
         <div class="r-stack">
-          <img src="images/architectures/s68-shared-fridge.png" alt="The grill crew and the salad crew share one restaurant fridge. The salad crew has just reorganized the shelves, and a grill cook searches for burgers that are no longer where they were">
-          <img class="fragment" src="images/architectures/s68-one-job-one-db-one-team.png" alt="Three microservices side by side, each with one main job icon, its own database and its own small team. They talk only through small API doors, plus one tiny worker service with an envelope listening to a queue">
+          <img src="images/architecture/s68-shared-fridge.png" alt="The grill crew and the salad crew share one restaurant fridge. The salad crew has just reorganized the shelves, and a grill cook searches for burgers that are no longer where they were">
+          <img class="fragment" src="images/architecture/s68-one-job-one-db-one-team.png" alt="Three microservices side by side, each with one main job icon, its own database and its own small team. They talk only through small API doors, plus one tiny worker service with an envelope listening to a queue">
         </div>
         <aside class="notes">
-          <h2>Microservices: One Job, One Database, One Team</h2>
-          <h3>In our restaurant, the grill crew and the salad crew share one fridge. One day, the salad crew reorganizes the shelves, and that evening, the grill crew can't find their burgers. Nobody did anything wrong, but one team's change still broke the other team's work.</h3>
-          <p>That's exactly what happens when services share a database. One team changes a table, and another team's service quietly breaks. Microservices avoid that with three simple rules, and you can remember them as one job, one database, and one team.</p>
-          <p>First, one job. A microservice covers one focused business capability, like payments, not a whole area with many jobs inside. It's small in scope, not in code, so it can still be a lot of code and handle huge traffic. Even a small worker that only sends welcome emails after sign-up can be one.</p>
-          <p>Second, one database. Each microservice owns its data, and nobody else touches it directly. Amazon's CTO, Werner Vogels, put it plainly: no direct database access from outside the service. If another service needs that data, it asks through the API. And yet, in one 2024 study, about one in five practitioners said their microservices still share a database.</p>
-          <p>And third, one team. One team owns the service and has the final say on every change. A team can own several services, but each service has only one owner. And of course, it deploys on its own, which is our test from before.</p>
-          <h4>One job, one database, one team. Miss one of the three, and you're running generic services, which is fine, as long as you know it. So, are your own services really microservices? Let's check.</h4>
+          <h2>What Makes a Service a Microservice?</h2>
+          <h3>Last time, we kept several related jobs inside the orders service. Let’s look at what a more focused service owns. Imagine the grill and salad crews share a fridge. The salad crew moves the burgers to make room, and the grill cook goes looking on the old shelf. The trouble starts because one crew depends on how the other arranges things.</h3>
+          <p>Say the store has a payments service. Its job is to handle payments, which can include charging a customer, checking a payment’s status, and issuing a refund. Those are several operations that belong to one business capability.</p>
+          <p>The payments service controls its own records. When orders needs to know whether a charge went through, it asks payments through an agreed interface. Payments can rearrange its tables and release that change independently as long as orders still gets the answer it expects. The services can use the same database server if payments controls access to its own data.</p>
+          <p>Give the service a clear owner, too. In this store, the payments team decides how it changes and takes responsibility for keeping it running. That team can own other services as well.</p>
+          <h4>Pick a service and ask what it does, who can change its data, who looks after it, and whether it can ship on its own. Next, we’ll use those questions to see where the boundary helps and where changes still spread.</h4>
         </aside>
       </section>
 
 
             <section class="S69">
-        <h1>Check Your Services: Micro or Not?</h1>
-        <p class="subtitle">Hands up, let's find out</p>
+        <h1>How Well Does Your Service Boundary Work?</h1>
+        <p class="subtitle">Use four questions to find where changes spread</p>
         <div class="r-stack">
-          <img src="images/architectures/s69-hands-up-check.png" alt="A workshop room where participants each picture one of their own services as a small glowing box above their heads, and several raise their hands in answer to a question on the big screen showing four simple icons">
-          <img class="fragment" src="images/architectures/s69-four-yes-or-generic.png" alt="Two service cards compared. Left: all four checks lit up (deploy alone, own data, one team, one job), and the service glows as a microservice. Right: only two checks lit, and the service is a generic service with some benefits faded out">
+          <img src="images/architecture/s69-hands-up-check.png" alt="A workshop room where participants each picture one of their own services as a small glowing box above their heads, and several raise their hands in answer to a question on the big screen showing four simple icons">
+          <img class="fragment" src="images/architecture/s69-four-yes-or-generic.png" alt="Two service cards compared. Left: all four checks lit up (deploy alone, own data, one team, one job), and the service glows as a microservice. Right: only two checks lit, and the service is a generic service with some benefits faded out">
         </div>
         <aside class="notes">
-          <h2>Check Your Services: Micro or Not?</h2>
-          <h3>Do you really know the difference between generic services and microservices? If not, let's find out together! Pick one service from your own system, and keep it in mind. I'm going to ask four quick questions, and for every yes, raise your hand.</h3>
-          <p>First, can you deploy it alone, without releasing any other service at the same time? If not, you can't ship on your own schedule, and that's the distributed monolith from earlier.</p>
-          <p>Second, does it own its data? If other services read or write its tables directly, a change on your side can break them, and a change on theirs can break you. In fact, researchers interviewed 72 developers who build microservices, and asked which practices kept causing them trouble. From all those answers, they listed eleven practices that developers often find harmful, and sharing a database is one of them.</p>
-          <p>Third, does one team own it? If several teams can all change it, every decision turns into a meeting. And fourth, does it do one focused job, or does it cover a whole area of the business? If it covers many jobs, one busy job means scaling and releasing all of them together.</p>
-          <p>So, if you can deploy it alone, it owns its data, one team owns it, and it does one focused job, then it's a microservice. If any answer is no, you're running a generic service, and you get the microservice benefits only where you said yes. And one thing doesn't count at all: using REST or Docker, because generic services use those too.</p>
-          <h4>Run these four questions on every service you own. And speaking of owning, who actually owns what in your system?</h4>
+          <h2>How Well Does Your Service Boundary Work?</h2>
+          <h3>Last time, we looked at what the payments service owns. Now pick a service you work with, or use the store’s payments service if you’re following along. Think of a recent change. We’ll use four questions to see what the team could do on its own and where it needed help.</h3>
+          <p>Suppose the payments team changes how it records refunds. First, can it release that change while orders stays on its current version? Look at what actually happened in the last release. If orders had to ship at the same time, find out what tied the releases together.</p>
+          <p>Second, who controls the refund records? If orders reads those tables directly, changing a column can affect both services. Third, who makes changes to payments and responds when it fails? You should know which team to call if refunds stop going through.</p>
+          <p>Fourth, what business work belongs in the service? Charging a card and issuing a refund both fit under payments. If the same service also schedules deliveries, ask why those jobs need to change or run together.</p>
+          <p>Use your answers to pick one issue worth fixing. If direct table access keeps forcing payments and orders to release together, start by agreeing on how orders should get refund status from payments.</p>
+          <h4>Take one change and follow it across the service boundary. Where did the team have to stop and coordinate? Next, we’ll look more closely at what it means for a team to own and run a service.</h4>
         </aside>
       </section>
 
             <section class="S70">
-        <h1>See How Teams Own Their Services</h1>
-        <p class="subtitle">You build it, you run it</p>
+        <h1>What Does It Mean to Own a Service?</h1>
+        <p class="subtitle">Know who changes it and who responds when it fails</p>
         <div class="r-stack">
-          <img src="images/architectures/s70-grill-breaks-friday.png" alt="A packed restaurant on a Friday night. The grill has stopped working with a small puff of smoke, and the grill crew's phone is ringing as they hurry over to fix it, while the rest of the kitchen keeps cooking">
-          <img class="fragment" src="images/architectures/s70-teams-own-services.png" alt="Two teams each own their own service and database, users and payments. A simple ownership board lists each service with its team and a phone icon. The services connect only through an API arrow, with a small ID tag passed along">
+          <img src="images/architecture/s70-grill-breaks-friday.png" alt="A packed restaurant on a Friday night. The grill has stopped working with a small puff of smoke, and the grill crew's phone is ringing as they hurry over to fix it, while the rest of the kitchen keeps cooking">
+          <img class="fragment" src="images/architecture/s70-teams-own-services.png" alt="Two teams each own their own service and database, users and payments. A simple ownership board lists each service with its team and a phone icon. The services connect only through an API arrow, with a small ID tag passed along">
         </div>
         <aside class="notes">
-          <h2>See How Teams Own Their Services</h2>
-          <h3>It's Friday night, the restaurant is packed, and suddenly the grill stops working. Who do you call? If the answer is, "Hmm, maybe someone in the kitchen," the whole evening is gone. But if the grill crew owns the grill, their phone rings, and they start fixing it right away.</h3>
-          <p>Services work the same way. Owning a service doesn't just mean writing its code. Werner Vogels described Amazon's approach back in 2006 like this: you build it, you run it. So the owner team handles the code, the data, the API, and the phone call when it breaks at night, ideally with good shared tools behind them.</p>
-          <p>Next, write it down. In my experience, a simple shared list is enough to start: every service, its owner team, and who to call. And always name a team, not a person. People change jobs, but teams stay, so you don't end up with a bus factor of one again. That way, when something breaks, nobody wastes the start of an incident asking who owns it.</p>
-          <p>And here's how owner teams work together. Say the users team and the payments team each own their service and their database. The users service only stores a payment ID, and when it needs details, it asks the payments service through its API. And if payments changes its API, it keeps the old version working for a while, and gives everyone a heads-up first.</p>
-          <h4>Give every service one owner team, write it down, and let teams talk through APIs. But now there's a new question: with so many services, should your users talk to each one directly?</h4>
+          <h2>What Does It Mean to Own a Service?</h2>
+          <h3>Last time, we asked who looks after a service when it fails. Imagine it’s Friday night and the restaurant’s grill stops working. The shift lead knows which crew looks after the grill and who’s covering that evening. The crew can start checking the problem while the shift lead works out what to tell the guests who are waiting.</h3>
+          <p>Say the store starts seeing refunds stuck in processing. Support needs to know whom to contact, and the team receiving the alert needs enough information to act. If the payments team owns the service, it should be able to see which refunds are stuck, work out what happened, and tell support what to expect.</p>
+          <p>Owning a service means taking responsibility for how it runs as well as how it changes. The payments team maintains the code and the interface other teams use. It also makes sure there’s a way to notice failures and a plan for who responds. The company can provide shared monitoring and support tools to help the team do that.</p>
+          <p>Put the service name, its owner team, and the current contact route somewhere everyone can find them. Then walk through one failure. Would support reach the right people, and would those people know where to start?</p>
+          <h4>Pick one service and check whether someone outside its team knows whom to contact when it fails. Next, we’ll look at how requests from customers reach the right service through a gateway.</h4>
         </aside>
       </section>
 
 
             <section class="S71">
-        <h1>Keep Internal Services Behind a Gateway</h1>
-        <p class="subtitle">One public door, many private rooms</p>
+        <h1>How an API Gateway Routes Requests</h1>
+        <p class="subtitle">Give clients one public entry point to private services</p>
         <div class="r-stack">
-          <img src="images/architectures/s71-waiter-not-chef.png" alt="A guest orders from a waiter in the dining area. The waiter carries a short coded ticket through a swinging door into the kitchen, where the grill has just been moved to a new spot without the guest noticing">
-          <img class="fragment" src="images/architectures/s71-api-gateway.png" alt="Browsers and phones on the left send requests through one gateway door in a wall. Behind the wall, private services connect to each other with different, thicker lines. A shield sits on the gateway, and two gateway copies stand side by side">
+          <img src="images/architecture/s71-waiter-not-chef.png" alt="A guest orders from a waiter in the dining area. The waiter carries a short coded ticket through a swinging door into the kitchen, where the grill has just been moved to a new spot without the guest noticing">
+          <img class="fragment" src="images/architecture/s71-api-gateway.png" alt="Browsers and phones on the left send requests through one gateway door in a wall. Behind the wall, private services connect to each other with different, thicker lines. A shield sits on the gateway, and two gateway copies stand side by side">
         </div>
         <aside class="notes">
-          <h2>Keep Internal Services Behind a Gateway</h2>
-          <h3>When you eat at our restaurant, do you walk into the kitchen and order from the chef? Of course not. You order from the waiter, who passes it on in the kitchen's own short codes. And if the kitchen moves the grill tomorrow, you never even notice.</h3>
-          <p>An API gateway works the same way. Remember the gateway tier, the only public door into your system? With many services, it matters even more. Users and apps send every request to the gateway, and it passes each one to the right service behind it.</p>
-          <p>That gives you three things. First, freedom to change. You can split, merge, or move services, and your users never notice, because they only ever see the gateway. Second, one door to guard. Login checks, rate limits, and logging happen in one place, and your internal services stay out of reach.</p>
-          <p>And third, each side speaks its own language. Outside, browsers and apps usually use REST, partly because browsers can't call gRPC directly. Inside, many teams use gRPC between services, because it's efficient and strictly defined, just like the kitchen's short codes.</p>
-          <p>Of course, the gateway isn't free. It's one more part to run, and every request passes through it, so run more than one copy and keep business logic out of it.</p>
-          <h4>So give your users one door, and keep everything else behind it. And those short codes the kitchen uses? Every station has to agree on them, and in software, that agreement is called a contract.</h4>
-        </aside>
-      </section>
-
-
-            <section class="S71">
-        <h1>Keep Internal Services Behind a Gateway</h1>
-        <p class="subtitle">One public door, many private rooms</p>
-        <div class="r-stack">
-          <img src="images/architectures/s71-waiter-not-chef.png" alt="A guest orders from a waiter in the dining area. The waiter carries a short coded ticket through a swinging door into the kitchen, where the grill has just been moved to a new spot without the guest noticing">
-          <img class="fragment" src="images/architectures/s71-api-gateway.png" alt="Browsers and phones on the left send requests through one gateway door in a wall. Behind the wall, private services connect to each other with different, thicker lines. A shield sits on the gateway, and two gateway copies stand side by side">
-        </div>
-        <aside class="notes">
-          <h2>Keep Internal Services Behind a Gateway</h2>
-          <h3>When you eat at our restaurant, do you walk into the kitchen and order from the chef? Of course not. You order from the waiter, who passes it on in the kitchen's own short codes. And if the kitchen moves the grill tomorrow, you never even notice.</h3>
-          <p>An API gateway works the same way. Remember the gateway tier, the only public door into your system? With many services, it matters even more. Users and apps send every request to the gateway, and it passes each one to the right service behind it.</p>
-          <p>That gives you three things. First, freedom to change. You can split, merge, or move services, and your users never notice, because they only ever see the gateway. Second, one door to guard. Login checks, rate limits, and logging happen in one place, and your internal services stay out of reach.</p>
-          <p>And third, each side speaks its own language. Outside, browsers and apps usually use REST, partly because browsers can't call gRPC directly. Inside, many teams use gRPC between services, because it's efficient and strictly defined, just like the kitchen's short codes.</p>
-          <p>Of course, the gateway isn't free. It's one more part to run, and every request passes through it, so run more than one copy and keep business logic out of it.</p>
-          <h4>So give your users one door, and keep everything else behind it. And those short codes the kitchen uses? Every station has to agree on them, and in software, that agreement is called an API contract.</h4>
+          <h2>How an API Gateway Routes Requests</h2>
+          <h3>Last time, we looked at who to contact when a service needs attention. Now let’s look at where a customer’s request goes. At our restaurant, you place your order with the waiter. The kitchen can move the grill to a different station, and you still order the same way. The waiter knows where to take the ticket.</h3>
+          <p>Say a shopper opens their order history. The store’s app sends the request to a public API gateway, which routes it to the orders service. If the store later moves order history into a separate service, the team can update that route. The app can keep making the same request as long as the public API still behaves as agreed.</p>
+          <p>The gateway is also a place to apply rules shared by incoming requests, such as rate limits. The orders service still checks whether the shopper can see the orders they asked for. That decision belongs with the part that knows the orders.</p>
+          <p>Because requests on this route depend on the gateway, plan how it will keep handling traffic if one copy fails. The diagram shows two copies behind the same public entry point.</p>
+          <h4>Trace one request from the app through the gateway. Ask what the app can rely on and which decisions belong in the service. Next, we’ll look at how teams write down that agreement as an API contract.</h4>
         </aside>
       </section>
 
 
             <section class="S72">
-        <h1>Share API Contracts, Not Code</h1>
-        <p class="subtitle">Stay DRY inside, stay independent between</p>
+        <h1>Keep API Contracts Compatible</h1>
+        <p class="subtitle">Let callers keep working while the service changes</p>
         <div class="r-stack">
-          <img src="images/architectures/s72-order-form-not-recipes.png" alt="A kitchen cook hands a simple order form across to the bakery, while the bakery's recipe book stays inside on its own shelf. A baker quietly updates a recipe page behind the counter">
-          <img class="fragment" src="images/architectures/s72-shared-code-vs-api-contract.png" alt="Left: two services chained to one shared code library, so a change must go through the library, then one service, then the other, in order. Right: two services, each with its own private code, connected only by one written API contract document between them">
+          <img src="images/architecture/s72-order-form-not-recipes.png" alt="A kitchen cook hands a simple order form across to the bakery, while the bakery's recipe book stays inside on its own shelf. A baker quietly updates a recipe page behind the counter">
+          <img class="fragment" src="images/architecture/s72-shared-code-vs-api-contract.png" alt="Left: two services chained to one shared code library, so a change must go through the library, then one service, then the other, in order. Right: two services, each with its own private code, connected only by one written API contract document between them">
         </div>
         <aside class="notes">
-          <h2>Share API Contracts, Not Code</h2>
-          <h3>Does our kitchen need the bakery's recipe book to order bread? Of course not. It just needs the order form: which breads there are, how many, and by when. And the bakery can change its recipes any day, without asking the kitchen.</h3>
-          <p>Services work the same way, but it's easy to slip. Say your frontend and backend are deployed separately, and both use TypeScript, so you share one library of types between them. Sounds smart, right? But now one small change means updating the library, then the backend, then the frontend, and deploying them in the right order.</p>
-          <p>And here's the problem: those types disappear once the code runs, so they can't protect you while the two sides don't match. It's a common way teams end up with a distributed monolith again, just from trying not to repeat themselves.</p>
-          <p>So what about DRY, then? Sam Newman puts it nicely: don't repeat yourself inside a service, but be relaxed about it across services, because a bit of repeated code is the price of staying independent.</p>
-          <p>Instead, share the API contract, the clear agreement where teams connect that we talked about earlier. Write down exactly what your API offers: its endpoints, the fields it accepts and returns, and its error codes. For REST, that's often an OpenAPI file, and for gRPC, a proto file. The owner team keeps every change backward compatible, and each team writes its own code behind it.</p>
-          <h4>Share the order form, and keep your recipes. And once your API contract is written down, there's a bonus: you don't have to write the code that calls it by hand. A tool can do it for you.</h4>
+          <h2>Keep API Contracts Compatible</h2>
+          <h3>Last time, the store moved order history behind the same public API. What did the app need to stay the same? Think about our kitchen ordering bread from the bakery. The order form says which bread to send, how much, and when it’s needed. The bakery can change its recipe while the kitchen keeps using the same form.</h3>
+          <p>Say the store’s web app asks for an order. When the backend returns “shipped,” the app shows a tracking link. If the backend starts sending “dispatched” and the app still looks for “shipped,” the link can disappear. That’s why both teams need to check the API contract when a field or its meaning changes.</p>
+          <p>Suppose the store adds an estimated delivery date. If the app and backend both use TypeScript, they can share a small package that describes the order response. It says every order has a <code>status</code> field and may have an <code>estimatedDeliveryDate</code> field.</p>
+          <p>When the contract changes, update the shared definition and have both teams build against that updated version. If the app tries to read <code>deliveryDate</code> when the agreed field is <code>estimatedDeliveryDate</code>, TypeScript can flag the mistake before release. Then check a real response in a test environment to make sure the backend sends what the contract describes.</p>
+          <h4>Before you change an API, check what existing callers rely on and test that it still works. Next, we’ll see how a written contract can also help you generate the code that calls the API.</h4>
         </aside>
       </section>
 
 
             <section class="S73">
-        <h1>Generate Clients Instead of Writing Them</h1>
-        <p class="subtitle">Your API contract writes the calling code</p>
+        <h1>Generate Client Code from an API Contract</h1>
+        <p class="subtitle">Generate the code your app uses to call the backend</p>
         <div class="r-stack">
-          <img src="images/architectures/s73-app-orders-to-kitchen.png" alt="Left: a waiter's messy handwritten order slip confuses a cook. Right: a guest taps dishes in a phone app, and the same clean order appears on the kitchen screen and at the reception">
-          <img class="fragment" src="images/architectures/s73-contract-to-clients.png" alt="One API contract document goes into a code generator machine, which produces ready-made client packages. Several teams' services plug them in and call the owner's service directly">
+          <img src="images/architecture/s73-app-orders-to-kitchen.png" alt="Left: a waiter's messy handwritten order slip confuses a cook. Right: a guest taps dishes in a phone app, and the same clean order appears on the kitchen screen and at the reception">
+          <img class="fragment" src="images/architecture/s73-contract-to-clients.png" alt="One API contract document goes into a code generator machine, which produces ready-made client packages. Several teams' services plug them in and call the owner's service directly">
         </div>
         <aside class="notes">
-          <h2>Generate Clients Instead of Writing Them</h2>
-          <h3>Our waiters used to write orders by hand, and on busy nights, the kitchen misread a few: a missing side, the wrong sauce. Now guests just tap their favorites in our app, and the order shows up on the kitchen screen and at the reception, exactly as they chose it.</h3>
-          <p>Services work the same way. Without a generated client, every team that calls your service writes its own request code by hand: the URL, the fields, the error handling. That's a lot of handwriting, and a lot of chances to misread.</p>
-          <p>So instead, take the API contract you already wrote down, and let a tool generate the client. With gRPC, that client lets you call another service almost like a normal function in your own code. And for REST, a code generator can read that same contract, your OpenAPI file, and create the client for you. Ideally, the owner team generates and publishes its own client, so other teams just plug it in. It's like the SDK a payment provider gives you, only this one is your own.</p>
-          <p>And it saves a lot of meetings. When the contract changes, the message is simply, "We updated our API, grab the new client." Many changes, like adding a new field, are safe, because older clients just ignore it. Renaming or removing something is different, so plan those together.</p>
-          <p>And if you're picking a language for new services, in my experience, Go is a strong choice, and tools like Docker and Kubernetes are written in it.</p>
-          <h4>Write the API contract once, and let the tool write the calls. Now, remember that bigger kitchen we paid for? With separate services, let's fix it.</h4>
+          <h2>Generate Client Code from an API Contract</h2>
+          <h3>Last time, we used a shared definition to describe what comes back when the store’s web app asks for an order. Someone still has to write the code that makes that request. Think about our restaurant’s ordering app. When a guest taps a dish, the kitchen gets a ticket in its usual format. The guest chooses what to order, and the app takes care of putting it into a form the kitchen can use.</h3>
+          <p>Suppose the store’s API contract describes how to ask for an order, which order ID to send, and which fields come back. A generator can read that contract and produce a client with a method like <code>getOrder</code>. The web app gives it an order ID, and the generated code builds the request and sends it to the right endpoint.</p>
+          <p>The app still decides what the shopper sees. If the response includes a delivery estimate, the app can display it. If the request fails, the app decides what message to show.</p>
+          <p>Say the orders team wants to add a delivery estimate. That team updates the API contract to describe the new optional field, then checks that the backend response matches it. Its build pipeline generates and publishes a new version of the client from that same contract.</p>
+          <p>The web app team upgrades to the new client when it’s ready to show the estimate. It tests the order page against the updated backend and checks that the estimate appears when the backend provides one.</p>
+          <h4>Use the contract to generate the routine calling code, then test one request end to end. Next, we’ll look at another reason to separate parts of a system: giving a busy service more capacity on its own.</h4>
         </aside>
       </section>
 
 
             <section class="S74">
-        <h1>Scale Each Part on Its Own</h1>
-        <p class="subtitle">The right server for each job</p>
+        <h1>Scale Each Service on Its Own</h1>
+        <p class="subtitle">Add capacity where the work is growing</p>
         <div class="r-stack">
-          <img src="images/architectures/s74-ovens-and-tables.png" alt="The bakery building gets a big new oven delivered, while the separate dining room building gets extra tables carried in. Each building grows only in the way it needs">
-          <img class="fragment" src="images/architectures/s74-scale-each-part.png" alt="Three services side by side. The video service runs on several large, powerful server racks. The chat service runs on a few small, light servers. The account service stays on one modest server">
+          <img src="images/architecture/s74-ovens-and-tables.png" alt="The bakery building gets a big new oven delivered, while the separate dining room building gets extra tables carried in. Each building grows only in the way it needs">
+          <img class="fragment" src="images/architecture/s74-scale-each-part.png" alt="Three services side by side. The video service runs on several large, powerful server racks. The chat service runs on a few small, light servers. The account service stays on one modest server">
         </div>
         <aside class="notes">
-          <h2>Scale Each Part on Its Own</h2>
-          <h3>Now that our bakery and our dining room have their own buildings, each one gets exactly what it needs. The bakery gets bigger ovens, the dining room gets more tables, and nobody pays for something they don't use.</h3>
-          <p>Services work the same way. Remember the bigger kitchen we paid for, back in the monolith? With separate services, that problem goes away in two ways. First, you scale only the busy part, with more copies of the one service under pressure. And second, each service can run on the kind of server that suits its job.</p>
-          <p>Twitch is a great example. It launched in 2011 as one big monolith, and over the years, it moved feature after feature into separate services. Today, live video has its own world: data centers with hundreds to thousands of servers just for converting streams into different quality levels. A chat message is tiny, but video is a constant, heavy stream, so it gets its own powerful machines, and a busy chat doesn't compete with it.</p>
-          <p>You see the same idea elsewhere. In online games, the servers that run matches grow with the number of matches, separately from accounts and the in-game store. And in IoT, the part that collects data from all the devices scales on its own, separately from the app people use.</p>
-          <p>To be fair, any separate service gives you this, generic or micro. And every extra service is one more thing to run, so split out the parts whose needs are really different.</p>
-          <h4>Scale only the busy part, on the right kind of server. And separate services help your teams too: they stop waiting on each other.</h4>
+          <h2>Scale Each Service on Its Own</h2>
+          <h3>Last time, we looked at how a client calls a separate service. Now let’s ask what happens when one service gets busier than the others. Think back to our restaurant. If the bakery gets a big bread order, it might need another oven. The dining room can keep the same number of tables. Each building can add capacity for the work it does.</h3>
+          <p>Imagine a live-streaming app with separate services for video, chat, and accounts. A big event goes live, and the team sees video processing fall behind while chat and sign-in still meet their targets.</p>
+          <p>If video processing can spread its work across more workers, the team can add workers just for video. It can also choose machines that suit that job. Chat and accounts can keep running with the capacity they already have.</p>
+          <p>Check what the video workers depend on before adding more. If they’re all waiting for the same storage system, more workers may just add to the wait. Run the same load test again and check whether video catches up and the rest of the app still meets its targets.</p>
+          <h4>Measure which service is running out of capacity, then test whether adding capacity there helps. Next, we’ll look at another kind of independence: when a team can release a change on its own schedule.</h4>
         </aside>
       </section>
 
 
             <section class="S75">
-        <h1>Build Features Faster, Independently</h1>
-        <p class="subtitle">Each team ships on its own schedule</p>
+        <h1>When Can a Team Release on Its Own?</h1>
+        <p class="subtitle">Ship a service change without waiting for another release</p>
         <div class="r-stack">
-          <img src="images/architectures/s75-milkshakes-and-burgers.png" alt="Left, before: one shared kitchen where the dessert crew waits in line behind the grill crew. Right, now: two separate stations, a new milkshake station and the grill with a new burger, both open and serving at the same time">
-          <img class="fragment" src="images/architectures/s75-new-service-reuses.png" alt="A new small service with a bell icon plugs into the existing gateway, login checks and generated clients, and launches with its own rocket, while the other teams' services keep running">
+          <img src="images/architecture/s75-milkshakes-and-burgers.png" alt="Left, before: one shared kitchen where the dessert crew waits in line behind the grill crew. Right, now: two separate stations, a new milkshake station and the grill with a new burger, both open and serving at the same time">
+          <img class="fragment" src="images/architecture/s75-new-service-reuses.png" alt="A new small service with a bell icon plugs into the existing gateway, login checks and generated clients, and launches with its own rocket, while the other teams' services keep running">
         </div>
         <aside class="notes">
-          <h2>Build Features Faster, Independently</h2>
-          <h3>In our restaurant, the dessert crew wants to add milkshakes, and the grill crew wants to try a new burger, both this week. Back in the one-kitchen days, one of them had to wait. Now each crew changes its own station, and both go live on Friday.</h3>
-          <p>Services work the same way, as long as each team can release on its own. And this isn't just my opinion. Google's DORA research is one of the largest, longest-running studies of software teams. It found that when teams can test and deploy without depending on other teams, they can release reliably, whenever they need to. And they need far less coordination to get work done.</p>
-          <p>It also makes new features easier. A new feature can be a new service that reuses what's already solved: the gateway, the login checks, the generated clients. All it needs is its own logic. On a social media app, for example, the notifications team can launch a new kind of alert without waiting for the feed team.</p>
-          <p>But here's the honest part. DORA also points out that many so-called service-oriented systems still can't test or deploy their services alone, and then none of this happens. So run the four questions from earlier. And for a small project, one monolith is still the fastest start.</p>
-          <h4>Let each team ship on its own schedule, and new ideas reach users faster. But shipping alone brings a new question: how do you release your service without breaking the teams that depend on it?</h4>
+          <h2>When Can a Team Release on Its Own?</h2>
+          <h3>Last time, the video team added workers without changing chat or accounts. Can a team do something similar when it releases a feature? Think back to our restaurant. The dessert crew wants to add milkshakes, and the grill crew is still trying out a new burger. If the dessert crew has what it needs at its own counter, it can start serving milkshakes while the grill crew keeps working.</h3>
+          <p>Say our live-streaming app wants to notify viewers when a creator they follow goes live. The notifications service already receives a message when a stream starts, and it already knows how to look up who follows that creator. The notifications team adds the new alert using those existing connections.</p>
+          <p>To see whether the change can ship on its own, test it with the versions of video and accounts that are already running. If the alert works with the information those services already provide, the notifications team can release without waiting for either team to ship.</p>
+          <p>Sometimes that test shows you need a change elsewhere. If the stream-start message leaves out the creator’s ID, agree with the video team on how to make it available. That dependency tells you where coordination is needed.</p>
+          <h4>Pick one feature and ask which other services would have to release for it to work. Next, we’ll look at how to change a service while keeping the teams that depend on it working.</h4>
         </aside>
       </section>
 
 
             <section class="S76">
         <h1>Deploy Without Breaking Other Teams</h1>
-        <p class="subtitle">Test their needs, change in steps, start small</p>
+        <p class="subtitle">Check what callers rely on before you roll out</p>
         <div class="r-stack">
-          <img src="images/architectures/s76-bigger-pizzas.png" alt="Left: a bigger pizza sticks out of a takeaway box that is too small, and the takeaway worker looks surprised. Right: the kitchen keeps both pizza sizes, checks the box sizes with the takeaway counter, and sends a few big pizzas out first">
-          <img class="fragment" src="images/architectures/s76-three-safe-release-habits.png" alt="Three panels for three habits. First, a pipeline checks other teams' expectation cards before deploying. Second, an old and a new version run side by side while callers move over, then the old one is removed. Third, a new version gets a small slice of users first, with a rollback arrow ready">
+          <img src="images/architecture/s76-bigger-pizzas.png" alt="Left: a bigger pizza sticks out of a takeaway box that is too small, and the takeaway worker looks surprised. Right: the kitchen keeps both pizza sizes, checks the box sizes with the takeaway counter, and sends a few big pizzas out first">
+          <img class="fragment" src="images/architecture/s76-three-safe-release-habits.png" alt="Three panels for three habits. First, a pipeline checks other teams' expectation cards before deploying. Second, an old and a new version run side by side while callers move over, then the old one is removed. Third, a new version gets a small slice of users first, with a rollback arrow ready">
         </div>
         <aside class="notes">
           <h2>Deploy Without Breaking Other Teams</h2>
-          <h3>Our kitchen wants to make bigger pizzas. Switch overnight, and the next morning, the pizzas don't go into the takeaway boxes. So this time, the kitchen asks the takeaway counter what its boxes hold, keeps both sizes for a while, and sends the bigger pizzas out on a few orders first.</h3>
-          <p>Services work the same way. Other teams' services call yours, and they expect your API to look a certain way. So if you rename a field and release on your own, their code still looks for the old name, and their feature breaks, even though they didn't change a thing. To stop that, some companies make every team release together, on one shared day each week. But that's just the monolith's full redeploy again. The real fix is in the architecture: give each service its own pipeline, and add three habits.</p>
-          <p>First, test their needs. Each team that calls your API writes down what it expects from you, and your pipeline checks those expectations before every deploy. These are called contract tests, and they're the automatic checks we talked about earlier.</p>
-          <p>Second, change in steps. For a breaking change, add the new version next to the old one, give the other teams time to move over, and only then remove the old one. Martin Fowler calls this parallel change.</p>
-          <p>And third, start small. Send the new version to a small share of users first, watch it closely, and roll back if something looks wrong. That's a canary release. With all three, a fix ready on Tuesday morning can safely go out that morning.</p>
-          <h4>Test their needs, change in steps, start small. Next: when one service fails, does everything fail?</h4>
+          <h3>Last time, we asked whether the notifications team could ship an alert on its own. Now look at the service it depends on. Imagine our kitchen makes a bigger pizza, and the takeaway crew finds it won’t fit in their usual box. Before switching sizes, the kitchen can check the boxes with the crew and keep making the original size while they prepare.</h3>
+          <p>Say the video team wants to rename the creator ID field in its stream-start message. Notifications reads that field to find the creator’s followers. Before changing it, add a contract test that checks whether the message still contains what notifications uses. Run that test in the video service’s build pipeline.</p>
+          <p>Then make the change in steps. Have video send both field names with the same value. The notifications team can switch to the new field on its own schedule. Once you’ve confirmed that every caller has moved over, you can remove the old field.</p>
+          <p>For the first rollout, send a small share of stream starts through the updated video service. Check that alerts still go out for those streams. If they don’t, pause the rollout and switch that traffic back. That small first rollout is called a canary release.</p>
+          <h4>Check what callers need, give them time to move, and watch what happens as the change goes live. Next, we’ll look at how to keep one service failure from spreading.</h4>
         </aside>
       </section>
 
 
             <section class="S77">
-        <h1>Stop One Failure from Taking Down Everything</h1>
-        <p class="subtitle">Keep small problems small</p>
+        <h1>Keep One Service Failure from Spreading</h1>
+        <p class="subtitle">Decide what should keep working when a dependency fails</p>
         <div class="r-stack">
-          <img src="images/architectures/s77-own-electric-line.png" alt="Left: the whole kitchen runs on one electric line, and when the fryer overloads, everything goes dark. Right: each station has its own electric line, so only the fryer is dark while the grill and fridges keep working">
-          <img class="fragment" src="images/architectures/s77-circuit-breaker-fallback.png" alt="An online store page loads with search, cart and checkout working, while the broken recommendations service sits behind an open switch. The page shows a simple empty space where recommendations would be, and a small clock marks the short time limit">
+          <img src="images/architecture/s77-own-electric-line.png" alt="Left: the whole kitchen runs on one electric line, and when the fryer overloads, everything goes dark. Right: each station has its own electric line, so only the fryer is dark while the grill and fridges keep working">
+          <img class="fragment" src="images/architecture/s77-circuit-breaker-fallback.png" alt="An online store page loads with search, cart and checkout working, while the broken recommendations service sits behind an open switch. The page shows a simple empty space where recommendations would be, and a small clock marks the short time limit">
         </div>
         <aside class="notes">
-          <h2>Stop One Failure from Taking Down Everything</h2>
-          <h3>On a busy evening, our fryer overloads and cuts the power. Back when the whole kitchen ran on one electric line, everything went dark: the grill, the fridges, the lights. Now each station has its own electric line, so only the fryer stops, and the rest of the kitchen keeps cooking.</h3>
-          <p>Services can work the same way. In a monolith, one bad bug or one overloaded part can bring the whole application down. With separate services, a failure can stay inside one service. Say the recommendations service on an online store breaks during a big sale. People can still search, fill their carts, and pay.</p>
-          <p>But this doesn't happen on its own. If the product page calls recommendations and just waits, and waits, every product page gets stuck, and now one broken service is taking the others down with it.</p>
-          <p>So you design for it. Give every call to another service a short time limit. Add a circuit breaker: after a few failures, it stops calling the broken service for a while, just like the switch that cuts the power to one line before the problem spreads. And fall back to something simpler, like showing the page without recommendations.</p>
-          <p>The result? A part that isn't critical can stay broken until the morning, and its team fixes it after a good night's sleep. Payments or login, of course, still get fixed right away.</p>
-          <h4>Time limits, circuit breakers, and fallbacks: that's how you keep small problems small. And the same separation helps with something else, too: trying new technology without risking everything.</h4>
+          <h2>Keep One Service Failure from Spreading</h2>
+          <h3>Last time, we looked at how to release a change without breaking the services that depend on it. What if a service fails while it’s running? Think back to our kitchen. If the fryer trips a breaker on its own circuit, the grill and fridges can stay on. We want the same kind of separation for features the store can do without for a while.</h3>
+          <p>Say a shopper opens a product page during a sale. The page has the price and an “Add to cart” button, but it also waits for the recommendations service before showing anything. If that service stops replying, shoppers can get stuck waiting for suggestions they don’t need.</p>
+          <p>Start by deciding what the page should do without recommendations. In this case, it can show the product and leave the suggestions out. Give the recommendations call a time limit so the page knows when to stop waiting. If calls keep failing, a circuit breaker can skip them for a while, letting requests use the fallback right away. After a pause, it can let a small number of calls through to check whether recommendations has recovered.</p>
+          <p>Test it by making recommendations unavailable in a test environment. Can a shopper still open the product page, add the item to their cart, and check out?</p>
+          <h4>Pick one dependency and decide what users should still be able to do if it fails. Next, we’ll look at how a clear service boundary can also give a team room to try new technology.</h4>
         </aside>
       </section>
 
 
             <section class="S78">
-        <h1>Try New Technology Safely</h1>
-        <p class="subtitle">Experiment in one service, not the whole system</p>
+        <h1>Try New Technology in One Service</h1>
+        <p class="subtitle">Give the experiment a clear goal and a way back</p>
         <div class="r-stack">
-          <img src="images/architectures/s78-bakery-new-oven.png" alt="Inside its own building, the bakery tests a new wood-fired oven while two bakers learn to use it. The kitchen and dining room buildings next door carry on as normal">
-          <img class="fragment" src="images/architectures/s78-paved-road-and-experiment.png" alt="Most services travel along a smooth, well-lit paved road with support tools along it. One service with a new technology icon takes a side path, carried by two developers, and still connects to the others through the same API contract plug">
+          <img src="images/architecture/s78-bakery-new-oven.png" alt="Inside its own building, the bakery tests a new wood-fired oven while two bakers learn to use it. The kitchen and dining room buildings next door carry on as normal">
+          <img class="fragment" src="images/architecture/s78-paved-road-and-experiment.png" alt="Most services travel along a smooth, well-lit paved road with support tools along it. One service with a new technology icon takes a side path, carried by two developers, and still connects to the others through the same API contract plug">
         </div>
         <aside class="notes">
-          <h2>Try New Technology Safely</h2>
-          <h3>Our bakery wants to try a wood-fired oven. In the old shared kitchen, that meant smoke, heat, and new rules for everyone. Now the bakery has its own building, so it just tries it there. If the bread gets better, great. If not, they switch back, and nobody else notices.</h3>
-          <p>Services work the same way. In a monolith, a new language or framework touches everyone's code, and Chris Richardson calls that extremely difficult. With separate services, one team can try it inside its own service. If it works, keep it. If not, replace that one service, and the rest of the system never notices.</p>
-          <p>In my experience, many companies have that one unusual service that exists because someone tried something new, and it worked. That's fine, as long as the team can run and support it, and it plugs into everything else through the same API contracts.</p>
-          <p>And don't let one person carry it. If only one developer knows the new technology, you've just created a bus factor of one again. Get at least two people comfortable with it before it goes live.</p>
-          <p>Now, freedom has limits. If every team picks something different, hiring and sharing knowledge get much harder. Netflix handles this with what it calls the paved road, or paved path: a set of well-supported tools that teams are encouraged to use. Teams can leave it, but then they support their choice themselves.</p>
-          <h4>Try new things in one service, with at least two people who know them, and a paved road for everyone else. And separation brings one more benefit that's easy to miss: protection.</h4>
+          <h2>Try New Technology in One Service</h2>
+          <h3>Last time, we kept a problem in recommendations from blocking the rest of the store. A clear boundary can also give you room to try something new. Think about our bakery testing a new oven. For the first batch, the bakers can compare how long it takes and whether the bread comes out the way the kitchen expects. The old oven is still there if they need it.</h3>
+          <p>Say the store’s photo-resizing service falls behind whenever staff upload a batch of product photos. The team wants to try a different image library. Start with a batch in a test environment. Check whether the new library finishes sooner and still produces the sizes and file formats the catalog expects.</p>
+          <p>If the results look good, try it on a small share of uploads and keep the previous version available. Watch for jobs that fail or photos that look wrong in the catalog. Make sure someone besides the person who ran the experiment knows how to spot a problem and switch back.</p>
+          <p>The team can keep using its usual deployment and monitoring tools. If the new library needs a different setup, include the work of supporting that setup when deciding whether the improvement is worth keeping.</p>
+          <h4>Try the new technology where you can measure what it improves, check what other parts rely on, and switch back if needed. Next, we’ll look at how boundaries can also help you control which parts of a system can reach sensitive data.</h4>
         </aside>
       </section>
 
             <section class="S79">
-        <h1>Get Built-In Protection Between Layers</h1>
-        <p class="subtitle">Only the backend can reach the database</p>
+        <h1>Control Who Can Reach the Database</h1>
+        <p class="subtitle">Keep database access private and check what each user may see</p>
         <div class="r-stack">
-          <img src="images/architectures/s79-storage-key.png" alt="A restaurant with a dining room, kitchen and storage room. The guest talks to a waiter, the waiter passes the order to the kitchen, and only a cook carries the key to the locked storage room">
-          <img class="fragment" src="images/architectures/s79-layers-protection.png" alt="Many devices send a wave of traffic at the browser frontend, which strains. The backend stays calm, holds the only key to the database, checks every request, and keeps serving a mobile phone">
+          <img src="images/architecture/s79-storage-key.png.png" alt="A restaurant with a dining room, kitchen and storage room. The guest talks to a waiter, the waiter passes the order to the kitchen, and only a cook carries the key to the locked storage room">
+          <img class="fragment" src="images/architecture/s79-layers-protection.png" alt="Many devices send a wave of traffic at the browser frontend, which strains. The backend stays calm, holds the only key to the database, checks every request, and keeps serving a mobile phone">
         </div>
         <aside class="notes">
-          <h2>Get Built-In Protection Between Layers</h2>
-          <h3>In our restaurant, can a guest walk from the dining room into the storage room? No. Guests talk to waiters, waiters talk to the kitchen, and only the kitchen staff have the storage key. So even if someone tricks a waiter, they can't get in, because waiters don't have the key.</h3>
-          <p>Your system works the same way, when the frontend, backend, and database are separate layers. The frontend never talks to the database. Only the backend does, and only the backend holds the database password. So if someone breaks into the frontend, there's no password there to steal, and no direct path to your data.</p>
-          <p>Problems at the front also tend to stay at the front. Say someone launches a DDoS attack on your frontend: a wave of fake traffic from many computers at once, meant to overload it. If the frontend runs inside the backend app, they share the same servers and database connections, so everything slows down. With separate layers, the attack mostly hits the frontend, and the backend keeps serving your mobile app.</p>
-          <p>The frontend can also handle simple cases first. If a visitor has no login session, it sends them straight to the login page, without calling the backend at all. Security people call this whole idea defense in depth: several layers, so one broken layer isn't the end.</p>
-          <p>But it's a head start, not full protection. Anyone can still send requests straight to your backend, so the backend checks every single request itself. Remember zero trust? Same idea.</p>
-          <h4>So separate layers give you built-in protection: only the backend holds the keys. But all these benefits come at a price, and the first one is complexity.</h4>
+          <h2>Control Who Can Reach the Database</h2>
+          <h3>Last time, we used a service boundary to contain a technology experiment. A boundary can also control who gets access. At our restaurant, guests ask the waiter for a meal. The cook has the key to the storeroom and takes out what’s needed for that order. The guest gets a meal without getting a key to the storeroom.</h3>
+          <p>Say a shopper opens an order in the store’s web app. The browser sends the order ID to the backend, and the backend checks whether the signed-in shopper is allowed to see that order. If they are, it reads the record and returns the details the page needs.</p>
+          <p>There are two checks here. The database accepts connections only from approved components, including the orders backend. That backend uses a credential with the permissions it needs, and the browser never receives it. The backend also checks access to the specific order. Being signed in tells the store who’s asking. It still has to decide whether that person may see the record.</p>
+          <p>Test both paths with test accounts. Can a shopper open their own order? If they request someone else’s order, does the backend return it? The second check matters even if the web app only shows links to the shopper’s own orders.</p>
+          <h4>Trace one request for sensitive data and ask which part can reach the database and where the user’s access is checked. Next, we’ll look at the work that comes with adding more boundaries and connections.</h4>
         </aside>
       </section>
 
 
             <section class="S80">
-        <h1>Complexity Grows Fast</h1>
-        <p class="subtitle">Every new service brings more work than you expect</p>
+        <h1>What Does Another Service Cost?</h1>
+        <p class="subtitle">Count the new connections and the work to run them</p>
         <div class="r-stack">
-          <img src="images/architectures/s80-restaurant-paths.png" alt="Left: four restaurant buildings, each connected to every other by a few calm paths. Right: six buildings, each connected to every other, and the middle becomes a dense web of crossing paths">
-          <img class="fragment" src="images/architectures/s80-service-check.png" alt="A dense web of services with a few slow and broken connections. A developer carrying a new service stops at a small gate, where a colleague with a checklist asks for a quick check first">
+          <img src="images/architecture/s80-restaurant-paths.png" alt="Left: four restaurant buildings, each connected to every other by a few calm paths. Right: six buildings, each connected to every other, and the middle becomes a dense web of crossing paths">
+          <img class="fragment" src="images/architecture/s80-service-check.png" alt="A dense web of services with a few slow and broken connections. A developer carrying a new service stops at a small gate, where a colleague with a checklist asks for a quick check first">
         </div>
         <aside class="notes">
-          <h2>Complexity Grows Fast</h2>
-          <h3>How many paths could connect our four restaurant buildings? Six: every building to every other. Now add a dessert building and a coffee building. Six buildings, fifteen paths. Each path is another delivery route, and another thing that can go wrong.</h3>
-          <p>Services work the same way. Splitting a system into services doesn't remove complexity. As Martin Fowler puts it, the complexity just moves into the connections between them. And every connection is a network call, which can be slow, or fail at any time.</p>
-          <p>Each service also brings its own extra work: another thing to deploy, monitor, secure, and keep up to date. One new service looks cheap. But when people keep adding them, each without checking what the others built, soon nobody understands the whole system.</p>
-          <p>This happens to big companies too. By 2020, Uber had around 2,200 critical microservices, and in one example from 2018, a simple integration had to touch ten different points in the system. They didn't give up on microservices, though. They grouped related services into domains, so the system was easier to understand again.</p>
-          <p>Some companies let anyone create a new service, no questions asked, just to move fast. In my experience, many regret it later. The fix isn't heavy approvals. It's a quick check before each new service: Is there a real reason for this? Or could it live inside an existing service?</p>
-          <h4>Every new service adds connections and work, so ask for a real reason before adding one. And all those services show up somewhere else, too: on every developer's laptop.</h4>
+          <h2>What Does Another Service Cost?</h2>
+          <h3>Last time, a boundary helped us control who could reach the database. Every boundary also leaves someone with work to do. Think about our restaurant opening a separate dessert kitchen. If it supplies the dining room, someone has to arrange that delivery and decide what to do if it’s late. The restaurant only needs the routes it actually uses, but each new route needs someone to look after it.</h3>
+          <p>Say the store wants to let shoppers use gift cards at checkout. Before creating a gift-card service, sketch one purchase. Checkout needs to ask whether the card can cover part of the total. If that request times out, checkout may need to find out whether the balance was already reduced before it tries again.</p>
+          <p>That’s one extra connection to test and monitor. A separate service also needs a release process and a team that knows how to respond when it fails. If gift cards only change with checkout and the same team owns both, a module in the checkout application may be enough. If several sales channels need gift cards and the team needs to release that work independently, a service may be worth the extra work.</p>
+          <h4>Before adding a service, follow one request and name what you’d have to run, test, and support. Next, we’ll see what those extra connections mean for a developer trying to test a change locally.</h4>
         </aside>
       </section>
 
             <section class="S81">
-        <h1>Development Gets Harder</h1>
-        <p class="subtitle">Running and changing many services takes more work</p>
+        <h1>Developing Across Several Services</h1>
+        <p class="subtitle">Share the build steps and run what you need locally</p>
         <div class="r-stack">
-          <img src="images/architectures/s81-rule-sheets.png" alt="Six restaurant buildings, each with a rule sheet on the wall. Five sheets are fresh, but the bakery's is old, and the staff member carrying new sheets walks away without noticing">
-          <img class="fragment" src="images/architectures/s81-shared-pipeline-laptop.png" alt="Left: many repo folders all connected to one shared pipeline. Right: a relaxed developer runs one service on a laptop, while a large cloud of other services sits faded in the background">
+          <img src="images/architecture/s81-rule-sheets.png" alt="Six restaurant buildings, each with a rule sheet on the wall. Five sheets are fresh, but the bakery's is old, and the staff member carrying new sheets walks away without noticing">
+          <img class="fragment" src="images/architecture/s81-shared-pipeline-laptop.png" alt="Left: many repo folders all connected to one shared pipeline. Right: a relaxed developer runs one service on a laptop, while a large cloud of other services sits faded in the background">
         </div>
         <aside class="notes">
-          <h2>Development Gets Harder</h2>
-          <h3>When our restaurant was one building, a rule change meant reprinting one rule sheet on the wall. Now there are six buildings, so it means six sheets in six places. And if one gets missed, that building keeps the old rules, and nobody notices until something goes wrong.</h3>
-          <p>Services work the same way. Many teams start each new service from a template: the same build pipeline, the same settings, the same setup. But each repo gets its own copy. So when the template changes, someone has to update every repo, and any repo that gets missed keeps running the old version.</p>
-          <p>The fix is to stop copying. Instead, each repo points to one shared pipeline definition, so one update reaches all of them. On GitHub, these are called reusable workflows. And for changes that can't be shared, there are tools that open the same change in every repo automatically. Spotify uses this approach across thousands of repos.</p>
-          <p>The second cost shows up on your laptop. With one codebase, you run the whole app locally. With many services, that gets hard fast. Lyft, a ride-sharing company like Uber, gave each developer a full copy of the system in the cloud. But as services grew, those copies became slow to set up, and developers had to keep the whole system in mind.</p>
-          <p>So Lyft went back to the laptop: run only the service you're working on, and send requests straight to its API.</p>
-          <h4>Share instead of copying, automate changes across repos, and run only the service you're working on. But that raises a new question: how do you test that everything still works together?</h4>
+          <h2>Developing Across Several Services</h2>
+          <h3>Last time, we asked what another service would cost the team. Some of that work shows up before you release anything. Imagine our restaurant’s buildings each have a copy of the same closing checklist. When the routine changes, someone updates five copies and misses the bakery. The bakery crew keeps following the old instructions, even though everyone meant to make the same change.</h3>
+          <p>Say the store now has a separate gift-card service. Its repository started with a copy of the checkout build pipeline. If both should run the same checks, they can use a shared pipeline definition. Each service still has its own release. Test changes to the shared steps on one service before rolling them out to the others.</p>
+          <p>Now suppose you’re changing what the gift-card service returns when a card has no balance. To work on that response, run the service locally with test data and call its API directly. You can check the response without starting checkout, orders, and payments. If the service needs a database for that check, run a test database alongside it.</p>
+          <h4>Start with the smallest setup that can answer your question. You can check the gift-card response locally, but you still need to see what checkout does with it. Next, we’ll look at how to test the connection and the full purchase.</h4>
         </aside>
       </section>
 
             <section class="S82">
-        <h1>Testing Gets Harder</h1>
-        <p class="subtitle">Every service passes, but together they can fail</p>
+        <h1>Testing How Services Work Together</h1>
+        <p class="subtitle">Check the service, the handoff, and the full purchase</p>
         <div class="r-stack">
-          <img src="images/architectures/s82-missing-coffee.png" alt="Three restaurant buildings, each with a checkmark for passing its own check. In the dining room, a customer has pizza but no coffee, because the path to the coffee building breaks halfway, with a dropped order slip in the gap">
-          <img class="fragment" src="images/architectures/s82-three-test-layers.png" alt="A testing pyramid: many fast checks at the bottom, pairs of services agreeing on their connection in the middle, and one customer placing a full pizza and coffee order at the top. A faded pile of removed slow tests lies beside it">
+          <img src="images/architecture/s82-missing-coffee.png" alt="Three restaurant buildings, each with a checkmark for passing its own check. In the dining room, a customer has pizza but no coffee, because the path to the coffee building breaks halfway, with a dropped order slip in the gap">
+          <img class="fragment" src="images/architecture/s82-three-test-layers.png" alt="A testing pyramid: many fast checks at the bottom, pairs of services agreeing on their connection in the middle, and one customer placing a full pizza and coffee order at the top. A faded pile of removed slow tests lies beside it">
         </div>
         <aside class="notes">
-          <h2>Testing Gets Harder</h2>
-          <h3>Every building checks its own work. The kitchen tastes the pizza, and the coffee building checks the coffee. A customer orders both in our dining room, and only the pizza arrives. The coffee order never got from the dining room to the coffee building. The problem was between them.</h3>
-          <p>Services work the same way. Each one can pass all its own tests, and the system still fails, because many bugs live in the connections. In a monolith, one test run checks a whole flow. With services, every connection is a network call to a separately deployed service. So testing one full order means running many services together, and any call in that test can be slow or fail.</p>
-          <p>And it grows. Every new service adds connections and more flows to test. Each service also ships on its own, so the mix you tested today may not be the mix running tomorrow.</p>
-          <p>So test in three layers. First, test each service on its own, with many fast tests. Second, check every connection with contract tests: automatic checks that both sides still follow the same API contract. Third, keep a few end-to-end tests that place a full order, like a real customer, but only for the flows that really matter, like payment.</p>
-          <p>That's what Lyft did. They found that only some of their end-to-end tests covered critical business flows. So they removed thousands, or turned them into fast unit tests, and kept a small set for those critical flows. Bugs reaching production didn't measurably increase.</p>
-          <h4>Test each service, check each connection, and keep a few full orders for what matters. But you didn't only split the code. You split the data, too.</h4>
+          <h2>Testing How Services Work Together</h2>
+          <h3>Last time, we checked what the gift-card service returns when a card has no balance. Now let’s see what checkout does with that answer. In our restaurant, the kitchen checks the pizza and the coffee crew checks the latte. A guest orders both, but only the pizza arrives. Both crews can do their jobs, and the guest can still miss their coffee if the order never reaches the coffee crew.</h3>
+          <p>Start with the gift-card service. Give it a card with no balance and check that it returns the agreed response. That test tells you what the service does on its own.</p>
+          <p>Next, check the handoff. Checkout expects the response to tell it that no amount was applied. A contract test can catch a change to a field or value checkout relies on. You can also give checkout that response in a test and see whether it offers the shopper another way to pay.</p>
+          <p>Finally, run a full purchase in a test environment. Try the empty gift card, pay the full amount another way, and check that the store confirms one order for the right amount. Keep full-flow tests for purchases and other journeys where the outcome matters to the business.</p>
+          <h4>Choose the smallest test that can answer your question, then use a full purchase to check the outcome the shopper sees. Next, we’ll look at what happens when one step succeeds and another fails after the services have started saving their own updates.</h4>
         </aside>
       </section>
 
 
 
             <section class="S83">
-        <h1>Data Management Gets Harder</h1>
-        <p class="subtitle">When one step fails, the data stops matching</p>
+        <h1>When One Step Succeeds and Another Fails</h1>
+        <p class="subtitle">Decide how to recover from a partial failure</p>
         <div class="r-stack">
-          <img src="images/architectures/s83-paid-but-missing.png" alt="A customer in the dining room has paid for a pizza and a latte, but only the pizza arrived, while in the coffee building a barista holds up an empty milk carton">
-          <img class="fragment" src="images/architectures/s83-saga-steps.png" alt="Three services in a row: payment, kitchen, coffee. The coffee step fails, so a return arrow runs back to payment and the customer gets a refund, with a small hourglass showing it takes a moment">
+          <img src="images/architecture/s83-paid-but-missing.png" alt="A customer in the dining room has paid for a pizza and a latte, but only the pizza arrived, while in the coffee building a barista holds up an empty milk carton">
+          <img class="fragment" src="images/architecture/s83-saga-steps.png" alt="Three services in a row: payment, kitchen, coffee. The coffee step fails, so a return arrow runs back to payment and the customer gets a refund, with a small hourglass showing it takes a moment">
         </div>
         <aside class="notes">
-          <h2>Data Management Gets Harder</h2>
-          <h3>A customer pays for a pizza and a latte in our dining room. The kitchen makes the pizza. But the coffee building has run out of milk. Now the payment says two items, but only one was made. So what do you fix, and who fixes it?</h3>
-          <p>Services work the same way. In a monolith, one action that changes several tables runs as one transaction. If any step fails, the database cancels all of it. But with services, each one has its own database. So the payment service saves the charge, the coffee service fails, and nothing cancels the charge for you.</p>
-          <p>The common fix is called a saga. You run the action as a series of steps, one per service, and give each step a matching step that reverses it. The reverse of a charge is a refund. So if the coffee step fails, the saga runs the reverse step, and the customer gets the latte refunded.</p>
-          <p>There's a catch, though. For a short moment, the services don't agree: the payment says two items, the kitchen says one. This is called eventual consistency. The data matches in the end, just not instantly, and your system has to expect that.</p>
-          <p>And those reverse steps don't write themselves. In a monolith, the database cancels for you. Here, someone has to design every one. In my experience, that's the part teams forget, until a customer gets charged for something they never received.</p>
-          <h4>Plan every step's reverse, and expect a short delay before the data agrees. So now that you've seen the benefits and the costs, do you really need microservices?</h4>
+          <h2>When One Step Succeeds and Another Fails</h2>
+          <h3>Last time, we tested what happens when an order gets from one service to another. Now suppose the restaurant takes payment for a pizza and a latte. The pizza arrives, but the coffee crew has run out of milk. The customer keeps the pizza. The restaurant still needs to refund the latte and show what happened to the order.</h3>
+          <p>Imagine the restaurant’s payment and order services keep separate records. Payment has already saved the charge when the coffee service reports that it can’t make the latte. The charge is complete, so the system needs a new action to put things right.</p>
+          <p>One way to coordinate those steps is a saga. Each service saves its own update. If a later step fails, the workflow can take a follow-up action, called a compensation. Here, that means asking payments for a partial refund and recording that the latte won’t be delivered. The pizza stays on the order.</p>
+          <p>While the refund is pending, show the customer that it’s in progress. If the refund request times out, check whether it already went through before trying again. The workflow is finished when the order shows the final outcome and the refund has been recorded.</p>
+          <h4>Pick one step that can fail after another has succeeded. Decide what to keep, what to compensate for, and what the customer should see while you recover. Next, we’ll weigh that extra work against what you gain by splitting the system into services.</h4>
         </aside>
       </section>
       <section class="S84">
         <h1>Do You Really Need Microservices?</h1>
-        <p class="subtitle">Three questions to ask before you split</p>
+        <p class="subtitle">Weigh the benefit of one split against the work it adds</p>
         <div class="r-stack">
-          <img src="images/architectures/s84-copying-the-giant.png" alt="A small team of three copies the plan of a huge city of services, where every building has its own team. Their half-built copy has many tiny services, and the three developers run between them, stretched thin">
-          <img class="fragment" src="images/architectures/s84-three-checkpoints.png" alt="A path from one tidy, well-organized building through three checkpoints, complexity, teams, and a real reason, to a few services added one at a time. A second path curves back to the tidy building as an equally good choice">
+          <img src="images/architecture/s84-copying-the-giant.png" alt="A small team of three copies the plan of a huge city of services, where every building has its own team. Their half-built copy has many tiny services, and the three developers run between them, stretched thin">
+          <img class="fragment" src="images/architecture/s84-three-checkpoints.png" alt="A path from one tidy, well-organized building through three checkpoints, complexity, teams, and a real reason, to a few services added one at a time. A second path curves back to the tidy building as an equally good choice">
         </div>
         <aside class="notes">
           <h2>Do You Really Need Microservices?</h2>
-          <h3>Netflix and Uber run on microservices. So should you? It's a fair question, and in my experience, many teams answer yes too quickly. They copy the architecture, but not the reasons behind it. And without those reasons, they get every cost we just covered, and few of the benefits.</h3>
-          <p>So before you split, ask three questions. Earlier, we used four questions to check whether one service is really a microservice. These three ask something bigger: do you need microservices at all? First, is your system too complex to manage as one well-organized codebase? Martin Fowler's advice is clear: don't even consider microservices unless it is. Second, do you have the teams to own each service? One job, one database, one team. Third, is there a real reason for each split, like scaling one part, releasing it on its own, or keeping its failures contained?</p>
-          <p>Segment, a customer data company, learned this the hard way. One part of their system grew to over 140 services, and three engineers spent most of their time just keeping the system running. So they merged them back into one.</p>
-          <p>If any answer is no, a well-organized monolith or a few generic services is usually the better choice. And if all three are yes, still go one piece at a time: separate one part, learn from it, then the next. Fowler noticed that almost all successful microservice stories started as a monolith that grew too big, and was broken up.</p>
-          <h4>Microservices are worth it with real complexity, real teams, and a real reason, not because big companies use them. Now, there's a third architecture where you don't manage servers at all: serverless.</h4>
+          <h3>Last time, the restaurant had to coordinate a partial refund across several services. That’s work the team takes on when it separates parts of a system. Picture three people planning a small restaurant with a blueprint borrowed from a whole food district. The district has a crew for each building. Before copying the layout, the small team needs to ask what a second building would let them do.</h3>
+          <p>Say the store’s team is considering moving photo resizing out of its main application. Start with three questions.</p>
+          <p>Where is the current setup getting in the way? If a batch of uploads regularly slows checkout, you have a problem you can measure.</p>
+          <p>Who would own the new service? Name the team that would release it, watch for failed jobs, and respond when photos stop appearing.</p>
+          <p>What would the split let you do? In this case, the team could add photo workers when uploads pile up while keeping checkout capacity sized for shoppers. Compare that benefit with the work of running the queue and workers.</p>
+          <p>If a smaller change solves the problem at a cost the team can live with, stop there. If separate capacity is worth the extra work, move the photo job first and measure whether checkout stays responsive during a batch.</p>
+          <h4>Before splitting a system, name the problem, the owner, and what the split would let you do. Next, we’ll look at serverless and see which parts of running a workload a provider can take on.</h4>
         </aside>
       </section>
 
             <section class="S85">
         <h1>What Is Serverless?</h1>
-        <p class="subtitle">Shut up and take my money</p>
+        <p class="subtitle">The provider runs the infrastructure. Your team owns how the feature works.</p>
         <div class="r-stack">
-          <img src="images/architectures/s85-vans-or-couriers.png" alt="Left: the restaurant's own vans sit idle on a quiet day, one being repaired. Right: on a busy evening, staff just pack orders while many couriers arrive and leave">
-          <img class="fragment" src="images/architectures/s85-serverless-system.png" alt="A serverless system inside a cloud: static frontend files, an API gateway, small functions, a ready-made database and login. Below, the provider's staff manage the servers, while a developer hands in only the code">
+          <img src="images/architecture/s85-vans-or-couriers.png" alt="Left: the restaurant's own vans sit idle on a quiet day, one being repaired. Right: on a busy evening, staff just pack orders while many couriers arrive and leave">
+          <img class="fragment" src="images/architecture/s85-serverless-system.png" alt="A serverless system inside a cloud: static frontend files, an API gateway, small functions, a ready-made database and login. Below, the provider's staff manage the servers, while a developer hands in only the code">
         </div>
         <aside class="notes">
           <h2>What Is Serverless?</h2>
-          <h3>Our restaurant starts a takeaway service. Do we buy vans and hire drivers, and pay for them on quiet Mondays? Or do we partner with Wolt or Uber Eats? Then quiet Mondays cost almost nothing, and busy Fridays get more couriers. The drivers still exist. They're just not ours to manage.</h3>
-          <p>Serverless works the same way: the servers still exist, but the cloud provider manages them, including updates, scaling, and keeping them online. You bring your code, and it runs only when it's needed. The Cloud Native Computing Foundation describes it like this: your code runs, scales, and is billed based on the exact demand at that moment.</p>
-          <p>That's why serverless feels like "shut up and take my money". You hand over your code, and you pay only when it runs, not for servers waiting around. It's the third step in our story. A monolith is one unit you manage. Distributed services are many units you manage. With serverless, you don't manage the servers at all.</p>
-          <p>It comes in two main forms. Backend-as-a-service gives you ready-made features, like login or a database. Functions-as-a-service runs small pieces of your own code when something happens. A typical serverless system combines both, with a static frontend and an API gateway in front. Next, we look at each piece.</p>
-          <p>One honest note: the servers become someone else's job, but your code doesn't. Its bugs, its security, and its costs are still yours.</p>
-          <h4>Serverless means the servers are still there, but they're not yours to manage, and you pay only when your code runs. So why build login yourself, when it already exists, ready to use?</h4>
+          <h3>Last time, we asked who would run the photo-resizing service if we moved it out of the store’s main application. Think about our restaurant taking delivery orders. It can buy vans and look after them, or it can hand deliveries to a courier company. Either way, the restaurant still has to pack the right meal and decide what to do if a delivery goes wrong.</h3>
+          <p>With serverless, the provider runs the underlying servers. Say the store needs a smaller copy of each product photo. The team can write a function that resizes a photo, then configure it to run when a new image arrives. The provider starts the function when there’s work and manages the infrastructure it runs on. Running your own code this way is called functions-as-a-service.</p>
+          <p>You can also use a ready-made backend capability, such as a sign-in service. In that case, the provider supplies the capability and your team configures how the store uses it. That’s an example of backend-as-a-service.</p>
+          <p>For the photo job, the team still decides which images to accept, what happens if resizing fails, and how to tell if costs are climbing. Check what the provider charges for. The function and the storage for the photos can have separate charges.</p>
+          <h4>Pick one job and ask what the provider would run and what your team would still own. Next, we’ll look at ready-made backend services and what you still need to configure when you use them.</h4>
         </aside>
       </section>
 
             <section class="S86">
         <h1>Backend-as-a-Service</h1>
-        <p class="subtitle">Ready-made login, database, and storage</p>
+        <p class="subtitle">Use a ready-made capability and decide what your app still owns</p>
         <div class="r-stack">
-          <img src="images/architectures/s86-card-terminal.png" alt="A customer pays by card at our restaurant's terminal. A single line connects it to a payment provider, who keeps it secure and connected to many banks, so the restaurant side stays simple">
-          <img class="fragment" src="images/architectures/s86-smaller-backend.png" alt="Left: one large backend holds login, database, storage, and the app's unique logic, with a tired developer. Right: the backend holds only the unique logic, while login, database, and storage are managed services in the cloud">
+          <img src="images/architecture/s86-card-terminal.png" alt="A customer pays by card at our restaurant's terminal. A single line connects it to a payment provider, who keeps it secure and connected to many banks, so the restaurant side stays simple">
+          <img class="fragment" src="images/architecture/s86-smaller-backend.png" alt="Left: one large backend holds login, database, storage, and the app's unique logic, with a tired developer. Right: the backend holds only the unique logic, while login, database, and storage are managed services in the cloud">
         </div>
         <aside class="notes">
           <h2>Backend-as-a-Service</h2>
-          <h3>Our restaurant takes cards, but we never built a card terminal. We plugged in a payment provider's terminal. They keep it secure and connected to the banks, and we pay a small fee per payment. Backend-as-a-service is the same idea: you just use it, and someone else manages it.</h3>
-          <p>In software, that means ready-made backend features, like login, a database, or file storage. The provider manages and secures them, and your app connects to them through a simple API. When more users sign up, they scale on their own, and you usually pay based on how much you use. Firebase and Supabase are two well-known examples, and Auth0 focuses on login and user accounts.</p>
-          <p>Login shows why this matters. Building it yourself means storing passwords safely, handling password resets, and blocking attackers who try thousands of stolen passwords. OWASP lists login and identity failures among the ten most critical security risks for web applications. A good provider has already solved most of this, and keeps it up to date.</p>
-          <p>But there are trade-offs. You give up some control: if the provider raises its prices, your costs go up, and if it goes down, your users can't log in. Your users' data also lives with the provider, so check where it's stored. And every provider works differently, so moving to another one later can mean rewriting parts of your app. That's called vendor lock-in.</p>
-          <h4>With backend-as-a-service, the part you build gets smaller: login, data, and storage become managed services, and your backend holds only what's unique to your app. So what about that unique code, like resizing a photo when a user uploads one?</h4>
+          <h3>Last time, we saw that a provider can run your code or supply a capability you can use. Think about our restaurant taking a card payment. The terminal handles the card transaction, and the restaurant uses the result to mark the right bill as paid. The terminal does one job for the restaurant. The restaurant still decides what to do with the answer.</h3>
+          <p>Say the store uses a managed sign-in service. The provider handles the sign-in flow and password resets. When a shopper signs in, the store uses the provider’s result to identify them. The store still decides which orders that shopper can see. That’s the access check we walked through earlier.</p>
+          <p>That’s the idea behind backend-as-a-service. You connect to a backend capability the provider already operates. Sign-in is one example. A provider can also offer a managed database or file storage.</p>
+          <p>Before choosing a sign-in provider, walk through what happens if it’s unavailable. Could shoppers still browse products? What would someone trying to sign in see? Also check how you’d move accounts if you switched providers later. Those questions help you decide whether handing off sign-in is a good fit for your store.</p>
+          <h4>Pick one capability and ask what the provider handles and what decisions stay with your app. Next, we’ll look at functions-as-a-service, where the provider runs code your team writes.</h4>
         </aside>
       </section>
 
             <section class="S87">
         <h1>Functions-as-a-Service</h1>
-        <p class="subtitle">Your code runs only when something happens</p>
+        <p class="subtitle">Choose what starts your code and what it does</p>
         <div class="r-stack">
-          <img src="images/architectures/s87-profile-photo.png" alt="Left: a server sits idle all day, waiting. Right: a user uploads a profile photo, a small function wakes up, resizes it, sends it back to the phone, and switches off">
-          <img class="fragment" src="images/architectures/s87-trigger-and-scale.png" alt="Uploads, web requests, and messages trigger functions in the cloud. One function resizes one photo, and when many photos arrive at once, many copies run side by side, then switch off when done">
+          <img src="images/architecture/s87-profile-photo.png" alt="Left: a server sits idle all day, waiting. Right: a user uploads a profile photo, a small function wakes up, resizes it, sends it back to the phone, and switches off">
+          <img class="fragment" src="images/architecture/s87-trigger-and-scale.png" alt="Uploads, web requests, and messages trigger functions in the cloud. One function resizes one photo, and when many photos arrive at once, many copies run side by side, then switch off when done">
         </div>
         <aside class="notes">
           <h2>Functions-as-a-Service</h2>
-          <h3>You change your profile photo, and a moment later, it shows up resized everywhere in the app. Was a server sitting there all day, just waiting for your photo? Often, not anymore. Your upload triggered a small function that resized it and stopped. That's functions-as-a-service.</h3>
-          <p>Here's how it works. You write a function for one job, like resizing a photo, and tell the platform when to run it. That moment is called a trigger: a file upload, a web request, or a new message. When it happens, the platform starts your function, runs it, and stops it. No event means no running code, and nothing to pay for waiting.</p>
-          <p>AWS even has an official tutorial for exactly this. A photo lands in S3, AWS's file storage, and that upload triggers a Lambda function, AWS's version of functions-as-a-service. The function resizes the photo and saves a smaller copy. Google Cloud and Microsoft Azure offer the same idea.</p>
-          <p>And if a thousand people upload at once? The platform runs many copies of your function side by side, then scales back down when it's quiet.</p>
-          <p>AWS's own guidance says each function should do one job, which keeps it simple and easy to test.</p>
-          <h4>With functions-as-a-service, your own code runs only when something happens, and no server waits around for it. But what about your frontend? Does it really need a server just to hand out files?</h4>
+          <h3>Last time, the store used a sign-in feature that a provider had already built. Now suppose the store lets shoppers upload a profile photo. The team wants to make a smaller copy for the account page. It can write that code and ask the provider to run it whenever a new photo arrives.</h3>
+          <p>When a shopper uploads a photo, the app saves the original in file storage. The upload produces an event that tells the platform to run the resizing function. That event is the trigger. The function reads the original, makes a smaller copy, and saves it where the account page can find it. In this setup, the app can show that the upload succeeded while the photo is still being resized.</p>
+          <p>A file upload is one kind of trigger. A web request or a new message can start a function too. If many shoppers upload photos at once, the platform can run several copies of the function in parallel, within its configured limits.</p>
+          <p>The provider runs the function. Your team decides what happens if resizing fails. For this feature, the account page could keep showing the previous photo until the new one is ready.</p>
+          <h4>For each function, name what starts it, what it produces, and what the app shows while it runs. Next, we’ll look at how the browser gets the files it needs to display the page.</h4>
         </aside>
       </section>
 
             <section class="S88">
-        <h1>Serverless Frontend</h1>
-        <p class="subtitle">Host your frontend as static files</p>
+        <h1>Hosting a Frontend as Static Files</h1>
+        <p class="subtitle">Serve the files first, then fetch the data the page needs</p>
         <div class="r-stack">
-          <img src="images/architectures/s88-container-at-night.png" alt="At night, three containers sit switched on, each with files inside and a doorman ready to hand them out, while the street is empty and a coin meter keeps ticking up">
-          <img class="fragment" src="images/architectures/s88-storage-and-cdn.png" alt="A developer uploads files to cloud storage. A CDN keeps secure copies at points around the world, close to users, and an arrow back to an older version shows easy rollback">
+          <img src="images/architecture/s88-container-at-night.png" alt="At night, three containers sit switched on, each with files inside and a doorman ready to hand them out, while the street is empty and a coin meter keeps ticking up">
+          <img class="fragment" src="images/architecture/s88-storage-and-cdn.png" alt="A developer uploads files to cloud storage. A CDN keeps secure copies at points around the world, close to users, and an arrow back to an older version shows easy rollback">
         </div>
         <aside class="notes">
-          <h2>Serverless Frontend</h2>
-          <h3>Are you still paying for a server 24/7 to host your frontend? If your frontend is just HTML, CSS, and JavaScript, you should definitely move to serverless.</h3>
-          <p>Here's what that often looks like today. Your frontend is built into flat files, those files go into a container, and Nginx sits in front, just handing them out. Often several copies stay on around the clock, even when nobody's visiting.</p>
-          <p>With serverless, you skip the container. You upload the files to cloud storage and put a CDN in front: a network that keeps copies of your files close to your users. On AWS, that's S3 for storage and CloudFront as the CDN, which also gives you HTTPS. Netlify, Vercel, and Cloudflare Pages bundle both into one service. You pay for what's actually served, and traffic spikes are the provider's job.</p>
-          <p>Deploying gets fast, too. You upload the new files, then tell the CDN to drop its old copies. In my experience, the whole deploy takes a minute or two, compared to often 10 to 15 minutes per environment when containers have to rebuild. Rolling back is the same: upload the previous build again.</p>
-          <p>That's why I like to build single-page apps from the start. They turn into static files, so they're ready for this. But not every frontend can be static. If your pages are built on the server for each request, like Next.js with server-side rendering, you still need something running.</p>
-          <h4>With a serverless frontend, the provider stores and serves your files, and your job is just uploading them. So now the question is, how does that frontend talk to your functions?</h4>
+          <h2>Hosting a Frontend as Static Files</h2>
+          <h3>Last time, a photo upload triggered a function. Opening the store’s web app starts with a different kind of request. Think about our restaurant handing out menus. The staff can print a stack ahead of time and hand one to each guest. If a guest asks whether today’s special is still available, that’s a separate question for the kitchen.</h3>
+          <p>Say the store builds its web app into HTML, CSS, and JavaScript files. The team can publish those files to a managed host. A content delivery network, or CDN, can keep copies at locations closer to shoppers. When a shopper opens the store, the browser downloads the files and runs the JavaScript.</p>
+          <p>Those files can still power a page that shows live information. When a shopper opens their order history, the JavaScript asks the backend for their orders. The store can serve the same app files to everyone while the backend returns the data that belongs to each shopper.</p>
+          <p>Some pages need the server to build the HTML when a request comes in. In that case, plan where that code will run. For a page that uses prebuilt files, test a release by opening it in the browser and checking that it loads the expected version and still gets the data it needs.</p>
+          <h4>When you open a page, ask which files were ready ahead of time and which requests need backend code. Next, we’ll follow one of those API requests through a gateway to a function.</h4>
         </aside>
       </section>
 
 
             <section class="S89">
-        <h1>Serverless API</h1>
-        <p class="subtitle">Expose your functions through an API gateway</p>
+        <h1>How a Serverless API Routes Requests</h1>
+        <p class="subtitle">Follow a browser request through a gateway to a function</p>
         <div class="r-stack">
-          <img src="images/architectures/s89-nothing-waiting.png" alt="Left: a backend server waits all day for requests. Right: no waiting server, just resting functions, and a single gateway catches an incoming request to pass it to the right function">
-          <img class="fragment" src="images/architectures/s89-gateway-routes.png" alt="Requests from a browser and a phone reach one managed gateway that checks login, limits requests, and validates them, then routes each to its own function. Busy checkout runs many copies while the cart stays quick, and the provider's staff manage the servers below">
+          <img src="images/architecture/s89-nothing-waiting.png" alt="Left: a backend server waits all day for requests. Right: no waiting server, just resting functions, and a single gateway catches an incoming request to pass it to the right function">
+          <img class="fragment" src="images/architecture/s89-gateway-routes.png" alt="Requests from a browser and a phone reach one managed gateway that checks login, limits requests, and validates them, then routes each to its own function. Busy checkout runs many copies while the cart stays quick, and the provider's staff manage the servers below">
         </div>
         <aside class="notes">
-          <h2>Serverless API</h2>
-          <h3>In a monolith, or with distributed services, a backend service waits all day for requests. With functions-as-a-service, nothing is waiting. So when your frontend sends a request, where does it go? Into an API gateway, which passes it to the right function.</h3>
-          <p>An API gateway is a managed front door for your functions. You define your endpoints, like adding an item to the cart, and connect each one to a function. When that endpoint is called, its function runs. Is there a server behind the gateway? Of course. But the provider manages it, so the gateway is serverless, too.</p>
-          <p>It's the same gateway idea from earlier, now in front of functions. And it handles the shared jobs in one place: checking who's logged in, limiting how many requests come in, and rejecting requests that are clearly invalid. So each function can focus on its own job.</p>
-          <p>Each endpoint also scales on its own. Adding to the cart and placing an order can be separate functions, so a busy checkout doesn't slow down the cart.</p>
-          <p>Do you always need a gateway? Not for one simple function. AWS now offers function URLs, a web address for a single function. But once you have many endpoints, or need those shared checks, a gateway is the usual choice.</p>
-          <h4>With a serverless API, the gateway receives every request and passes it to the right function, and the provider manages both. But what happens when a function hasn't run for a while, and a request suddenly comes in?</h4>
+          <h2>How a Serverless API Routes Requests</h2>
+          <h3>Last time, the browser loaded the store’s app from files that were ready ahead of time. Now the shopper taps “Add to cart,” and the app needs the store to do some work. Think about our waiter taking an order to the right kitchen station. The shopper has one place to ask, and someone behind the counter knows where the request goes.</h3>
+          <p>The browser sends an API request with the product and quantity to add. The managed gateway matches that request to a route and invokes the cart function. The function checks what the shopper is allowed to change, updates their cart, and returns the new total through the gateway.</p>
+          <p>Placing an order can go through the same gateway and invoke a different function. The gateway can apply shared rules, such as limiting requests, while each function handles its own job. If a sale brings in more orders, the platform can run more copies of the order function. Cart and checkout may still share a database or a capacity limit, so test both routes under load before assuming one can get busier without slowing the other.</p>
+          <h4>Trace one request and ask what the gateway handles and what the function decides. Next, we’ll look at what happens when the platform has to start a new copy of the function before it can answer.</h4>
         </aside>
       </section>
 
 
             <section class="S90">
         <h1>Cold Starts</h1>
-        <p class="subtitle">The first request waits while a new copy starts</p>
+        <p class="subtitle">Why a new function copy adds startup time</p>
         <div class="r-stack">
-          <img src="images/architectures/s90-office-printer.png" alt="An office printer in three moments: in the morning someone waits while it warms up, a colleague right after gets a page quickly, and later the printer is asleep again as the next person arrives">
-          <img class="fragment" src="images/architectures/s90-cold-warm-ready.png" alt="In the cloud, a request triggers a new function copy that has to be set up first, another request goes straight to a ready copy, and for the shopping cart, a few copies are kept ready for a small fee">
+          <img src="images/architecture/s90-office-printer.png" alt="An office printer in three moments: in the morning someone waits while it warms up, a colleague right after gets a page quickly, and later the printer is asleep again as the next person arrives">
+          <img class="fragment" src="images/architecture/s90-cold-warm-ready.png" alt="In the cloud, a request triggers a new function copy that has to be set up first, another request goes straight to a ready copy, and for the shopping cart, a few copies are kept ready for a small fee">
         </div>
         <aside class="notes">
           <h2>Cold Starts</h2>
-          <h3>You know the office printer? First thing in the morning, you click print, and then you wait. It makes some noise, it warms up, and finally your page comes out. That's a cold start. Your colleague prints right after you, and their page comes out much faster, because the printer is still awake. That's a warm start. But leave it alone for a while, and it quietly goes to sleep. So the next person waits again, because it has to warm up again. Another cold start.</h3>
-          <p>Functions-as-a-service work the same way. When a request comes in and no copy of your function is ready, the platform first sets one up: it loads your code, starts the runtime, and runs your setup code. A new copy also starts cold when traffic jumps, and right after every deploy.</p>
-          <p>AWS says cold starts happen in under 1% of calls, and take from under 100 milliseconds to over a second. And unlike the printer, there's no sleep timer you can set. AWS decides how long a copy stays ready, and it doesn't promise how long.</p>
-          <p>So for paths your users click, like adding to the cart, many teams pay to keep a few copies always ready. On AWS, that's called provisioned concurrency. It's like turning off the printer's sleep mode: no waiting, but you pay for the power.</p>
-          <p>Everywhere else, keep cold starts short, with small functions and light setup code. For background work, a second's delay usually doesn't matter at all.</p>
-          <h4>Keep copies ready where users wait, and keep functions light everywhere else. So now the question is, what happens when thousands of requests arrive at once?</h4>
+          <h3>Last time, the gateway sent an “Add to cart” request to a function. Sometimes that function is ready to take the request. Think of an office printer. The first page takes longer if the printer has to warm up. Print another page right after, and it can get straight to work.</h3>
+          <p>When the platform needs a new copy of the cart function, it prepares a place for the code to run and runs any setup the function needs. The shopper waits for that startup as well as the time it takes to update the cart. That extra startup time is called a cold start. If a ready copy can take the request, it can reuse the setup it already did.</p>
+          <p>This can happen after a quiet spell, when the platform has removed idle copies. It can also happen during a sale, when the ready copies are busy and the platform starts more. So measure what shoppers actually wait for during quiet periods and under load.</p>
+          <p>If startup takes too long, check what the function does before it handles the request. You may be able to move work out of setup. If that still leaves too much delay, see whether your provider lets you pay to keep some capacity ready.</p>
+          <h4>Measure how much startup adds to one request before deciding whether to pay for ready capacity. Next, we’ll look at what happens when many requests arrive at once and the platform needs more copies.</h4>
         </aside>
       </section>
 
 
             <section class="S91">
-        <h1>Every Request Gets Its Own Copy</h1>
-        <p class="subtitle">No waiting in line behind other requests</p>
+        <h1>How Functions Handle Concurrent Requests</h1>
+        <p class="subtitle">Add capacity where requests are backing up</p>
         <div class="r-stack">
-          <img src="images/architectures/s91-supermarket-line.png" alt="Left: one cashier and a long line stuck behind a slow customer. Right: shoppers scan and pay on their own phones, each checking out without waiting behind anyone">
-          <img class="fragment" src="images/architectures/s91-copy-per-request.png" alt="Each incoming order gets its own function copy, so one slow order doesn't hold up the others. A gate turns away requests above the platform's cap, and a small queue forms at the shared database">
+          <img src="images/architecture/s91-supermarket-line.png" alt="Left: one cashier and a long line stuck behind a slow customer. Right: shoppers scan and pay on their own phones, each checking out without waiting behind anyone">
+          <img class="fragment" src="images/architecture/s91-copy-per-request.png" alt="Each incoming order gets its own function copy, so one slow order doesn't hold up the others. A gate turns away requests above the platform's cap, and a small queue forms at the shared database">
         </div>
         <aside class="notes">
-          <h2>Every Request Gets Its Own Copy</h2>
-          <h3>Picture a supermarket on a busy Saturday, with just one cashier. Everyone waits in one long line, and one slow customer holds up everybody behind them. Now many stores let you scan your products with their app and pay right on your phone. Each shopper checks out on their own, without waiting behind anyone. Functions-as-a-service work the same way.</h3>
-          <p>On a regular server, requests share the same machine. When it's busy, your request waits until others finish, and one slow order can hold up the next. With functions-as-a-service, each copy of your function handles one request at a time. When more requests arrive, the platform starts more copies.</p>
-          <p>So on a busy sale day, every order gets its own copy, and a slow order doesn't slow down anyone else's. If you process 5,000 orders that day, your function runs 5,000 times.</p>
-          <p>There are two limits to know, though. First, the platform has caps. On AWS, each function can add up to 1,000 copies every 10 seconds, and your account has a shared limit, which you can ask to raise. Above that, requests waiting for an answer get turned away.</p>
-          <p>Second, your functions scale, but the database behind them might not. If every copy opens its own database connection, the database becomes the new waiting line.</p>
-          <h4>Every request gets its own copy, so no request waits behind another, as long as you watch the caps and your database. So now the question is, who looks after the servers behind all those copies?</h4>
+          <h2>How Functions Handle Concurrent Requests</h2>
+          <h3>Last time, we saw why a new function copy takes time to start. Now imagine a supermarket with three checkout lanes and a fourth cashier ready to open another. Opening that lane lets one more shopper check out at the same time. When a shopper finishes, the next person can use the same lane.</h3>
+          <p>Say a sale brings several shoppers to checkout at once. A functions platform can run multiple copies of the checkout function in parallel. A copy that finishes one request can be reused for another. How many requests each copy can handle at once depends on the platform and its settings.</p>
+          <p>Adding copies helps when the function itself needs more capacity. But the platform has limits, and those copies may all write to the same orders database. If the database can’t keep up, more copies can mean more requests waiting for it.</p>
+          <p>Before the sale, run a load test with the traffic you expect. Watch for requests the platform turns away, and check how long the database takes to save orders. That will help you decide where adding capacity would actually help.</p>
+          <h4>Follow the request until you find where it waits or gets turned away. Next, we’ll look at what the provider manages as function traffic grows and what your team still needs to watch.</h4>
         </aside>
       </section>
       <section class="S92">
         <h1>No Servers to Manage</h1>
-        <p class="subtitle">The provider manages the servers, your team builds the product</p>
+        <p class="subtitle">The provider runs the platform. Your team looks after the feature.</p>
         <div class="r-stack">
-          <img src="images/architectures/s92-email-server.png" alt="Left: at night, one tired person fixes the company's own email server in a closet. Right: in daytime, the team works calmly using hosted email, while the provider's staff look after the servers in the cloud">
-          <img class="fragment" src="images/architectures/s92-shared-responsibility.png" alt="The shared responsibility model as a stack: below the line, the provider manages servers, operating system, runtime, patches, scaling, and uptime. Above it, the team owns its code, libraries, and permissions, and builds the product">
+          <img src="images/architecture/s92-email-server.png" alt="Left: at night, one tired person fixes the company's own email server in a closet. Right: in daytime, the team works calmly using hosted email, while the provider's staff look after the servers in the cloud">
+          <img class="fragment" src="images/architecture/s92-shared-responsibility.png" alt="The shared responsibility model as a stack: below the line, the provider manages servers, operating system, runtime, patches, scaling, and uptime. Above it, the team owns its code, libraries, and permissions, and builds the product">
         </div>
         <aside class="notes">
           <h2>No Servers to Manage</h2>
-          <h3>Not long ago, many small companies had their own email server. Someone had to install the updates, apply the security patches, check the backups, and fix it when it went down at night. Today, many companies just use Gmail or Outlook. The servers are still there, but the provider manages them. Serverless does the same for your backend.</h3>
-          <p>With functions-as-a-service, the provider takes over the server work. AWS, for example, manages the hardware, the operating system, and the runtime your code runs on, including the security patches. It also handles scaling and keeps everything online. You upload your code, and the platform takes it from there.</p>
-          <p>That matters most for small teams. A team of three often has nobody dedicated to servers. So every hour spent patching, or answering an alert at night, is an hour not spent on the product. With serverless, much of that work moves to the provider.</p>
-          <p>But not everything moves. Your code is still yours, and so are the libraries it uses: a library with a security hole is still your problem. Who can call your functions, and what they're allowed to do, is still yours too. AWS calls this the shared responsibility model.</p>
-          <h4>With serverless, the provider manages the servers, and your team spends its time on the product, while code, libraries, and permissions stay yours. So now the question is, what does all this do to your bill?</h4>
+          <h3>Last time, we saw the platform start more copies of a function during a sale. Who looks after the machines those copies run on? Think about a small company using hosted email. The provider patches the mail servers. The company still decides who gets an account and who can open a shared inbox.</h3>
+          <p>Say the store runs photo resizing as a function. The provider maintains the infrastructure and runs the function when an upload arrives. The store team maintains the resizing code and the image library it uses. If that library needs a security update, the team updates it and tests that the resized photos still look right.</p>
+          <p>The team also decides what the function can access. It needs to read the original photos and save the resized copies. Give it those permissions, then make sure someone on the team gets an alert if uploads succeed but resized photos stop appearing.</p>
+          <p>That split is called shared responsibility. The provider looks after the platform. The store team still needs to know whether the feature is working and what to do when it fails.</p>
+          <h4>Pick one function and name who handles platform maintenance, code updates, and alerts. Next, we’ll look at how the provider charges for the work a function does.</h4>
         </aside>
       </section>
 
 
             <section class="S93">
-        <h1>Pay Only for What You Use</h1>
-        <p class="subtitle">Pay for the work done, not the hours waiting</p>
+        <h1>How Usage-Based Pricing Works</h1>
+        <p class="subtitle">Compare the cost of running the same job two ways</p>
         <div class="r-stack">
-          <img src="images/architectures/s93-stores-uploading.png" alt="In the evening, fifty stores upload their sales files to the company's database, while a server has been on all day waiting for them, with a coin meter ticking up">
-          <img class="fragment" src="images/architectures/s93-pay-per-use.png" alt="Over a day, an always-on server costs money every hour, while functions cost only during short evening bursts when files arrive and get extracted, cleaned, and loaded. An idle dev laptop at night costs almost nothing">
+          <img src="images/architecture/s93-stores-uploading.png" alt="In the evening, fifty stores upload their sales files to the company's database, while a server has been on all day waiting for them, with a coin meter ticking up">
+          <img class="fragment" src="images/architecture/s93-pay-per-use.png" alt="Over a day, an always-on server costs money every hour, while functions cost only during short evening bursts when files arrive and get extracted, cleaned, and loaded. An idle dev laptop at night costs almost nothing">
         </div>
         <aside class="notes">
-          <h2>Pay Only for What You Use</h2>
-          <h3>Say you work for a retail chain with fifty stores. Every evening, each store uploads a file with the day's sales, and that data has to be cleaned up and loaded into the company's database. So, do you keep a server on all day, waiting for files that mostly arrive in the evening? Or do you pay only when a file actually shows up?</h3>
-          <p>A regular server costs money for every hour it's on, about 730 hours a month, even when it's just waiting. With functions-as-a-service, you pay per request, and only for the milliseconds your code actually runs.</p>
-          <p>So for our stores, each new file triggers a function that pulls the data out, cleans it up, and loads it into the database. That job is called ETL: extract, transform, load. Fifty files means fifty short runs, and in between, almost nothing on your bill. For jobs too big for one run, which is capped at 15 minutes, AWS Glue is a serverless service built for ETL.</p>
-          <p>The same goes for dev and test environments. They're busy during the workday and idle every night and weekend, so with pay-per-use, those idle hours cost almost nothing.</p>
-          <p>One honest note, though. Stored data still costs money, even when nobody touches it. And for steady, heavy traffic, paying per use can cost more. We come back to that later in this section.</p>
-          <h4>With pay-per-use, idle hours cost almost nothing, and your bill follows the work that actually happens. So now the question is, what about the opposite: a sudden spike nobody planned for?</h4>
+          <h2>How Usage-Based Pricing Works</h2>
+          <h3>Last time, we looked at who keeps the platform running. Now let’s look at what you pay for. Imagine you need a van for one delivery every evening. You could keep a van available all day or book one around the time the delivery is ready. To compare the two, you’d start with when you actually need it.</h3>
+          <p>Say a retail chain collects a sales file from each store at closing time. Each upload starts a function that checks the file and saves the sales records. Most of the work happens in the evening, so there’s little for that function to do during the day.</p>
+          <p>To estimate the cost, start with how many times the function runs and how long a typical run takes. Check how the provider bills for those runs and add the cost of storing the files and writing to the database. Then compare that total with what it would cost to keep a server available for the same job.</p>
+          <p>If the stores start sending files throughout the day, run the comparison again. A price that works for a short evening burst can look different when the work becomes steady.</p>
+          <h4>Estimate the cost using the way the job actually runs, including the services it uses. Next, we’ll look at what happens when many requests arrive at once and the platform has to add capacity.</h4>
         </aside>
       </section>
       <section class="S94">
-        <h1>Scaling Happens Automatically</h1>
-        <p class="subtitle">Up during the spike, back down when it passes</p>
+        <h1>How Serverless Scales During a Spike</h1>
+        <p class="subtitle">Watch whether the system keeps up as demand changes</p>
         <div class="r-stack">
-          <img src="images/architectures/s94-match-spike.png" alt="During a big match, fans all open the sports app at once, creating one sharp spike in an otherwise quiet week, while a planner wonders how many servers to keep on">
-          <img class="fragment" src="images/architectures/s94-auto-scale-stream.png" alt="Match events flow as a data stream into the cloud, where functions process them in batches. The number of functions and the database grow during the peak and shrink back after, while a separate server outside still needs planning">
+          <img src="images/architecture/s94-match-spike.png" alt="During a big match, fans all open the sports app at once, creating one sharp spike in an otherwise quiet week, while a planner wonders how many servers to keep on">
+          <img class="fragment" src="images/architecture/s94-auto-scale-stream.png" alt="Match events flow as a data stream into the cloud, where functions process them in batches. The number of functions and the database grow during the peak and shrink back after, while a separate server outside still needs planning">
         </div>
         <aside class="notes">
-          <h2>Scaling Happens Automatically</h2>
-          <h3>Say you're building a live sports app that shows scores and match stats as they happen. During a big match, events come in every second: goals, cards, substitutions. And fans all open the app at once. Between matches? Almost nothing. So how many servers do you plan for? Enough for the final, and pay for them all week? Or fewer, and hope?</h3>
-          <p>With your own servers, this is hard. You can set up autoscaling, but someone still has to choose the limits, tune them, and watch the dashboards during every big match. And new servers take time to start, so a sudden spike can arrive before they're ready.</p>
-          <p>With serverless, the provider scales for you. When the match starts, more copies of your functions start, the gateway takes the extra requests, and a serverless database grows with them. When the final whistle blows, everything scales back down, and so does your bill.</p>
-          <p>The match events themselves are a data stream. A stream service, like Kinesis on AWS, collects them, and functions process them in small batches, moments after they arrive. In on-demand mode, the stream scales on its own, too.</p>
-          <p>Just remember the caps we saw earlier. And anything that isn't serverless, like your own database server, still needs planning.</p>
-          <h4>With serverless, the platform scales up during the spike and back down after it, with nobody planning capacity. But what if the spike isn't fans at all, but a bug, or an attack?</h4>
+          <h2>How Serverless Scales During a Spike</h2>
+          <h3>Last time, we looked at a job that mostly runs in the evening. Now imagine a live sports app on the night of a final. Several matches are playing at once, and updates arrive from each one. Think of a stadium opening more gates as the crowd arrives, then closing some once the rush passes. The extra gates help as long as people can keep moving once they’re inside.</h3>
+          <p>Say the sports app receives goals, cards, and other updates through a stream. A function reads those updates in batches and saves them so the app can show current scores. When updates arrive faster, the platform can run more copies of the function, within the limits of the stream and the platform. When the rush passes, it can reduce the number of active copies.</p>
+          <p>Fans opening the app create a separate load. They’re reading scores while the functions write updates. Before the final, test both at once. If the functions finish quickly but updates still take too long to reach fans, check where the delay is. The stream may have work waiting, or the database may be struggling to keep up with reads and writes.</p>
+          <h4>Measure how long it takes an update to reach a fan while the system scales. Next, we’ll look at what happens when the work driving that extra capacity comes from a bug or unwanted traffic.</h4>
         </aside>
       </section>
             <section class="S95">
         <h1>Surprise Cloud Bills</h1>
-        <p class="subtitle">When a bug or an attack scales up your bill</p>
+        <p class="subtitle">Limit repeated work and notice when usage jumps</p>
         <div class="r-stack">
-          <img src="images/architectures/s95-water-leak.png" alt="In an empty apartment, a pipe leaks under the sink while the water meter spins and days pass on the calendar, until a bill with an exclamation mark arrives through the door">
-          <img class="fragment" src="images/architectures/s95-three-layers.png" alt="Real users, bots, and a looping request reach three layers: a shield that blocks bots, a gate that caps how much gets through, and a bell that rings when costs climb. Behind them, functions scale calmly and costs stay modest">
+          <img src="images/architecture/s95-water-leak.png" alt="In an empty apartment, a pipe leaks under the sink while the water meter spins and days pass on the calendar, until a bill with an exclamation mark arrives through the door">
+          <img class="fragment" src="images/architecture/s95-three-layers.png" alt="Real users, bots, and a looping request reach three layers: a shield that blocks bots, a gate that caps how much gets through, and a bell that rings when costs climb. Behind them, functions scale calmly and costs stay modest">
         </div>
         <aside class="notes">
           <h2>Surprise Cloud Bills</h2>
-          <h3>Think about your water bill. You pay only for the water you actually use, which is great. Now imagine a pipe starts leaking while you're away for a week. The meter keeps counting, every hour, and nobody's there to notice, until the bill arrives. Pay-per-use in the cloud works the same way: the meter doesn't care why it's counting.</h3>
-          <p>Automatic scaling works for real users, but also for attacks. A wave of bot traffic makes your functions scale, and you pay for every request. Public files, like a static frontend, cost money for every download, too. In 2024, AWS stopped charging for rejected requests to your storage, but successful downloads still show up on your bill.</p>
-          <p>Bugs can do the same. A common one is a loop: one function triggers another, which triggers the first one again. AWS now stops some of these loops automatically, but not all of them, so it's still your job to stop those loops from happening.</p>
-          <p>So protect yourself in three layers. First, stop bad traffic before it reaches your bill. In my setup, I put Cloudflare's bot protection in front of AWS, and make sure AWS only accepts traffic coming through it. AWS's own firewall can do a similar job.</p>
-          <p>Second, cap the damage, with rate limits at the gateway and a limit on how many copies of a function can run at once. And third, set billing alerts, so you hear about it early, not at the end of the month.</p>
-          <h4>Block bad traffic first, cap the damage, and set alerts, so the meter counts real work, not leaks. But what if all your traffic is real, steady, and heavy?</h4>
+          <h3>Last time, the sports app added capacity when more work arrived. But more work doesn’t always mean more users. Think of a pipe leaking while you’re away. Nobody’s using the sink, yet the meter keeps counting. By the time you see the bill, the leak may have been running for days.</h3>
+          <p>Say the retail chain’s sales files arrive at closing time. One file has a missing column. The processing function fails, and the system keeps handing back the same file to try again. Each attempt uses compute, but the sales records still haven’t been saved.</p>
+          <p>Decide which failures are worth retrying. If the database is temporarily unavailable, another attempt may help. If the file is missing a required column, set it aside and tell the store what to fix. Put a limit on retries so a job that keeps failing can stop and get someone’s attention.</p>
+          <p>Watch for a rise in processing attempts even when the number of files stays steady. That can give you an early clue that work is repeating. Set a spending alert too, and decide who will investigate it. The alert tells you to look. The retry limit is what stops this job from running again and again.</p>
+          <h4>When usage rises, check whether you’re getting more useful work done. Next, we’ll look at the other case: the work is real and steady, and paying for every run may cost more than keeping capacity available.</h4>
         </aside>
       </section>
 
             <section class="S96">
-        <h1>When Servers Are Cheaper</h1>
-        <p class="subtitle">Steady, heavy traffic can cost more on pay-per-use</p>
+        <h1>When Is Always-On Capacity Cheaper?</h1>
+        <p class="subtitle">Compare both options at the same workload</p>
         <div class="r-stack">
-          <img src="images/architectures/s96-gym-turning-point.png" alt="A gym and a simple chart: paying per visit rises with each visit and crosses the flat monthly membership at one turning point. Occasional visitors pay per visit, frequent visitors save with a membership">
-          <img class="fragment" src="images/architectures/s96-move-busy-part.png" alt="In a serverless system, one function gets a steady stream of requests day and night, so just that part moves to a fixed-price server, while the rest stays serverless. A team member with a wrench and a clock shows the time servers still need">
+          <img src="images/architecture/s96-gym-turning-point.png" alt="A gym and a simple chart: paying per visit rises with each visit and crosses the flat monthly membership at one turning point. Occasional visitors pay per visit, frequent visitors save with a membership">
+          <img class="fragment" src="images/architecture/s96-move-busy-part.png" alt="In a serverless system, one function gets a steady stream of requests day and night, so just that part moves to a fixed-price server, while the rest stays serverless. A team member with a wrench and a clock shows the time servers still need">
         </div>
         <aside class="notes">
-          <h2>When Servers Are Cheaper</h2>
-          <h3>Say your gym charges 10 euros a visit, or 50 euros for a monthly membership. If you go three times a month, paying per visit costs 30 euros. Easy choice. But if you go twenty times a month, that's 200 euros, and the membership wins. The turning point is five visits. Pay-per-use in the cloud works the same way.</h3>
-          <p>Paying per request is like paying per visit. When traffic is low or spiky, it's great. But with thousands of requests every second, all day, every day, you pay for each one, plus how long it runs. At some point, that costs more than a server with a fixed monthly price. It's pure math.</p>
-          <p>Even AWS agrees. In late 2025, it launched Lambda Managed Instances: you keep writing Lambda functions, but they run on regular AWS servers, at server prices. AWS says it's built for steady, high-volume workloads.</p>
-          <p>So when one part of your system gets busy and steady, you don't have to move everything. Move just that part to a fixed-price server, and keep the rest serverless.</p>
-          <p>But remember, servers cost your team time, too: updates, monitoring, and being on call. So the real turning point usually comes later than the pure math suggests.</p>
-          <h4>Find your turning point, move only the busy part, and count your team's time, not just the bill. So now the question is, how do you test all these cloud pieces on your own laptop?</h4>
+          <h2>When Is Always-On Capacity Cheaper?</h2>
+          <h3>Last time, retries drove up the bill without getting more work done. What if the work is real and the volume stays high? Think of a gym that charges ten euros per visit or fifty euros per month. At three visits, paying per visit costs thirty euros. At five, the prices are equal. After that, the monthly membership costs less.</h3>
+          <p>Say the retail chain from S93 now sends sales files throughout the day. The team pays for the function runs that check and save those files. Measure how often the function runs, how long it takes, and how many files arrive during the busiest hour. Use that workload to estimate the monthly cost.</p>
+          <p>Then test whether an always-running worker can process the same files within the same time targets. Include enough capacity for busy periods and account for the time your team would spend maintaining it. Compare the two options at today’s volume and again at the volume you expect in six months.</p>
+          <p>If the worker comes out ahead, try moving just the file-processing job. Check whether the savings show up and whether the stores still get their reports on time.</p>
+          <h4>Compare costs at the same workload and service target, and include the work your team takes on. Next, we’ll look at which parts of a cloud workflow you can test on your laptop and which need a cloud environment.</h4>
         </aside>
       </section>
 
             <section class="S97">
-        <h1>Testing Needs the Internet</h1>
-        <p class="subtitle">No internet, no real test</p>
+        <h1>Developing Locally with Cloud Dependencies</h1>
+        <p class="subtitle">Know when a change needs a test deployment</p>
         <div class="r-stack">
-          <img src="images/architectures/s97-flight-no-wifi.png" alt="A developer codes on a plane with no Wi-Fi. On the laptop, a function's connections to its cloud database, queue, and permissions are all broken">
-          <img class="fragment" src="images/architectures/s97-localhost-needs-cloud.png" alt="A function runs slowly on localhost, but everything it talks to, the database, queue, permissions, and other functions, lives in the cloud, reached over the internet. A new queue must be deployed before it can be tested">
+          <img src="images/architecture/s97-flight-no-wifi.png" alt="A developer codes on a plane with no Wi-Fi. On the laptop, a function's connections to its cloud database, queue, and permissions are all broken">
+          <img class="fragment" src="images/architecture/s97-localhost-needs-cloud.png" alt="A function runs slowly on localhost, but everything it talks to, the database, queue, permissions, and other functions, lives in the cloud, reached over the internet. A new queue must be deployed before it can be tested">
         </div>
         <aside class="notes">
-          <h2>Testing Needs the Internet</h2>
-          <h3>Ever tried coding on a long flight with no Wi-Fi? With a monolith, you can start the whole app on your laptop and keep working. With serverless, much of it stops. Your functions live in the cloud, and they talk to other cloud services: a database, a queue, permissions. So the moment you're offline, you can't really test them.</h3>
-          <p>You can run your functions on localhost, with tools like AWS's SAM CLI or the serverless-offline plugin. But in my experience, it's slow, and it still needs the internet. Your function runs on your laptop, but everything it talks to, like the database, the queue, and the permissions, has to be already deployed in the cloud.</p>
-          <p>So if you change one of those other parts, like adding a new queue, or updating another function your code calls, you can't test that change locally. You deploy it first, and then you test.</p>
-          <p>Even AWS says local copies can behave differently from the real cloud, and calls testing in the cloud the most reliable option.</p>
-          <p>For most developers, who are online all day, this doesn't change much. But if you like working offline, you can't really test your serverless app at all, because even localhost needs the internet.</p>
-          <h4>With serverless, localhost helps, but the real test happens in the cloud, after you deploy. So now the question is, when something breaks in there, how do you find out why?</h4>
+          <h2>Developing Locally with Cloud Dependencies</h2>
+          <h3>Imagine you’re on a flight with no Wi-Fi, working on the store’s sales-file processor. You have a sample file on your laptop, so you can check whether your code catches a missing column. But when you try the whole upload flow, the storage, trigger, and database it depends on are all in the cloud. You’ll need to get back online to try that flow.</h3>
+          <p>Back online, you can run part of the app on localhost. In our setup, the page runs on your laptop, but it sends uploads to a cloud test environment. You can change the page and try it against the processing function that’s already deployed there.</p>
+          <p>Now suppose you write a new function to process the uploaded file. The page can still upload the file, but the cloud has no deployed copy of your new function to call. Deploy the function and connect it to the upload trigger in the test environment. Then upload a sample file and check that the function starts and saves the expected records.</p>
+          <p>That extra deploy-and-test cycle can slow down development, especially when you’re changing the cloud setup as well as the code. Use local checks for the file rules you can test quickly, then deploy when you need to verify the connection.</p>
+          <h4>Ask whether you’re testing what the code does or whether the cloud will run it as configured. Next, we’ll follow the evidence when a file arrives but the sales records never show up.</h4>
         </aside>
       </section>
 
             <section class="S98">
-        <h1>Troubleshooting Is Harder</h1>
-        <p class="subtitle">You can't see inside your provider's services</p>
+        <h1>Troubleshooting a Serverless Workflow</h1>
+        <p class="subtitle">Follow one upload and find the last step that worked</p>
         <div class="r-stack">
-          <img src="images/architectures/s98-provider-black-box.png" alt="A team looks at a sealed cloud provider cube with a hidden broken part inside. The connection from their app is broken, and their users' phones show blank screens">
-          <img class="fragment" src="images/architectures/s98-trace-and-fallback.png" alt="One request is traced end to end through several functions into a database, with a status signal above and a dashed fallback path to a backup database below">
+          <img src="images/architecture/s98-provider-black-box.png" alt="A team looks at a sealed cloud provider cube with a hidden broken part inside. The connection from their app is broken, and their users' phones show blank screens">
+          <img class="fragment" src="images/architecture/s98-trace-and-fallback.png" alt="One request is traced end to end through several functions into a database, with a status signal above and a dashed fallback path to a backup database below">
         </div>
         <aside class="notes">
-          <h2>Troubleshooting Is Harder</h2>
-          <h3>In October 2025, apps like Snapchat and Fortnite stopped working for hours, at the same time. The problem wasn't in their code. It was a bug deep inside AWS, in a service those teams couldn't see or fix. All they could do was wait, and tell their users.</h3>
-          <p>AWS later explained it. A hidden bug in the system that manages DynamoDB's DNS records left an empty record, so apps couldn't find the database. That's the same serverless database from our diagram, and the problem spread to other AWS services. Full recovery took about fifteen hours.</p>
-          <p>That's what makes troubleshooting serverless harder. You can't see inside your provider's services. You may not know about a limit until you hit it. And when they have an outage, so do you. On top of that, one request can pass through many short-lived functions, so the clues are spread across many logs.</p>
-          <p>The fix is to prepare before it happens. Trace each request across your services, so you can follow its whole path; on AWS, that's X-Ray. Learn your provider's limits before you hit them. Follow their status page, because when they announce an outage, you often need to announce one too. And for the parts that matter most, plan a fallback.</p>
-          <h4>Serverless gives you a lot, but you give up some visibility, so plan for the day your provider fails. So now the question is, with all these architectures in mind, how do you design your own system, step by step?</h4>
+          <h2>Troubleshooting a Serverless Workflow</h2>
+          <h3>Last time, we uploaded a sample sales file to check that the cloud would run our new function. Now imagine a store uploads its file at closing time. You can see the file in storage, but the sales records never appear. Before you ask the store to send it again, find out how far the first upload got.</h3>
+          <p>Start with the file name and upload time. Look for a function run associated with that file. If you can’t find one, check whether the upload matched the trigger you configured. If you find a run, check whether it read the file, validated it, and tried to save the records.</p>
+          <p>It’s easier to follow that path if you plan for it before a failure. Carry an upload ID through the steps your team controls, and record when processing starts, when it finishes, and why it stops. That gives you a way to follow one file across several logs.</p>
+          <p>Sometimes the evidence ends at a managed service. If several runs start timing out at the database, check the errors you received and the provider’s health information. While you investigate, tell the store which upload is still pending so staff know what to expect.</p>
+          <h4>Find the last step you can confirm and check what should have happened next. That’s easier when you’ve planned how to operate the system before you build it. Next, we’ll put that decision into a design playbook you can use from the start of a project.</h4>
         </aside>
       </section>
 
