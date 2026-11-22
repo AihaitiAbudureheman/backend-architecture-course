@@ -145,24 +145,27 @@
         </aside>
       </section>
 
-            <section class="S8">
-        <h1>What Is Modularity, and How Much Is Enough?</h1>
-        <p class="subtitle">Not one big block, not fifty tiny pieces</p>
-        <div class="r-stack">
-          <img src="images/what/s8-drawers.png" alt="A messy junk drawer, fifty tiny drawers, and four neatly organized drawers side by side">
-          <img class="fragment" src="images/what/s8-bricks.png" alt="Toy building bricks grouped by color into modules that connect at just a few points">
-        </div>
-        <aside class="notes">
-          <h2>What Is Modularity, and How Much Is Enough?</h2>
-          <h3>Which kitchen do you want to cook in? One with a single giant drawer where everything's thrown together, one with fifty tiny drawers where you open half of them just to find a spoon, or one with a few well-organized drawers? The last one, easily. Your system works the same way: the goal isn't more pieces or fewer pieces, but the right ones.</h3>
-          <p>Modularity means splitting your system into parts in the way that works best for the problem. And here's a common misconception: modular doesn't automatically mean dozens of services spread across servers. Sometimes the right split is many parts. Sometimes it's one application, well organized inside.</p>
-          <p>Shopify is a great example. Its core runs as one huge application with millions of lines of code, but with strict boundaries between the different areas of the business. That's called a modular monolith: one system, cleanly divided inside.</p>
-          <p>Split too much, though, and you pay for it. A simple feature means changing several parts at once. New developers have to learn how all the pieces work together before they can help. And when something breaks, you're hunting across more and more parts.</p>
-          <p>Split too little, and everything's mixed together. Change one thing, and something unrelated breaks.</p>
-          <p>So how do you judge your split? Two simple checks. High cohesion: everything inside a module belongs together. Loose coupling: modules depend on each other as little as possible. If both are true, you're probably on the right track.</p>
-          <h4>One big block or fifty tiny pieces, both hurt. Keep what belongs together, together. Next, let's make sure each part has one clear job, and a name that says so.</h4>
-        </aside>
-      </section>
+<section class="S8">
+  <h1>What Is Modularity, and How Much Is Enough?</h1>
+  <p class="subtitle">Not one big block, not fifty tiny pieces</p>
+  <div class="r-stack">
+    <img src="images/what/s8-kitchen-drawers.png" alt="Three kitchen cabinets: mixed utensils, many tiny drawers, and organized drawers">
+    <img class="fragment" src="images/what/s8-checkout-journey.png" alt="Customer places an order and backend performs five checkout operations">
+    <img class="fragment" src="images/what/s8-modularity-problems.png" alt="Same checkout operations in mixed logic and excessively split modules">
+    <img class="fragment" src="images/what/s8-modularity-solution.png" alt="Orders coordinates inventory, payments and notifications in one application; inventory highlighted">
+  </div>
+  <aside class="notes">
+    <h2>What Is Modularity, and How Much Is Enough?</h2>
+    <h3>Which kitchen do you want to cook in? One with a single giant drawer where everything's thrown together, one with fifty tiny drawers where you open half of them just to find a spoon, or one with a few well-organized drawers? The last one, easily. Your system works the same way: the goal isn't more pieces or fewer pieces, but the right ones.</h3>
+    <p>Imagine we're building an online store. A customer clicks Place order. Behind that button, our backend checks and reserves stock, calculates the total, processes the payment, saves the order, and sends a confirmation.</p>
+    <p>Everything works fine. But one day, the business asks us to change how we reserve stock. We open the code and find that the stock reservation logic is mixed with order and payment logic. Why do we need to understand payments just to change how we reserve stock?</p>
+    <p>Now imagine we go to the other extreme. Every little operation gets its own module. Checking stock is one module, reserving stock is another. Even a small change can mean working across several modules and their interfaces.</p>
+    <p>What if we organize the same application differently? We keep stock checking and reservation together in an inventory module. We do the same for orders, payments, and notifications. That's modularity: organizing our system into meaningful units. Notice that we're still running one backend application.</p>
+    <p>When closely related operations belong to the same module, we call that high cohesion. And when the order module can request a stock reservation without needing to know how it works internally, we call that loose coupling.</p>
+    <p>Now, back to our business request. If the interface and expected behaviour stay the same, we can focus our changes on the inventory module. That can save development and testing time and reduce the risk of breaking unrelated functionality.</p>
+    <h4>When you design a system, don't start by deciding how many modules you need. Start by looking at what belongs together. Next, let's make sure each module has a clear responsibility and a name that explains it.</h4>
+  </aside>
+</section>
 
             <section class="S9">
         <h1>What Is Separation of Concerns?</h1>
