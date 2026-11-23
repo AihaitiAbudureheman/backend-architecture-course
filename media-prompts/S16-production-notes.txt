@@ -1,0 +1,16 @@
+S16 — production notes
+
+Reconstructed illustration prompt
+Output file name: s16-interchangeable-camera-lenses.png (use this only as the download file name; do not draw it in the image).
+Camera body with compatible detachable portrait and wildlife telephoto lenses, small illustrative portrait and wildlife thumbnails. Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as main accents, warm highlights #f5b078. Simple shapes, soft shadows, no clutter. Wide 16:9 composition, small even margins about 5%. Stylized people only, no logos, brand names or famous characters. Soft glow on camera mount.
+
+Speaking map: V1 compatible lenses; V2 new requirement; V3 provider details in three operations; V4 isolate behind contract; V5 add B; V6 balance costs; V7 dynamic flag controls new checkout eligibility; V8 anticipate, isolate, control.
+
+Technical references (opened):
+https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer
+https://martinfowler.com/articles/feature-toggles.html
+
+Caveats: common operations must have compatible semantics; provider selection omitted from structural view, no simultaneous charging. Preserve provider identity for existing transactions, status and refunds. Runtime-configurable flags required for no-redeployment changes. Test both flag states and retire temporary flags when appropriate. Six providers illustrative, not threshold. No AI forced.
+
+Production: V1 resized generated illustration, subtle shading, reconstructed prompt. V2 dashed line proposed dependency only; V4/V5 same positions, circle represents contract not runtime hop. V7 static cards, V8 numbered cards. Legacy mapped transcripts not independently located. No live Reveal or recorded readthrough.
+Narration counts opening/body/closing: [54, 221, 41] total 316

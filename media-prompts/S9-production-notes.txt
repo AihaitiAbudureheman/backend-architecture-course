@@ -1,0 +1,15 @@
+S9 — Production notes
+
+Approved narration unchanged.
+
+Reusable illustration prompt (reconstructed):
+Output file name: s9-supermarket-responsibilities.png (use this only as the download file name; do not draw it in the image).
+Create only one standalone split-screen supermarket scene: same shopper searching for milk under A, B, C labels on left; Dairy, Bakery, Frozen on right, with a misplaced cleaning product in Dairy. Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) with warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition, small even margins. Soft glow on Dairy sign and milk. Stylized characters, no logos or real people.
+
+Production deviation: V1 cropped from a generated six-panel sheet and proportionally enlarged with padding; includes V1 label and early takeaway. V4 uses text cards rather than icons. V2–V6 editable SVGs, all PNGs 1920x1080.
+
+Speaking progression: supermarket names and contents; misplaced logic; correct responsibility; related operations; collaboration; naming and two questions.
+
+Technical scope: illustrative stock release only, not full cancellation workflow. No additional deployment or database assumptions. Naming is a guide, not proof of responsibility.
+
+Validation: HTML references and image dimensions checked. No live Reveal.js or recorded read-through.

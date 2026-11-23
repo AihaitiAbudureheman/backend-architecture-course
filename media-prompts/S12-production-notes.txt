@@ -1,0 +1,16 @@
+S12 production notes
+Source: W9 — S13 (outline mapping; separate legacy transcript not established).
+Narration counts (whitespace): [56, 203, 36], total 295. Approved text unchanged.
+
+Reusable illustration prompt (reconstructed):
+Output file name: s12-express-delivery-assignment.png (use this only as the download file name; do not draw it in the image).
+Developer at desk with laptop, three service integration documents, assignment “Add express delivery”, three panels with package, truck and card icons labelled “Check stock”, “Get delivery quote”, “Process payment”.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as main accents, with warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Soft glow on the assignment banner and laptop. Wide 16:9 composition. Subject fills most of frame, about 5% margins. Stylized fictional characters, no logos, brand names or famous characters.
+
+Speaking progression: assignment; different mechanisms; extra tooling work; documented defaults; after migration; external requirement and closing.
+V2 and V5 are structural call diagrams, not execution sequence. V6 external REST is outside the internal standard's scope, not necessarily an exception. Events are an interaction pattern, not a transport protocol. No shared runtime implied. Migration and integration costs remain.
+Technical references:
+https://learn.microsoft.com/en-us/azure/architecture/microservices/design/api-design
+https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices
+https://learn.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/communication-in-microservice-architecture
+Limitations: hypothetical design, no measured savings; V1 subtle shading and resized; V3/V4/V6 text-based cards rather than storyboard icons; no live Reveal.js or recorded spoken test.

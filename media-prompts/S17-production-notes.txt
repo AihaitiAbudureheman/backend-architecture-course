@@ -1,0 +1,18 @@
+S17 | W14 | legacy S29
+Illustration prompt (reconstructed):
+Output file name: s17-beyond-the-warning-light.png (use this only as the download file name; do not draw it in the image). Split composition: dashboard with illuminated engine warning light, mechanic using diagnostic tablet beside open car hood. Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as main accents, warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9, small even margins. Stylized characters, no brands or logos. Soft glow on warning light.
+
+Speaking map:
+V1: beyond the warning light
+V2: slow checkout investigation
+V3: metrics reveal the pattern
+V4: trace locates the delay
+V5: logs explain the event
+V6: three observability signals
+V7: structured logging
+V8: observability without noise
+V9: design for observability
+
+References: https://opentelemetry.io/docs/concepts/signals/
+https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
+Caveats: illustrative chart, identifiers and events; external call timing does not establish provider root cause; trace spans nested, do not sum. Propagate identifiers through instrumented services. Status check requires actual scheduling. Retention examples not recommendations; preserve required audit records and exclude sensitive data. Averages hide tail latency; signals are complementary, not an exhaustive list. V6 text cards; V9 text cards; V1 background shading and resize. No live Reveal test or recorded readthrough; legacy S29 not separately located.

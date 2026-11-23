@@ -1,0 +1,27 @@
+S19 — What Is Compliance? | W16 | Original S60 (concept part)
+Approved Stage 4 narration retained verbatim. Word count: 612 (opening 57, main 509, closing 46), whitespace count.
+Speaking map: each HTML comment identifies the start of narration for its corresponding reveal.
+V1: s19-customer-deletion-request.png — 57 words
+V2: s19-personal-data-across-services.png — 76 words
+V3: s19-beyond-active-databases.png — 77 words
+V4: s19-erasure-and-retention.png — 87 words
+V5: s19-data-lifecycle-design.png — 84 words
+V6: s19-early-design-versus-late-redesign.png — 76 words
+V7: s19-international-data-transfers.png — 109 words
+V8: s19-design-for-compliance.png — 46 words
+
+Reusable illustration prompt (reconstructed, not verbatim generation input):
+Output file name: s19-customer-deletion-request.png (use this only as the download file name; do not draw it in the image).
+A stylized customer at a desk uses a smartphone with an online store account interface, selecting account deletion and requesting personal data deletion. Show the request, not a completed erasure. Soft glow on the phone screen.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as the main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. The subject fills most of the frame, with a small even margin (about 5%). Stylized flat-vector characters, not realistic, not resembling any real person. No logos, brand names or famous characters.
+
+Technical sources consulted:
+https://eur-lex.europa.eu/eli/reg/2016/679 — Articles 5, 17, 28; Chapter V Articles 44–45 (also verified via EUR-Lex search excerpts).
+https://commission.europa.eu/law/law-topic/data-protection/information-business-and-organisations/dealing-requests-individuals_en — erasure conditions and exceptions.
+https://www.edpb.europa.eu/sme/be-compliant/international-data-transfers_en — Chapter V transfer conditions.
+https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/rules-international-data-transfers_en — international transfer mechanisms.
+
+Q&A and scope:
+Account closure does not automatically establish an obligation to erase every record. Assess lawful grounds and exceptions. Accounting retention depends on applicable law; no universal retention duration is asserted. Logical categories may overlap; V5 does not require separate databases. Backups require appropriate retention and restore procedures, including preventing deleted data from reappearing; exact implementation is outside lesson scope. V3 is an inventory of possible locations, not a runtime flow. GDPR permits qualifying transfers; separate sector-specific and contractual requirements may apply. No claim of guaranteed compliance; work with legal/privacy stakeholders. Security is necessary but not sufficient. No AI example required. Hypothetical store, not factual claims about a real company.
+Continuity: S17 sensitive logs callback; S18 early requirements bridge; S7 rework principle; S20 performance and uptime bridge. Original S19/S20 and W16 mapping reopened. Legacy S60 separate source not checked.
+Production: V1 illustration generated and resized/cropped slightly, includes mild background shading and edges of desk props cropped; phone wording says Confirm Deletion but narration clarifies a request, not immediate completion. V3 uses separate cards rather than unlabeled dashed connectors to avoid implied runtime flows. V4/V8 text cards simplify storyboard icons. All assets opaque, 1920x1080. V2–V8 editable SVG. HTML references exact paths. No live Reveal.js test or recorded spoken readthrough. Ledger update after final acceptance.

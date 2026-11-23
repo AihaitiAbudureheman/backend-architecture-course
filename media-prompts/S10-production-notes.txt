@@ -1,0 +1,13 @@
+S10 — What Are Service Tiers?
+Source review: original index.html S10/S11, accepted S9, outline W7/S35, v7 rules. Original five-role convention retained. No narration edits after approval.
+
+Reusable reconstructed illustration prompt:
+Output file name: s10-public-or-private.png (use this only as the download file name; do not draw it in the image).
+Two scenes: customer placing order on phone, automated nightly sales report on monitor with clock/calendar. Labels: Place an order / Customer request; Generate a sales report / Scheduled business task. Question: Do both need a public endpoint?
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as main accents with warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition, small even margins about 5%. Stylized flat-vector characters, no logos, brand names or famous characters. Soft glow on phone and report display.
+
+Speaking progression: V1 exposure question; V2 customer/frontend/gateway; V3 private backend; V4 queue and Notifications; V5 schedule and Reporting; V6 role/trigger/access.
+Technical sources:
+https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/web-queue-worker
+https://learn.microsoft.com/en-us/azure/architecture/best-practices/background-jobs
+Worker and runner are local naming conventions; either can share runtime or support other triggers. Private reachability does not establish trust. Queue delivery, retries, idempotency, data sources and payment interactions omitted. Frontend and gateway group indicates exposure role, not a network segment. V1 resized and contains slight shading. Diagrams use simple service cards. Live Reveal and recorded narration not tested.

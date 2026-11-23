@@ -1,0 +1,23 @@
+S4 — Production notes and reusable illustration prompt
+
+Output file name: s4-first-design-meeting.png (use this only as the download file name; do not draw it in the image).
+One standalone wide scene, not a collage: the recurring dark-haired developer in a lavender shirt and colleagues at a collaborative design meeting. Whiteboard with online store shopping cart and question marks, a database icon and framework/code icon on sticky notes. No finished architecture or technical answers. Thoughtful expressions.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as the main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. Subject fills most of the frame, approximately 5% margin. Stylized flat-vector characters, no real-person resemblance. No logos, brand names or famous characters.
+Soft glow on the whiteboard and the technology sticky notes.
+
+Production caveat: actual V1 is a cropped and upscaled panel from a generated concept sheet, with subtle shading and premature concept labels on the board. Prompt reconstructs intended standalone design, not verbatim generator input. V2–V4 are original programmatic SVG diagrams with opaque backgrounds.
+
+Reveal cues (paragraph numbers refer to notes):
+V1: opening h3.
+V2: paragraph 1, through paragraph 5.
+V3: paragraph 6, through paragraph 7.
+V4: paragraph 8, through closing h4.
+Arrows in V3 mean influence, not runtime communication. V2 is conceptual, not a deployment diagram. V4 double arrow means mutual influence.
+
+Sources checked 2026-11-23:
+https://www.sei.cmu.edu/software-architecture/ — structure, behaviour and business goals.
+https://resources.sei.cmu.edu/asset_files/TechnicalNote/2010_004_001_15188.pdf — architecture can be accidental or intentional.
+https://insights.sei.cmu.edu/documents/2544/2010_010_001_513810.pdf — structures, relations and properties.
+Original S4/S5, outline v4, rules v7 and preceding approved S3 checked. S1 online-store callback from approved narration.
+Q&A: Three elements are a teaching framework, not an exhaustive definition. Technology choice is architectural when system-level structure, behaviour or requirements are materially affected. Duplicate charge prevention is a requirement, not a guarantee; implementation is deferred. Emerging architecture is not inherently bad.
+Live Reveal.js rendering not tested. Ledger update after final acceptance.

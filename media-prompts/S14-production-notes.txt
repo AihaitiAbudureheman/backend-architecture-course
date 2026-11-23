@@ -1,0 +1,13 @@
+S14 — Production notes
+
+Source inspected: original S14 and S15 sections from /mnt/data/index.html; S13 approved HTML; Final Course Outline v4(1) W11-S25; Lesson Optimization Rules v7.
+
+Illustration prompt (reconstructed from generated output): Output file name: s14-growing-cafe-demand.png (use this only as the download file name; do not draw it in the image). A busy coffee chain cafe with three purple-striped awnings, one overwhelmed barista serving a queue of cheerful customers. Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as the main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. The subject fills most of the frame, with only a small, even margin on each side (about 5%); no large empty borders or wide padding. Stylized flat-vector characters. No logos, no brand names, no famous characters. Soft glow on coffee cups.
+
+V2-V8 are editable SVG diagrams; all PNGs 1920x1080. V7 does not contain the planned cafe inset, instead uses the spoken cash-register analogy and emphasizes the bottleneck diagram. V2 uses icon-like coffee machines rather than baristas. Generated illustration has subtle gradients and was resized from 1672x941. No live Reveal rendering or recorded readthrough completed.
+
+Technical caveats: Scaling capacity depends on workload and resources; horizontal scaling needs request distribution and shared-state coordination; inventory database bottleneck is hypothetical test finding, not actual benchmark; vertical scaling can help if instance resources are the limiting factor; database tuning may precede scaling. V6 is a structural dependency view, not execution order.
+
+Technical references for later independent checking: https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier ; https://learn.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling ; https://aws.amazon.com/what-is/scalability/
+
+S14 Stage4 approved narration preserved verbatim. Total words: opening 53, transcript 229, closing 33, total 315.

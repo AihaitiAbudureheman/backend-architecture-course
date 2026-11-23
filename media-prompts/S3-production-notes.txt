@@ -1,0 +1,14 @@
+S3 — Production notes
+Reveal V1 during opening; V2 at First, you need; V3 at If you are a junior or mid-level developer.
+Source checks: original S3/S4 index.html, accepted S2.html, v7 rules and outline. Course-specific prerequisites, no external technical claims requiring research. Cloud principles transfer, implementation details differ. No cloud account is required to follow conceptual narration; optional hands-on experimentation may require one.
+
+Reconstructed reusable prompts (not exact generator inputs):
+Output file name: s3-pack-the-essentials.png (use this only as the download file name; do not draw it in the image).
+Hiker with dark swept hair, lavender shirt, amber backpack, water and shoes; helmet, ice axe and rope set aside. Soft glow on backpack.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as the main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. The subject fills most of the frame, with only a small, even margin on each side (about 5%); no large empty borders or wide padding. If people appear, they are stylized flat-vector characters, not realistic, and not resembling any real person. No logos, no brand names, no famous characters.
+
+Output file name: s3-shared-learning-journey.png (use this only as the download file name; do not draw it in the image).
+Three adult hikers walking side by side. Labels: Junior and mid-level developers — Understand why systems are designed the way they are; Senior developers — Make and justify structured design decisions; Technical leaders — Connect design decisions to business requirements, costs and risks. Soft glow on distant trail.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as the main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. The subject fills most of the frame, with only a small, even margin on each side (about 5%); no large empty borders or wide padding. If people appear, they are stylized flat-vector characters, not realistic, and not resembling any real person. No logos, no brand names, no famous characters.
+
+Limitations: V3 extracted from generated concept sheet, letterboxed to 16:9; standalone regeneration preferred. V1 has slight shading rather than exact flat background. Live Reveal.js not tested. SVG is editable.

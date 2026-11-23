@@ -1,0 +1,10 @@
+S2 — Production notes
+
+Output file name: s2-before-the-journey.png (use this only as the download file name; do not draw it in the image).
+Same stylized protagonist as S1, dark swept hair, lavender rolled-sleeve shirt, dark trousers and amber backpack, studying an unfolded map at the beginning of a winding mountain trail. A distant amber summit flag. No text.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as main accents, warm amber (#f5b078) highlights. Simple shapes, soft shadows, no clutter. Wide 16:9 composition, about 5% margins. Stylized fictional character. No logos or brands. Soft glow on the destination flag.
+
+V2 is authored SVG, not AI-generated; editable source included.
+Reveal V1 during opening; reveal V2 before “Remember that online store” and retain through closing.
+The roadmap is a learning sequence, not a prescribed design workflow.
+Prompt is a reconstruction, not exact generation input. V1 resized to 1920 × 1080 and has subtle shading. Live Reveal.js not tested.

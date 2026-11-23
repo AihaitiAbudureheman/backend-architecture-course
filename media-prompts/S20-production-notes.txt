@@ -1,0 +1,25 @@
+S20 — What Are Performance and Uptime Requirements?
+Opening illustration prompt (reconstructed for reuse):
+Output file name: s20-business-promises.png (use this only as the download file name; do not draw it in the image).
+A pizza restaurant with two chefs preparing pizzas, ovens, and a courier carrying pizza boxes. Visible signs: Delivery within 30 minutes; Open until midnight. Clock and simple kitchen details.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as the main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. Subject fills most of the frame with small even margins. Stylized fictional characters. No logos, brand names or famous characters. Soft glow on oven and clock.
+
+Speaking map:
+V1: business-promises — 65 words
+V2: measurable-performance — 122 words
+V3: latency-percentile — 110 words
+V4: availability-needs — 88 words
+V5: sla-and-slo — 102 words
+V6: availability-nines — 104 words
+V7: redundant-orders-instances — 140 words
+V8: requirements-first — 44 words
+
+Technical references reviewed:
+https://sre.google/sre-book/availability-table/
+https://sre.google/sre-book/service-level-objectives/?hl=nl
+https://cloud.google.com/blog/products/devops-sre/sre-fundamentals-sli-vs-slo-vs-sla
+
+Q&A / implementation boundaries:
+Eligible requests: define valid inputs, traffic pattern, measurement window, payment interaction exclusions and expected business declines with stakeholders. Do not equate a successful-only percentile with a joint success-and-latency target. Percentile estimators differ; V3 shows the observed threshold proportion rather than an exact interpolated percentile. Monthly SLO/SLA example uses identical definitions and measurement periods; annual illustration is not a monthly contract calculation. Downtime = 365*86400*(1-availability/100) seconds; values rounded to nearest second. Request-based availability does not necessarily translate to elapsed downtime. A higher internal target is optional. Redundancy requires health checks, routing, enough spare capacity, and functioning dependencies; gateway omitted in focused deployment view. Dashed warm path represents unhealthy instance excluded from routing, not an event. No business targets are universal.
+
+Production decisions: three small narration clarifications: eligible requests, no exclusions, health checks. V3 footer uses observed fraction rather than method-dependent p95 value. V8 text cards instead of icons. Opening illustration resized and has background shading. No live Reveal rendering, recorded narration test, or independent legacy lesson inspection.

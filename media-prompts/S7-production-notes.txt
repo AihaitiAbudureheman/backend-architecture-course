@@ -1,0 +1,20 @@
+S7 — Production notes
+
+V1: s7-before-and-after-printing.png — Catalogue price corrected before printing versus stacks of incorrect printed copies
+V2: s7-cancel-order-requirement.png — Cancel order button and proposed status update
+V3: s7-reduce-rework.png — Late testing discovery versus earlier investigation
+V4: s7-manage-complexity.png — Potential responsibilities affected by cancellation
+V5: s7-build-agreement.png — Stakeholders discuss cancellation before shipment and returns after shipment
+V6: s7-proportional-design-effort.png — Button label correction compared with introducing cancellation
+
+Sources: https://www.sei.cmu.edu/library/software-architectures-and-acquisition/
+https://www.sei.cmu.edu/library/architecture-tradeoff-analysis-method-collection/
+https://www.sei.cmu.edu/library/using-economic-considerations-to-choose-among-architecture-design-alternatives/
+Scenario: captured payment and reserved stock; shipment policy fictional. Design remains iterative, savings not guaranteed. V4 lines indicate impact, not runtime.
+
+Reusable illustration prompt (reconstructed):
+Output file name: s7-before-and-after-printing.png (use this only as the download file name; do not draw it in the image).
+Show the same designer correcting a headphone catalogue price on a screen before printing, versus stacks of incorrectly printed catalogues after printing.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as the main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. The subject fills most of the frame, with about 5% margin. Soft glow on the corrected price. Stylized flat-vector characters, no logos or brand names.
+
+V5: programmatic vector illustration substituted for generated meeting scene because second generation repeated catalogue scene. Editable SVG supplied. V1 background has shading and image resized. No live Reveal or recorded spoken read-through.

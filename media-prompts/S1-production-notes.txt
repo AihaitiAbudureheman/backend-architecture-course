@@ -1,0 +1,29 @@
+S1 — reusable reconstruction prompts (not verbatim generation inputs)
+
+Output file name: s1-from-bricks-to-blueprint.png (use this only as the download file name; do not draw it in the image).
+Same stylized young engineer with swept dark hair and lavender shirt, laying bricks beside a partly built house on the left and studying a house blueprint at a drafting table on the right. Amber arrow and labels Build and Design.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), flat even color, no gradient or vignette. White and soft purple (#b388ff) main accents, warm amber (#f5b078) highlights. Simple shapes, soft shadows, no clutter. Wide 16:9 composition, approximately 5% margins. Stylized fictional people, no logos, brand names or famous characters. Only specified labels.
+Soft glow on the key focal element.
+Alt: The same person lays bricks and studies a house blueprint, labelled Build and Design.
+
+Output file name: s1-where-to-start.png (use this only as the download file name; do not draw it in the image).
+Same engineer in a team meeting, facing a whiteboard with a shopping cart and question marks. Label: Where do I start?
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), flat even color, no gradient or vignette. White and soft purple (#b388ff) main accents, warm amber (#f5b078) highlights. Simple shapes, soft shadows, no clutter. Wide 16:9 composition, approximately 5% margins. Stylized fictional people, no logos, brand names or famous characters. Only specified labels.
+Soft glow on the key focal element.
+Alt: Developer facing a whiteboard with a shopping cart and the question Where do I start?
+
+Output file name: s1-confident-design-decisions.png (use this only as the download file name; do not draw it in the image).
+Same engineer presenting a conceptual online store system sketch to colleagues. Three clear labels: Requirements, Cost, Risk. Sketch is illustrative, not an implementation diagram.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), flat even color, no gradient or vignette. White and soft purple (#b388ff) main accents, warm amber (#f5b078) highlights. Simple shapes, soft shadows, no clutter. Wide 16:9 composition, approximately 5% margins. Stylized fictional people, no logos, brand names or famous characters. Only specified labels.
+Soft glow on the key focal element.
+Alt: Developer presenting a conceptual online store sketch beside Requirements, Cost and Risk labels.
+
+Output file name: s1-design-toolkit.png (use this only as the download file name; do not draw it in the image).
+Two upright guide covers: How to Design with architecture symbols and purple tabs, When to Design with an amber checklist.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), flat even color, no gradient or vignette. White and soft purple (#b388ff) main accents, warm amber (#f5b078) highlights. Simple shapes, soft shadows, no clutter. Wide 16:9 composition, approximately 5% margins. Stylized fictional people, no logos, brand names or famous characters. Only specified labels.
+Soft glow on the key focal element.
+Alt: Two guide covers titled How to Design and When to Design.
+
+Reveal cues: V1 opening and welcome; V2 paragraph 2; V3 paragraphs 3–4; V4 paragraph 5 and closing.
+Approved narration: 308 whitespace-separated words, unchanged.
+QA: four separately generated images resized from 1672×941 to 1920×1080; labels visually checked. Backgrounds have subtle shading rather than exact flat #231c3e. Character visually similar but not pixel-identical. V3 sketch is conceptual only. No live Reveal.js test. Guides are promised resources, not delivered by this lesson. Course outline and S139 confirm the guide promise. No external technical claims require verification; API/AI abbreviations retained as approved. Ledger update follows final acceptance.

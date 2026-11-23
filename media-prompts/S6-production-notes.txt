@@ -1,0 +1,18 @@
+S6 production notes
+
+Reveal cues:
+V1: s6-reading-a-train-map.png — Schematic train connections contrasted with physical railway layout
+V2: s6-checkout-structure.png — Checkout structure with client, three modules and database
+V3: s6-diagram-purpose.png — Title and legend highlighted
+V4: s6-entry-points.png — Store app and Orders entry point highlighted
+V5: s6-components-and-relationships.png — Inventory, Payments and database relationships highlighted
+V6: s6-application-boundary.png — Backend application boundary highlighted
+V7: s6-different-architecture-views.png — Structural and behavioural views compared
+
+Reusable reconstructed illustration prompt:
+Output file name: s6-reading-a-train-map.png (use this only as the download file name; do not draw it in the image).
+Show one fictional four-station railway network twice: schematic map on left, corresponding physical landscape on right. Match all stations and connections exactly. Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as main accents, a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Soft glow on station markers. Wide 16:9 composition, small even margins about 5%. No logos, brands or famous characters.
+
+References: https://c4model.com/diagrams/notation ; https://c4model.com/diagrams/checklist ; https://c4model.com/diagrams/dynamic ; https://c4model.com/diagrams/faq
+Course-specific questions, not formal C4 notation. S5 callback: reservation precedes payment in the illustrated success case. S7 bridge: value of designing first. Database added for illustration; omitted relationships do not establish absence. Application boundary is not necessarily ownership or deployment boundary. Structural arrows do not establish execution order.
+Limitations: generated map has extra unlabeled dots not depicted as stations in landscape; main A–D connections match. Background subtly shaded. V7 excerpt not full checkout. Live Reveal.js and recorded read-through not tested.

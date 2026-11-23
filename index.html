@@ -12,138 +12,173 @@
   <div class="reveal">
     <div class="slides">
 
-      <section class="S1">
-        <h1>Design Backend Systems with Confidence</h1>
-        <p class="subtitle">From writing code to designing systems</p>
-        <div class="r-stack">
-          <img src="images/intro/s1-bricks.png" alt="A brick wall being built, one brick at a time">
-          <img class="fragment fade-in-then-out" src="images/intro/s1-blueprint.png" alt="A blueprint of a family house">
-          <img class="fragment" src="images/intro/s1-playbook.png" alt="A checklist with ticked boxes, ready to use">
-        </div>
-        <aside class="notes">
-          <h2>Design Backend Systems with Confidence</h2>
-          <h3>Picture your dream house. One person has laid thousands of bricks. Another has designed thousands of houses. Both matter, but which one do you ask to design yours? The architect. And that's exactly what this workshop is all about: going from writing backend code to designing backend systems, with confidence.</h3>
-          <p>So, welcome, everyone, to Design Backend Systems with Confidence. It's great to have you here.</p>
-          <p>In this workshop, we're gonna look at how backend systems really get designed: the core ideas behind a good architecture, how to spot the moment you need one, and how to actually build it, step by step. Because knowing a backend architecture design is one thing. Knowing when it's the right time to use it is what really makes the difference.</p>
-          <p>And you're not leaving with just ideas. By the end, you get a design playbook: a step-by-step checklist you can pick up and use on your very next project. Your own experience adds to it over time, but it gives you a solid place to start.</p>
-          <p>If you take away one thing, let it be this: I want you to feel confident making architecture decisions yourself. Not because you've memorized every backend architecture design, but because you have a clear way to think them through.</p>
-          <p>So whether you're early in your career, a senior engineer, or leading a team, if you've ever wondered how large systems are designed and built, or wanted to build the right system for a problem, not just one that works, you're in the right place.</p>
-            <h4>From laying bricks to drawing the blueprint: that's the journey we're on together. So let's look at the road ahead.</h4>
-        </aside>
-      </section>
-            <section class="S2">
-        <h1>Your Roadmap from Code to Design</h1>
-        <p class="subtitle">What · When · Architectures · How · Evolution</p>
-        <img class="r-stretch" src="images/intro/s2-roadmap.png" alt="A hiker at the start of a trail, studying a map of the route ahead">
-        <aside class="notes">
-          <h2>Your Roadmap from Code to Design</h2>
-          <h3>Before a long hike, experienced hikers do one thing first: they look at the whole map. Not to memorize every turn, but to know where the route is heading, so they never feel lost along the way. That's what we're gonna do right now: one quick look at the whole route from code to design, before we take the first step.</h3>
-          <p>First, the what. Because how can you design something you don't fully understand? We start with what a backend architecture design really is, and the building blocks behind it, AI included, so you can follow architecture discussions with confidence.</p>
-          <p>Next, the when. You don't design a new architecture every day, so spotting the moment you need one is a skill in itself. So is knowing when you don't, and saving your team the time and the money.</p>
-          <p>Then, the three architectures you hear about everywhere: monoliths, distributed services, and serverless. Not just the names, but which one fits which situation, and why, so you can defend your choice in design reviews, and even in interviews.</p>
-          <p>After that comes the heart of this workshop: the how. A step-by-step playbook, from the very first question all the way to production, so you can face a real problem at work and know exactly where to start.</p>
-          <p>And finally, evolution: how architectures change as your company grows, in small, safe steps instead of risky rewrites, and sometimes even back a step.</p>
-          <h4>So that's the whole route, from code to design. Before we set off, let's make sure you've packed what you need.</h4>
-        </aside>
-      </section>
+<section class="S1">
+  <h1>Design Backend Systems with Confidence</h1>
+  <p class="subtitle">From writing code to designing systems</p>
+  <div class="r-stack">
+    <img src="images/intro/s1-from-bricks-to-blueprint.png" alt="The same person lays bricks and studies a house blueprint, labelled Build and Design.">
+    <img class="fragment" src="images/intro/s1-where-to-start.png" alt="Developer facing a whiteboard with a shopping cart and the question Where do I start?">
+    <img class="fragment" src="images/intro/s1-confident-design-decisions.png" alt="Developer presenting a conceptual online store sketch beside Requirements, Cost and Risk labels.">
+    <img class="fragment" src="images/intro/s1-design-toolkit.png" alt="Two guide covers titled How to Design and When to Design.">
+  </div>
+  <aside class="notes">
+    <h2>Design Backend Systems with Confidence</h2>
+    <h3>Imagine you've spent years building houses. You know how to lay bricks, read blueprints, and turn someone else's design into a real building. But one day, someone asks you to design a house yourself. Where do you start? Knowing how to build is one skill. Knowing how to design what you're building is another. And that's what this course is all about.</h3>
+    <p>Welcome, everyone, to Design Backend Systems with Confidence. It's great to have you here.</p>
+    <p>Imagine your team is about to build a new online store, and you're asked to design its backend. You know how to write code, work with databases, and build APIs. But how do you choose the right architecture? What questions do you ask before you start building? And how do you know your design makes sense for the business?</p>
+    <p>Throughout this course, we're going to explore backend architectures, understand how their building blocks work together, including AI models and services, and learn when and how to design a system.</p>
+    <p>But here's what I really want you to take away from this course. When you're in a design meeting or a system design interview, I want you to be able to explain not just what architecture you've chosen, but why you've chosen it. How does it meet the requirements? What does it mean for the cost of running the system and the risks involved?</p>
+    <p>And you're not leaving with just ideas. By the end of this course, you get two practical guides: a How to Design playbook and a When to Design checklist. Something you can keep next to you when you're working on your next project, and build upon as you gain more experience.</p>
+    <h4>From laying bricks to drawing your own blueprint, that's the journey we're on together. And before we get started, let's take a quick look at the road ahead.</h4>
+  </aside>
+</section>
 
-            <section class="S3">
-        <h1>Check If You're Ready to Start</h1>
-        <p class="subtitle">Who it's for, and what you need</p>
-        <div class="r-stack">
-          <img src="images/intro/s3-packing.png" alt="A light daypack with shoes, water and a laptop, next to heavy climbing gear pushed aside">
-          <img class="fragment" src="images/intro/s3-audience.png" alt="Three hikers of different levels setting off on a trail together">
-        </div>
-        <aside class="notes">
-          <h2>Check If You're Ready to Start</h2>
-          <h3>So, what do you actually need to pack for this hike? Not climbing ropes, not professional gear. Just good shoes and some water. This workshop works the same way: the packing list is short. Let's check you've got it, and see who this route was made for.</h3>
-          <p>The main thing you need is a basic understanding of software development. If you've built an app, written some code, or worked on a project with a team, you're ready.</p>
-          <p>If you've never built software before, some parts might feel challenging, and that's okay. This workshop is mostly conceptual. It's less about writing code, and more about learning to think like someone who designs systems.</p>
-          <p>It also helps to know your frontend from your backend: what users see and click, versus what happens behind the walls, which is where we spend most of our time. If that feels rusty, take a few minutes to read up on how a frontend talks to a backend.</p>
-          <p>And you don't need a cloud account. Most examples use AWS, but Azure and Google Cloud offer the same building blocks, so everything here carries over to whichever cloud you use.</p>
-          <p>So, who is this for? If you're a junior or mid-level developer tired of building designs without knowing why, a senior looking for a structured way to make and defend decisions, or a tech leader who needs to explain design choices in terms of cost and risk, this route was made for you.</p>
-          <h4>So, bags packed, shoes on. Let's take the first step, and start with what a backend architecture design really is.</h4>
-        </aside>
-      </section>
-
-            <section class="S4">
-        <h1>What Is Backend Architecture Design?</h1>
-        <p class="subtitle">Modularity, interfaces, and data flow</p>
-        <div class="r-stack">
-          <img src="images/what/s4-car-hood.png" alt="A puzzled designer looking at an open car hood">
-          <img class="fragment" src="images/what/s4-accidental-house.png" alt="A house that grew by accident next to a house that was designed">
-        </div>
-        <aside class="notes">
-          <h2>What Is Backend Architecture Design?</h2>
-          <h3>Imagine you're hiring someone to design a new car, and in the very first meeting they ask, 'Wait, what does a gearbox actually do?' That's the end of the meeting. You can't design what you don't understand. Backend systems are no different. So before we design anything, let's get crystal clear on what a backend architecture design really is.</h3>
-          <p>So here's a practical definition we use in this workshop. A backend architecture design is the process of defining a system's modularity, its interfaces, and its data flow, so that it meets a specific set of requirements.</p>
-          <p>In plain words: how you split the system into parts, how those parts talk to each other, and how information moves between them.</p>
-          <p>And that last piece, the requirements, is what ties it all together. A good design isn't random, and it isn't a collection of trendy tools. Every decision answers one question: does this serve what the system actually needs to do?</p>
-          <p>It's also worth saying what architecture is not: choosing a framework, a database brand, or a cloud service. Those choices come later. Mix the two up, and design meetings turn into tool debates, while the structure that really matters gets overlooked.</p>
-          <p>And here's the part many teams learn the hard way. Paul Clements, a software architecture researcher at Carnegie Mellon, put it simply: every system has an architecture. If you don't design one on purpose, you get one anyway. And the architecture nobody designed is usually the most expensive one to change.</p>
-          <h4>So the real choice isn't whether your system has an architecture, but whether you design it. Now, let's open the hood and look at its three parts.</h4>
-        </aside>
-      </section>
+<section class="S2">
+  <h1>Your Roadmap from Code to Design</h1>
+  <p class="subtitle">What · When · Architectures · How · Evolution</p>
+  <div class="r-stack">
+    <img src="images/intro/s2-before-the-journey.png" alt="A hiker studies a map beside a winding trail toward a mountain summit">
+    <img class="fragment" src="images/intro/s2-course-roadmap.png" alt="Five learning milestones: What, When, Architectures, How and Evolution, connected along a route">
+  </div>
+  <aside class="notes">
+    <h2>Your Roadmap from Code to Design</h2>
+    <h3>Before setting off on a long hike, you usually take a look at the map. You're not trying to memorize every turn. You just want to know where you're going and what to expect along the way. So before we get into backend architecture, let's take a quick look at our own route.</h3>
+    <p>Remember that online store your team asked you to design? Let's keep that example in mind as we go through the five sections of this course.</p>
+    <p>First, the what. Before you can design that store, you need to understand what you're working with. We explore the core architecture concepts and building blocks, from databases and messaging to AI models and services.</p>
+    <p>Next, the when. Imagine the store is already running, and the business asks for a new feature. Does that need an architecture design, or can you simply start implementing it? Learning to recognize the difference can save your team time and money.</p>
+    <p>Then, we explore three common approaches: monoliths, distributed services, and serverless. We look at how they work, what problems they solve, and why you might choose one over another.</p>
+    <p>And then comes my favourite section: the how. This is where we bring everything together and work through a practical design process, from understanding the business problem to operating the system in production.</p>
+    <p>Finally, evolution. Your online store is running, but the business keeps changing. How do you adapt its architecture without unnecessarily disrupting what's already working?</p>
+    <h4>That's our learning journey, from understanding architectures to designing and evolving your own. But before we set off, let's make sure you've packed everything you need.</h4>
+  </aside>
+</section>
 
 
-            <section class="S5">
-        <h1>What Are Modules, Interfaces, and Data Flow?</h1>
-        <p class="subtitle">Neighborhoods, roads, and traffic</p>
-        <div class="r-stack">
-          <img src="images/what/s5-city.png" alt="A city from above with neighborhoods, roads and traffic">
-          <img class="fragment" src="images/what/s5-route-jam.png" alt="A route through a city where one traffic jam holds up the whole journey">
-        </div>
-        <aside class="notes">
-          <h2>What Are Modules, Interfaces, and Data Flow?</h2>
-          <h3>Look at a city from above. You see neighborhoods, the roads that connect them, and the traffic moving between them. Plan those three things well, and the city just works. Plan them badly, and you get traffic jams nobody can explain. Your backend is a city too, built from modules, interfaces, and data flow.</h3>
-          <p>Let's start with the neighborhoods: those are your modules. They're the parts your system is split into, like users, orders, or payments, each with its own job.</p>
-          <p>The roads are your interfaces: how those modules connect and talk to each other. A neighborhood nobody can reach is useless, and so is a module nobody can call.</p>
-          <p>And the traffic is your data flow: how information moves through the system, from request to response. Here's the key: it's not separate from the other two. How you split and connect your modules decides how data moves.</p>
-          <p>So when you look at any architecture, ask two questions. How many jumps does the data take between services? Every jump adds a little delay, and one more place where something can fail. And is each connection fast enough? When each step waits for the one before, one slow link holds up the whole journey.</p>
-          <p>Answer those two, and you know the route. So the next time something slows down or breaks, you're not guessing for hours. You know exactly where to start looking.</p>
-          <h4>Try it on a system you work with: can you trace one request from start to finish? Next, let's look at the map that makes that route visible: the architecture diagram.</h4>
-        </aside>
-      </section>
+<section class="S3">
+  <h1>Check If You're Ready to Start</h1>
+  <p class="subtitle">Who it's for, and what you need</p>
+  <div class="r-stack">
+    <img src="images/intro/s3-pack-the-essentials.png" alt="Hiker packs water and a backpack, leaving specialist climbing gear aside">
+    <img class="fragment" src="images/intro/s3-course-prerequisites.png" alt="Required: basic software development and frontend and backend basics. Not required: architecture design experience or a cloud account">
+    <img class="fragment" src="images/intro/s3-shared-learning-journey.png" alt="Three hikers together with learning objectives for junior and mid-level developers, senior developers and technical leaders">
+  </div>
+  <aside class="notes">
+    <h2>Check If You're Ready to Start</h2>
+    <h3>We've looked at the map, but what do we need to bring along? For a simple hike, a pair of comfortable shoes, some water, and a small backpack might be all you need. You don't need specialist climbing equipment. It's much the same with this course. There are just a few things you need to know before we get started.</h3>
+    <p>First, you need a basic understanding of software development. You should know what the frontend and backend of an application do and how they communicate. If those concepts are unfamiliar, it's worth spending a little time learning them before continuing.</p>
+    <p>Now, you don't need any previous experience in architecture design. That's exactly what we're here to learn.</p>
+    <p>This isn't a coding course. We're focusing on how systems are designed, why certain decisions are made, and what those decisions mean for the business.</p>
+    <p>Most of our cloud examples use Amazon Web Services, or AWS. But the architectural principles we discuss also apply to other cloud platforms, even though the services and implementation details may differ. You don't need a cloud account to follow along.</p>
+    <p>If you're a junior or mid-level developer, this course helps you understand why the systems you work on are designed the way they are.</p>
+    <p>If you're a senior developer, it helps you take a more structured approach to making and explaining your own design decisions.</p>
+    <p>And if you're a technical leader, it helps you connect those decisions to business requirements, costs, and risks.</p>
+    <h4>Whatever your starting point, the goal is to become more confident in making architecture design decisions. We've got our map and packed the essentials. Let's begin with a fundamental question: what is backend architecture design?</h4>
+  </aside>
+</section>
 
-            <section class="S6">
-        <h1>What Does an Architecture Diagram Tell You?</h1>
-        <p class="subtitle">Read a diagram in four steps</p>
-        <div class="r-stack">
-          <img src="images/what/s6-floor-plan.png" alt="An apartment floor plan with the front door, hallway, storage and a private room highlighted">
-          <img class="fragment fade-in-then-out" src="images/what/s6-meeting-confused.png" alt="A developer looking lost at a tangled architecture diagram in a meeting">
-          <img class="fragment" src="images/what/s6-diagram-decoded.png" alt="A clean architecture diagram with its entry point, data flow, database and boundary highlighted">
-        </div>
-        <aside class="notes">
-          <h2>What Does an Architecture Diagram Tell You?</h2>
-          <h3>When you look at the floor plan of an apartment you're thinking of buying, what do you check first? The front door. Then how the rooms connect, where the storage is, and which rooms are private. In about a minute, you know the place. An architecture diagram is a floor plan for your system, and you can read it exactly the same way.</h3>
-          <p>We've all been there: a diagram pops up in a meeting, boxes and arrows everywhere, and all you can think is, 'What am I even looking at?' So here's a simple way to read it.</p>
-          <p>First, find the front door: where users or requests come in. Second, follow the arrows. That's your data flow, so count the jumps, just like we did with the city. But check what the arrows mean first: some show who calls whom, others which way the data moves.</p>
-          <p>Third, find where the data lives: the databases and storage. That's usually where the most important decisions, and the biggest risks, sit.</p>
-          <p>And fourth, spot the boundaries: what's public, what's internal, and which team owns which part. Not sure what a box means? Look for the legend, or just ask. That's exactly what experienced engineers do.</p>
-          <p>And one smart question for any review: is this diagram still current? Diagrams often fall behind the real system. With these four steps, you understand a new system in minutes, and you're ready to share your own opinion on it.</p>
-          <h4>Read it like a floor plan, and diagrams stop being a mystery. But why draw the plan before building at all? Let's see what designing first really gives you.</h4>
-        </aside>
-      </section>
 
-            <section class="S7">
-        <h1>What Do You Gain by Designing First?</h1>
-        <p class="subtitle">Save money, manage complexity, win support</p>
-        <div class="r-stack">
-          <img src="images/what/s7-wall-down.png" alt="Builders knocking down a finished kitchen wall while the homeowner watches money fly away">
-          <img class="fragment fade-in-then-out" src="images/what/s7-house-layers.png" alt="A cutaway of a house showing its foundation, pipes, wiring and roof working together">
-          <img class="fragment" src="images/what/s7-team-support.png" alt="A developer presenting a clear design to colleagues who nod along">
-        </div>
-        <aside class="notes">
-          <h2>What Do You Gain by Designing First?</h2>
-          <h3>Picture building a house without a plan. The walls are already up when you realize the kitchen belongs on the other side. So the walls come down, the pipes come out, and you pay twice: once in time, and once in materials you throw away. Software works the same way. Skip the design, and every mistake costs double.</h3>
-          <p>Sound familiar? Someone jumps straight into the code, and two months later they're asking, 'Wait, what did I just build?' So what does designing first actually give you?</p>
-          <p>First, it saves money. Moving a box on a diagram takes minutes. Changing the structure of running code means rework, retesting, and moving data around. A design also shows you early if an idea is too complex, too simple, or wrong for the business, while that's still cheap to fix.</p>
-          <p>Second, it makes big problems manageable. A house looks simple, but it's really layers: foundation, wiring, plumbing, roof, all working together. Every new feature adds a layer to your system too, and a design helps you manage those layers and keep them working together smoothly.</p>
-          <p>Third, it wins support. Explaining an idea out loud only gets you so far. Show people a design, and even other teams can see what you're aiming for. That builds trust, and it gets your ideas approved.</p>
-          <p>Now, not every small change needs a design. But for the decisions that are expensive to change later, think first. Otherwise, you're spending company money on a guess.</p>
-          <h4>So be the one in the room who says, 'Hold on, let's think this through first.' And the first thing to think through is how to split your system into pieces.</h4>
-        </aside>
-      </section>
+<section class="S4">
+  <h1>What Is Backend Architecture Design?</h1>
+  <p class="subtitle">Modularity, interfaces, and data flow</p>
+  <div class="r-stack">
+    <img src="images/what/s4-first-design-meeting.png" alt="Developers discuss the online store backend at a whiteboard">
+    <img class="fragment" src="images/what/s4-three-architecture-elements.png" alt="Modularity, interfaces and data flow illustrated with online store concepts">
+    <img class="fragment" src="images/what/s4-requirements-drive-design.png" alt="A business requirement to prevent duplicate charges guides all three architecture elements">
+    <img class="fragment" src="images/what/s4-architecture-and-technology.png" alt="Architecture and technology choices influence one another">
+  </div>
+  <aside class="notes">
+    <h2>What Is Backend Architecture Design?</h2>
+    <h3>Remember that online store your team asked you to design? Imagine you're now sitting in your first design meeting. Someone suggests a database, and someone else recommends a framework. These are useful suggestions, but before we get into specific technologies, there's a more fundamental question. When we talk about designing a backend architecture, what exactly are we designing?</h3>
+    <p>The business wants customers to browse products, place orders, and make payments. As a starting point, we need to think about three things.</p>
+    <p>First, how do we organize the backend into components with clear responsibilities? For example, we might separate the logic for managing products, orders, and payments. That's modularity.</p>
+    <p>Next, how do those components interact with each other? We need to define how one component can use the functionality of another. That's where interfaces come in.</p>
+    <p>And finally, how does information move through the system when a customer does something, like placing an order? That's data flow.</p>
+    <p>Together, these three elements give us a practical starting point for backend architecture design.</p>
+    <p>Now, imagine the business tells us that a customer must never be charged twice for the same order. That requirement influences how we organize our components, how they interact, and how payment information moves between them.</p>
+    <p>We're not just organizing software. We're making design decisions to meet specific requirements.</p>
+    <p>And what about that database or framework someone suggested earlier? Choosing technologies alone isn't architecture design. But those choices matter when they influence how the system is structured, how it behaves, or how well it meets its requirements.</p>
+    <p>Even when we don't deliberately design a system's architecture, it still ends up having one. The difference is whether we make those important decisions consciously or let them emerge as we build.</p>
+    <h4>When designing a backend architecture, think about how you organize the system, how its components interact, and how information moves, guided by the requirements. So now the question is, how do these three elements work together?</h4>
+  </aside>
+</section>
+
+
+<section class="S5">
+  <h1>How Do the Three Elements Work Together?</h1>
+  <p class="subtitle">Neighborhoods, roads, and traffic</p>
+  <div class="r-stack">
+    <img src="images/what/s5-city-journey.png" alt="Three city neighborhoods connected by roads, with cars waiting at a traffic signal">
+    <img class="fragment" src="images/what/s5-modules-and-interfaces.png" alt="Orders uses Inventory and Payments operations inside one backend application">
+    <img class="fragment" src="images/what/s5-checkout-data-flow.png" alt="Numbered interactions for successful checkout from store app through Orders, Inventory and Payments">
+    <img class="fragment" src="images/what/s5-payment-delay.png" alt="Same checkout sequence with an extended wait for payment result">
+  </div>
+  <aside class="notes">
+    <h2>How Do the Three Elements Work Together?</h2>
+    <h3>Think of a city. You have different neighborhoods, roads connecting them, and traffic moving between them. If you get stuck in traffic, knowing the city's layout helps you understand where your journey is being delayed. We can look at a backend system in a similar way. Let's see how modules, interfaces, and data flow work together.</h3>
+    <p>Imagine a customer placing an order in our online store. Inside the backend application, we have an Orders module that coordinates checkout, an Inventory module that manages stock, and a Payments module that handles payments.</p>
+    <p>These are like the neighborhoods in our city, each with a different purpose.</p>
+    <p>Orders needs to reserve stock and process a payment. Inventory and Payments provide interfaces that define the available operations, what information they expect, and what they return. Think of these interfaces as the connections between our neighborhoods, with rules for how to use them.</p>
+    <p>Now, follow the customer's request. Orders sends product identifiers and quantities to Inventory and receives a reservation result. It then sends the order identifier and payment amount to Payments and receives a payment result.</p>
+    <p>Once checkout is complete, the customer receives an order confirmation.</p>
+    <p>That's our data flow. We can see what information moves between the modules and in what sequence.</p>
+    <p>But what happens if processing the payment takes longer than usual?</p>
+    <p>Orders needs the payment result before completing checkout, so the customer waits longer for confirmation.</p>
+    <p>It's like that traffic jam in our city. Understanding how the modules interact helps us narrow down where to investigate, even if we don't yet know what's causing the delay.</p>
+    <p>And that's the value of understanding these three elements together. We can connect what's happening inside our backend to what the customer experiences.</p>
+    <h4>Next time you're working on a backend system, try following a customer request. Identify the modules, their interfaces, and the information moving between them. Now, how can we communicate that understanding through architecture diagrams?</h4>
+  </aside>
+</section>
+
+<section class="S6">
+  <h1>What Does an Architecture Diagram Tell You?</h1>
+  <p class="subtitle">Four questions to understand a diagram</p>
+  <div class="r-stack">
+    <img src="images/what/s6-reading-a-train-map.png" alt="Schematic train connections contrasted with physical railway layout">
+    <img class="fragment" src="images/what/s6-checkout-structure.png" alt="Checkout structure with client, three modules and database">
+    <img class="fragment" src="images/what/s6-diagram-purpose.png" alt="Title and legend highlighted">
+    <img class="fragment" src="images/what/s6-entry-points.png" alt="Store app and Orders entry point highlighted">
+    <img class="fragment" src="images/what/s6-components-and-relationships.png" alt="Inventory, Payments and database relationships highlighted">
+    <img class="fragment" src="images/what/s6-application-boundary.png" alt="Backend application boundary highlighted">
+    <img class="fragment" src="images/what/s6-different-architecture-views.png" alt="Structural and behavioural views compared">
+  </div>
+  <aside class="notes">
+    <h2>What Does an Architecture Diagram Tell You?</h2>
+    <h3>Imagine you're visiting a new city and looking at its train network map. You can see which stations connect and where to change trains. But the map doesn't necessarily tell you how far apart those stations are. Architecture diagrams are similar. Understanding what a diagram is designed to communicate makes it much easier to read.</h3>
+    <p>Imagine you've just joined our online store team, and a colleague shares this architecture diagram during a meeting. Where do you start? Here are four questions I find useful.</p>
+    <p>First, what am I looking at? Read the title and check the legend. This diagram shows the structure of our checkout system. It tells us which components interact, but not necessarily in what order.</p>
+    <p>Second, where do interactions begin? Here, the store application sends a request to place an order, and the Orders module receives it. Now we have a starting point.</p>
+    <p>Third, how does the system work? Follow the arrows and read their labels. We can see that Orders uses Inventory to reserve stock, Payments to process payments, and a database to save order information.</p>
+    <p>Fourth, what do the boundaries mean? These three modules belong to the same backend application. But we can't tell from this boundary alone which teams are responsible for them or where the application is deployed.</p>
+    <p>Now, suppose you want to know whether stock reservation happens before payment. This diagram doesn't answer that question. Remember the checkout sequence we looked at earlier? That's the kind of diagram you need here.</p>
+    <p>It's also worth asking whether the diagram still represents the current system. These questions help you participate in technical discussions without making unnecessary assumptions.</p>
+    <h4>You don't need to understand every detail immediately. Start with these four questions, and clarify what the diagram doesn't tell you. Now that we can read an architecture design, why is designing first worth our time?</h4>
+  </aside>
+</section>
+
+
+<section class="S7">
+  <h1>What Do You Gain by Designing First?</h1>
+  <p class="subtitle">Reduce rework, manage complexity, build agreement</p>
+  <div class="r-stack">
+    <img src="images/what/s7-before-and-after-printing.png" alt="Catalogue price corrected before printing versus stacks of incorrect printed copies">
+    <img class="fragment" src="images/what/s7-cancel-order-requirement.png" alt="Cancel order button and proposed status update">
+    <img class="fragment" src="images/what/s7-reduce-rework.png" alt="Late testing discovery versus earlier investigation">
+    <img class="fragment" src="images/what/s7-manage-complexity.png" alt="Potential responsibilities affected by cancellation">
+    <img class="fragment" src="images/what/s7-build-agreement.png" alt="Stakeholders discuss cancellation before shipment and returns after shipment">
+    <img class="fragment" src="images/what/s7-proportional-design-effort.png" alt="Button label correction compared with introducing cancellation">
+  </div>
+  <aside class="notes">
+    <h2>What Do You Gain by Designing First?</h2>
+    <h3>Imagine you're preparing a product catalogue and notice an incorrect price. Before printing, you can simply correct the price. But if you've already printed and distributed thousands of copies, correcting that same mistake becomes much more expensive. Backend architecture design offers a similar opportunity to discover problems before they become costly to fix.</h3>
+    <p>Let's say our online store needs a new feature: customers want to cancel their orders. Sounds simple, right? Add a button and change the order status to Cancelled. But this is where designing first can give us three important benefits.</p>
+    <p>The first is reducing rework. Imagine implementing that status change and then discovering during testing that stock is still reserved and the customer's payment hasn't been refunded. Now you need to revisit your implementation. Exploring those situations during design can save development and testing time.</p>
+    <p>The second is managing complexity. Cancellation isn't just about Orders. We need to consider Inventory, Payments and Shipping as well. Identifying these responsibilities and how they relate to the new feature makes the problem easier to understand and the development effort easier to estimate.</p>
+    <p>The third is building agreement. During a design discussion, you ask the business stakeholders, "Can a customer cancel an order that's already been shipped?" For our store, they agree that direct cancellation is available before shipment. After that, customers follow the returns process. Now everyone has a clearer understanding of what we're building.</p>
+    <p>Of course, correcting a typo on the Cancel order button doesn't need an architecture design exercise. Introducing the cancellation feature itself is a different situation. The effort you spend designing should reflect the complexity and risk of the change.</p>
+    <h4>Architecture design helps us reduce avoidable rework, understand complexity and agree on what to build. But how do we organize all these responsibilities within a backend application? That's where modularity comes in.</h4>
+  </aside>
+</section>
+
 
 <section class="S8">
   <h1>What Is Modularity, and How Much Is Enough?</h1>
@@ -167,243 +202,466 @@
   </aside>
 </section>
 
-            <section class="S9">
-        <h1>What Is Separation of Concerns?</h1>
-        <p class="subtitle">One clear job, one clear name</p>
-        <div class="r-stack">
-          <img src="images/what/s9-aisles-fun.png" alt="A confused shopper in a supermarket whose aisles are marked with a phoenix, a lightning bolt and a unicorn">
-          <img class="fragment" src="images/what/s9-aisles-clear.png" alt="The same supermarket with aisles marked by milk, bread and a snowflake, and a happy shopper">
-        </div>
-        <aside class="notes">
-          <h2>What Is Separation of Concerns?</h2>
-          <h3>Imagine a supermarket where the aisles are called Phoenix, Thunderbolt, and Unicorn, instead of Dairy, Bakery, and Frozen. Fun names, sure. But now you're wandering around just to find the milk, and so is every new shopper after you. Your system works the same way: every part needs one clear job, and a name that tells everyone what that job is.</h3>
-          <p>That's separation of concerns: each part of your system takes care of one concern, one area of responsibility, and stays out of the others.</p>
-          <p>And one job doesn't mean one tiny action. A user service can handle sign-up, profiles, and settings. That's still one clear job: everything about users. The real test is simple: can you say, 'This part does this, and here's why it exists'?</p>
-          <p>When every part passes that test, your system starts to feel like a map. Payments live here, users live there. Changes land in the right place, and people reuse what already exists instead of rebuilding it.</p>
-          <p>And then there's the name. Many teams name their services after cartoon characters, fruits, or planets. It's fun, but every new developer has to ask, 'Wait, what does Rocket do again?' More questions, more interruptions, more meetings. That's friction.</p>
-          <p>Now compare that with user-service or payment-service. Boring? Maybe. But anyone understands them instantly. Product brand names can be as fun as you like. But for the internal services your team works with every day, clear beats clever.</p>
-          <h4>Here's a quick test: could a new teammate guess what each of your services does, just from its name? Next, let's look at where each service lives, and which ones the outside world can reach.</h4>
-        </aside>
-      </section>
-
-
-            <section class="S10">
-        <h1>What Are Service Tiers?</h1>
-        <p class="subtitle">Every service has its place</p>
-        <div class="r-stack">
-          <img src="images/what/s10-office.png" alt="An office building in cutaway with a reception desk, open lobby, badge-only floors, a mailroom and a night cleaner">
-          <img class="fragment" src="images/what/s10-tiers.png" alt="A system diagram in five tiers, with one public gateway and private services behind it">
-        </div>
-        <aside class="notes">
-          <h2>What Are Service Tiers?</h2>
-          <h3>When you visit an office building, how do you know where you're allowed to go? There's one reception desk at the entrance. The lobby is open, the office floors need a badge, the mailroom works quietly in the back, and the cleaners come in at night. Nobody has to ask. Service tiers give your system that same clarity.</h3>
-          <p>Here's a setup many teams use, with five tiers. These names aren't an official standard. They're a convention your team agrees on, and you can shape your own.</p>
-          <p>First, the frontend tier, where all your frontends live. Then the backend tier, for your internal services. And here's the most important rule: nothing in the backend tier is ever public. Not a single service.</p>
-          <p>So how does the outside world get in? Through the gateway tier, the only public door into your system. Just like the reception desk, every visitor goes through it.</p>
-          <p>Behind the scenes, the worker tier handles background jobs, often picking them up from a queue, like the mailroom. And the runner tier handles scheduled tasks, like a nightly cleanup, just like the night cleaners.</p>
-          <p>The payoff? Everyone knows instantly what's public and what's protected. A new service has an obvious home, so you can grow to dozens of services without the chaos. And you can change one tier, say, move your frontends to serverless, without touching the rest.</p>
-          <h4>One public door, and every service in its place: a building anyone can find their way around. But how should all these services actually talk to each other?</h4>
-        </aside>
-      </section>
-
-
-            <section class="S11">
-        <h1>What Are the Main API Styles?</h1>
-        <p class="subtitle">REST, gRPC, and events</p>
-        <div class="r-stack">
-          <img src="images/what/s11-three-ways.png" alt="Three panels: a phone call, two people with walkie-talkies and a shared codebook, and a note on a bulletin board">
-          <img class="fragment" src="images/what/s11-styles-map.png" alt="A system showing public calls at the edge, fast calls between services, and announcements on a shared board">
-        </div>
-        <aside class="notes">
-          <h2>What Are the Main API Styles?</h2>
-          <h3>There are three ways to reach people. A phone call: anyone can make one, and you get an answer right away. A walkie-talkie with a shared codebook: fast and precise, but both sides need the same codebook. Or a note on the bulletin board: you post it, and whoever cares reacts later. Services talk to each other in these same three ways.</h3>
-          <p>The phone call is REST: requests over standard web calls, usually with JSON. Every browser, app, and partner can use it, and it's easy to debug. That's why it's the default for public APIs.</p>
-          <p>The walkie-talkie is gRPC. Both sides share a schema, that's the codebook, and messages travel in a compact binary format. It's fast, and great between your own services. The catch: browsers can't call it directly, and you can't read the messages by eye.</p>
-          <p>The bulletin board is events. A service announces, 'An order was placed,' and anyone interested reacts: one sends the confirmation email, another updates the stock. Nobody waits for a reply. The catch: it's harder to trace what happened, and in what order.</p>
-          <p>You may also hear about GraphQL: it lets a frontend ask for exactly the data a screen needs, in a single request.</p>
-          <p>So here's a simple rule of thumb: REST for anything public, gRPC for fast calls between your own services, and events when the sender doesn't need to wait. Many teams use all three, each one on purpose.</p>
-          <h4>Phone, walkie-talkie, or bulletin board: pick the one each conversation really needs. But what happens when every team picks its own, without a plan?</h4>
-        </aside>
-      </section>
-
-            <section class="S12">
-        <h1>What Happens When Every Team Talks Differently?</h1>
-        <p class="subtitle">One standard, no adapters</p>
-        <div class="r-stack">
-          <img src="images/what/s12-adapters.png" alt="A frustrated person holding a bag of tangled plug adapters in a house where every room has a different socket">
-          <img class="fragment" src="images/what/s12-one-standard.png" alt="The same house with identical sockets, where every device plugs straight in">
-        </div>
-        <aside class="notes">
-          <h2>What Happens When Every Team Talks Differently?</h2>
-          <h3>Imagine moving into a house where every room has a different power socket. The kitchen takes one plug, the bedroom another, the office a third. Now you need a bag full of adapters just to charge your phone. Annoying, right? That's exactly what happens in a system where every team connects its services in its own way.</h3>
-          <p>Here's how it usually happens. One team builds its service with gRPC. Another picks REST. A third invents something of its own. Each choice makes sense on its own. Together, they turn into a mess.</p>
-          <p>Now every connection between those services needs its own special handling: that's your bag of adapters. Someone has to write that glue code, test it, and keep it working. That's engineering time spent on plumbing instead of features, and every special case is one more place for bugs to hide.</p>
-          <p>And every new developer has to learn several ways of doing the same thing before they can connect anything.</p>
-          <p>Now, mixing styles isn't wrong. Remember the rule of thumb: REST for public, gRPC inside, events for background work. That's a deliberate mix. What hurts is mixing by accident.</p>
-          <p>So agree on a standard: one style for each kind of connection, written down where everyone can find it. Need an exception? Fine, just say why, and agree on it. Then a new service doesn't need a meeting to decide. It just plugs in.</p>
-          <h4>So, how many adapters is your system carrying today? Next: some problems, like errors, show up in every single service. Let's solve them once.</h4>
-        </aside>
-      </section>
-
-            <section class="S13">
-        <h1>What Are Shared Interfaces and Standard Libraries?</h1>
-        <p class="subtitle">Solve it once, use it everywhere</p>
-        <div class="r-stack">
-          <img src="images/what/s13-coffee-chain.png" alt="One recipe card connected to many identical cafés, including a new café being opened">
-          <img class="fragment" src="images/what/s13-shared-library.png" alt="One shared toolbox connected to many services, with a new service plugging in">
-        </div>
-        <aside class="notes">
-          <h2>What Are Shared Interfaces and Standard Libraries?</h2>
-          <h3>How does a coffee chain with a hundred cafés make every latte taste the same? One shared recipe. When they improve it, they change it once, and every café follows. And when a new café opens, it uses that recipe from day one, no guesswork. Your services can work exactly the same way.</h3>
-          <p>Picture 50 services, and someone asks, 'How do we handle errors across all of them?' If every service does it its own way, that's 50 different answers. Every caller has to decode each one, and every change means 50 updates.</p>
-          <p>So start with a shared interface: one agreed format for things every service deals with, like errors, logging, and checking who's signed in. There's even an official internet standard for API error formats, called Problem Details. Your team still picks its own codes inside it.</p>
-          <p>Then put that agreement into a standard library: code every service uses. Need a new error type? Add it once, and every service picks it up on its next update. And a brand-new service is ready from day one, just like the new café.</p>
-          <p>Two honest tips. Keep the library to the technical basics. Put business logic in it, and you tie your services together. And a library only works within one programming language, so if you use several, the shared format matters even more.</p>
-          <p>Done right, the next developer doesn't reinvent anything. They use what already works. And when something breaks, every service tells the story the same way.</p>
-          <h4>One recipe, a hundred cafés, the same latte everywhere. But what happens when every café suddenly gets ten times more customers?</h4>
-        </aside>
-      </section>
-
-            <section class="S14">
-        <h1>What Is Scalability?</h1>
-        <p class="subtitle">Bigger machines, more machines, no bottlenecks</p>
-        <div class="r-stack">
-          <img src="images/what/s14-busy-cafe.png" alt="A small café overwhelmed by a long line of customers">
-          <img class="fragment fade-in-then-out" src="images/what/s14-vertical-horizontal.png" alt="One giant espresso machine next to four baristas with their own machines">
-          <img class="fragment" src="images/what/s14-bottleneck.png" alt="Coffees ready fast while every customer waits at one slow cash register">
-        </div>
-        <aside class="notes">
-          <h2>What Is Scalability?</h2>
-          <h3>So, your café is suddenly ten times busier. You can buy a bigger, faster espresso machine. Or you can add more baristas, each with their own machine. But if everyone still pays at one slow cash register, the whole line backs up anyway. That's scalability in a nutshell: growing to meet the crowd, without one weak spot holding everyone back.</h3>
-          <p>Scalability means your system can handle growth in traffic, especially on the days that matter most: the big sale, the product launch, the moment you go viral. Crash then, and customers leave, and so does the revenue.</p>
-          <p>The first way to scale is vertical: make the machine bigger. More memory, more CPU, in the cloud often just a bigger server size. It's simple. But there's a ceiling, and it's still one machine. If it goes down, everything goes down.</p>
-          <p>The second way is horizontal: add more copies, and spread the traffic between them. There's almost no ceiling, but every copy has to handle any request, and there are more moving parts to run.</p>
-          <p>And the load is often bigger than it looks. One click on 'Place order' can trigger four or five steps behind the scenes: charging the card, updating the stock, sending the email, preparing the shipment.</p>
-          <p>That's where bottlenecks hide: in the one part that can't keep up. Remember, one slow link holds up the whole journey. So scale the part that's actually busy, not everything, or you're paying for capacity nobody uses.</p>
-          <h4>So, where's the slow cash register in your system? And handling growth is only half the story. Next: what happens when something actually breaks?</h4>
-        </aside>
-      </section>
-
-            <section class="S15">
-        <h1>What Is Robustness?</h1>
-        <p class="subtitle">Fail small, recover fast</p>
-        <div class="r-stack">
-          <img src="images/what/s15-tower.png" alt="A tall tower swaying during an earthquake, its central column visible, still standing">
-          <img class="fragment fade-in-then-out" src="images/what/s15-unknown-error.png" alt="A puzzled developer staring at an error pop-up that shows only a question mark">
-          <img class="fragment" src="images/what/s15-check-engine.png" alt="A mechanic reading one clear code from a diagnostic scanner plugged into a car">
-        </div>
-        <aside class="notes">
-          <h2>What Is Robustness?</h2>
-          <h3>Here's something remarkable. In 2011, Japan was hit by one of the strongest earthquakes ever recorded. The Tokyo Skytree, still under construction, swayed several meters at the top, and wasn't damaged. Its engineers had planned for that day, with a central column inspired by ancient pagodas. Robust systems work the same way: they expect failure, and keep standing.</h3>
-          <p>Robustness means your system handles errors and surprises, and keeps going. Quick question: how many of you have errors in production that nobody really understands? ... Like the classic: 'Unknown Error.' What does that even mean?</p>
-          <p>So whenever two parts connect, ask early: what could break here, how is the error reported, and how should the other side react? Code that gets a message it doesn't understand shouldn't just crash.</p>
-          <p>Give your errors your own codes, on top of standard status codes, just like a car's check-engine code. And never decide what to do by searching an error message for a word. Reword the message, and every check silently breaks. Codes don't.</p>
-          <p>With a clear code, a service knows what to do: retry, use a backup, or skip that step and keep going. Just retry carefully: only a few times, with a pause in between, and never retry anything that could charge a card twice.</p>
-          <p>And your users? Give them a friendly message with a short reference code. When they call support, the first question is simply, 'What's the code?' And support knows right away.</p>
-          <h4>Expect failure, and keep standing, just like the tower. But when something does break, how do you actually see what happened inside?</h4>
-        </aside>
-      </section>
-
-
-      <section class="S16">
-  <h1>What Is Flexibility?</h1>
-  <p class="subtitle">Make room for the next feature</p>
+<section class="S9">
+  <h1>What Is Separation of Concerns?</h1>
+  <p class="subtitle">One clear responsibility, one meaningful name</p>
   <div class="r-stack">
-    <img src="images/what/s16-washing-machine.png" alt="A new washing machine sliding into a laundry corner where the water pipe, drain, and socket are already in place">
-    <img class="fragment fade-in-then-out" src="images/what/s16-payment-port.png" alt="A checkout block with one connector port, and several payment providers lining up to plug into it">
-    <img class="fragment" src="images/what/s16-feature-switches.png" alt="A control panel of toggle switches, each turning a small feature module on or off">
+    <img src="images/what/s9-supermarket-responsibilities.png" alt="Supermarket aisle labels and misplaced products">
+    <img class="fragment" src="images/what/s9-mixed-responsibilities.png" alt="Stock release rules inside Orders">
+    <img class="fragment" src="images/what/s9-separated-responsibilities.png" alt="Stock release rules inside Inventory">
+    <img class="fragment" src="images/what/s9-one-responsibility-multiple-operations.png" alt="Three related stock operations">
+    <img class="fragment" src="images/what/s9-responsibilities-working-together.png" alt="Orders requests stock release from Inventory">
+    <img class="fragment" src="images/what/s9-meaningful-module-names.png" alt="Arbitrary module names compared with descriptive names">
   </div>
   <aside class="notes">
-    <h2>What Is Flexibility?</h2>
-    <h3>Picture buying a new washing machine. If the water pipe, the drain, and the socket are already in place, it's installed in ten minutes. If not, you're breaking open walls and calling a plumber, and it takes days. Same machine, same job. The only difference is whether the house was built with room for it.</h3>
-    <p>In software, it looks like this. The business asks for something small, and the answer is always: 'Sure, but first we need to refactor this, move that, and rewrite those.' Flexibility means your system takes new features without that kind of major rework.</p>
-    <p>Take an online store built for one payment provider. If checkout calls that provider directly, all over the code, adding a second one means rewriting big parts of checkout. But if every payment goes through one clear connection point, the new provider plugs in behind it.</p>
-    <p>That's loose coupling at work: when parts know little about each other, you can replace one without touching the rest.</p>
-    <p>But flexible doesn't mean preparing for every possible future. That's over-engineering: it costs time now and adds complexity for years. Just like the house, you add connections for the washing machine you can reasonably expect, not a socket for every appliance ever invented.</p>
-    <p>And for new features, use feature flags: switches that turn a feature on or off without a new deployment. Release it to a few users first, and if something goes wrong, switch it off. That's how you say 'yes' to the business quickly, and safely.</p>
-    <h4>Make room for the changes you can reasonably expect, and switch new features on when you're ready. But how do you even notice something's going wrong?</h4>
+    <h2>What Is Separation of Concerns?</h2>
+    <h3>Imagine walking into a supermarket to buy milk, but the aisles are labelled A, B and C. Where do you look? Labels like Dairy, Bakery and Frozen make things much easier. But what if the Dairy aisle also contains cleaning products? In backend architecture, we face a similar challenge: organizing functionality around clear responsibilities and giving those responsibilities meaningful names.</h3>
+    <p>Remember our order cancellation feature? When a customer cancels an order that still has reserved stock, we need to release that stock. Imagine you're implementing this functionality. Since it's needed during cancellation, you might be tempted to put the stock-management logic inside Orders.</p>
+    <p>But we already have an Inventory module responsible for managing stock. That's where the new logic belongs. Keeping different responsibilities separate is a design principle known as separation of concerns. Notice that we haven't changed the number of modules, just where the functionality belongs.</p>
+    <p>Now, having one clear responsibility doesn't mean doing only one thing. Inventory checks availability, reserves stock and releases stock. These are different operations, but they all support the same responsibility: stock management.</p>
+    <p>And keeping responsibilities separate doesn't mean the modules can't work together. Orders can request a stock release from Inventory without implementing the stock-management rules itself.</p>
+    <p>Naming matters too. Imagine a new teammate looking for the stock-release functionality. With names like Module A and Module B, where do they start? Inventory gives them a sensible place to look. Clear responsibilities and descriptive names help developers find and reuse existing functionality, saving development time.</p>
+    <h4>When organizing your modules, ask two questions: can you explain each module's responsibility, and does its name reflect that responsibility? Clear beats clever. Now, how can we organize services according to their architectural roles?</h4>
   </aside>
 </section>
 
-<section class="S17">
-  <h1>What Is Observability?</h1>
-  <p class="subtitle">See inside, skip the noise</p>
+
+
+<section class="S10">
+  <h1>What Are Service Tiers?</h1>
+  <p class="subtitle">Public entry points and private services</p>
   <div class="r-stack">
-    <img src="images/what/s17-cameras.png" alt="Two security cameras watching a yard: one feeding a mountain of storage boxes, the other with a motion sensor feeding one tidy box">
-    <img class="fragment fade-in-then-out" src="images/what/s17-signals.png" alt="A system sending out three signals: a scrolling list of logs, a gauge and chart of metrics, and a dotted path of one request through several services">
-    <img class="fragment" src="images/what/s17-clean-logs.png" alt="A heap of crumpled papers turning into a neat cabinet of drawers, with a magnifying glass finding one glowing error card">
+    <img src="images/what/s10-public-or-private.png" alt="Public or private">
+    <img class="fragment" src="images/what/s10-frontend-and-gateway.png" alt="Frontend and gateway">
+    <img class="fragment" src="images/what/s10-private-backend-services.png" alt="Private backend services">
+    <img class="fragment" src="images/what/s10-background-worker.png" alt="Background worker">
+    <img class="fragment" src="images/what/s10-scheduled-runner.png" alt="Scheduled runner">
+    <img class="fragment" src="images/what/s10-service-tier-convention.png" alt="Service tier convention">
   </div>
   <aside class="notes">
-    <h2>What Is Observability?</h2>
-    <h3>Say you have two security cameras watching your yard. One records every second, all day and night. The other records only when it detects motion. Which one costs less to store? And when something actually happens, which one gets you to the right moment faster? The motion one, of course. Seeing inside your system works the same way.</h3>
-    <p>That's observability: understanding what's happening inside your system from the signals it sends out. The three main ones: logs tell you what happened, metrics tell you how much and how fast, and traces follow one request through every service. The simplest start is a request ID, logged with every step and every error.</p>
-    <p>A common mistake is logging everything: every request, every detail, every step. Then the cloud bill arrives, because storing and processing logs isn't free. And during an outage, the one error that matters is buried under millions of lines. So the goal isn't more logs. It's better logs.</p>
-    <p>First, make them structured. Instead of random sentences, use a consistent format, like key-value pairs, so you can search and filter in seconds.</p>
-    <p>Second, log by level: debug, info, warning, error. Keep detailed debug logs off in production, and switch them on only while you're investigating. Third, decide how long you need logs, and let older ones expire.</p>
-    <p>But don't swing too far the other way. Errors and important events, with useful context like that request ID, are exactly what saves you. So when a user calls support, one ID leads straight to their exact request.</p>
-    <h4>Like the motion camera: record what matters, and every problem leaves a clear trail. But cameras only watch. What actually keeps the wrong people out?</h4>
+    <h2>What Are Service Tiers?</h2>
+    <h3>Our online store needs to receive orders from customers over the internet. It also needs to generate a sales report every night. But does the service generating that report need to be accessible from the internet? Probably not. We can organize architectural units according to their roles and access requirements using a convention known as service tiers.</h3>
+    <p>Let's explore a version of our online store built with independently running services. When a customer places an order, they interact with the Frontend tier. The frontend sends an order request through an application programming interface, or API, exposed by the Gateway tier.</p>
+    <p>The gateway routes the request to Orders. Orders, Inventory and Payments belong to the Backend tier, where our business functionality lives. These services don't need to be directly accessible from the internet. This reduces their direct exposure, although they still need appropriate security controls.</p>
+    <p>Once the order is placed, we need to send a confirmation message. Orders places a message in a queue, and a Notifications service processes it separately. We call this the Worker tier. The customer doesn't need to wait for the confirmation message to be delivered before receiving the order response.</p>
+    <p>Now think about our nightly sales report. Nobody needs to submit a request to generate it every evening. A schedule triggers the Reporting service automatically. We call this the Runner tier. Like our worker, it doesn't need a public endpoint to perform its job.</p>
+    <p>These five tier names aren't an industry standard. They're an example of a convention your team can adopt or adapt. Having a shared understanding of each service's role makes it easier to discuss where new functionality belongs and which services need external access.</p>
+    <h4>When deciding where a service belongs, ask three questions: what's its role, what triggers its work, and who needs access to it? Now, let's explore the different ways services can communicate through APIs.</h4>
+  </aside>
+</section>
+
+
+<section class="S11">
+  <h1>What Are the Main API Styles?</h1>
+  <p class="subtitle">REST, gRPC, and events</p>
+  <div class="r-stack">
+    <img src="images/what/s11-asking-versus-announcing.png" alt="asking versus announcing">
+    <img class="fragment" src="images/what/s11-rest-product-catalogue.png" alt="rest product catalogue">
+    <img class="fragment" src="images/what/s11-grpc-stock-reservation.png" alt="grpc stock reservation">
+    <img class="fragment" src="images/what/s11-order-placed-event.png" alt="order placed event">
+    <img class="fragment" src="images/what/s11-communication-tradeoffs.png" alt="communication tradeoffs">
+    <img class="fragment" src="images/what/s11-choose-communication-approach.png" alt="choose communication approach">
+  </div>
+  <aside class="notes">
+    <h2>What Are the Main API Styles?</h2>
+    <h3>Imagine asking a supermarket employee whether a product is available. You need an answer before deciding what to buy. Now imagine an employee posting a notice that a delivery has arrived. Anyone interested can act on that information independently. Our services have similar communication needs. Let's explore three common approaches: REST, gRPC, and events.</h3>
+    <p>Back in our online store, a customer opens the app to browse products. The frontend requests a list of products through our gateway, and the backend returns the data, commonly in JavaScript Object Notation, or JSON.</p>
+    <p>This resource-oriented approach is known as Representational State Transfer, or REST. Its widespread support makes it a practical choice for web applications and external integrations.</p>
+    <p>The customer now places an order. Before completing it, Orders needs Inventory to reserve the stock.</p>
+    <p>Instead of requesting a resource, Orders calls a defined operation called ReserveStock. Both services work with explicitly defined input and output message types. We can implement this remote procedure call, or RPC, using gRPC.</p>
+    <p>These typed contracts help developers catch interface mismatches during development, and compact binary messages can make communication more efficient.</p>
+    <p>Once the order is successfully created, other services need to know about it. Orders publishes an OrderPlaced event. Notifications sends a confirmation, while Reporting updates its sales data.</p>
+    <p>Orders doesn't need to know every interested consumer or wait for them to finish processing. This is event-driven communication, another way to achieve the loose coupling we discussed earlier.</p>
+    <p>Each approach has trade-offs. REST needs carefully defined contracts. gRPC introduces additional tooling and compatibility considerations. Events make workflows harder to trace because services process information independently.</p>
+    <p>There are other approaches, too, such as GraphQL, which allows clients to request the specific fields they need.</p>
+    <h4>You don't need to choose one communication approach for your entire system. Consider whether you need an answer, what contract is needed, and whether processing can happen independently. But how do we keep these communication choices consistent across teams?</h4>
+  </aside>
+</section>
+
+<section class="S12">
+  <h1>Why Standardize Service Communication?</h1>
+  <p class="subtitle">Consistent choices, fewer unnecessary adapters</p>
+  <div class="r-stack">
+    <img src="images/what/s12-express-delivery-assignment.png" alt="express delivery assignment">
+    <img class="fragment" src="images/what/s12-uncoordinated-communication.png" alt="uncoordinated communication">
+    <img class="fragment" src="images/what/s12-integration-maintenance-effort.png" alt="integration maintenance effort">
+    <img class="fragment" src="images/what/s12-documented-communication-standards.png" alt="documented communication standards">
+    <img class="fragment" src="images/what/s12-standardized-communication.png" alt="standardized communication">
+    <img class="fragment" src="images/what/s12-justified-communication-exceptions.png" alt="justified communication exceptions">
+  </div>
+  <aside class="notes">
+    <h2>Why Standardize Service Communication?</h2>
+    <h3>Imagine joining our online store team and receiving your first assignment: add express delivery to the checkout. You need to check stock availability, get a delivery quote, and process the updated payment amount. The services already exist, so the task sounds straightforward. But as you start connecting to them, you discover that every team communicates differently.</h3>
+    <p>Inventory uses gRPC, Shipping uses REST, and Payments has its own custom communication protocol. All three interactions require a response, yet each team has independently chosen a different approach without a clear reason for the variation.</p>
+    <p>As a developer, you now need to learn three communication mechanisms, configure different clients, and test each integration. Your team also needs to maintain that additional tooling. That's engineering time that could otherwise go towards delivering business features.</p>
+    <p>Remember how we chose communication approaches based on interaction requirements? Let's turn those choices into documented standards.</p>
+    <p>Our teams agree to use REST for public resource-oriented APIs, gRPC for internal remote operations, and events when services need to react independently. These are our system's defaults, not rules for every architecture.</p>
+    <p>Once the relevant interfaces have been migrated, connecting to Inventory, Shipping, and Payments becomes more familiar. You still need to understand each service's contract, but you no longer need to learn a different communication mechanism for each one.</p>
+    <p>Of course, consistency doesn't mean forcing every connection to use the same approach. If our external payment provider exposes a REST API, Payments handles that integration while keeping its internal gRPC interface. Other requirements may also justify exceptions to our standards.</p>
+    <h4>Agree on communication defaults, document the reasoning, and allow justified exceptions. This helps teams spend less time solving the same integration problems. Now, can we go further and share some of the technical implementation as well?</h4>
+  </aside>
+</section>
+
+
+<section class="S13">
+  <h1>How Can Services Reuse Common Solutions?</h1>
+  <p class="subtitle">Shared interfaces and standard libraries</p>
+  <div class="r-stack">
+    <img src="images/what/s13-one-recipe-many-cafes.png" alt="one recipe many cafes">
+    <img class="fragment" src="images/what/s13-inconsistent-error-details.png" alt="inconsistent error details">
+    <img class="fragment" src="images/what/s13-shared-error-contract.png" alt="shared error contract">
+    <img class="fragment" src="images/what/s13-standard-error-library.png" alt="standard error library">
+    <img class="fragment" src="images/what/s13-technical-reuse-boundaries.png" alt="technical reuse boundaries">
+    <img class="fragment" src="images/what/s13-shared-library-version-adoption.png" alt="shared library version adoption">
+  </div>
+  <aside class="notes">
+    <h2>How Can Services Reuse Common Solutions?</h2>
+    <h3>Imagine a coffee chain where every café invents its own recipe for the same drink. You order your favourite coffee at two different locations and get two different results. Instead, the company provides a common recipe that each café follows independently. We can apply the same idea to our services through shared interfaces and standard libraries.</h3>
+    <p>Remember our express delivery feature? We've standardized how our services communicate. But when Inventory runs out of stock, Shipping cannot offer express delivery, or Payments declines a payment, each service provides additional error details differently. Orders needs to understand several conventions to interpret those errors.</p>
+    <p>Instead, the teams agree on a common structure containing a machine-readable reason and an explanatory message. The business meanings remain different, but the structure is consistent. Whenever possible, consider existing standards rather than inventing your own. For HTTP APIs, Problem Details is one such example.</p>
+    <p>Now, why should every team write its own code to construct these error details? We can implement that common behavior in a reusable library. Each service includes the library and runs its code locally. This reduces duplicated implementation without introducing another service to communicate with.</p>
+    <p>Error handling, logging, and authentication helpers are good candidates for reuse. But remember separation of concerns: Inventory still owns stock reservation rules, and Shipping owns delivery eligibility. Keep those decisions with the services responsible for them.</p>
+    <p>There's a trade-off, though. Shared libraries introduce dependencies. When we release an improved version of our error library, each service needs to adopt, test, and deploy it before benefiting from the improvement.</p>
+    <h4>Share technical contracts for consistency and reusable code to reduce repeated work. Keep libraries focused and manage their dependencies carefully. Now that we've organized our services, how can we prepare them for increasing traffic?</h4>
+  </aside>
+</section>
+
+
+<section class="S14">
+  <h1>How Can Systems Handle Growing Traffic?</h1>
+  <p class="subtitle">Scalability, capacity, and bottlenecks</p>
+  <div class="r-stack">
+    <img src="images/what/s14-growing-cafe-demand.png" alt="s14 growing cafe demand">
+    <img class="fragment" src="images/what/s14-cafe-scaling-options.png" alt="s14 cafe scaling options">
+    <img class="fragment" src="images/what/s14-promotional-sale-demand.png" alt="s14 promotional sale demand">
+    <img class="fragment" src="images/what/s14-vertical-scaling.png" alt="s14 vertical scaling">
+    <img class="fragment" src="images/what/s14-horizontal-scaling.png" alt="s14 horizontal scaling">
+    <img class="fragment" src="images/what/s14-hidden-checkout-workload.png" alt="s14 hidden checkout workload">
+    <img class="fragment" src="images/what/s14-identify-the-bottleneck.png" alt="s14 identify the bottleneck">
+    <img class="fragment" src="images/what/s14-scale-with-purpose.png" alt="s14 scale with purpose">
+  </div>
+  <aside class="notes">
+    <h2>How Can Systems Handle Growing Traffic?</h2>
+    <h3>Remember our coffee chain from the previous lesson? The cafés now follow the same recipe, and business is going well. More customers are coming in, but the baristas are struggling to keep up. How can we serve more customers without making everyone wait longer? In architecture design, we address this challenge through scalability.</h3>
+    <p>The café has two options. It can invest in a bigger coffee machine or bring in more machines and baristas to serve customers in parallel. In software, we call these vertical and horizontal scaling.</p>
+    <p>Imagine our online store is preparing for a major promotional sale. The marketing team expects more customers to browse products and place orders.</p>
+    <p>We could give our Orders service instance more processing power and memory. That's vertical scaling, also called scaling up. It can be a straightforward solution, but there's a limit to how much capacity one machine can provide.</p>
+    <p>Alternatively, we can run more instances of the same service, with a load balancer distributing requests between them. That's horizontal scaling, or scaling out. It gives us another way to increase capacity, provided the workload can be distributed effectively.</p>
+    <p>But remember what happens behind every order. Inventory reserves stock, Shipping calculates delivery costs, and Payments processes the payment. More orders mean more work for these services too.</p>
+    <p>Suppose our performance tests reveal that the inventory database is limiting how many orders we can process. It's like adding more baristas when the queue is actually at the cash register. More Orders instances don't solve that problem.</p>
+    <p>We need to understand what's limiting the database and decide whether to reduce unnecessary work or increase its capacity. Otherwise, we risk spending more money without improving the customer experience.</p>
+    <h4>Understand your expected demand, identify the bottleneck, and measure the improvement after addressing it. That's how scalability supports business growth. But what happens when our system has enough capacity and something stops working?</h4>
+  </aside>
+</section>
+
+<section class="S15">
+  <h1>How Can Systems Handle Failures?</h1>
+  <p class="subtitle">Robustness, error handling, and recovery</p>
+  <div class="r-stack">
+    <img src="images/what/s15-unavailable-meal.png" alt="unavailable meal">
+    <img class="fragment" src="images/what/s15-payment-provider-timeout.png" alt="payment provider timeout">
+    <img class="fragment" src="images/what/s15-unclear-error-response.png" alt="unclear error response">
+    <img class="fragment" src="images/what/s15-meaningful-error-reasons.png" alt="meaningful error reasons">
+    <img class="fragment" src="images/what/s15-failure-handling-options.png" alt="failure handling options">
+    <img class="fragment" src="images/what/s15-uncertain-payment-outcome.png" alt="uncertain payment outcome">
+    <img class="fragment" src="images/what/s15-safe-payment-retry.png" alt="safe payment retry">
+    <img class="fragment" src="images/what/s15-customer-friendly-error.png" alt="customer friendly error">
+    <img class="fragment" src="images/what/s15-design-for-failure.png" alt="design for failure">
+  </div>
+  <aside class="notes">
+    <h2>How Can Systems Handle Failures?</h2>
+    <h3>Imagine you're at a restaurant, and the kitchen has run out of an ingredient for your meal. The waiter explains the problem and offers you an alternative. Meanwhile, the kitchen continues serving other customers. Something went wrong, but the restaurant can still operate. That's the kind of behavior we want from our systems, and it's an aspect of robustness.</h3>
+    <p>Remember our online store's promotional sale? We have enough capacity, but now the payment provider isn't responding. The Payments service stops waiting after a certain time. That's a timeout.</p>
+    <p>Suppose Payments returns an “Unknown Error” to Orders. What should Orders do? Try again? Stop processing the order? It doesn't have enough information to decide.</p>
+    <p>Remember our shared error contract? With machine-readable error reasons, Orders can distinguish a declined payment from a payment whose outcome is still unknown. Searching for words inside error messages is much more fragile.</p>
+    <p>Different failures need different responses. If retrieving product information fails temporarily, we can retry with a delay and a limit on attempts.</p>
+    <p>If our AI-powered recommendations are unavailable, we can show popular products instead, or skip recommendations entirely. Customers can still shop. But if a payment is declined, we must not confirm that the order has been paid.</p>
+    <p>Now, here's the tricky bit. Our payment provider might have charged the customer, even though we didn't receive a response. Sending a new payment request could charge them twice.</p>
+    <p>We can check the payment status or, if the provider supports it, retry using the same operation identifier. Repeating an operation without creating additional effects is called idempotency. We need this protection when retrying payment requests.</p>
+    <p>Meanwhile, our store can tell the customer that their payment is being checked, rather than showing a technical error. A reference code also helps customer support investigate the problem.</p>
+    <h4>For each important interface, ask what can go wrong, how the caller finds out, and what the safest response is. Robustness helps protect our business operations when things go wrong. But what about when business requirements change?</h4>
+  </aside>
+</section>
+
+
+<section class="S16">
+  <h1>How Can Systems Adapt to Change?</h1>
+  <p class="subtitle">Flexibility without over-engineering</p>
+  <div class="r-stack">
+    <img src="images/what/s16-interchangeable-camera-lenses.png" alt="interchangeable camera lenses">
+    <img class="fragment" src="images/what/s16-new-payment-provider-requirement.png" alt="new payment provider requirement">
+    <img class="fragment" src="images/what/s16-provider-specific-dependencies.png" alt="provider specific dependencies">
+    <img class="fragment" src="images/what/s16-common-payment-interface.png" alt="common payment interface">
+    <img class="fragment" src="images/what/s16-add-payment-provider.png" alt="add payment provider">
+    <img class="fragment" src="images/what/s16-balanced-flexibility.png" alt="balanced flexibility">
+    <img class="fragment" src="images/what/s16-feature-flag-release.png" alt="feature flag release">
+    <img class="fragment" src="images/what/s16-design-for-change.png" alt="design for change">
+  </div>
+  <aside class="notes">
+    <h2>How Can Systems Adapt to Change?</h2>
+    <h3>Imagine you're a photographer taking portraits in the morning and photographing wildlife in the afternoon. You don't need to buy another camera. You just attach a compatible lens designed for the job. The camera has an interface that allows you to change lenses without replacing the camera itself. That's a good example of flexibility.</h3>
+    <p>Remember our online store's Payments service? The business now wants to offer customers another payment option by integrating a second payment provider. Sounds straightforward, doesn't it?</p>
+    <p>But when we look inside Payments, we discover that starting payments, checking their status, and processing refunds all contain provider-specific logic.</p>
+    <p>Adding another provider means changing several areas of the implementation and testing whether those changes affect the existing functionality.</p>
+    <p>Remember loose coupling? We can define a common interface for the payment operations our business needs and move the provider-specific details into a separate integration component.</p>
+    <p>Now we can introduce another integration behind the same interface. As long as the interface supports the required operations, much of our existing payment logic can stay unchanged.</p>
+    <p>We still need to implement and test the new integration, but we've reduced the impact of the change.</p>
+    <p>Here's where we need to find a balance. Preparing for another payment provider makes sense when there's a business need. Building integrations for six imaginary providers just adds development and maintenance costs. That's over-engineering.</p>
+    <p>There's another way to make changes more flexible. Once the new integration is deployed, we can use a feature flag to make it available to selected customers first.</p>
+    <p>If problems appear, we can disable the new payment option without another deployment. Existing payments still need to be handled normally.</p>
+    <h4>Think about what's reasonably likely to change, how to isolate those changes, and how to introduce them safely. Flexibility helps us respond to business needs with less rework. But how do we know whether our new functionality is working as expected?</h4>
+  </aside>
+</section>
+
+
+<section class="S17">
+  <h1>How Can We See Inside Systems?</h1>
+  <p class="subtitle">Observability without unnecessary noise</p>
+  <div class="r-stack">
+    <img src="images/what/s17-beyond-the-warning-light.png" alt="beyond the warning light">
+    <img class="fragment" src="images/what/s17-slow-checkout-investigation.png" alt="slow checkout investigation">
+    <img class="fragment" src="images/what/s17-metrics-reveal-the-pattern.png" alt="metrics reveal the pattern">
+    <img class="fragment" src="images/what/s17-trace-locates-the-delay.png" alt="trace locates the delay">
+    <img class="fragment" src="images/what/s17-logs-explain-the-event.png" alt="logs explain the event">
+    <img class="fragment" src="images/what/s17-three-observability-signals.png" alt="three observability signals">
+    <img class="fragment" src="images/what/s17-structured-logging.png" alt="structured logging">
+    <img class="fragment" src="images/what/s17-observability-without-noise.png" alt="observability without noise">
+    <img class="fragment" src="images/what/s17-design-for-observability.png" alt="design for observability">
+  </div>
+  <aside class="notes">
+    <h2>How Can We See Inside Systems?</h2>
+    <h3>Imagine a warning light appearing on your car's dashboard. You know something needs attention, but you don't necessarily know what's causing it. A mechanic connects diagnostic tools to investigate what's happening inside the car. We need a similar capability in our software systems. Understanding their internal behavior through the information they produce is called observability.</h3>
+    <p>Remember the new payment option we released to selected customers? Customer support starts receiving complaints about slow checkouts. Where do we begin?</p>
+    <p>First, let's look at numerical measurements, called metrics. We compare checkout response times and notice that customers using payment option B are experiencing longer average response times.</p>
+    <p>Now let's follow one of those requests through our system. A distributed trace shows us which operations were involved and how long they took. In this example, most of the time is spent waiting for the external payment response.</p>
+    <p>We can then search our logs for records with the same request identifier. These tell us that the payment response timed out and that Payments scheduled a status check. Remember, a timeout doesn't necessarily mean the payment failed.</p>
+    <p>See how these three signals work together? Metrics reveal patterns, traces show where time is spent, and logs provide details about what happened.</p>
+    <p>But imagine searching thousands of messages that just say, "Something went wrong." With structured logging, we record information in consistent fields, making it easier to search and connect related events.</p>
+    <p>Collecting and storing all this information also costs money. Use log levels to distinguish detailed debugging information from important operational events, and define how long records need to be kept. Avoid recording sensitive payment information.</p>
+    <p>The goal isn't more logs. It's better logs.</p>
+    <h4>Design your system to reveal unusual behavior and provide enough context to investigate it. This helps teams resolve problems more efficiently and support their customers. But understanding what's happening inside our system isn't the same as protecting it from unauthorized access.</h4>
   </aside>
 </section>
 
 
 <section class="S18">
-  <h1>What Is Security by Design?</h1>
-  <p class="subtitle">Lock every door, not just the front</p>
-  <div class="r-stack">
-    <img src="images/what/s18-bank-layers.png" alt="A cutaway bank showing security in layers: a shield gate, a key card door, a vault, and safe deposit boxes each with its own lock">
-    <img class="fragment fade-in-then-out" src="images/what/s18-service-keys.png" alt="Services inside a network, each with its own key, checking identity before connecting, with one door staying closed to a service without the right key">
-    <img class="fragment" src="images/what/s18-exposed-service.png" alt="A private service behind a wall with one gate open by mistake, beams from the internet reaching it, and an alarm ringing">
-  </div>
-  <aside class="notes">
-    <h2>What Is Security by Design?</h2>
-    <h3>A bank doesn't stop at the guard by the entrance. Every inner door needs a key card. The vault has its own lock, and so does every safe deposit box inside it. Get past one layer, and the next one is still there. That's how you keep the wrong people out: not with one strong door, but with many.</h3>
-    <p>Security by design means building those layers into your architecture from day one, not adding them a week before launch. Quick question: how many of your internal services actually check who's calling them?</p>
-    <p>A lot of teams say, 'They're on the internal network, so they can trust each other.' But what if someone gets inside? Suddenly, every service is wide open. That's why many teams follow zero trust: no service is trusted automatically, just because it's internal.</p>
-    <p>So decide early how your services prove who they are. Even simple steps help: give each service its own key, rotate those keys regularly, and give each one only the access it needs. Just like every safe deposit box has its own lock.</p>
-    <p>And watch for a risk people underestimate: a private service becoming public by accident. One deployment goes slightly wrong, one firewall rule is off, and suddenly it's reachable from the internet.</p>
-    <p>Why does this matter so much? IBM puts the average data breach at nearly five million dollars. Designing the layers in early costs far less, and your design passes the security review instead of failing it right before launch.</p>
-    <h4>Before your next review, ask one question: what if someone's already inside? And security isn't the only late surprise. Legal rules can be one too.</h4>
-  </aside>
+ <h1>
+  What Is Security by Design?
+ </h1>
+ <p class="subtitle">
+  Protect every layer, not just the entry point
+ </p>
+ <div class="r-stack">
+  <img alt="permission is not unlimited" src="images/what/s18-permission-is-not-unlimited.png"/>
+  <img alt="protected entry point" class="fragment" src="images/what/s18-protected-entry-point.png"/>
+  <img alt="implicit internal trust" class="fragment" src="images/what/s18-implicit-internal-trust.png"/>
+  <img alt="authentication and authorization" class="fragment" src="images/what/s18-authentication-and-authorization.png"/>
+  <img alt="least privilege" class="fragment" src="images/what/s18-least-privilege.png"/>
+  <img alt="distinct service identities" class="fragment" src="images/what/s18-distinct-service-identities.png"/>
+  <img alt="zero trust principle" class="fragment" src="images/what/s18-zero-trust-principle.png"/>
+  <img alt="accidental public exposure" class="fragment" src="images/what/s18-accidental-public-exposure.png"/>
+  <img alt="defense in depth" class="fragment" src="images/what/s18-defense-in-depth.png"/>
+  <img alt="design for security" class="fragment" src="images/what/s18-design-for-security.png"/>
+ </div>
+ <aside class="notes">
+  <h2>
+   What Is Security by Design?
+  </h2>
+  <h3>
+   Imagine you're at an airport with a valid boarding pass. You're allowed to board your flight, but that doesn't give you permission to enter the baggage handling area or the cockpit. Each area has its own access requirements, depending on what people need to do. We need to think about our backend systems in much the same way.
+  </h3>
+  <p>
+   Back to our online store. Customers sign in before viewing their orders. The Gateway verifies their identities, and as we discussed earlier, our backend services are private.
+  </p>
+  <p>
+   From the outside, this looks like a reasonably protected system. But what about the communication between those internal services?
+  </p>
+  <p>
+   Suppose someone manages to compromise our Products service. Instead of dealing with product information, it now sends a request to the Customer service, asking for customer details.
+  </p>
+  <p>
+   Because the Customer service trusts requests coming from inside our network, it returns that information without checking whether Products actually needs it.
+  </p>
+  <p>
+   Notice that our Gateway hasn't stopped working. The problem is that this request doesn't even go through it.
+  </p>
+  <p>
+   To address this, our Customer service needs to answer two separate questions.
+  </p>
+  <p>
+   First, who's calling? We call this authentication. Second, what is this caller allowed to do? That's authorization.
+  </p>
+  <p>
+   Even if we successfully verify that the request comes from Products, it doesn't mean we should give it access to customer information.
+  </p>
+  <p>
+   How do we decide what each service is allowed to access?
+  </p>
+  <p>
+   Think back to our discussion about separation of concerns. Each service has its own responsibilities, and those responsibilities help us determine what permissions it needs.
+  </p>
+  <p>
+   Orders needs certain customer details to fulfill orders, but Products doesn't. By giving each service only the permissions it needs, we limit the potential damage if one of them becomes compromised.
+  </p>
+  <p>
+   This is called the principle of least privilege.
+  </p>
+  <p>
+   But there's an interesting question here. How does the Customer service distinguish Orders from Products if they're both using the same identity?
+  </p>
+  <p>
+   That's why we give each service its own identity. Now we can assign permissions independently and verify who's making each request.
+  </p>
+  <p>
+   Where possible, use short-lived credentials so they expire automatically. If we use persistent credentials, we need to manage them securely and rotate them appropriately.
+  </p>
+  <p>
+   Notice how we've changed our approach. Instead of trusting a service simply because it's inside our network, we verify its identity and check its permissions.
+  </p>
+  <p>
+   This is one of the fundamental principles of zero trust.
+  </p>
+  <p>
+   And these protections become particularly useful when something goes wrong with our network configuration.
+  </p>
+  <p>
+   Imagine a deployment configuration mistake accidentally makes our Customer service reachable from the internet.
+  </p>
+  <p>
+   In our original design, the service had no independent access checks. Now, even if an unauthorized caller manages to reach it, those identity and permission checks can still reject the request.
+  </p>
+  <p>
+   Of course, we need to correct the network configuration. But notice the benefit of having more than one protection mechanism.
+  </p>
+  <p>
+   We protect our public entry point, restrict network access, verify service identities, and limit what each service can access.
+  </p>
+  <p>
+   If one of these protections fails, the others can still help protect our customer information. This approach is called defense in depth.
+  </p>
+  <p>
+   By considering these protections while designing our architecture, rather than adding them shortly before launch, we can reduce security risks and avoid unnecessary rework. That's what security by design is all about.
+  </p>
+  <h4>
+   When designing your system, consider who can access each service, what they're allowed to do, and what happens if a protection mechanism fails. In other words, what if someone's already inside? Now, security isn't the only requirement we need to consider early. Legal and regulatory requirements matter too.
+  </h4>
+ </aside>
 </section>
-
 
 <section class="S19">
   <h1>What Is Compliance?</h1>
   <p class="subtitle">When laws shape your architecture</p>
   <div class="r-stack">
-    <img src="images/what/s19-building-rules.png" alt="A house blueprint with an approval stamp above it, surrounded by symbols for height limits, distance from the road, and safety">
-    <img class="fragment fade-in-then-out" src="images/what/s19-delete-button.png" alt="One delete button on an app screen, with lines spreading behind it into services, databases, backups, and an outside cloud">
-    <img class="fragment" src="images/what/s19-data-borders.png" alt="A made-up map region with databases inside a glowing border, and a data packet stopped at a gate on the edge">
+    <img src="images/what/s19-customer-deletion-request.png" alt="customer deletion request">
+    <img class="fragment" src="images/what/s19-personal-data-across-services.png" alt="personal data across services">
+    <img class="fragment" src="images/what/s19-beyond-active-databases.png" alt="beyond active databases">
+    <img class="fragment" src="images/what/s19-erasure-and-retention.png" alt="erasure and retention">
+    <img class="fragment" src="images/what/s19-data-lifecycle-design.png" alt="data lifecycle design">
+    <img class="fragment" src="images/what/s19-early-design-versus-late-redesign.png" alt="early design versus late redesign">
+    <img class="fragment" src="images/what/s19-international-data-transfers.png" alt="international data transfers">
+    <img class="fragment" src="images/what/s19-design-for-compliance.png" alt="design for compliance">
   </div>
   <aside class="notes">
     <h2>What Is Compliance?</h2>
-    <h3>Why do you check the local building rules before you even sketch a house? Because those rules decide what you're allowed to build: how tall, how far from the road, how safe. Ignore them, and there's no permit. Or worse, you build it, and then you're told to tear part of it down. Software has building rules too.</h3>
-    <p>Compliance means your system follows the laws that apply to it, especially around personal data: how you store it, share it, and protect it. In Europe, that's GDPR, and other regions and industries have their own rules.</p>
-    <p>Here's why it shapes the architecture. Under GDPR, people can ask a company to delete their personal data. On screen, that's one simple button: 'Delete my account.' But behind it, your system has to find and remove that person's data everywhere it lives: every service, every database, every copy.</p>
-    <p>Planned early, that's a feature. Discovered late, it's a project that touches every part of your system.</p>
-    <p>And some rules go even deeper. Laws can decide where your data is allowed to be stored, or whether it can leave a region at all. That's not one feature anymore. It shapes where you host, how you copy data, and which outside services you can use.</p>
-    <p>And the stakes are real: GDPR fines can reach four percent of a company's global yearly revenue. So let compliance shape your design from day one, and you pass legal reviews, launch in new markets with confidence, and earn your users' trust.</p>
-    <h4>Check the building rules before you sketch, not after you build. And there's one more set of requirements nobody writes down until it's too late: how fast, and how reliable?</h4>
+    <!-- V1: s19-customer-deletion-request -->
+    <h3>Imagine a customer decides they no longer want to use our online store and asks us to delete their account and personal data. From their perspective, it's a simple request. As developers, our first thought might be to delete their profile from the Customer service. But is that the only place where we keep their personal information?</h3>
+    <!-- V2: s19-personal-data-across-services -->
+    <p>Let's look at our backend. The Customer service stores their name and email address. Orders keeps delivery addresses alongside order records, and Notifications stores contact details and message history.</p>
+    <p>Each service stores information relevant to its own responsibilities. But now we have a requirement that affects all three services.</p>
+    <p>Deleting the customer profile alone leaves personal information elsewhere in our system. Before we can handle this request properly, we need to know where that information exists.</p>
+    <!-- V3: s19-beyond-active-databases -->
+    <p>And we shouldn't stop at our active databases. What about our backups? Remember our discussion about keeping sensitive information out of logs? This is another reason why that matters.</p>
+    <p>We might also have shared customer information with external service providers.</p>
+    <p>As you can see, what looks like a simple deletion request from the customer's perspective requires a much broader understanding of our architecture.</p>
+    <p>But now that we've identified where the information exists, can we simply delete everything?</p>
+    <!-- V4: s19-erasure-and-retention -->
+    <p>Well, here's where things get interesting. Under the General Data Protection Regulation, or GDPR, people have the right to request erasure of their personal data under certain conditions.</p>
+    <p>However, our company may also have a legal obligation to retain certain transaction records for accounting purposes.</p>
+    <p>We might need to delete information from the customer's profile but retain specific information about their purchases. And we still need to protect that retained information and limit its use to permitted purposes.</p>
+    <p>These different obligations influence how we organize our data.</p>
+    <!-- V5: s19-data-lifecycle-design -->
+    <p>Take our Orders service, for example. Some information is needed to deliver products to customers, while other information is required for accounting.</p>
+    <p>Instead of treating the entire order record as something we either keep or delete, we can organize the information according to its purpose and retention requirements.</p>
+    <p>This allows us to remove delivery contact details when erasure is required while retaining the necessary accounting information.</p>
+    <p>We're not necessarily introducing another database or service. We're designing our existing data structures around different legal requirements.</p>
+    <!-- V6: s19-early-design-versus-late-redesign -->
+    <p>Now, imagine discovering these requirements shortly before launching our online store.</p>
+    <p>We might need to restructure our databases, change service interfaces, introduce coordinated deletion mechanisms and review how we manage backups.</p>
+    <p>That's engineering time we could have spent developing new business features. It could even delay our launch.</p>
+    <p>By understanding these requirements from the beginning, we can account for them in our original design.</p>
+    <p>And there's another consideration. What happens when personal information leaves our system?</p>
+    <!-- V7: s19-international-data-transfers -->
+    <p>Suppose our online store runs within the European Economic Area, or EEA, but our Notifications service uses an email provider outside it.</p>
+    <p>Every time we send an order confirmation, we share the customer's email address with that provider.</p>
+    <p>GDPR doesn't require all personal data to stay within the EEA, but international transfers are subject to legal requirements.</p>
+    <p>Depending on the regulations that apply to our business, we may need to reconsider where we host our system, where we replicate our data, or which external providers we integrate with.</p>
+    <p>This is why compliance, which means meeting applicable legal and regulatory requirements, needs to influence our architectural decisions from the beginning.</p>
+    <!-- V8: s19-design-for-compliance -->
+    <h4>Work with legal and privacy stakeholders to understand which requirements apply, where personal information exists, how long we can retain it, and where it can go. Compliance shapes our architecture, but so do other requirements, such as how fast and reliable our system needs to be.</h4>
   </aside>
 </section>
+
 
 <section class="S20">
   <h1>What Are Performance and Uptime Requirements?</h1>
   <p class="subtitle">Speed, availability, and promises</p>
   <div class="r-stack">
-    <img src="images/what/s20-pizza-promise.png" alt="A pizza shop at night with a door sign promising on-time delivery or it's free, and open late, with ovens glowing and a delivery scooter waiting">
-    <img class="fragment fade-in-then-out" src="images/what/s20-requirements.png" alt="A system block connected to a speedometer, a day-and-night clock with an always-on light, and a sealed contract with a coin attached">
-    <img class="fragment" src="images/what/s20-nines-stairs.png" alt="A staircase where each step is taller than the last, with server racks and coin piles growing bigger at every step">
+    <img src="images/what/s20-business-promises.png" alt="business promises">
+    <img class="fragment" src="images/what/s20-measurable-performance.png" alt="measurable performance">
+    <img class="fragment" src="images/what/s20-latency-percentile.png" alt="latency percentile">
+    <img class="fragment" src="images/what/s20-availability-needs.png" alt="availability needs">
+    <img class="fragment" src="images/what/s20-sla-and-slo.png" alt="sla and slo">
+    <img class="fragment" src="images/what/s20-availability-nines.png" alt="availability nines">
+    <img class="fragment" src="images/what/s20-redundant-orders-instances.png" alt="redundant orders instances">
+    <img class="fragment" src="images/what/s20-requirements-first.png" alt="requirements first">
   </div>
   <aside class="notes">
     <h2>What Are Performance and Uptime Requirements?</h2>
-    <h3>A pizza place puts a promise on its door: delivered in thirty minutes, or it's free. Open every day until midnight. That promise decides everything behind the counter: how many ovens, how many drivers, who works the late shift. Promise ten minutes, and the whole kitchen changes. Promise nothing, and nobody knows what the kitchen needs.</h3>
-    <p>Your system needs the same promises. Performance requirements say how fast it must respond under real load. Fast enough for what you actually need, not 'can it handle a billion requests?' Too slow, and users leave. Built for a billion, and you pay for complexity nobody needed.</p>
-    <p>Uptime requirements say how often the system must be available. Can it go down for an hour of maintenance on a Sunday night? Or must it stay up around the clock?</p>
-    <p>And sometimes, your company has already promised it. That's an SLA, a service level agreement: the uptime or speed promised to customers, often with penalties when it's missed. Just like the free pizza.</p>
-    <p>Uptime is usually counted in nines. Three nines, 99.9 percent, allows almost nine hours of downtime a year. Four nines, 99.99 percent, allows about fifty-two minutes. And every extra nine makes your system much harder, and much more expensive, to build.</p>
-    <p>That's why these numbers belong at the very start. They decide how many servers you run, where you run them, and how you recover from failure. Know them early, and you spend only where it counts, and keep every promise your company makes.</p>
-    <h4>Promise only what you can deliver, and build exactly for that. Because every extra nine, every extra server, adds something else too: complexity. So when is it too much?</h4>
+    <!-- V1: business-promises -->
+    <h3>Imagine a pizza restaurant promises to deliver your pizza within thirty minutes and stays open until midnight. These commitments influence how many ovens the restaurant needs, how many delivery drivers it employs, and how it organizes its working shifts. Now, imagine changing that delivery promise to just ten minutes. Suddenly, the restaurant might need to rethink its entire operation. Our backend systems face similar decisions.</h3>
+    <!-- V2: measurable-performance -->
+    <p>Back to our online store. Our business stakeholders tell us they want a fast checkout experience for customers.</p>
+    <p>But what does fast mean? Half a second? Two seconds?</p>
+    <p>After discussing this with our stakeholders, we establish a requirement. At least 95 percent of eligible checkout requests need to complete successfully within two seconds, under an expected workload of one hundred checkout requests per second.</p>
+    <p>We're measuring the time from receiving the checkout request in our backend to returning a successful response, not the time customers spend interacting with the payment screen.</p>
+    <p>Now we have measurable performance requirements that can guide our design decisions.</p>
+    <p>But why did we specify 95 percent instead of simply asking for an average response time of two seconds?</p>
+    <!-- V3: latency-percentile -->
+    <p>Let's look at a hundred successful checkout requests. Each of these little blocks represents one request.</p>
+    <p>Ninety-five of them complete within two seconds, while the remaining five take longer.</p>
+    <p>If those five requests take significantly longer, our average might still look acceptable, even though some customers experience frustrating delays.</p>
+    <p>That's why we often measure something called the 95th percentile, or p95. It tells us the response time within which approximately 95 percent of the measured requests complete.</p>
+    <p>Of course, we also need to account for failed requests, not just how quickly successful ones complete.</p>
+    <p>We've established how fast checkout needs to be. But how available does it need to be?</p>
+    <!-- V4: availability-needs -->
+    <p>Our customers can place orders at any time of the day. If checkout becomes unavailable, we might lose sales.</p>
+    <p>But consider our internal sales reporting capability. Perhaps the finance team only needs the report to be ready before the working day begins. They might be perfectly happy with a maintenance window between two and five in the morning.</p>
+    <p>Both capabilities are important to the business, but their availability requirements are different.</p>
+    <p>Sometimes, these requirements go beyond internal expectations. The business may have already made commitments to its customers.</p>
+    <!-- V5: sla-and-slo -->
+    <p>Suppose our company has an agreement with its business customers to provide 99.9 percent monthly checkout availability.</p>
+    <p>We call this a Service Level Agreement, or SLA. It's an agreement that defines the level of service we're committed to providing, and it may specify consequences, such as service credits, if we fail to meet those commitments.</p>
+    <p>Internally, our engineering team might aim for 99.95 percent availability instead, giving us some room for unexpected problems.</p>
+    <p>This measurable target is called a Service Level Objective, or SLO.</p>
+    <p>Now, these percentages look quite similar on paper. But what do they actually mean in terms of downtime?</p>
+    <!-- V6: availability-nines -->
+    <p>To put these percentages into perspective, let's look at their equivalent downtime over an entire year, assuming we measure availability continuously with no exclusions.</p>
+    <p>At 99.9 percent availability, commonly known as three nines, we have nearly nine hours of allowable downtime.</p>
+    <p>Add another nine, and that drops to approximately fifty-three minutes.</p>
+    <p>That's a tenfold reduction in the time our system can be unavailable.</p>
+    <p>And look at five nines. We're talking about just over five minutes across an entire year.</p>
+    <p>Imagine how quickly we need to detect problems and restore service when we have such a small downtime allowance.</p>
+    <p>How might that influence our architecture?</p>
+    <!-- V7: redundant-orders-instances -->
+    <p>Let's look at two possible deployments of our Orders service.</p>
+    <p>On the left, we're running a single instance. If that instance becomes unavailable, customers can't complete checkout until service is restored.</p>
+    <p>On the right, we're running two instances behind a load balancer. Remember our discussion about horizontal scaling? We can also use multiple instances to improve availability.</p>
+    <p>If one instance becomes unavailable, our load balancer can detect that through health checks and direct new requests to the remaining healthy instance, provided it has enough capacity.</p>
+    <p>Of course, this doesn't guarantee a particular availability percentage. Our databases, external payment providers and other dependencies also influence whether customers can complete checkout.</p>
+    <p>And these additional resources and recovery mechanisms come with costs and responsibilities.</p>
+    <p>That's why we need to understand what the business actually requires before deciding how much availability to design for.</p>
+    <!-- V8: requirements-first -->
+    <h4>Understand how quickly your system needs to respond, the traffic it needs to handle, the interruptions the business can tolerate, and the commitments already made to customers. Meeting these requirements often introduces additional architectural mechanisms. But how do we manage the complexity they bring?</h4>
   </aside>
 </section>
 

@@ -1,0 +1,16 @@
+S15 — How Can Systems Handle Failures?
+Source mapping W12 — S26, S28. Outline and current index S15/S16 inspected; separate legacy transcripts not established. Approved S13/S14 callbacks inspected.
+Narration: 59 opening, 239 main, 37 closing = 335 whitespace-delimited words. Approved text preserved.
+
+Reusable reconstructed illustration prompt:
+Output file name: s15-unavailable-meal.png (use this only as the download file name; do not draw it in the image).
+A waiter explains an unavailable meal to a seated customer and points to an alternative on a menu. Other diners continue enjoying their meals; kitchen staff continue preparing food. Friendly manageable situation. Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as the main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. Subject fills most of the frame with small even margins. Stylized flat-vector people, not realistic or resembling real people. No logos, brand names or famous characters. Soft glow on the alternative meal.
+Actual illustration contains subtle shading, warm lights and an unavailable-dish red X, resized/cropped to 1920x1080.
+
+Visual progression: V1 analogy; V2 selected checkout dependencies, timeout observed by Payments (gateway omitted); V3 generic error; V4 shared Reason/Message contract, same service positions; V5 four response cards; V6 possible outcomes (also still in progress); V7 behavioral diagram, time downward, same illustrative key; V8 mockups; V9 three questions. V5 and V9 text cards instead of icons. V4 error codes are illustrative application reasons, not protocol statuses. V7 same request parameters and provider key lifetime/semantics must be respected; key does not guarantee end-to-end safety. Idempotency concerns intended effects, not identical responses or absence of logging. Pending status assumes durable operation state and a real status-check process. Reference code requires diagnostic linkage. Do not expose sensitive data. Retry only appropriate transient failures, with bounded attempts/time and delays. Fallback must itself be available. Optional recommendations do not imply all AI features are optional.
+
+External references opened and reviewed:
+https://docs.stripe.com/api/idempotent_requests
+https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/
+
+Nine PNGs and eight editable SVGs; HTML relative paths and eight fragments checked. Contact sheet reviewed before final arrow-marker and long-label size adjustments. No live Reveal.js integration or recorded spoken read-through. No ledger update until final acceptance.

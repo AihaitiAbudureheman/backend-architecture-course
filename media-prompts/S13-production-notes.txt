@@ -1,0 +1,10 @@
+S13 — Production notes
+Source mapping W10 — S14, S30. Original S13/S14 and approved S12 HTML inspected, outline and v7 rules inspected. Legacy mapping transcripts not independently located.
+
+Reusable reconstructed illustration prompt:
+Output file name: s13-one-recipe-many-cafes.png (use this only as the download file name; do not draw it in the image).
+Three independent café counters, each barista follows an identical recipe card and prepares identical latte. Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as main accents, warm highlights #f5b078. Simple shapes, soft shadows, no clutter. Wide 16:9 composition, subject fills frame, 5% margins. Stylized flat-vector characters, no real persons or brands. Soft glow on cups.
+
+Visual cues: V1 shared recipe; V2 different gRPC additional error details; V3 common contract; V4 package adoption, local execution; V5 technical reuse versus business responsibilities; V6 version adoption.
+Technical reference: https://www.rfc-editor.org/rfc/rfc9457.html — HTTP Problem Details, not gRPC native error format. Sample fields are illustrative. Standard gRPC statuses remain in use; richer error details depend on supported implementations. Shared libraries can be built for different runtimes; same contract need not mean same code. Avoid leaking sensitive details. Version updates require adoption in the example of bundled libraries.
+Limitations: generated illustration has shading, resized; diagrams use text cards rather than decorative icons. No live Reveal or recorded readthrough.

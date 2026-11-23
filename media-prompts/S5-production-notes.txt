@@ -1,0 +1,13 @@
+S5 — production notes
+
+Narration word counts (whitespace): [56, 232, 34] total 322
+
+Reveal cues: V1 opening; V2 Imagine a customer; V3 Now, follow; V4 But what happens.
+
+Output file name: s5-city-journey.png (use this only as the download file name; do not draw it in the image).
+Scene: three distinct isometric city neighborhoods (residential, commercial, industrial), connected roads, cars and a short queue at a red traffic signal. One standalone scene, no panels.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as the main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. The subject fills most of the frame, with only a small, even margin on each side (about 5%); no large empty borders or wide padding. Soft glow on vehicle lights and windows. No logos, brand names or famous characters.
+
+Evidence: https://c4model.com/diagrams/dynamic ; https://c4model.com/abstractions ; https://c4model.com/diagrams/faq .
+Q&A: A module call need not cross a network. An interface describes an interaction contract, not just a connection. The payment delay is illustrative, not measured; its root cause is unknown. Successful path only; persistence, payment credentials, total calculation, failure handling and notification implementation are omitted. S8 is consistent with these omissions.
+Limitations: V1 standalone generated illustration resized to 1920x1080; background has shading rather than exact flat colour. Prompt is reconstructed. Structural view focuses on internal modules only. V3/V4 use schematic time spacing, not measurements. Live Reveal rendering not tested. Narration preserved from Stage 4.

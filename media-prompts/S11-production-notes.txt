@@ -1,0 +1,18 @@
+S11 — production notes
+
+Output file name: s11-asking-versus-announcing.png (use this only as the download file name; do not draw it in the image).
+Scene: two supermarket situations: shopper asks Is this available? Employee posts The delivery has arrived. Labels Request an answer / Announce what happened.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. Subject fills most of frame, small even margin about 5%. Stylized flat-vector people, no real person resemblance, logos, brand names or famous characters. Soft glow on the speech bubble and notice.
+
+Speaking progression: asking-versus-announcing -> rest-product-catalogue -> grpc-stock-reservation -> order-placed-event -> communication-tradeoffs -> choose-communication-approach
+
+References:
+https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design
+https://grpc.io/docs/what-is-grpc/core-concepts/
+https://grpc.io/docs/platforms/web/basics/
+https://learn.microsoft.com/en-us/azure/architecture/patterns/publisher-subscriber
+https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/event-driven
+https://graphql.org/learn/queries/
+
+REST and gRPC are interface approaches, event-driven communication is an interaction pattern. REST is not inherently JSON-only or public-only. gRPC performance depends on workload. Event publishing can require acknowledgement; no exactly-once guarantee is implied. Reporting consumption updates data for S10 scheduled reporting.
+Limitations: reconstructed illustration prompt, mild shading, resized to 1920x1080; V6 text cards rather than icons. Simplified successful-path diagrams, contracts are not runtime units. No live Reveal test or recorded readthrough.

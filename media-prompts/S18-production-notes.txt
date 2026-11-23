@@ -1,0 +1,63 @@
+S18 — W15 / legacy S36
+Expanded narration approved: 599 words. All ten visuals unchanged.
+
+Output file name: s18-permission-is-not-unlimited.png (use this only as the download file name; do not draw it in the image).
+Scene: airport passenger shows a boarding pass at departure gate; authorized ground staff use staff credentials at restricted baggage handling area.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as the main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. Subject fills most of frame, 5% margin. Stylized flat-vector characters, no real people, logos, brand names or famous characters. Soft glow on boarding pass and staff badge.
+Reconstructed prompt; actual image has subtle shading and was resized.
+
+Speaking map:
+V1: s18-permission-is-not-unlimited — Imagine you're at an airport with a valid boarding pass. You're allowed to board your flight, but that doesn't give you permission to enter the baggage handling area or the cockpit. Each area has its own access requirements, depending on what people need to do. We need to think about our backend systems in much the same way.
+
+V2: s18-protected-entry-point — Back to our online store. Customers sign in before viewing their orders. The Gateway verifies their identities, and as we discussed earlier, our backend services are private.
+
+From the outside, this looks like a reasonably protected system. But what about the communication between those internal services?
+
+V3: s18-implicit-internal-trust — Suppose someone manages to compromise our Products service. Instead of dealing with product information, it now sends a request to the Customer service, asking for customer details.
+
+Because the Customer service trusts requests coming from inside our network, it returns that information without checking whether Products actually needs it.
+
+Notice that our Gateway hasn't stopped working. The problem is that this request doesn't even go through it.
+
+V4: s18-authentication-and-authorization — To address this, our Customer service needs to answer two separate questions.
+
+First, who's calling? We call this authentication. Second, what is this caller allowed to do? That's authorization.
+
+Even if we successfully verify that the request comes from Products, it doesn't mean we should give it access to customer information.
+
+How do we decide what each service is allowed to access?
+
+V5: s18-least-privilege — Think back to our discussion about separation of concerns. Each service has its own responsibilities, and those responsibilities help us determine what permissions it needs.
+
+Orders needs certain customer details to fulfill orders, but Products doesn't. By giving each service only the permissions it needs, we limit the potential damage if one of them becomes compromised.
+
+This is called the principle of least privilege.
+
+V6: s18-distinct-service-identities — But there's an interesting question here. How does the Customer service distinguish Orders from Products if they're both using the same identity?
+
+That's why we give each service its own identity. Now we can assign permissions independently and verify who's making each request.
+
+Where possible, use short-lived credentials so they expire automatically. If we use persistent credentials, we need to manage them securely and rotate them appropriately.
+
+V7: s18-zero-trust-principle — Notice how we've changed our approach. Instead of trusting a service simply because it's inside our network, we verify its identity and check its permissions.
+
+This is one of the fundamental principles of zero trust.
+
+And these protections become particularly useful when something goes wrong with our network configuration.
+
+V8: s18-accidental-public-exposure — Imagine a deployment configuration mistake accidentally makes our Customer service reachable from the internet.
+
+In our original design, the service had no independent access checks. Now, even if an unauthorized caller manages to reach it, those identity and permission checks can still reject the request.
+
+Of course, we need to correct the network configuration. But notice the benefit of having more than one protection mechanism.
+
+V9: s18-defense-in-depth — We protect our public entry point, restrict network access, verify service identities, and limit what each service can access.
+
+If one of these protections fails, the others can still help protect our customer information. This approach is called defense in depth.
+
+By considering these protections while designing our architecture, rather than adding them shortly before launch, we can reduce security risks and avoid unnecessary rework. That's what security by design is all about.
+
+V10: s18-design-for-security — When designing your system, consider who can access each service, what they're allowed to do, and what happens if a protection mechanism fails. In other words, what if someone's already inside? Now, security isn't the only requirement we need to consider early. Legal and regulatory requirements matter too.
+
+References consulted: https://csrc.nist.gov/pubs/sp/800/207/final ; https://cheatsheetseries.owasp.org/cheatsheets/Secure_Cloud_Architecture_Cheat_Sheet.html ; https://cheatsheetseries.owasp.org/cheatsheets/Zero_Trust_Architecture_Cheat_Sheet.html
+Caveats: hypothetical examples. Service identity is distinct from credential and access policy. Orders requires customer-level and operation-level permissions, not unrestricted records. Access enforcement may reside in application or trusted enforcement infrastructure. Zero trust is broader than these checks. Accidental exposure must be corrected. Credential-specific recommendation not independently source-checked. Security reviews and secure transport remain important. No separate legacy S36 transcript located. No live Reveal or recorded narration test. V4/V6/V7/V10 use text cards instead of icons.
