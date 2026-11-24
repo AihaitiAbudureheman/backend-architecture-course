@@ -1,0 +1,17 @@
+S23 — Production notes
+W20 | Original mapping S37, S51, S56
+Narration: 982 words; opening 75; closing 50. Approved extended depth concentrates on operational incident and evaluation.
+
+V1 reusable illustration prompt (reconstructed, not verbatim generator input):
+Output file name: s23-choosing-a-coffee-machine.png (use this only as the download file name; do not draw it in the image).
+A café owner comparing familiar and advanced working espresso machines, thoughtfully considering the value of additional capabilities. Neither machine is broken.
+Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as the main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. The subject fills most of the frame, with only a small, even margin on each side (about 5%); no large empty borders or wide padding. If people appear, they are stylized flat-vector characters, not realistic, and not resembling any real person. No logos, no brand names, no famous characters. Soft glow on the machine controls.
+Actual illustration has extra labels and a detailed shaded café background; resized to 1920x1080.
+
+V2–V7: editable SVGs rendered to 1920x1080. V2 shows alternatives, not simultaneous dependencies. V3 query delay is a symptom, not a diagnosed cause; simplified path omits gateway. V4 specialist remains valuable; appropriate support depends on availability requirements. V5 activities can overlap, and a PoC does not establish production readiness. V6 brief AI extension. V7 checklist is illustrative, not exhaustive. V6 uses text cards instead of symbols; V7 numbered circles instead of icons.
+
+Technical evidence: AWS Well-Architected operational readiness and supportability:
+https://docs.aws.amazon.com/wellarchitected/latest/framework/ops05-bp04.html
+https://docs.aws.amazon.com/wellarchitected/latest/framework/ops05.html
+https://docs.aws.amazon.com/wellarchitected/2025-02-25/framework/ops_ready_to_support_personnel_capability.html
+Hypothetical database capabilities and incident; no vendor claims. No actual benchmark. No recorded spoken readthrough or live Reveal.js test. Separate legacy source transcripts not inspected.

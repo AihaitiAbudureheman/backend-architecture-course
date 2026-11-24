@@ -1,0 +1,20 @@
+S21 — Production notes | Stage 5
+Title: What Is Complexity?
+Subtitle: When it's too much, and what to do
+Original mapping: W18 / S32, S46. Source reviewed: index.html S21/S22, Final-Course-Outline-v4(1).pdf, Lesson-Optimization-Rules-v7.pdf, S20.html.
+
+Asset list: 8 PNGs 1920x1080, 6 SVGs (V2–V5, V7–V8). All HTML references use images/what/.
+V1 and V6 cropped from generated illustration composite, then resized to 1920x1080; source has a mild purple background variation and stylized labels. These are raster-only. Cropping a two-panel source reduces native vertical resolution; check at presentation size.
+
+Reusable illustration prompt V1: Output file name: s21-accumulated-complexity.png (do not draw file name). Flat vector illustration, clean playful modern tech-course style. Deep indigo-purple #231c3e background, one even color no gradient or vignette. White and soft purple #b388ff, a few warm #f5b078 highlights. Two side-by-side versions of same desk: one monitor and few organized cables, later dual monitors and extra devices with tangled wires underneath. Subject fills 90% frame. 16:9, no logo, no famous characters. Soft glow on lamp only.
+Reusable illustration prompt V6: Output file name: s21-recognize-complexity.png (do not draw file name). Flat vector illustration, clean playful modern tech-course style. Deep indigo-purple #231c3e background, one even color no gradient or vignette. White and soft purple #b388ff, a few warm #f5b078 highlights. Two stylized architects in meeting room discuss architecture whiteboard with clearly readable Orders, Inventory, Payments, Shipping, Notifications and weekend delivery note. Subject fills 90% frame. 16:9, no logos, no real people. Soft glow on whiteboard only.
+
+Architecture caveats:
+- The weekend delivery architecture is hypothetical; Shipping is not universally the owner of every delivery decision.
+- V3 depicts responsibility placement, not exact runtime calls; diagram connectors are illustrative dependencies.
+- V5 shows selected calls only; it is not a complete checkout sequence. Payments/Notifications use information but other paths are omitted.
+- The managed database example transfers selected operational tasks, not accountability for data, access, configuration, recovery validation or requirements. Responsibilities vary by provider/service.
+- Accidental complexity is solution-induced, not necessarily wholly removable. A hard-to-explain diagram is not a formal complexity measure.
+- The generated V6 board shows dependency structure without asserting exact runtime order.
+
+QA: Eight image files rendered, dimensions and SVG parse checked; source content and HTML references checked programmatically. No live Reveal.js rendering, recorded readthrough, or independent original S32/S46 transcript review. No web-based independent technical verification in this production pass. Suggested verification: AWS RDS shared responsibility documentation, Azure SQL shared responsibility documentation, Google Cloud SQL responsibility guidance.

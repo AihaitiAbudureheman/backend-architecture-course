@@ -618,115 +618,266 @@
   <aside class="notes">
     <h2>What Are Performance and Uptime Requirements?</h2>
     <!-- V1: business-promises -->
-    <h3>Imagine a pizza restaurant promises to deliver your pizza within thirty minutes and stays open until midnight. These commitments influence how many ovens the restaurant needs, how many delivery drivers it employs, and how it organizes its working shifts. Now, imagine changing that delivery promise to just ten minutes. Suddenly, the restaurant might need to rethink its entire operation. Our backend systems face similar decisions.</h3>
+    <h3>Imagine a pizza restaurant promises to deliver your pizza within thirty minutes and stays open until midnight. These commitments influence how many ovens and delivery drivers it needs. Now imagine changing that delivery promise to ten minutes. The restaurant might need to rethink its entire operation. Our backend systems face similar decisions.</h3>
     <!-- V2: measurable-performance -->
-    <p>Back to our online store. Our business stakeholders tell us they want a fast checkout experience for customers.</p>
+    <p>Back to our online store. Our business stakeholders want a fast checkout experience.</p>
     <p>But what does fast mean? Half a second? Two seconds?</p>
-    <p>After discussing this with our stakeholders, we establish a requirement. At least 95 percent of eligible checkout requests need to complete successfully within two seconds, under an expected workload of one hundred checkout requests per second.</p>
-    <p>We're measuring the time from receiving the checkout request in our backend to returning a successful response, not the time customers spend interacting with the payment screen.</p>
-    <p>Now we have measurable performance requirements that can guide our design decisions.</p>
-    <p>But why did we specify 95 percent instead of simply asking for an average response time of two seconds?</p>
+    <p>After discussing this with our stakeholders, we establish a requirement. At least 95 percent of eligible checkout requests need to complete successfully within two seconds, under a workload of one hundred checkout requests per second.</p>
+    <p>We&#x27;re measuring from the moment our backend receives the request to returning a successful response, excluding the time customers spend interacting with the payment screen.</p>
+    <p>Now, why did we specify 95 percent instead of an average response time?</p>
     <!-- V3: latency-percentile -->
-    <p>Let's look at a hundred successful checkout requests. Each of these little blocks represents one request.</p>
-    <p>Ninety-five of them complete within two seconds, while the remaining five take longer.</p>
-    <p>If those five requests take significantly longer, our average might still look acceptable, even though some customers experience frustrating delays.</p>
-    <p>That's why we often measure something called the 95th percentile, or p95. It tells us the response time within which approximately 95 percent of the measured requests complete.</p>
-    <p>Of course, we also need to account for failed requests, not just how quickly successful ones complete.</p>
-    <p>We've established how fast checkout needs to be. But how available does it need to be?</p>
+    <p>Each of these blocks represents one successful checkout request. Ninety-five complete within two seconds, while the remaining five take longer.</p>
+    <p>Our average response time might look acceptable, even though some customers experience frustrating delays.</p>
+    <p>That&#x27;s why we often measure something called the 95th percentile, or p95. It tells us the response time within which approximately 95 percent of the measured requests complete.</p>
+    <p>Remember, our performance requirement also accounts for failed requests, not just successful ones.</p>
+    <p>We&#x27;ve established how fast checkout needs to be. But how available does it need to be?</p>
     <!-- V4: availability-needs -->
-    <p>Our customers can place orders at any time of the day. If checkout becomes unavailable, we might lose sales.</p>
-    <p>But consider our internal sales reporting capability. Perhaps the finance team only needs the report to be ready before the working day begins. They might be perfectly happy with a maintenance window between two and five in the morning.</p>
-    <p>Both capabilities are important to the business, but their availability requirements are different.</p>
-    <p>Sometimes, these requirements go beyond internal expectations. The business may have already made commitments to its customers.</p>
+    <p>Customers can place orders at any time. If checkout becomes unavailable, we might lose sales.</p>
+    <p>But our finance team might only need its sales report before the working day begins. A maintenance window between two and five in the morning might be perfectly acceptable.</p>
+    <p>Both capabilities are important, but their availability requirements are different.</p>
+    <p>Sometimes, these requirements also come from commitments we&#x27;ve made to customers.</p>
     <!-- V5: sla-and-slo -->
-    <p>Suppose our company has an agreement with its business customers to provide 99.9 percent monthly checkout availability.</p>
-    <p>We call this a Service Level Agreement, or SLA. It's an agreement that defines the level of service we're committed to providing, and it may specify consequences, such as service credits, if we fail to meet those commitments.</p>
-    <p>Internally, our engineering team might aim for 99.95 percent availability instead, giving us some room for unexpected problems.</p>
+    <p>Suppose our company promises its business customers 99.9 percent monthly checkout availability.</p>
+    <p>We call this a Service Level Agreement, or SLA. It defines agreed service commitments and may specify consequences, such as service credits, if we fail to meet them.</p>
+    <p>Internally, our engineering team might aim for 99.95 percent availability, giving us some room for unexpected problems.</p>
     <p>This measurable target is called a Service Level Objective, or SLO.</p>
-    <p>Now, these percentages look quite similar on paper. But what do they actually mean in terms of downtime?</p>
+    <p>These percentages look quite similar. But what do they mean in terms of downtime?</p>
     <!-- V6: availability-nines -->
-    <p>To put these percentages into perspective, let's look at their equivalent downtime over an entire year, assuming we measure availability continuously with no exclusions.</p>
+    <p>Let&#x27;s look at the equivalent downtime over an entire year, assuming continuous availability measurement with no exclusions.</p>
     <p>At 99.9 percent availability, commonly known as three nines, we have nearly nine hours of allowable downtime.</p>
-    <p>Add another nine, and that drops to approximately fifty-three minutes.</p>
-    <p>That's a tenfold reduction in the time our system can be unavailable.</p>
-    <p>And look at five nines. We're talking about just over five minutes across an entire year.</p>
-    <p>Imagine how quickly we need to detect problems and restore service when we have such a small downtime allowance.</p>
+    <p>Add another nine, and that drops to approximately fifty-three minutes. That&#x27;s a tenfold reduction.</p>
+    <p>At five nines, we&#x27;re talking about just over five minutes across an entire year.</p>
+    <p>Imagine how quickly we need to detect problems and restore service.</p>
     <p>How might that influence our architecture?</p>
     <!-- V7: redundant-orders-instances -->
-    <p>Let's look at two possible deployments of our Orders service.</p>
-    <p>On the left, we're running a single instance. If that instance becomes unavailable, customers can't complete checkout until service is restored.</p>
-    <p>On the right, we're running two instances behind a load balancer. Remember our discussion about horizontal scaling? We can also use multiple instances to improve availability.</p>
+    <p>On the left, we&#x27;re running a single instance of our Orders service. If it becomes unavailable, customers can&#x27;t complete checkout until service is restored.</p>
+    <p>On the right, we&#x27;re running two instances behind a load balancer. Remember horizontal scaling? Multiple instances can also improve availability.</p>
     <p>If one instance becomes unavailable, our load balancer can detect that through health checks and direct new requests to the remaining healthy instance, provided it has enough capacity.</p>
-    <p>Of course, this doesn't guarantee a particular availability percentage. Our databases, external payment providers and other dependencies also influence whether customers can complete checkout.</p>
-    <p>And these additional resources and recovery mechanisms come with costs and responsibilities.</p>
-    <p>That's why we need to understand what the business actually requires before deciding how much availability to design for.</p>
+    <p>This doesn&#x27;t guarantee a particular availability percentage. Our databases, payment providers and other dependencies also influence checkout availability.</p>
+    <p>And running additional resources comes with costs and operational responsibilities.</p>
+    <p>That&#x27;s why we need to understand what the business actually requires.</p>
     <!-- V8: requirements-first -->
-    <h4>Understand how quickly your system needs to respond, the traffic it needs to handle, the interruptions the business can tolerate, and the commitments already made to customers. Meeting these requirements often introduces additional architectural mechanisms. But how do we manage the complexity they bring?</h4>
+    <h4>Understand how quickly your system needs to respond, the traffic it needs to handle, the interruptions the business can tolerate, and the commitments made to customers. Meeting these requirements often introduces additional architectural mechanisms. But how do we manage the complexity they bring?</h4>
   </aside>
 </section>
 
 
+
 <section class="S21">
-  <h1>What Is Complexity?</h1>
-  <p class="subtitle">When it's too much, and what to do</p>
-  <div class="r-stack">
-    <img src="images/what/s21-cable-mess.png" alt="A messy bundle of cables behind a desk running into one overloaded power strip, with a question mark over a half-pulled plug">
-    <img class="fragment fade-in-then-out" src="images/what/s21-spaghetti-design.png" alt="An architecture diagram with arrows crossing everywhere like spaghetti, an hourglass almost empty, and a confused audience">
-    <img class="fragment" src="images/what/s21-managed-database.png" alt="A database handed to a cloud provider along with backups, patches, and night-time failures, leaving one neat cable behind">
-  </div>
-  <aside class="notes">
-    <h2>What Is Complexity?</h2>
-    <h3>Ever looked behind a desk where cables were added one at a time, for years? Each one had a good reason: a new monitor, a charger, a speaker. But now it's a mess, and nobody dares to unplug anything, because who knows what goes dark. That's complexity: every piece made sense on its own, but not together.</h3>
-    <p>In software, it grows the same way. You add boxes and arrows to your design, each one logical in the moment. Then you step back, look at the whole thing, and think: 'Oh no. This is spaghetti.'</p>
-    <p>And the more you spread your system across services, the faster complexity grows. Every new service is one more cable: more connections, more to deploy, more that can break. The more complexity you add, the more you own.</p>
-    <p>So when is it too much? Here's a simple test. Present your design for twenty minutes. If nobody in the room really understands it, that's a warning sign. Either the design is too complex, or the way you're explaining it is.</p>
-    <p>That's why you watch complexity while you design, not just at the end. Deal with the dependencies early, before they pile up.</p>
-    <p>And sometimes, the smartest way to manage a complex part is to stop managing it yourself. Running your own database means backups, patches, and fixing failures in the middle of the night. A managed database is the same database, but the cloud provider handles all of that. One less cable for you.</p>
-    <h4>Look at your own system: which part are you running that someone else could run better? Just remember, handing it off isn't free. So what does a system really cost?</h4>
-  </aside>
+ <h1>
+  What Is Complexity?
+ </h1>
+ <p class="subtitle">
+  When it's too much, and what to do
+ </p>
+ <div class="r-stack">
+  <img alt="accumulated complexity" src="images/what/s21-accumulated-complexity.png"/>
+  <img alt="weekend delivery requirement" class="fragment" src="images/what/s21-weekend-delivery-requirement.png"/>
+  <img alt="distributed delivery decisions" class="fragment" src="images/what/s21-distributed-delivery-decisions.png"/>
+  <img alt="necessary and accidental complexity" class="fragment" src="images/what/s21-necessary-and-accidental-complexity.png"/>
+  <img alt="clear delivery responsibilities" class="fragment" src="images/what/s21-clear-delivery-responsibilities.png"/>
+  <img alt="recognize complexity" class="fragment" src="images/what/s21-recognize-complexity.png"/>
+  <img alt="managed database responsibilities" class="fragment" src="images/what/s21-managed-database-responsibilities.png"/>
+  <img alt="manage complexity deliberately" class="fragment" src="images/what/s21-manage-complexity-deliberately.png"/>
+ </div>
+ <aside class="notes">
+  <h2>
+   What Is Complexity?
+  </h2>
+  <!-- V1: s21-accumulated-complexity -->
+  <h3>
+   Have you ever looked at the cables behind your desk and wondered what they're all connected to? Every time you added a monitor, some speakers or another device, it made sense. But now you're reluctant to disconnect anything because you're not sure what might stop working. Our software architectures can evolve in much the same way.
+  </h3>
+  <!-- V2: s21-weekend-delivery-requirement -->
+  <p>
+   Back to our online store. We already support standard and express delivery, and now the business wants to introduce weekend delivery. At checkout, we need to determine whether weekend delivery is available for the customer's location, calculate its cost and provide an expected delivery date. We've already got a Shipping service, so this sounds straightforward, right? Let's look at our existing architecture.
+  </p>
+  <!-- V3: s21-distributed-delivery-decisions -->
+  <p>
+   Over time, delivery decisions have ended up in different services. Orders checks delivery eligibility, Inventory contains delivery-specific dispatch rules, and Payments calculates additional delivery charges. Shipping determines delivery options and dates, while Notifications also calculates delivery dates independently. Introducing weekend delivery now requires us to investigate five services. Which rules need updating, and what happens if we miss one? The problem isn't necessarily the number of services. It's how much we need to understand about their responsibilities and interactions to make one change. That investigation, coordination and testing takes engineering time.
+  </p>
+  <!-- V4: s21-necessary-and-accidental-complexity -->
+  <p>
+   Weekend delivery introduces genuine business constraints, such as customer locations, carrier schedules, warehouse capabilities and delivery pricing. We can't simply ignore them. That's necessary complexity. But why are Shipping and Notifications calculating delivery dates independently? These complications come from our solution rather than the business problem itself. We call this accidental complexity. Some solution-related complexity is unavoidable, but duplicated decisions are worth questioning. What if we reconsider where those decisions belong?
+  </p>
+  <!-- V5: s21-clear-delivery-responsibilities -->
+  <p>
+   Remember our discussion about separation of concerns? Orders asks Shipping for a delivery quote. Shipping obtains dispatch availability from Inventory and delivery schedules from our external carrier. Using that information, it determines the available delivery options, their prices and expected delivery dates. Payments receives the amount to charge, and Notifications receives the expected delivery date. Neither needs to calculate delivery rules. We've still got five internal services, but fewer places where delivery decisions are made. Next time we introduce a delivery option, we may be able to concentrate changes inside Shipping, provided our interfaces support it. That means potentially less coordination and more engineering time for other business features.
+  </p>
+  <!-- V6: s21-recognize-complexity -->
+  <p>
+   Here's something useful to try with your colleagues. Pick a business requirement and explain how you intend to implement it. Can they understand where changes belong and which services are affected? If a straightforward change requires explaining many unrelated areas, investigate why. Perhaps we've introduced unnecessary dependencies, or our documentation isn't clear enough. But complexity affects more than development. We also need to operate our systems.
+  </p>
+  <!-- V7: s21-managed-database-responsibilities -->
+  <p>
+   Suppose our Shipping service needs a database. Running it ourselves means maintaining infrastructure, patching software, arranging backups and preparing for failures. With a managed database service, the provider takes responsibility for some of that work. Our team still needs to design the database schema, configure access and ensure backup and recovery arrangements meet our requirements. The exact responsibilities depend on the service. Notice that the infrastructure still needs maintaining. We haven't necessarily removed that complexity. We've transferred some responsibility for managing it, potentially freeing engineering time for business features.
+  </p>
+  <!-- V8: s21-manage-complexity-deliberately -->
+  <h4>
+   Complexity isn't necessarily bad. Question what makes it necessary, understand how dependencies affect changes, and consider which responsibilities your team needs to manage directly. Managing complexity costs time and money, as does asking someone else to manage it. What does a system really cost?
+  </h4>
+ </aside>
 </section>
 
 
 <section class="S22">
-  <h1>What Does a System Really Cost?</h1>
-  <p class="subtitle">More than the cloud bill</p>
-  <div class="r-stack">
-    <img src="images/what/s22-puppy.png" alt="A happy puppy with a bow on a welcome mat, surrounded by icons for food, vet visits, insurance, toys, and daily walks in rain or snow">
-    <img class="fragment fade-in-then-out" src="images/what/s22-iceberg.png" alt="An iceberg with a small cloud bill on the tip and a huge hidden part full of clocks, wrenches, and coins">
-    <img class="fragment" src="images/what/s22-scale.png" alt="A balance scale weighing a free gift box piled with clocks and wrenches against a priced box with a chain link">
-  </div>
-  <aside class="notes">
-    <h2>What Does a System Really Cost?</h2>
-    <h3>Bringing home a puppy is one of life's best decisions. And it might even cost nothing. But every dog lover knows what comes next: food, vet visits, insurance, new toys, and a walk every single day, rain or snow, for years. Worth every minute. But the price tag was never the real cost. Software works the same way, just without the cuddles.</h3>
-    <p>In software, the price tag is usually the cloud bill, and that's the number teams watch. But the real cost of a system also includes engineering hours: building it, maintaining it, fixing it, and even the time spent planning and coordinating.</p>
-    <p>Those hours are often a black box. Nobody tracks them, because 'we already have the engineers, so it's basically free.' It isn't. Every hour spent keeping a system alive is an hour not spent on new features.</p>
-    <p>Remember the self-run database? Say it takes ten hours a week to keep it running. That's a quarter of one engineer's time, every week, for years. That can cost more than the managed service itself.</p>
-    <p>Same with open source. It's free to download, but someone has to set it up, update it, and fix it when it breaks. There's a name for counting all of it: total cost of ownership. Everything a technology costs over its whole life, not just the price tag.</p>
-    <p>And sometimes, a paid vendor is actually cheaper, because they do the daily walks for you. Just remember, lock-in has a cost too: prices can rise, and leaving later is hard.</p>
-    <h4>So count the walks, not just the price tag. And once you know the real cost, the next question is: which technology is actually worth it?</h4>
-  </aside>
+ <h1>
+  What Does a System Really Cost?
+ </h1>
+ <p class="subtitle">
+  More than the cloud bill
+ </p>
+ <div class="r-stack">
+  <img alt="s22 puppy ownership" src="images/what/s22-puppy-ownership.png"/>
+  <img alt="s22 infrastructure costs" class="fragment" src="images/what/s22-infrastructure-costs.png"/>
+  <img alt="s22 engineering hours" class="fragment" src="images/what/s22-engineering-hours.png"/>
+  <img alt="s22 combined monthly cost" class="fragment" src="images/what/s22-combined-monthly-cost.png"/>
+  <img alt="s22 total cost of ownership" class="fragment" src="images/what/s22-total-cost-of-ownership.png"/>
+  <img alt="s22 open source ownership" class="fragment" src="images/what/s22-open-source-ownership.png"/>
+  <img alt="s22 vendor switching costs" class="fragment" src="images/what/s22-vendor-switching-costs.png"/>
+  <img alt="s22 evaluate real cost" class="fragment" src="images/what/s22-evaluate-real-cost.png"/>
+ </div>
+ <aside class="notes">
+  <h2>
+   What Does a System Really Cost?
+  </h2>
+  <!-- V1: s22-puppy-ownership -->
+  <h3>
+   Imagine getting a puppy. The initial price is only the beginning. There's food, veterinary care, equipment, and the time you spend walking it and looking after it. The purchase price tells you very little about the commitment you're taking on. We need to think similarly when choosing technologies for our software systems.
+  </h3>
+  <!-- V2: s22-infrastructure-costs -->
+  <p>
+   Remember the two database alternatives for our Shipping service? We could run the database ourselves or use a managed database service.
+  </p>
+  <p>
+   Suppose the self-managed database costs €200 per month in infrastructure, while the managed database costs €600. Assume both satisfy our technical requirements.
+  </p>
+  <p>
+   Which makes more financial sense? Before answering, remember that someone needs to maintain those databases.
+  </p>
+  <!-- V3: s22-engineering-hours -->
+  <p>
+   Suppose our engineers spend forty hours per month maintaining the self-managed database, including updates, backups and investigating operational problems. With the managed database, assume they spend eight hours on their remaining responsibilities.
+  </p>
+  <p>
+   That's thirty-two engineering hours every month.
+  </p>
+  <p>
+   We're paying our engineers anyway, but what else could they do with that time? Perhaps improve our weekend delivery feature.
+  </p>
+  <p>
+   The value of the best alternative we give up by choosing one activity over another is called opportunity cost. Now, let's put some numbers behind that engineering effort.
+  </p>
+  <!-- V4: s22-combined-monthly-cost -->
+  <p>
+   Suppose employing an engineer costs the company €80 per working hour, including salary and other employment expenses.
+  </p>
+  <p>
+   For the self-managed database, forty hours comes to €3,200. Add the €200 infrastructure cost, and we get an estimated monthly cost of €3,400.
+  </p>
+  <p>
+   For the managed database, eight hours comes to €640. Add €600 for infrastructure, and we get €1,240.
+  </p>
+  <p>
+   Under these assumptions, the managed database has a lower combined cost. But we're not necessarily saving €2,160 in actual expenditure. We're still paying our engineers, and our infrastructure bill increases by €400.
+  </p>
+  <p>
+   What we've gained is thirty-two engineering hours. Whether that's worth the extra expenditure depends on the value of the work we can do with that time.
+  </p>
+  <p>
+   And these monthly costs are only one piece of the picture.
+  </p>
+  <!-- V5: s22-total-cost-of-ownership -->
+  <p>
+   Look at the lifetime of our Shipping service. Initially, we need to design, integrate and test our database. Then we have ongoing operational costs.
+  </p>
+  <p>
+   As the business evolves, we may need upgrades or migrations. Eventually, we need to retire the system and handle any remaining data appropriately.
+  </p>
+  <p>
+   Considering the costs of owning and using a solution throughout its lifetime is what we call total cost of ownership, or TCO.
+  </p>
+  <p>
+   This also helps us evaluate software that appears to be free.
+  </p>
+  <!-- V6: s22-open-source-ownership -->
+  <p>
+   Suppose we choose an open-source database with no licence fee. Someone still needs to install it, integrate it with our application, apply security updates and maintain it.
+  </p>
+  <p>
+   Open-source software can offer tremendous value, especially when our team already knows how to work with it. But no licence fee doesn't mean no ownership costs.
+  </p>
+  <p>
+   What about the cost of changing our decision later?
+  </p>
+  <!-- V7: s22-vendor-switching-costs -->
+  <p>
+   Imagine our managed database provides a useful capability specific to that provider. Using it saves us from developing and maintaining our own solution.
+  </p>
+  <p>
+   But if we later move to another provider, we may need to migrate data, replace that capability, change integrations, test everything and train our engineers.
+  </p>
+  <p>
+   When depending on a particular vendor makes switching difficult or expensive, we call this vendor lock-in.
+  </p>
+  <p>
+   That doesn't mean we should always avoid provider-specific capabilities. Developing alternatives also costs time and money. The benefits today may justify potential switching costs tomorrow.
+  </p>
+  <!-- V8: s22-evaluate-real-cost -->
+  <h4>
+   When comparing technologies, consider direct expenses, engineering time and the costs of changing or retiring them. But even when a technology makes financial sense, how do we know it's the right choice for our system and our team?
+  </h4>
+ </aside>
 </section>
+
+
 
 
 <section class="S23">
   <h1>What Makes a Technology the Right Choice?</h1>
   <p class="subtitle">Pick what your team can support</p>
   <div class="r-stack">
-    <img src="images/what/s23-bug-zapper.png" alt="Cute bugs circling a glowing bug zapper in a garden, ignoring a flower and a plant nearby">
-    <img class="fragment fade-in-then-out" src="images/what/s23-night-failure.png" alt="A shiny new database flashing a warning at night while a puzzled team stands around it with question marks">
-    <img class="fragment" src="images/what/s23-side-project.png" alt="A new tool tested under a glass dome on a workbench, with a path through a checked gate to a steady production system">
+    <img src="images/what/s23-choosing-a-coffee-machine.png" alt="choosing a coffee machine">
+    <img class="fragment" src="images/what/s23-requirements-driven-selection.png" alt="requirements driven selection">
+    <img class="fragment" src="images/what/s23-production-query-delay.png" alt="production query delay">
+    <img class="fragment" src="images/what/s23-shared-operational-knowledge.png" alt="shared operational knowledge">
+    <img class="fragment" src="images/what/s23-evaluate-before-adopting.png" alt="evaluate before adopting">
+    <img class="fragment" src="images/what/s23-emerging-technology-evaluation.png" alt="emerging technology evaluation">
+    <img class="fragment" src="images/what/s23-choose-technology-deliberately.png" alt="choose technology deliberately">
   </div>
   <aside class="notes">
     <h2>What Makes a Technology the Right Choice?</h2>
-    <h3>Ever watched bugs around a bug zapper on a summer evening? They get pulled toward the bright glow, circling closer and closer. Not toward the safest spot, not toward food. Just the shiniest thing in the garden. And that's exactly what gets them. Choosing technology can work the same way: the newest, brightest tool pulls you right in.</h3>
-    <p>Choosing technology is one of the hardest calls in any design. And the right choice isn't the newest one. It's the one your team understands, and can build, run, troubleshoot, and support.</p>
-    <p>Picture this. Your team picks a brand-new database because everyone's talking about it. It works fine, until one night it starts failing in production. And nobody on the team knows how to fix it, or even where to start looking. Hours of guessing, while users wait.</p>
-    <p>So think about the whole team, not just yourself. If only one person understands a tool, or nobody does, it probably doesn't belong in your design.</p>
-    <p>That doesn't mean ignoring new technology. Stay aware of trends, like serverless or event-driven systems. Knowing what's possible gives you more options. But knowing when not to use them matters just as much.</p>
-    <p>So try new tools on side projects first. Learn how they behave, and how they break. Then, when one really solves a problem at work, you can bring it in with confidence, and your team can support it.</p>
-    <h4>Before you bring in anything new, ask: can my team fix this at 2 a.m.? And once you've chosen, write down why. Because six months from now, someone's going to ask.</h4>
+    <!-- V1: s23-choosing-a-coffee-machine -->
+    <h3>Imagine running a café and discovering a new coffee machine with impressive features. Before buying it, you need to know whether you actually need those features, whether your staff can operate it, and what happens if something goes wrong during a busy morning. Choosing technologies for our backend systems is very similar.</h3>
+    <!-- V2: s23-requirements-driven-selection -->
+    <p>In the previous lesson, we considered the ownership costs of a database for our Shipping service. But cost is only one consideration.</p>
+    <p>Our Shipping service determines delivery options based on a customer&#x27;s location. Suppose we&#x27;re using Database A, and an engineer discovers Database B, which offers geographical queries that can determine whether a location falls within a delivery area.</p>
+    <p>That sounds useful. But are our existing searches too slow or difficult to maintain? Or does Database A already satisfy our requirements?</p>
+    <p>Let&#x27;s imagine we adopt Database B without properly evaluating it.</p>
+    <!-- V3: s23-production-query-delay -->
+    <p>The team integrates the database, tests the delivery searches and deploys the application. Everything seems fine until customers start experiencing delays during checkout.</p>
+    <p>Follow the request from our store application through Orders to Shipping, which queries the new database.</p>
+    <p>Remember our observability lesson? Our monitoring reveals that some database queries take much longer than expected. But knowing where the delay occurs doesn&#x27;t necessarily tell us why. Perhaps we have inefficient queries, inappropriate indexes or a change in workload.</p>
+    <p>Someone needs to investigate. Getting a technology to work during development and knowing how to support it in production are two different things.</p>
+    <!-- V4: s23-shared-operational-knowledge -->
+    <p>On the left, we have four engineers. Only the engineer who suggested Database B has substantial experience with it. Unfortunately, that person is unavailable during the incident.</p>
+    <p>The others can see the slow queries but don&#x27;t know how to use the diagnostic tools. Our ability to resolve the customer&#x27;s problem depends heavily on one person.</p>
+    <p>Now look at the team on the right. We still have our specialist, but the other engineers know how to begin investigating, where to find documentation and when to escalate.</p>
+    <p>Not everyone needs to become an expert. External support can also help. But for a critical system, here&#x27;s a useful question: if something goes wrong at two in the morning, who knows what to do?</p>
+    <!-- V5: s23-evaluate-before-adopting -->
+    <p>Let&#x27;s go back to when our engineer first suggested Database B. Before adopting it, we could build a small experimental implementation, known as a proof of concept, or PoC.</p>
+    <p>Using representative delivery-area data, we can compare geographical searches with our existing solution. Does Database B simplify our implementation? Does it meet our performance requirements under a realistic workload?</p>
+    <p>We can also involve several engineers in investigating slow queries, using diagnostic tools and practising recovery from a backup. This helps us understand the operational responsibilities and identify training needs.</p>
+    <p>A successful experiment doesn&#x27;t guarantee production readiness, but it gives us evidence for our decision. Perhaps the benefits justify investing in new skills. Or perhaps our existing database already does everything we need.</p>
+    <!-- V6: s23-emerging-technology-evaluation -->
+    <p>The same reasoning applies to artificial intelligence models and services. An AI model might produce impressive results during a demonstration.</p>
+    <p>But how consistently does it produce results suitable for our application? How quickly does it respond? What customer information does it need, and what does using it cost?</p>
+    <p>The evaluation questions differ, but the principle remains the same: assess the technology against actual requirements and understand the responsibilities it introduces.</p>
+    <!-- V7: s23-choose-technology-deliberately -->
+    <h4>Choose technologies that satisfy your requirements, that your team can support, and whose benefits justify their ownership costs. Stay curious, but have a reason for introducing new technologies. And how do we make sure others understand why we made those decisions?</h4>
   </aside>
 </section>
+
 
 <section class="S24">
   <h1>What Is Architecture Documentation?</h1>

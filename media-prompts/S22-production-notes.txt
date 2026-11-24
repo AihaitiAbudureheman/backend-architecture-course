@@ -1,0 +1,19 @@
+S22 — Production notes
+Title: What Does a System Really Cost?
+Subtitle: More than the cloud bill
+
+Eight visuals, 1920 × 1080. V1 illustration; V2–V8 editable SVG diagrams.
+
+V1 illustration prompt (reusable): Output file name: s22-puppy-ownership.png (use this only as the download file name; do not draw it in the image). Cute brown-and-white beagle puppy with pet-care items including food bowl, leash, grooming brush, toys, pet carrier, and appointment calendar. Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), one flat even color with no gradient and no vignette. White and soft purple (#b388ff) as the main accent colors, with a few warm highlights (#f5b078). Simple shapes, soft shadows, no clutter. Wide 16:9 composition. Subject fills most of frame with about 5% even margin. No logos or brand names. Soft glow on the collar and calendar details.
+
+Technical caveats:
+- €200, €600, €80/h, 40h, and 8h are hypothetical; not vendor prices or measured workloads.
+- Combined allocated monthly costs €3,400 and €1,240; difference €2,160. Engineering capacity released 32h; additional cash infrastructure cost €400. Savings in allocated costs are not necessarily realized cash savings.
+- Simplified comparison omits acquisition, migration, capability, resilience and other lifecycle costs.
+- Opportunity cost is the forgone value of the next-best use of resources, not an additional line item added to the allocated labor cost.
+- Managed databases retain customer responsibilities; S21 provides context.
+- Open-source licensing varies; zero licence fee is an explicit hypothetical example.
+- Provider-specific functionality may be justified despite switching costs.
+- Four TCO categories are a teaching framework, not sequential software development phases.
+
+QA: Programmatic PNG dimensions and SVG parsing and HTML image reference checks performed. No live Reveal.js render, recorded readthrough, independent legacy S38/S52 inspection, or external source verification performed.
