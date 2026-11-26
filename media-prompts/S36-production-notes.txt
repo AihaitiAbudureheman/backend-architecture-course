@@ -1,0 +1,10 @@
+S36 — What Makes a Design Good?
+Subtitle: Three questions to check any architecture
+Approved Stage 4 narration preserved exactly (typographic Markdown emphasis excluded).
+Spoken words (whitespace-separated): 345; per visual: [60, 61, 82, 87, 55]; duration at 150 WPM: 138.0 seconds.
+Original source reviewed: /mnt/data/index.html section.S36 and section.S37; /mnt/data/Final-Course-Outline-v4(1).pdf W33 section recap.
+Five 1920x1080 PNG visuals; four editable SVG diagrams. Opening is an independently generated image, with the original prompt: "A crisp flat-vector office scene features two collaborating architects: a smiling woman with long wavy dark hair and glasses gestures toward a large monitor while seated with her laptop, while a thoughtful man in a purple shirt studies the display with his hand on his chin. The dark purple board presents a softly glowing, color-coded architecture flowchart with branching services, databases, cache and external-system connections inside a dashed boundary, while the warmly lit modern office includes laptops, desk plants, a mug, books, pendant lighting, windows, shelving, and city silhouettes."
+Source generated image: /mnt/data/a_polished_flat_vector_illustration_of_a_team_disc.png. The model-generated diagram is conceptual only; labels and connections in V1 are not technically authoritative. V2-V5 are programmatically authored diagrams.
+Technical review: conceptual design review; no architecture is certified by inspection questions. Example sharding and AI agents are candidates, not required components. The final visuals simplify the approved storyboard.
+QA: all SVGs parsed, PNGs verified 1920x1080, HTML contains five image references, narration counted, contact sheet generated. Live Reveal.js playback and recorded audio timing not tested.
+Ledger: update only after user accepts S36.

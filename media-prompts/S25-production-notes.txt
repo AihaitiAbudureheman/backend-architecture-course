@@ -1,0 +1,8 @@
+S25 — What Are Your Main Data Storage Choices?
+Nine visuals: one generated illustration and eight programmatically authored editable SVG diagrams with matching PNG renders.
+Narration words (whitespace split): 699; per visual: [61, 51, 110, 106, 70, 82, 71, 109, 39]
+All PNGs: 1920x1080. The supermarket image was generated for this lesson and resized. SVGs are editable; diagram symbols and arrows are conceptual.
+Illustration prompt: Flat vector illustration, clean and playful, modern tech-course style. Deep indigo-purple background (#231c3e), white and soft purple (#b388ff), warm highlights (#f5b078), wide 16:9, full-frame supermarket divided into refrigerated dairy display, packaged goods shelves, and bulk warehouse boxes; no text, no logos, no gradient or vignette.
+Technical caveats: Relational transaction only covers order and items in one database, not external payments; document data still requires modelling and validation; key-value expiry depends on implementation; object identifiers may be stored as references; specialized technologies are optional, not mandatory; session examples use fictitious identifiers.
+Checks outstanding: live Reveal.js render and spoken recording.
+Rules v9 revision: nine bold spoken transitions including closing bridge; all existing visual assets retained; conversational scenario walkthrough refined.

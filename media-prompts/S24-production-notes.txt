@@ -1,0 +1,19 @@
+S24 — Production notes / Stage 5
+Title: What Is Architecture Documentation?
+Subtitle: Write down the why, and keep it current
+Narration: 562 whitespace-separated spoken words (v9 revision).
+Seven opaque full-frame 1920x1080 PNGs, five editable SVG diagrams.
+
+Reveal cues: V1 opening map; V2 new engineer; V3 current dependency diagram; V4 ADR; V5 stale/current comparison; V6 maintenance; V7 how/why takeaway. All subsequent frames are fragment reveals.
+
+Illustration prompt V1: Output file name s24-outdated-map.png (filename is not visible). Flat vector illustration, deep indigo-purple background #231c3e, white and soft purple #b388ff, warm orange #f5b078 accents, traveler holding outdated road map beside ROAD CLOSED barrier, alternative route sign, wide 16:9, near-full frame, no logos, no gradient requested.
+Illustration prompt V2: Output file name s24-new-engineer-assignment.png (filename is not visible). Flat vector illustration, deep indigo-purple background #231c3e, white and soft purple #b388ff, warm orange #f5b078 accents, new engineer at desk examining Shipping service documentation on computer, two thought questions How does it work? and Why Database B?, wide 16:9, no logos.
+
+Asset caveats: V1 was generated separately, then resized from 1672x941 to 1920x1080; source contains subtle shading/glow despite flat-color specification. V2 was replaced with a separately generated standalone flat-vector illustration and resized to 1920x1080. The illustration is PNG-only (not editable SVG). The five SVG diagrams were drawn programmatically and exported to PNG with CairoSVG. Their source is editable.
+
+Technical review: ADR sections are illustrative, not a mandated template. Context, decision, status, consequences and supersession are supported by GDS, Martin Fowler, and adr.github.io. Alternatives are a useful optional addition. The fictional database selection and cache investigation are illustrative, not empirical claims. The architecture diagram is conceptual and intentionally omits details.
+Sources: https://gds-way.digital.cabinet-office.gov.uk/standards/architecture-decisions.html ; https://martinfowler.com/bliki/ArchitectureDecisionRecord.html ; https://architecture-decision-record.github.io/en-001/ ; https://c4model.com/diagrams/notation
+
+Outstanding: Recorded spoken delivery and live Reveal.js rendering not tested. Legacy lesson S79 mapping not rechecked in this build.
+
+Rules v9 revision: Explicit bold spoken transitions are included in the narration and word count. The V4 ADR walkthrough is told from the engineer’s perspective; V7 returns to the opening map analogy and bridges to S25. The new V2 replaces the storyboard crop.

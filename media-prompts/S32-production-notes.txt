@@ -1,0 +1,40 @@
+S32 — WHAT IS RATE LIMITING?
+Subtitle: Control requests, protect capacity and cost
+Approved Stage 4: 10 visual states.
+
+Verified spoken count (whitespace-separated text of h3 + p + h4): 577
+Per visual: [75, 46, 57, 72, 54, 51, 47, 59, 72, 44]
+Duration at 150 spoken words/minute: 3.85 minutes (excluding pauses).
+Opening: 75 words. Closing: 44 words.
+
+Visual production:
+V1 s32-supermarket-purchase-limit.png — flat illustrated supermarket promotion. Image generation prompt: A crisp flat-vector supermarket scene shows a brightly lit indigo-and-purple aisle centered on a pyramid-like display of purple sneaker boxes, topped by an orange A-frame sign reading LIMIT 2 PER CUSTOMER in bold white type and accented with radiating marks and a sneaker starburst badge on the front. In the foreground, a smiling young man in a purple hoodie carries an orange basket with two boxed shoes, while a cheerful line of shoppers—an orange-sweatered woman, a bespectacled man, and a woman with a bun—waits nearby amid simplified shelving and warm-toned dome lights.
+V2 normal product requests — customers C25 C42 C176, gateway, Products service.
+V3 excessive automated requests — 600/min automated polling, Products service under pressure.
+V4 rate limiting — automated client 600/min, gateway 100/min, 100 admitted, 500 rejected.
+V5 HTTP 429 — request 101 rejected, illustrative Retry-After: 20.
+V6 configure rate limiting — provider-neutral conceptual gateway policy, GET /products/{id}, authenticated client, 100 requests/minute.
+V7 independent rate limit counters — two gateway instances, each 100 admitted, combined 200.
+V8 coordinated rate limiting — two instances share client allowance, illustrative split 60 + 40.
+V9 choosing rate limits — identity, request cost, combined capacity.
+V10 use rate limiting deliberately — performance, fairness, security, cost.
+
+Technical review and caveats:
+- Lesson outline S32 W29 problem: One client or bot can overwhelm the system, and the cloud bill. Verified against Final-Course-Outline-v4(1).pdf.
+- RFC 6585 Section 4 defines HTTP 429 Too Many Requests; response MAY include Retry-After. It does not prescribe user identity or counting algorithm. https://www.rfc-editor.org/rfc/rfc6585.html
+- Envoy Gateway supports local and global rate limiting. Local is per proxy instance; global shares allowance across proxy instances. Actual configuration and availability vary by provider and deployment. https://gateway.envoyproxy.io/docs/concepts/rate-limiting/
+- A limit of 100 requests per minute is illustrative, not a default. Arithmetic assumes the same identified client, one fixed-minute window, initially unused quota, no other admission restrictions, and enough incoming requests. Admitted requests are not guaranteed to complete successfully.
+- Retry-After: 20 is illustrative; it does not guarantee success on a later attempt. Some products may omit the header.
+- The diagram showing independent counters is a possible configuration, not a universal property of multi-instance gateways. Coordinated enforcement varies in precision, failure behavior and operational requirements.
+- Shared limits can require supporting infrastructure; evaluate built-in capabilities before custom implementation.
+- Authentication/authorization and IP identity are different. IP addresses can represent multiple users and users may change IP addresses.
+- Request-count limits do not imply fixed spend ceilings or guaranteed aggregate backend capacity. Weighted cost and aggregate capacity limits may be necessary.
+- 429 is typical, not mandatory for all overload and abuse scenarios; extreme abuse can be handled by dropping connections.
+- Rate limiting is not a substitute for capacity planning, authentication, anti-abuse controls or budget limits.
+- The supermarket analogy controls purchases, not time; the technical example introduces a time interval.
+- Fixed window, sliding window, token bucket, shared-store atomicity, store failure policy, and vendor-specific configuration reserved for instructor Q&A.
+- No live Reveal.js rendering or recording has been tested.
+
+Continuity: S10 API gateway; S15 retry care; S20 capacity; S21 complexity; S22 cost; S23 technology choice; S25 key-value; S28 load balancing; S31 consistency. S33 AI-model integration bridge.
+
+Vocabulary lint: review wording for course banned terms; no spoken implementation algorithm details.

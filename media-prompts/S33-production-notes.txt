@@ -1,0 +1,40 @@
+S33 — Production notes
+Title: What Changes When Your Backend Calls an AI Model?
+Subtitle: Latency, consumption, and uncertain answers
+Student problem: W30 — Treating an AI model like a normal API breaks things. NEW.
+
+Source alignment: Original /mnt/data/index.html section S33, Final-Course-Outline-v4(1).pdf, Lesson-Optimization-Rules-v9.pdf. Original lesson uses vending machine / human expert, speed, cost, correctness, external service and data boundaries. Approved stages 1–4 expand these through online-store Shopping Assistant.
+
+Production structure: 10 visual states, first generated illustration (PNG only), 9 original SVG diagrams plus rendered PNGs. All PNGs 1920×1080. The HTML section contains only the lesson section; image paths are relative to the course root. Opening image generated in this production run; source image /mnt/data/a_clean_flat_vector_illustration_with_a_dark_deep.png. Generated image prompt: Flat vector illustration, deep indigo, left customer selecting snack from vending machine, right same customer consulting expert at desk, time/cost/uncertainty motifs, no technical text.
+
+Visuals:
+V1 s33-vending-machine-and-expert.png — analogy; machine vs human expert.
+V2 s33-shopping-assistant — store app, gateway, Shopping Assistant, existing Products/Orders, external model; logical component not mandatory deployable service.
+V3 s33-streaming-ai-responses — complete response wait vs partial content; no assertion that total processing is shorter.
+V4 s33-input-output-tokens — illustrative 200+100 and 400+1000, not actual tokenizer output; input and output prices may differ.
+V5 s33-ai-consumption-controls — request frequency, token-size controls, budget monitoring. Monitoring is not a hard spend cap. Provider may offer built-ins.
+V6 s33-ai-hallucination — fictional 60-day claim vs fictional 30-day store policy. Not a claim about statutory return rights. Model was not given policy.
+V7 s33-ai-response-verification — JSON shape valid, factual assertion false. Structured outputs cannot guarantee correctness.
+V8 s33-ai-provider-failure — core shopping continues when other dependencies healthy and shared resources protected. Timeout, bounded retry, fallback; retries may cost money.
+V9 s33-ai-data-boundary — external provider sees selected question and instructions; customer may type sensitive data in free text. Provider data retention and processing must be evaluated.
+V10 s33-design-ai-integration-deliberately — conceptual responsibilities, not a deployment blueprint.
+
+Technical qualifications and instructor Q&A:
+1. Conventional APIs can also be slow, variable or billed by usage; analogy describes common tendencies, not a universal distinction.
+2. Streaming can complicate moderating or validating partial output before display. For business-critical policy claims, consider buffering and verification before showing the claim; approved narration does not promise that streaming and validation always combine safely.
+3. Tokens are not words; counts are illustrative, pricing and tokenization are provider/model specific. API cost can include other billable resources. Rate counts alone do not ensure spend ceilings; provider budgets can be alerts rather than hard caps.
+4. Caching is only appropriate where response context, permissions, current information and user privacy permit it. Do not share personal answers across users.
+5. A hallucination can occur despite successful HTTP response and valid JSON. Store generated history as generated content where policy permits; do not promote unverified claims to authoritative records.
+6. Fallback example assumes core browsing and checkout do not depend on AI; resource isolation and healthy remaining dependencies matter. Retries may repeat billable operations.
+7. External-provider scenario is illustrative; self-hosted models have different data boundaries. No assumption that providers train on customer data. Verify contracts, location, retention, access and lawful basis with stakeholders.
+8. The lesson does not teach RAG, embedding search, prompt injection, model training, autonomous tool use, or full compliance implementation. S34 owns grounding/retrieval, S35 owns agent actions and permissions.
+
+Verification sources (consulted 2026-11-26):
+https://developers.openai.com/api/docs/guides/streaming-responses — streaming delivers incremental output; warns partial moderation is harder.
+https://developers.openai.com/api/docs/guides/structured-outputs — schema conformity not a guarantee of correct facts; mistakes remain possible.
+https://genai.owasp.org/llm-top-10/ — LLM security categories including sensitive data, misinformation and unbounded consumption.
+https://www.rfc-editor.org/rfc/rfc9110.html — HTTP success status concerns processing at HTTP level, not factual accuracy of generated content.
+
+Exact narration count: 688 words, per visual [75, 74, 71, 76, 65, 75, 71, 69, 68, 44]. At 150 WPM: 275 seconds. Max 750 words. Opening and closing are included in count; title/subtitle and image alt text are excluded. Word count method: BeautifulSoup text extraction, whitespace-delimited tokens, matching course practice.
+
+Production validation: SVG XML parse, PNG dimensions, image paths, notes count, HTML section structure, contact sheet. No live Reveal.js playback or recorded delivery test performed. Ledger update only after user acceptance of Stage5.

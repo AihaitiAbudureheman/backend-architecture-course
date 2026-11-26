@@ -1,0 +1,5 @@
+Spoken words: 706; per visual: [60, 52, 62, 71, 64, 80, 71, 72, 64, 110]; seconds at 150 WPM: 282.4.
+Original S35 HTML reviewed. Approved narration retained.
+Technical references: https://genai.owasp.org/llm2026/llm032026-excessive-agency/ ; https://developers.openai.com/api/docs/guides/agents/guardrails-approvals ; https://developers.openai.com/api/docs/guides/agent-builder-safety
+Fictional order O108, return R501, limits illustrative. No live Reveal playback. Opening cropped from generated storyboard illustration, not independently generated full-resolution character art. Nine SVGs parsed and ten PNG dimensions checked. Diagrams simplified from storyboard.
+Opening prompt: female employee purple blazer glasses, compare master key and restricted badge, dark indigo flat vector course illustration.

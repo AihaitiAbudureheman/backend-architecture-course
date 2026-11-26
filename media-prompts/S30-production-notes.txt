@@ -1,0 +1,9 @@
+S30 production notes
+Approved narration unchanged. Counts: [71, 69, 67, 70, 67, 63, 60, 62, 71, 48, 37]; total 685
+Opening illustration prompt: Wide 16:9 flat vector conference registration scene, deep indigo #231c3e, three registration desks A–H, I–P, Q–Z, matching small queues, individual registration records, purple and warm orange accents, soft glow on desks, no logos or title. Output file name: s30-conference-registration.png (not drawn).
+Opening produced as programmatic vector illustration, not generated artwork.
+Technical review: https://learn.microsoft.com/en-us/azure/architecture/patterns/sharding
+https://www.mongodb.com/docs/manual/sharding/
+https://www.mongodb.com/docs/manual/core/hashed-sharding/
+https://www.mongodb.com/docs/manual/core/sharding-troubleshooting-shard-keys/
+Q: Does hashing guarantee balance? No, a single hot key remains concentrated. Q: Does adding a shard immediately increase usable capacity? Not necessarily; routing and data movement must succeed and load must distribute. V9 transition assumes completed redistribution and sufficient capacity. Q: Does reporting require direct database access? No; logical query through Orders data access, alternative reporting stores possible. Count assumes successful queries over intended dataset, not a global atomic snapshot. Ranges cover sample numeric suffixes only. Hash mappings illustrative. Replicas may lag; redundancy requires suitable placement and failover. Resharding terminology varies by vendor; here includes redistribution/rebalancing. Shard keys can be composite. Live Reveal.js and recording untested. Ledger update pending acceptance.

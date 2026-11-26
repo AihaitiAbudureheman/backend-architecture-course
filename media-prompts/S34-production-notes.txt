@@ -1,0 +1,14 @@
+S34 — Production Notes
+Title: What Is Retrieval-Augmented Generation (RAG)?
+Subtitle: Give the AI model your business context
+Status: Stage 5 candidate, subject to technical QA and acceptance.
+Spoken words: 699; per visual: [59, 52, 64, 71, 88, 76, 56, 58, 63, 67]; closing: 45.
+At 150 WPM: 279.6 seconds.
+Assets: 10 PNG at 1920×1080; V2–V10 editable SVG; V1 generated illustration.
+Illustration prompt: A modern flat-vector scene on a deep indigo background is divided into two panels: on the left, a bespectacled woman in a purple blazer looks puzzled at her lavender laptop while a man in an orange hoodie asks about a sneaker return, symbolized by a box, circular arrows, and purple shoes; on the right, the same pair appear reassured as she reviews a purple document showing the sneaker and an orange checkmark, signaling an approved, clearly understood return policy.
+Source lesson: /mnt/data/index.html section.S34; outline v4 W31; optimization rules v9.
+Scenario: C25 asks about P42 running shoes after 60 days; fictional authoritative policy 30 days. V8 hypothetical update 45 days; actual policies depend on conditions and effective dates.
+Technical caveats: retrieval does not imply retraining; direct prompting sufficient for small stable information; vector databases not mandatory; semantic search is one retrieval option; chunking requires context; indexed sources need refresh; source references do not guarantee correctness; authorization enforced before model context; retrieval can be irrelevant or stale; additional latency, storage and token consumption.
+Logical components in diagrams do not imply microservices or separate deployments.
+Validation: local SVG XML parse, raster dimensions, HTML image references, and contact sheet. No live Reveal.js browser playback or recorded voice delivery tested.
+Technical verification (2026-11-26): Microsoft Foundry RAG overview https://learn.microsoft.com/en-us/azure/foundry/concepts/retrieval-augmented-generation ; Azure AI Search RAG https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview ; chunking https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents . These support retrieval, augmentation, generation, indexing, embeddings, permissions, cost and latency qualifications.
